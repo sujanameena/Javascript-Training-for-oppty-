@@ -1,0 +1,56 @@
+// What is the DOM?
+// The DOM is a programming interface for HTML/XML documents. It represents the page structure as a tree of objects
+// that JavaScript can manipulate to change document structure, style, and content dynamically.
+
+// Document
+// └── html
+// ├── head
+// │ ├── title
+// │ └── meta
+// └── body
+// ├── div
+// │ ├── h1
+// │ └── p
+// └── script
+
+1. Selecting Elements: Single Element Selection
+// By ID 
+const element = document.getElementById('myId');
+
+<!-- First match by CSS selector -->
+const element = document.querySelector('.myClass');
+const element = document.querySelector('#myId');
+const element = document.querySelector('div > p');
+
+//   By tag name (returns first)
+const element = document.getElementsByTagName('div')[0];
+
+<!-- By class name (returns first) -->
+const element = document.getElementsByClassName('myClass')[0];
+
+
+<!-- Multiple Elements Selection -->
+All matching CSS selector (returns NodeList)
+const elements = document.querySelectorAll('.myClass');
+
+By tag name (returns HTMLCollection)
+const divs = document.getElementsByTagName('div');
+
+By class name (returns HTMLCollection)
+const items = document.getElementsByClassName('item');
+
+By name attribute
+const inputs = document.getElementsByName('username');
+
+<!-- The following HTML objects (and object collections) are also accessible: -->
+
+document.anchors
+document.body
+document.documentElement
+document.embeds
+document.forms
+document.head
+document.images
+document.links
+document.scripts
+document.title

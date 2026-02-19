@@ -1,0 +1,228 @@
+What Are Access Modifiers In JavaScript ?
+
+Access modifiers in JavaScript are keywords or conventions used to control the visibility and accessibility of properties and methods within classes. JavaScript does not have traditional access modifiers like public, private, or protected as in some other languages, but ES6 introduced a way to create private fields and methods using the # symbol.
+
+Types of Access Modifiers:
+1.Public (default):
+2.Private
+3.Protected
+
+1.Public (default):
+
+Public Access Modifier in JavaScript:
+In JavaScript, properties and methods are public by default. This means they can be accessed and modified from outside the class or object, without any special keyword or restriction
+
+Example:1 
+
+<!-- <h2>Public Access Modifier - Simple Example</h2> 
+<p>
+  In JavaScript, properties and methods are public by default and can be accessed directly.
+</p>
+
+<div id="publicOutput" style="color: purple; font-weight: bold;"></div>
+
+<script>
+  class Product {
+    name = "Laptop"; // public property
+    price = 50000;   // public property
+
+    // public method
+    getDetails() {
+      return `Product: ${this.name}, Price: ₹${this.price}`;
+    }
+  }
+
+  const product1 = new Product();
+
+  // Accessing public properties and method
+  document.getElementById("publicOutput").textContent = product1.getDetails();
+  console.log(product1.name); // Laptop
+  console.log(product1.price); // 50000
+</script> -->
+
+
+Example:2 
+
+<!-- <h2>Bank Account Example (Public Access Modifier)</h2>
+<p>
+  In this example, the <strong>accountHolder</strong> and <strong>balance</strong> properties are public and can be accessed or modified directly.
+</p>
+
+<div>
+  <label>Deposit Amount: <input type="number" id="depositAmount" /></label>
+  <button onclick="depositMoney()">Deposit</button>
+</div>
+<p id="accountInfo" style="color: blue; font-weight: bold;"></p>
+
+<script>
+  // JavaScript: BankAccount class with public properties
+  class BankAccount {
+    accountHolder = "Sujana";
+    balance = 1000; // Public property
+
+    // Public method
+    deposit(amount) {
+      this.balance += amount;
+      return `Deposited ₹${amount}. New Balance: ₹${this.balance}`;
+    }
+  }
+
+  // Create an object
+  const myAccount = new BankAccount();
+
+  // Display initial account info
+  document.getElementById("accountInfo").textContent =
+    `Account Holder: ${myAccount.accountHolder}, Balance: ₹${myAccount.balance}`;
+
+  // Function to deposit money and update information
+  function depositMoney() {
+    const amount = parseInt(document.getElementById("depositAmount").value, 10);
+    if (!isNaN(amount) && amount > 0) {
+      myAccount.deposit(amount);
+      document.getElementById("accountInfo").textContent =
+        `Account Holder: ${myAccount.accountHolder}, Balance: ₹${myAccount.balance}`;
+    }
+  }
+</script> -->
+
+2.Private
+
+Private Access Modifier in JavaScript:
+The private access modifier restricts access to properties and methods so they can only be used within the class where they are defined. In JavaScript, private fields and methods are declared using the # symbol, making them inaccessible from outside the class.
+
+Example:1 
+
+<!-- <h2>Private Access Modifier - Simple Example</h2>
+<p>
+  In JavaScript, private properties and methods are declared with <code>#</code> and can only be accessed inside the class.
+</p>
+
+<div id="privateOutput" style="color: red; font-weight: bold;"></div>
+
+<script>
+  class Employee {
+    #salary = 30000; // private property
+
+    getSalary() {
+      return `Salary: ₹${this.#salary}`;
+    }
+  }
+
+  const emp1 = new Employee();
+
+  // Accessing private property via public method
+  document.getElementById("privateOutput").textContent = emp1.getSalary();
+
+  // Trying to access private property directly will cause an error
+  // console.log(emp1.#salary); // SyntaxError
+</script> -->
+
+Example:2 
+
+<!-- <h2>ATM Machine Example (Private Access Modifier)</h2>
+<p>
+  In this example, the <strong>pin</strong> property is private and cannot be accessed or modified directly from outside the class.
+</p>
+
+<div>
+  <label>Enter PIN: <input type="password" id="atmPin" maxlength="4" /></label>
+  <button onclick="checkPin()">Check Balance</button>
+</div>
+<p id="atmOutput" style="color: darkgreen; font-weight: bold;"></p>
+
+<script>
+  // JavaScript: ATM class with private property
+  class ATM {
+    #pin = "1234"; // private property
+    balance = 5000; // public property
+
+    // public method to check PIN and return balance
+    getBalance(enteredPin) {
+      if (enteredPin === this.#pin) {
+        return `Your balance is ₹${this.balance}`;
+      } else {
+        return "Incorrect PIN!";
+      }
+    }
+  }
+
+  const myATM = new ATM();
+
+  function checkPin() {
+    const enteredPin = document.getElementById("atmPin").value;
+    document.getElementById("atmOutput").textContent = myATM.getBalance(enteredPin);
+  }
+</script> -->
+
+
+3.Protected
+
+Protected Access Modifier in JavaScript:
+JavaScript does not have a built-in protected access modifier like some other languages. However, by convention, a property or method intended to be "protected" (accessible only within the class and its subclasses) is prefixed with an underscore (e.g., _property). This is only a naming convention and does not enforce true protection. True protected access is not natively supported in JavaScript.
+
+Example:1 
+
+<!-- <h2>Protected Access Modifier - Simple Example (Convention)</h2>
+<p>
+  JavaScript does not have a true <strong>protected</strong> modifier, but by convention, properties or methods prefixed with <code>_</code> are treated as protected (meant for use within the class and its subclasses).
+</p>
+
+<div id="protectedOutput" style="color: teal; font-weight: bold;"></div>
+
+<script>
+  class Animal {
+    _type = "Mammal"; // protected by convention
+
+    getType() {
+      return `Type: ${this._type}`;
+    }
+  }
+
+  class Dog extends Animal {
+    getAnimalType() {
+      return `Dog is a ${this._type}`;
+    }
+  }
+
+  const dog1 = new Dog();
+
+  // Accessing the "protected" property via subclass method
+  document.getElementById("protectedOutput").textContent = dog1.getAnimalType();
+
+  // Accessing the "protected" property directly (not recommended)
+  console.log(dog1._type); // Mammal
+</script> -->
+
+
+Example:2 
+
+<!-- <h2>Employee Example (Protected Access Modifier - Convention)</h2>
+<p>
+  In this example, the <strong>_department</strong> property is treated as protected by convention. It is accessed within the class and its subclass, but should not be accessed directly from outside.
+</p>
+
+<div id="employeeOutput" style="color: brown; font-weight: bold;"></div>
+
+<script>
+  class Employee {
+    _department = "Finance"; // protected by convention
+
+    getDepartment() {
+      return `Department: ${this._department}`;
+    }
+  }
+
+  class Manager extends Employee {
+    getManagerInfo() {
+      return `Manager works in ${this._department} department.`;
+    }
+  }
+
+  const mgr = new Manager();
+
+  // Accessing the "protected" property via subclass method
+  document.getElementById("employeeOutput").textContent = mgr.getManagerInfo();
+
+  // Accessing the "protected" property directly (not recommended)
+  console.log(mgr._department); // Finance
+</script> -->

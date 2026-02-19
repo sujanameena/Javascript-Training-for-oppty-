@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+
+    <style>
+        body {
+            margin: 0;
+            margin-top: 200px;
+            font-family: Arial;
+            background: url("https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80") no-repeat center/cover;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 12px;
+            padding: 30px 20px;
+            align-items: center;
+            width: 500px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin: 0;
+        }
+
+        body.dark-theme .main {
+            background: rgba(30, 30, 30, 0.9);
+            color: #f0f0f0;
+        }
+
+        h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .date {
+            font-size: 18px;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        body.dark-theme .date {
+            color: #ccc;
+        }
+
+        .taskInput {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .taskInput input {
+            width: 90%;
+            margin-left: 20px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        body.dark-theme .taskInput input {
+            background: #222;
+            color: #f0f0f0;
+            border: 1px solid #555;
+        }
+
+        .taskInput button {
+            margin-left: 10px;
+            padding: 14px 20px;
+            border-radius: 8px;
+            border: none;
+            background: #6c63ff;
+            color: white;
+            cursor: pointer;
+        }
+
+        body.dark-theme .taskInput button {
+            background: #bb86fc;
+        }
+
+        .buttonRow {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .Btn {
+            padding: 12px 25px;
+            border-radius: 8px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            width: 150px;
+        }
+
+        .taskItem {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f7f7f7;
+            padding: 14px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+        }
+
+        body.dark-theme .taskItem {
+            background: #333;
+            border: 1px solid #555;
+            color: #f0f0f0;
+        }
+
+        .taskItem .title {
+            font-size: 18px;
+        }
+
+        .actions button {
+            margin-left: 8px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .actions button:hover {
+            opacity: 0.8;
+        }
+
+        .priorityTag {
+            font-size: 12px;
+            padding: 4px 8px;
+            background: #ffe5a1;
+            border-radius: 6px;
+            margin-left: 10px;
+            color: #a87100;
+        }
+
+        body.dark-theme .priorityTag {
+            background: #b3853c;
+            color: #fff3c4;
+        }
+
+        h2 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        body.dark-theme h2 {
+            border-bottom: 2px solid #555;
+        }
+
+        #addBtn {
+            background: #6c63ff;
+            color: white;
+        }
+
+        #addBtn:hover {
+            opacity: 0.85;
+        }
+
+        #darkModeBtn {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: none;
+            background: #ff9900;
+            color: white;
+            cursor: pointer;
+        }
+
+        #darkModeBtn:hover {
+            opacity: 0.85;
+        }
+
+        #prioritySelect {
+            padding: 12px;
+            width: 150px;
+            border-radius: 8px;
+            border: 1px solid #aaa;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #prioritySelect:hover {
+            border-color: #6c63ff;
+        }
+
+    </style>
+</head>
+
+<body>
+    <hr style="border: none; height: 2px; background: linear-gradient(to right, transparent, #6c63ff, transparent); margin: 20px 0;">
+    <div class="main">
+        <h1>11th December 2025</h1>
+        <div class="date">Today's Tasks</div>
+
+        <div class="taskInput">
+            <input type="text" id="taskInput" placeholder="New task">
+        </div>
+        <div class="btnRow">
+            <button id="addBtn" class="Btn" onclick="addtask()">Add</button>
+            <button id="darkModeBtn" class="Btn">Dark Mode</button>
+
+            <select id="prioritySelect" class="Btn">
+                <option disabled selected>Set Priority</option>
+                <option value="none">No Priority</option>
+                <option value="low">Low Priority</option>
+                <option value="medium">Medium Priority</option>
+                <option value="high">High Priority</option>
+            </select>
+        </div>
+
+        <h2>To-Do (<span id="todoCount">0</span>)</h2>
+        <div id="todoList"></div>
+
+        <br><br>
+
+        <h2>Completed (<span id="completedCount">0</span>)</h2>
+        <div id="completedList"></div>
+    </div>
+
+    <script>
+
+        const darkModeBtn = document.getElementById("darkModeBtn");
+        darkModeBtn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-theme");
+        });
+
+        function addtask() {
+            let input = document.getElementById("taskInput");
+            let value = input.value.trim();
+            if (!value) {
+                alert("Please enter a task.");
+                return;
+            }
+
+            let todoList = document.getElementById("todoList");
+            let taskItem = createTaskElement(value);
+            todoList.appendChild(taskItem);
+
+            input.value = "";
+            updateCounts();
+        }
+
+        function createTaskElement(taskText) {
+            let taskItem = document.createElement("div");
+            taskItem.className = "taskItem";
+
+            let title = document.createElement("span");
+            title.className = "title";
+            title.textContent = taskText;
+
+            let actions = document.createElement("div");
+            actions.className = "actions";
+
+            let priority = document.createElement("span");
+            priority.className = "priorityTag";
+            priority.textContent = "High Priority";
+            let priorityValue = document.getElementById("prioritySelect").value;
+            if (priorityValue === "none") {
+                priority.style.display = "none";
+            }
+
+            let completeBtn = document.createElement("button");
+            completeBtn.textContent = "✔";
+            completeBtn.onclick = function () {
+                moveToCompleted(taskItem);
+            };
+
+            let editBtn = document.createElement("button");
+            editBtn.textContent = "✏️";
+            editBtn.onclick = function () {
+                editTask(title);
+            };
+
+            let deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "🗑";
+            deleteBtn.onclick = function () {
+                taskItem.remove();
+                updateCounts();
+            };
+
+            actions.appendChild(priority);
+            actions.appendChild(completeBtn);
+            actions.appendChild(editBtn);
+            actions.appendChild(deleteBtn);
+
+            taskItem.appendChild(title);
+            taskItem.appendChild(actions);
+
+            return taskItem;
+        }
+
+        function moveToCompleted(taskItem) {
+            let completedList = document.getElementById("completedList");
+            let actions = taskItem.querySelector(".actions");
+            if (actions) actions.remove();
+            completedList.appendChild(taskItem);
+
+            updateCounts();
+        }
+
+        function editTask(titleElement) {
+            let newTask = prompt("Edit task:", titleElement.textContent);
+            if (newTask && newTask.trim() !== "") {
+                titleElement.textContent = newTask;
+            }
+        }
+
+        function updateCounts() {
+            document.getElementById("todoCount").textContent =
+                document.getElementById("todoList").children.length;
+
+            document.getElementById("completedCount").textContent =
+                document.getElementById("completedList").children.length;
+        }
+
+        function updateDate() {
+            const h1 = document.querySelector("h1");
+
+            const today = new Date();
+            const options = {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            };
+
+            h1.textContent = today.toLocaleDateString("en-US", options);
+        }
+
+        updateDate();
+
+    </script>
+
+</body>
+
+</html>

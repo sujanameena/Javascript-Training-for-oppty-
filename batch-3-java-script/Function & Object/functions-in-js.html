@@ -1,0 +1,653 @@
+A function is a reusable block of code designed to perform a specific task. Functions help organize code, make it
+reusable, and easier to maintain.
+
+Why Use Functions?
+Code Reusability - Write once, use multiple times
+Organization - Break complex problems into smaller parts
+Maintainability - Easy to update and debug
+Readability - Makes code cleaner and more understandable
+
+syntax:
+function functionName(parameters) {
+// code to execute
+return value; // optional
+}
+
+Default Parameters:
+------------------
+
+Default parameters allow you to specify default values for function parameters if no argument is passed or if
+undefined is passed.
+
+Example:
+
+function aading(name = "Sujana") {
+console.log("Hello, " + name);
+}
+
+aading();
+aading("suchin");
+
+Return Statement:
+------------------
+
+a.The return statement is used to send a result back from a function.
+b.When return executes, the function stops running at that point.
+c.The returned value can be stored in a variable or used directly.
+
+syntax: function functionName() {
+return value;
+}
+
+Example:
+
+<!-- <h1>JavaScript Functions</h1>
+    <p id="return-statement"></p>
+    
+    <style>
+        #return-statement{
+           font-size: 30px; 
+        }
+    </style>
+
+    <script>
+
+        function add(a, b) {
+            return a + b;
+        }
+
+        let result = add(5, 10);
+        // console.log(result);
+        document.getElementById("return-statement").innerHTML=result;
+
+    </script> -->
+
+
+
+Type of Functions:
+------------------
+1. Named Function:
+A Named Function (also called Function Declaration) is a function that has a specific name and can be called
+anywhere in the code
+
+syntax: function functionName(parameters) {
+code to execute
+return value;
+}
+
+Example:1
+
+<!-- <h1>JavaScript Functions</h1>
+<p id="named-function"></p>
+
+<style>
+    #named-function {
+        font-size: 30px;
+        color: rgb(15, 140, 59);
+        font-weight: 800;
+    }
+</style>
+
+<script>
+
+    function greet() {
+        return "Hello!";
+    }
+    // console.log(greet());
+    document.getElementById("named-function").innerHTML = greet(); -->
+
+Example:2
+<!--<h1>JavaScript Functions</h1>
+<p id="named-function"></p>
+
+<style>
+    #named-function {
+        font-size: 30px;
+        color: rgb(15, 140, 59);
+        font-weight: 800;
+    }
+</style>
+
+<script>
+
+    function greet(name) {
+        return "Hello! " + name;
+    }
+    greet("John");
+    // console.log(greet());
+    document.getElementById("named-function").innerHTML = greet("John"); -->
+
+2. Anonymous Function:
+
+An Anonymous Function is a function that does not have a name. It's often assigned to a variable or used as a callback
+function.
+
+Syntax: const variableName = function(parameters) {
+code to execute
+return value;
+};
+
+Example:1
+
+<!-- <h1>JavaScript Functions</h1>
+<p id="functions"></p>
+
+<style>
+    #functions {
+        font-size: 30px;
+        color: rgb(15, 140, 59);
+        font-weight: 800;
+    }
+</style>
+
+<script>
+
+    const add = function (a, b) {
+        return a + b;
+    };
+
+    const result=add(5, 3);
+        console.log(result);
+
+    document.getElementById("functions").innerHTML = add(5, 3); -->
+
+3. Function Expression:
+
+When you assign a function (can be named or anonymous) to a variable. The function can then be used by calling that
+variable.
+
+Syntax:
+const variableName = function(parameters) {
+code to execute
+return value;
+};
+
+Example:1
+
+<!-- <h1>JavaScript Functions</h1>
+<p id="functions"></p>
+
+<style>
+    #functions {
+        font-size: 30px;
+        color: rgb(15, 140, 59);
+        font-weight: 800;
+    }
+</style>
+
+<script>
+
+    let greet = function (name) {
+        return "Hello " + name;
+    }
+    // console.log(greet("John"));
+    document.getElementById("functions").innerHTML = greet("John");
+
+</script> -->
+
+
+4. Arrow Function (ES6):
+
+An Arrow Function is a concise way to write functions in JavaScript, introduced in ES6 (ECMAScript 2015). It uses the
+arrow (=>) syntax and is shorter than traditional function expressions.
+
+Syntax:
+
+// Basic syntax
+const functionName = (parameters) => {
+// code to execute
+return value;
+};
+
+// Short syntax (single expression, implicit return)
+const functionName = (parameters) => value;
+
+// Single parameter (no parentheses needed)
+const functionName = parameter => value;
+
+// No parameters
+const functionName = () => value;
+
+Example:1
+
+<!-- <h1>JavaScript Functions</h1>
+    <p id="functions"></p>
+
+    <style>
+        #functions {
+            font-size: 30px;
+            color: rgb(15, 140, 59);
+            font-weight: 800;
+        }
+    </style>
+
+    <script>
+
+        const multiply = (a, b) => {
+            return a * b;
+        };
+        // console.log(multiply(2, 3));
+        document.getElementById("functions").innerHTML = multiply(2, 3);
+    </script> -->
+
+
+
+5. Immediately Invoked Function Expression (IIFE):
+An Immediately Invoked Function Expression (IIFE) is a function that runs as soon as it’s defined, creating a private
+scope and avoiding global pollution.
+
+Syntax:
+
+(function () {
+console.log('IIFE run');
+})();
+
+Example:1
+
+<!-- <h1>JavaScript Functions</h1>
+<p id="functions"></p>
+
+<style>
+    #functions {
+        font-size: 30px;
+        color: rgb(15, 140, 59);
+        font-weight: 800;
+    }
+</style>
+
+<script>
+
+    let greet = (function () {
+        return function (name) {
+            const msg = "Hello, " + name;
+            // console.log(msg);
+            return msg;
+        };
+    })();
+
+    document.getElementById("functions").innerHTML = greet("OPPTY");
+</script> -->
+
+6. Callback Functions:
+
+A callback function is passed as an argument to another function and is executed after the completion of that function.
+
+syntax:
+
+function doTask(callback) {
+...write code here...
+callback(result);
+}
+
+Example:1
+
+<!-- <h1>JavaScript Functions</h1>
+    <p id="functions"></p>
+    <style>
+        #functions {
+            font-size: 30px;
+            color: rgb(15, 140, 59);
+            font-weight: 800;
+        }
+    </style>
+
+    <script>
+
+        let add = function greet(name, callback) {
+            const message = "Hello, " + name;
+            callback(message);
+        };
+
+        add("Sujana", function(message) {
+            document.getElementById("functions").innerHTML = message;
+        });
+    </script> -->
+
+
+7. Constructor Function:
+
+Syntax:
+
+function Person(name, age) {
+this.name = name;
+this.age = age;
+}
+
+Prototype in functions: In JavaScript, every function has a prototype object. When a function is used as a constructor
+with new, all instances link to that function’s prototype, so methods added to prototype are shared across instances.
+
+
+Example:1
+
+<!-- <h1>JavaScript Functions</h1>
+    <p id="functions"></p>
+    <style>
+        #functions {
+            font-size: 30px;
+            color: rgb(15, 140, 59);
+            font-weight: 800;
+        }
+    </style>
+
+    <script>
+
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        Person.prototype.getInfo = function () {
+            return "Name: " + this.name + ", Age: " + this.age;
+        };
+
+        const person = new Person("Samantha", 40);
+        document.getElementById("functions").innerHTML = person.getInfo();
+       
+    </script> -->
+
+8. Async Function:
+
+An async function returns a Promise. Inside it, await pauses execution until a Promise resolves or rejects.
+
+Syntax:
+
+async function doWork() {
+const result = await somePromise;
+return result;
+}
+
+const fn = async () => {
+const result = await somePromise;
+return result;
+};
+
+Example:1
+
+<!-- <h1>JavaScript Functions</h1>
+    <p id="functions"></p>
+    <style>
+        #functions {
+            font-size: 30px;
+            color: rgb(15, 140, 59);
+            font-weight: 800;
+        }
+    </style>
+
+    <script>
+
+        function getMessage() {
+            return new Promise(resolve => {
+                setTimeout(() => resolve("HTML, CSS Training Completed"), 1000);
+            });
+        }
+
+        async function showMessage() {
+            const msg = await getMessage();
+            document.getElementById("functions").textContent = msg;
+        }
+
+        showMessage();
+
+    </script> -->
+
+9. Generator Function:
+
+A generator function (function*) can pause and resume with yield. It returns an iterator whose next() advances
+execution.
+
+Syntax:
+
+function* gen() {
+yield 1;
+yield 2;
+return 3;
+}
+const it = gen();
+it.next(); // { value: 1, done: false }
+
+Example:1
+
+<!-- <h1>JavaScript Functions</h1>
+    <p id="functions"></p>
+    <style>
+        #functions {
+            font-size: 30px;
+            color: rgb(15, 140, 59);
+            font-weight: 800;
+        }
+    </style>
+
+    <script>
+
+        function* counter(n) {
+            let i = 1;
+            while (i <= n) {
+                yield i++;
+            }
+        }
+
+        const values = [...counter(5)];
+        document.getElementById("functions").textContent = "Generated: " + values.join(", ");
+
+    </script> -->
+
+10. Recursive Function:
+
+A recursive function calls itself to solve a problem in smaller steps. It must have a base case to stop the recursion.
+
+Syntax:
+
+<!-- function recurse(n) {
+    if (n <= 0) return; // base case
+    // ...code here...
+    return recurse(n - 1); // recursive call with smaller input
+} -->
+
+Example:1
+
+<!-- <h1>JavaScript Functions</h1>
+    <p id="functions"></p>
+    <style>
+        #functions {
+            font-size: 30px;
+            color: rgb(15, 140, 59);
+            font-weight: 800;
+        }
+    </style>
+
+    <script>
+        function factorial(n) {
+            if (n <= 1) return 1;        // base case
+            return n * factorial(n - 1); // recursive step
+        }
+
+        const result = factorial(5);
+        document.getElementById("functions").textContent = "factorial(5) = " + result;
+    </script> -->
+
+11. Higher-Order Function:
+
+A higher-order function is a function that takes another function as an argument, returns a function, or both.
+
+Syntax:
+
+// Takes a function as an argument
+function operate(a, b, op) {
+return op(a, b);
+}
+
+// Returns a function
+function makeMultiplier(n) {
+return function (x) {
+return n * x;
+};
+}
+
+Example:1
+
+<!-- <h1>JavaScript Functions</h1>
+    <p id="functions"></p>
+    <style>
+        #functions {
+            font-size: 30px;
+            color: rgb(15, 140, 59);
+            font-weight: 800;
+        }
+    </style>
+
+    <script>
+        // Higher-Order Function examples
+        function operate(a, b, c) {
+            return c(a, b);
+        }
+
+        function makeMultiplier(n) {
+            return function (x) {
+                return n * x;
+            };
+        }
+
+        const sum = operate(5, 3, (a, b) => a + b);   // 8
+        const triple = makeMultiplier(3);
+        const tripled = triple(4);                    // 12
+
+        document.getElementById("functions").textContent =
+            "sum: " + sum + " | tripled: " + tripled;
+    </script> -->
+
+
+12. Nested Functions:.
+
+A function defined inside another function. The inner function can access the outer function’s variables (closure).
+
+Syntax:
+
+function outer(x) {
+function inner(y) {
+// can use x here
+}
+return inner; // or call inner()
+}
+
+Example:1
+
+<!-- <h1>JavaScript Functions</h1>
+    <p id="functions"></p>
+    <style>
+        #functions {
+            font-size: 30px;
+            color: rgb(15, 140, 59);
+            font-weight: 800;
+        }
+    </style>
+
+    <script>
+        function outerFun(a) {
+            function innerFun(b) {
+                return a + b; // inner uses outer's 'a'
+            }
+            return innerFun;
+        }
+
+        const addTen = outerFun(10);
+        document.getElementById('functions').textContent = 'Addition = ' + addTen(5);
+    </script> -->
+
+13. Pure Functions:
+
+Returns the same output for the same inputs.
+No side effects (doesn’t read or write external state, doesn’t mutate inputs).
+
+Syntax:
+
+function f(x) { return x * 2; }
+const f = x => x * 2;
+
+Example:1
+
+<!-- <h1>JavaScript Functions</h1>
+    <p id="functions"></p>
+    <style>
+        #functions {
+            font-size: 30px;
+            color: rgb(15, 140, 59);
+            font-weight: 800;
+        }
+    </style>
+
+    <script>
+        // Pure Function example
+        function add(a, b) {
+            return a + b; // deterministic, no side effects
+        }
+
+        // Display
+        document.getElementById('functions').textContent =
+            'Pure add(10, 5) = ' + add(10, 5);
+    </script> -->
+
+14. Default Parameter Function:
+
+A function where parameters have default values if no argument is passed. Helps avoid undefined issues.
+
+Example:1
+
+<!-- <h1>JavaScript Functions</h1>
+    <p id="functions"></p>
+    <style>
+        #functions {
+            font-size: 30px;
+            color: rgb(15, 140, 59);
+            font-weight: 800;
+        }
+    </style>
+
+    <script>
+        // Default parameters make usage simple
+        function greet(name = "Guest", greeting = "Hello") {
+            return `${greeting}, ${name}!`;
+        }
+
+        // Examples
+        const msg1 = greet();                 // "Hello, Guest!"
+        const msg2 = greet("Sujana");         // "Hello, Sujana!"
+        const msg3 = greet("Sujana", "Hi");   // "Hi, Sujana!"
+
+        document.getElementById('functions').textContent =
+            `${msg1} | ${msg2} | ${msg3}`;
+    </script> -->
+
+15. Rest Parameter Function:
+
+The rest parameter (...) gathers remaining arguments into an array.
+
+Syntax:
+
+function sum(...nums) {
+return nums.reduce((a, b) => a + b, 0);
+}
+
+function log(first, ...rest) {
+// first is the first arg, rest is an array of the remaining
+}
+
+Example:1
+
+<!-- <h1>JavaScript Functions</h1>
+    <p id="functions"></p>
+    <style>
+        #functions {
+            font-size: 30px;
+            color: rgb(15, 140, 59);
+            font-weight: 800;
+        }
+    </style>
+
+    <script>
+        function sumAll(...nums) {
+            return nums.reduce((t, n) => t + n, 0);
+        }
+
+        const total = sumAll(1, 2, 3, 4, 5);
+        document.getElementById("functions").textContent = `sumAll(1,2,3,4,5) = ${total}`;
+    </script> -->

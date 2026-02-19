@@ -1,0 +1,1253 @@
+JavaScript Constructor Method:   
+------------------------------
+
+The constructor method is a special function inside a JavaScript class that is automatically called when a new object is created from the class. It is used to initialize object properties.
+
+
+In JavaScript, constructors can be defined in two main ways:
+
+1.Function Constructor (Before ES6)
+2.Class Constructor (ES6 and Beyond)
+
+
+1.Function Constructor (Before ES6)
+
+Before ES6, JavaScript used constructor functions to create and initialize objects. A constructor function is essentially a regular function that is invoked using the new keyword. Here's how you define a constructor function.
+
+Example:1 
+
+<!-- <script>
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    return "Hello, my name is " + this.name + " and I am " + this.age + " years old.";
+  };
+}
+
+var person1 = new Person("Sujana", 22);
+// document.write(person1.greet());
+console.log(person1.greet());
+</script> -->
+
+Example:2
+
+<!-- <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f9f9f9;
+    }
+    .container {
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin: auto;
+    }
+    label, input {
+      display: block;
+      margin-bottom: 12px;
+    }
+    button {
+      padding: 8px 16px;
+      background: #0078d7;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #output {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+
+  
+
+ <div class="container">
+    <h2>Function Constructor (Before ES6)</h2>
+    <form id="personForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" required>
+      <label for="age">Age:</label>
+      <input type="number" id="age" required>
+      <button type="submit">Greet</button>
+    </form>
+    <div id="output"></div>
+  </div>
+  <script>
+    // Function Constructor
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+      this.greet = function() {
+        return "Hello, my name is " + this.name + " and I am " + this.age + " years old.";
+      };
+    }
+
+    document.getElementById('personForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var name = document.getElementById('name').value;
+      var age = document.getElementById('age').value;
+      var person = new Person(name, age);
+      document.getElementById('output').textContent = person.greet();
+    });
+  </script> -->
+
+
+  Example:3
+  <!-- <style>
+    body {
+      font-family: Verdana, sans-serif;
+      background: #eef2f7;
+      margin: 40px;
+    }
+    .car-container {
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      max-width: 400px;
+      margin: auto;
+    }
+    label, input {
+      display: block;
+      margin-bottom: 12px;
+    }
+    button {
+      padding: 8px 16px;
+      background: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #carOutput {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #222;
+    }
+  </style>
+
+
+  <div class="car-container">
+    <h2>Car Constructor (Before ES6)</h2>
+    <form id="carForm">
+      <label for="brand">Car Brand:</label>
+      <input type="text" id="brand" required>
+      <label for="year">Year:</label>
+      <input type="number" id="year" required>
+      <button type="submit">Show Car Info</button>
+    </form>
+    <div id="carOutput"></div>
+  </div>
+  <script>
+    // Function Constructor for Car
+    function Car(brand, year) {
+      this.brand = brand;
+      this.year = year;
+      this.getInfo = function() {
+        return "This car is a " + this.brand + " from " + this.year + ".";
+      };
+    }
+
+    document.getElementById('carForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var brand = document.getElementById('brand').value;
+      var year = document.getElementById('year').value;
+      var car = new Car(brand, year);
+      document.getElementById('carOutput').textContent = car.getInfo();
+    });
+  </script> -->
+
+
+  Example:4
+
+   <!-- <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 24px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-box {
+            background-color: white;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #1f2937;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn-add {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-add:hover {
+            background-color: #1d4ed8;
+        }
+
+        .display-area {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .student-card {
+            background-color: white;
+            padding: 16px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-active { border-left: 5px solid #3b82f6; }
+        
+        .card-inactive { 
+            border-left: 5px solid #94a3b8; 
+            opacity: 0.7; 
+            filter: grayscale(1); 
+        }
+
+        .card-info h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .card-info p {
+            margin: 4px 0;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .status-tag {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .btn-exit {
+            background-color: #e5e7eb;
+            color: #dc2626;
+            border: 1px solid #fca5a5;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .btn-exit:hover {
+            background-color: #fee2e2;
+        }
+    </style>
+
+    <div class="container">
+        <div class="form-box">
+            <h1>New Student Enrollment</h1>
+            <div class="input-group">  
+                <input type="text" id="studentName" placeholder="Full Name">
+                <input type="text" id="studentMajor" placeholder="Field of Study">
+                <button onclick="addNewStudent()" class="btn-add">
+                    Add to Registry
+                </button>
+            </div>
+        </div>
+
+        <div id="displayArea" class="display-area">
+        </div>
+    </div>
+
+    <script>
+        
+        function StudentRecord(id, name, major) {
+            this.id = id;
+            this.name = name;
+            this.major = major;
+            this.status = "Enrolled"; 
+        }
+
+        
+        StudentRecord.prototype.setAsDeparted = function() {
+            this.status = "Departed";
+        };
+
+        var allStudents = [];
+
+        function updateUI() {
+            var displayArea = document.getElementById('displayArea');
+            displayArea.innerHTML = ''; 
+
+            for (var i = 0; i < allStudents.length; i++) {
+                var person = allStudents[i];
+                var isInactive = person.status === "Departed";
+                
+                var card = document.createElement('div');
+                card.className = "student-card " + (isInactive ? "card-inactive" : "card-active");
+
+                card.innerHTML = `
+                    <div class="card-info">
+                        <h2>${person.name}</h2>
+                        <p>${person.major} (ID: ${person.id})</p>
+                        <span class="status-tag">${person.status}</span>
+                    </div>
+                    <div>
+                        ${!isInactive ? `<button onclick="removeStudent(${i})" class="btn-exit">Process Exit</button>` : ''}
+                    </div>
+                `;
+
+                displayArea.appendChild(card);
+            }
+        }
+
+        function addNewStudent() {
+            var nameInput = document.getElementById('studentName');
+            var majorInput = document.getElementById('studentMajor');
+
+            if (nameInput.value === "" || majorInput.value === "") {
+                return;
+            }
+
+            var newId = Date.now().toString().slice(-5);
+            var newPerson = new StudentRecord(newId, nameInput.value, majorInput.value);
+
+            allStudents.push(newPerson);
+
+            nameInput.value = "";
+            majorInput.value = "";
+            updateUI();
+        }
+
+        function removeStudent(index) {
+            allStudents[index].setAsDeparted();
+            updateUI();
+        }
+
+        allStudents.push(new StudentRecord("9901", "John Samuel", "Engineering"));
+        updateUI();
+    </script>  -->
+
+  2.Class Constructor (ES6 and Beyond)
+
+  In ES6 and later, JavaScript introduced the class syntax to create objects and deal with inheritance more intuitively.
+A class constructor is a special method inside a class that is automatically called when a new object is created from that class. It is used to initialize the object’s properties.
+
+Example:1 
+
+<!-- <script>
+
+  class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+}
+const person1 = new Person("Sujana", 22); 
+console.log(person1);
+
+</script> -->
+
+Example:2
+
+<!-- <script>
+
+ class Car {
+    constructor(make, model, year) {
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
+
+    getCarInfo() {
+        return `${this.year} ${this.make} ${this.model}`;
+    }
+}
+
+let myCar = new Car('Honda', 'Civic', 2022);
+console.log(myCar.getCarInfo());
+
+</script> -->
+
+Example:3
+
+<!-- <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #e3f2fd;
+      margin: 40px;
+    }
+    .leave-container {
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+      max-width: 400px;
+      margin: auto;
+    }
+    label, input {
+      display: block;
+      margin-bottom: 12px;
+    }
+    button {
+      padding: 8px 16px;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #leaveOutput {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+
+  <div class="leave-container">
+    <h2>Student Leave Application (ES6 Class)</h2>
+    <form id="leaveForm">
+      <label for="studentName">Student Name:</label>
+      <input type="text" id="studentName" required>
+      <label for="leaveDays">Number of Leave Days:</label>
+      <input type="number" id="leaveDays" required>
+      <button type="submit">Apply Leave</button>
+    </form>
+    <div id="leaveOutput"></div>
+  </div>
+  <script>
+    // ES6 Class Constructor for Student Leave
+    class StudentLeave {
+      constructor(name, days) {
+        this.name = name;
+        this.days = days;
+      }
+      getLeaveStatus() {
+        return `${this.name} has applied for ${this.days} day(s) of leave.`;
+      }
+    }
+
+    document.getElementById('leaveForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.getElementById('studentName').value;
+      const days = document.getElementById('leaveDays').value;
+      const leave = new StudentLeave(name, days);
+      document.getElementById('leaveOutput').textContent = leave.getLeaveStatus();
+    });
+  </script> -->
+
+  Example:4 
+
+  <!-- <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .enrollment-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+
+        .form-title {
+            margin: 0 0 20px 0;
+            font-size: 1.25rem;
+            color: #1a1a1a;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        .student-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .student-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 5px solid #2563eb;
+            transition: transform 0.2s;
+        }
+
+        .student-item.departed {
+            border-left-color: #94a3b8;
+            opacity: 0.6;
+            filter: grayscale(1);
+        }
+
+        .info h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .info p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .status-badge {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            color: #2563eb;
+        }
+
+        .exit-btn {
+            background: #fee2e2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+
+        .exit-btn:hover {
+            background: #fecaca;
+        }
+    </style>
+
+    <div class="app-container">
+        <div class="header">
+            <h1>Campus Portal</h1>
+            <p>Modern ES6 Class Implementation</p>
+        </div>
+
+        <div class="enrollment-card">
+            <h2 class="form-title">Enroll New Student</h2>
+            <input type="text" id="nameInp" placeholder="Enter Full Name" class="input-field">
+            <input type="text" id="majorInp" placeholder="Enter Major" class="input-field">
+            <button onclick="handleEnrollment()" class="submit-btn">Register Student</button>
+        </div>
+
+        <div id="listContainer" class="student-list">
+        </div>
+    </div>
+
+    <script>
+        
+        class StudentRecord {
+            constructor(id, name, major) {
+                this.id = id;
+                this.name = name;
+                this.major = major;
+                this.status = "Enrolled";
+            }
+
+            markDeparture() {
+                this.status = "Departed";
+                console.log(`Log: ${this.name} has left the system.`);
+            }
+        }
+
+        const studentRegistry = [];
+
+        function render() {
+            const container = document.getElementById('listContainer');
+            container.innerHTML = '';
+
+            studentRegistry.forEach((student, index) => {
+                const isGone = student.status === "Departed";
+                const div = document.createElement('div');
+                div.className = `student-item ${isGone ? 'departed' : ''}`;
+
+                div.innerHTML = `
+                    <div class="info">
+                        <span class="status-badge">${student.status}</span>
+                        <h3>${student.name}</h3>
+                        <p>${student.major} (ID: ${student.id})</p>
+                    </div>
+                    ${!isGone ? `<button class="exit-btn" onclick="processExit(${index})">Exit Campus</button>` : ''}
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function handleEnrollment() {
+            const nInput = document.getElementById('nameInp');
+            const mInput = document.getElementById('majorInp');
+
+            if (!nInput.value || !mInput.value) return;
+
+            const id = Math.floor(1000 + Math.random() * 9000);
+            
+            const newEntry = new StudentRecord(id, nInput.value, mInput.value);
+            
+            studentRegistry.push(newEntry);
+            
+            nInput.value = '';
+            mInput.value = '';
+            render();
+        }
+
+        function processExit(index) {
+            studentRegistry[index].markDeparture();
+            render();
+        }
+
+        studentRegistry.push(new StudentRecord(7721, "Sarah Miller", "Biology"));
+        render();
+    </script> -->
+
+   How constructor works in JavaScript?
+   new keyword in JavaScript:
+
+Example:1 
+
+<!-- <script>
+// Constructor function
+function Animal(type, sound) {
+  this.type = type;
+  this.sound = sound;
+  this.speak = function() {
+    return "The " + this.type + " says " + this.sound + "!";
+  };
+}
+
+// Using 'new' to create an object
+const dog = new Animal("dog", "woof");
+const cat = new Animal("cat", "meow");
+
+console.log(dog.speak()); // Output: The dog says woof!
+console.log(cat.speak()); // Output: The cat says meow!
+
+</script> -->
+
+Example:2
+
+<!-- <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f8fb;
+      margin: 40px;
+    }
+    .container {
+      background: #fff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+      max-width: 400px;
+      margin: auto;
+    }
+    label, input {
+      display: block;
+      margin-bottom: 12px;
+    }
+    button {
+      padding: 8px 16px;
+      background: #009688;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #output {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #222;
+    }
+    .explanation {
+      margin-bottom: 20px;
+      color: #555;
+      font-size: 15px;
+    }
+  </style>
+
+  <div class="container">
+    <h2>Constructor & <code>new</code> Keyword in JavaScript</h2>
+    <div class="explanation">
+      <strong>How it works:</strong><br>
+      The <code>Product</code> function is a constructor. Using the <code>new</code> keyword creates a new object, sets <code>this</code> to that object, and returns it.
+    </div>
+    <form id="productForm">
+      <label for="productName">Product Name:</label>
+      <input type="text" id="productName" required>
+      <label for="productPrice">Price:</label>
+      <input type="number" id="productPrice" required>
+      <button type="submit">Create Product</button>
+    </form>
+    <div id="output"></div>
+  </div>
+  <script>
+    // Constructor function
+    function Product(name, price) {
+      this.name = name;
+      this.price = price;
+      this.getInfo = function() {
+        return "Product: " + this.name + ", Price: $" + this.price;
+      };
+    }
+
+    document.getElementById('productForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var name = document.getElementById('productName').value;
+      var price = document.getElementById('productPrice').value;
+      // Using 'new' to create a Product object
+      var product = new Product(name, price);
+      document.getElementById('output').textContent = product.getInfo();
+    });
+  </script> -->
+
+    How it works:
+
+1.The Product function is a constructor.
+2.The new keyword creates a new object, sets this to that object, and returns it.
+3.The form lets you create and display a new product using this pattern.
+
+
+Example:3 (Basic Example)
+
+<!-- <script>
+//Object from a function
+function prints(name,age)
+{
+    this.name=name
+    this.age=age
+}
+const result=new prints('Pranjal',21)
+console.log(result)
+//Object from a class
+class Person{
+    constructor(name,age)
+    {
+        this.name=name
+        this.age=age
+    }
+}
+const result1=new Person('Saurabh',30)
+console.log(result1)
+
+</script> -->
+
+Object.create() function in JavaScript:
+
+The Object.create() function in JavaScript is used to create a new object, using an existing object as the prototype of the newly created object.
+
+Example:1 
+
+<!-- <script>
+const obj={
+    name:'Pranjal',
+    age:21
+}
+const obj1=Object.create(obj);
+obj1.class='10th';
+console.log(obj1.name);
+console.log(obj1.class);
+</script> -->
+
+Example:2 
+
+<!-- <script>
+const animal = {
+  speak: function() {
+    return "The " + this.type + " says " + this.sound + "!";
+  }
+};
+
+const dog = Object.create(animal);
+dog.type = "dog";
+dog.sound = "woof";
+
+console.log(dog.speak()); 
+</script> -->
+
+Object Factory Functions:
+
+Object Factory Functions in JavaScript are regular functions that return new objects. They provide a way to create multiple similar objects without using constructors or classes.
+
+Example:1 
+
+<!-- <script>
+function createCar(brand, year) {
+    return {
+        brand: brand,
+        year: year,
+        getInfo: function() {
+            return `This car is a ${this.brand} from ${this.year}.`;
+        }
+    };
+}
+
+const car1 = createCar("Toyota", 2020);
+const car2 = createCar("Honda", 2023);
+
+console.log(car1.getInfo()); // This car is a Toyota from 2020.
+console.log(car2.getInfo()); // This car is a Honda from 2023.
+</script> -->
+
+Example:2 
+
+<!-- <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f8fb;
+      margin: 40px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    h2 {
+      margin-top: 0;
+      color: #222;
+    }
+    label {
+      display: block;
+      margin: 10px 0 4px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 8px 16px;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #145ca3;
+    }
+    ul {
+      margin-top: 15px;
+      padding-left: 18px;
+    }
+  </style>
+
+
+  <div class="container">
+    <h2>Object Factory Function (createStudent)</h2>
+    <p>Enter details to create student objects using a factory function.</p>
+
+    <label for="name">Student Name:</label>
+    <input type="text" id="name">
+
+    <label for="course">Course:</label>
+    <input type="text" id="course">
+
+    <button id="addBtn">Add Student</button>
+
+    <ul id="studentList"></ul>
+  </div>
+
+  <script>
+    // Factory function: returns a new student object each time
+    function createStudent(name, course) {
+      return {
+        name: name,
+        course: course,
+        getInfo: function () {
+          return this.name + " is enrolled in " + this.course;
+        }
+      };
+    }
+
+    const students = [];
+    const listEl = document.getElementById('studentList');
+    const nameInput = document.getElementById('name');
+    const courseInput = document.getElementById('course');
+    const addBtn = document.getElementById('addBtn');
+
+    addBtn.addEventListener('click', function () {
+      const name = nameInput.value.trim();
+      const course = courseInput.value.trim();
+      if (!name || !course) return;
+
+      // Create a new student object using the factory function
+      const student = createStudent(name, course);
+      students.push(student);
+
+      // Render list
+      listEl.innerHTML = '';
+      students.forEach(function (s) {
+        const li = document.createElement('li');
+        li.textContent = s.getInfo();
+        listEl.appendChild(li);
+      });
+
+      nameInput.value = '';
+      courseInput.value = '';
+    });
+  </script> -->
+
+
+  Constructor with default values:
+
+  A constructor with default values is a constructor function (or class constructor) where some parameters are given default values.
+If an argument is not passed for those parameters, JavaScript automatically uses the default.
+
+  Example:1 
+
+  <!-- <script>
+class Product {
+  constructor(name = "Unknown", price = 0) {
+    this.name = name;
+    this.price = price;
+  }
+}
+
+const p1 = new Product();              // name = "Unknown", price = 0
+const p2 = new Product("Laptop", 500); // name = "Laptop",  price = 500
+
+console.log(p1);
+console.log(p2);
+</script> -->
+
+ Example:2 
+
+ <!-- <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      margin: 40px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: #fff;
+      padding: 20px 24px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    h2 {
+      margin-top: 0;
+      color: #222;
+    }
+    label {
+      display: block;
+      margin: 8px 0 4px;
+      font-size: 14px;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 8px 16px;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    button:hover {
+      background: #145ca3;
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px 12px;
+      background: #f9fafb;
+      border-radius: 6px;
+      border-left: 4px solid #1976d2;
+      font-size: 14px;
+    }
+  </style>
+
+
+  <div class="container">
+    <h2>Constructor with Default Values</h2>
+    <p>Leave any field empty to see the default value in action.</p>
+
+    <label for="pName">Product Name (default: "Unknown"):</label>
+    <input type="text" id="pName" placeholder="e.g., Laptop">
+
+    <label for="pPrice">Price (default: 0):</label>
+    <input type="number" id="pPrice" placeholder="e.g., 500">
+
+    <label for="pCategory">Category (default: "General"):</label>
+    <input type="text" id="pCategory" placeholder="e.g., Electronics">
+
+    <button id="createBtn">Create Product</button>
+
+    <div id="output" class="result"></div>
+  </div>
+
+  <script>
+    // Constructor with default values
+    class Product {
+      constructor(name = "Unknown", price = 0, category = "General") {
+        this.name = name;
+        this.price = price;
+        this.category = category;
+      }
+
+      getInfo() {
+        return `Product: ${this.name} | Price: ₹${this.price} | Category: ${this.category}`;
+      }
+    }
+
+    const nameInput = document.getElementById('pName');
+    const priceInput = document.getElementById('pPrice');
+    const categoryInput = document.getElementById('pCategory');
+    const outputDiv = document.getElementById('output');
+    const btn = document.getElementById('createBtn');
+
+    btn.addEventListener('click', function () {
+      // If the input is empty, pass undefined so the default value is used
+      const name = nameInput.value.trim() || undefined;
+      const price = priceInput.value ? Number(priceInput.value) : undefined;
+      const category = categoryInput.value.trim() || undefined;
+
+      const product = new Product(name, price, category);
+      outputDiv.textContent = product.getInfo();
+    });
+  </script> -->
+
+  Constructor with method on prototypes:
+
+  In JavaScript, a constructor function creates objects, and methods are usually put on its prototype so they’re shared by all instances.
+
+
+  Example:1
+
+  <!-- <script>
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        // Methods shared by all Person instances
+        Person.prototype.greet = function () {
+            console.log(`Hi, I'm ${this.name}`);
+        };
+
+        Person.prototype.getAge = function () {
+            return this.age;
+        };
+
+        // Usage
+        const p1 = new Person('Sujana', 25);
+        p1.greet();          
+        console.log(p1.getAge());
+    </script> -->
+
+Example:2 
+
+    <!-- <script>
+        function Person(name, age) {
+            // per-instance properties
+            this.name = name;
+            this.age = age;
+        }
+
+        // shared methods (live on Person.prototype)
+        Person.prototype.greet = function () {
+            console.log(`Hi, I'm ${this.name}`);
+        };
+
+        Person.prototype.haveBirthday = function () {
+            this.age++;
+            console.log(`${this.name} is now ${this.age}`);
+        };
+
+        // usage
+        const p1 = new Person('Sujana', 25);
+        const p2 = new Person('Ravi', 30);
+
+        p1.greet();           // Hi, I'm Sujana
+        p2.greet();           // Hi, I'm Ravi
+        p1.haveBirthday();    // Sujana is now 26
+    </script> -->
+
+Example:3 
+
+Same idea with class syntax (sugar over prototypes):
+
+    <!-- <script>
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            greet() {
+                console.log(`Hi, I'm ${this.name}`);
+            }
+
+            haveBirthday() {
+                this.age++;
+                console.log(`${this.name} is now ${this.age}`);
+            }
+        }
+
+        const person1 = new Person("Alice", 25);
+        person1.greet();
+        person1.haveBirthday();
+
+        const person2 = new Person("Bob", 30);
+        person2.greet();
+        person2.haveBirthday();
+    </script> -->
+
+    Constructor with inheritance
+
+    In JavaScript, you can do inheritance with constructor functions + prototypes, or with class (which is syntax sugar).
+
+    Example:1 
+    Constructor function + prototype inheritance
+
+    <!-- <script>
+    function Animal(name) {
+      this.name = name;
+    }
+
+    Animal.prototype.speak = function () {
+      console.log(this.name + ' makes a noise.');
+    };
+
+    function Dog(name, breed) {
+      // call parent constructor
+      Animal.call(this, name);
+      this.breed = breed;
+    }
+
+    // inherit prototype
+    Dog.prototype = Object.create(Animal.prototype);
+    // fix constructor reference
+    Dog.prototype.constructor = Dog;
+
+    // add/override methods
+    Dog.prototype.speak = function () {
+      console.log(this.name + ' barks.');
+    };
+
+    // usage
+    const d = new Dog('Tommy', 'Labrador');
+    d.speak(); // Tommy barks.
+  </script> -->
+
+  Example:2 
+  
+  Using class / extends (same idea, cleaner syntax)
+
+  <!-- <script>
+    class Animal {
+      constructor(name) {
+        this.name = name;
+      }
+
+      speak() {
+        console.log(this.name + ' makes a noise.');
+
+      }
+    }
+
+    class Dog extends Animal {
+      constructor(name, breed) {
+        super(name); // calls Animal constructor
+        this.breed = breed;
+      }
+
+      speak() {
+        console.log(this.name + ' barks.');
+      }
+    }
+
+    const d = new Dog('Tommy', 'Labrador');
+    d.speak(); // Tommy barks.
+  </script> -->
+
+
+ 
+
+
+
+
+ 

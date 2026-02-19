@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Properties Guide</title>
+    <style>
+        /* ===== INTRODUCTION TO CSS ===== */
+        /* CSS (Cascading Style Sheets) styles HTML elements */
+
+        /* ===== CSS SYNTAX ===== */
+        /* selector { property: value; } */
+
+        /* ===== CSS SELECTORS ===== */
+        /* Element Selector */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Class Selector */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ID Selector */
+        #header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+        }
+
+        /* ===== COLORS ===== */
+
+        .color-examples {
+            color: red;
+            /* Named color */
+            color: #ff0000;
+            /* Hex color */
+            color: rgb(255, 0, 0);
+            /* RGB(Red, Green, Blue color model,intensity (0-255 range)) */
+            color: rgba(255, 0, 0, 0.5);
+            /* RGBA with transparency (A=alpha)rgba(255, 0, 0, 1) - fully opaque red
+rgba(255, 0, 0, 0.5) - 50% transparent red
+rgba(255, 0, 0, 0) - completely transparent red*/
+            color: hsl(0, 100%, 50%);
+            /* HSL=HSL stands for:
+
+H = Hue (color angle on color wheel, 0-360°)
+S = Saturation (intensity of color, 0-100%)
+L = Lightness (brightness, 0-100%)*/
+        }
+
+        /* ===== BACKGROUNDS ===== */
+        .background-examples {
+            background-color: lightblue;
+            background-image: url('image.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+
+        /* ===== BORDERS ===== */
+        .border-examples {
+            border-width: 2px;
+            border-style: solid;
+            /* solid, dashed, dotted, double */
+            border-color: black;
+            /* Shorthand */
+            border: 2px solid black;
+            border-radius: 10px;
+            /* Rounded corners */
+            border-top: 3px dashed red;
+        }
+
+        /* ===== MARGINS ===== */
+        .margin-examples {
+            margin-top: 10px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            margin-left: 20px;
+            /* Shorthand: top right bottom left */
+            margin: 10px 20px 10px 20px;
+            margin: 10px 20px;
+            /* top/bottom left/right */
+            margin: 10px;
+            /* all sides */
+            margin: 0 auto;
+            /* center horizontally */
+        }
+
+        /* ===== PADDING ===== */
+        .padding-examples {
+            padding-top: 15px;
+            padding-right: 25px;
+            padding-bottom: 15px;
+            padding-left: 25px;
+            /* Shorthand */
+            padding: 15px 25px;
+            padding: 20px;
+            /* all sides */
+        }
+
+        /* ===== HEIGHT & WIDTH ===== */
+        .size-examples {
+            width: 300px;
+            height: 200px;
+            max-width: 100%;
+            min-height: 150px;
+            width: 50%;
+            /* percentage */
+            width: 50vw;
+            /* viewport width */
+            height: 100vh;
+            /* viewport height */
+        }
+
+        /* ===== BOX MODEL ===== */
+        /* Total width = width + padding + border + margin */
+        .box-model {
+            width: 200px;
+            padding: 20px;
+            border: 5px solid black;
+            margin: 10px;
+            box-sizing: border-box;
+            /* includes padding and border in width */
+        }
+
+        /* ===== TEXT FORMATTING ===== */
+        .text-examples {
+            color: navy;
+            text-align: center;
+            /* left, right, center, justify */
+            text-decoration: underline;
+            /* none, underline, overline, line-through */
+            text-transform: uppercase;
+            /* lowercase, capitalize */
+            letter-spacing: 2px;
+            word-spacing: 5px;
+            line-height: 1.8;
+            text-indent: 50px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* ===== FONTS ===== */
+        .font-examples {
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            /* px, em, rem, % */
+            font-weight: bold;
+            /* normal, bold, 100-900 */
+            font-style: italic;
+            /* normal, italic, oblique */
+            font-variant: small-caps;
+            /* Shorthand */
+            font: italic bold 16px/1.5 Arial, sans-serif;
+        }
+
+        /* ===== DISPLAY & VISIBILITY ===== */
+        .display-examples {
+            display: block;
+            /* block, inline, inline-block, none */
+            visibility: hidden;
+            /* visible, hidden */
+            opacity: 0.5;
+            /* 0 to 1 */
+        }
+
+        /* ===== POSITIONING ===== */
+        .position-static {
+            position: static;
+            /* default */
+        }
+
+        .position-relative {
+            position: relative;
+            top: 10px;
+            left: 20px;
+        }
+
+        .position-absolute {
+            position: absolute;
+            top: 50px;
+            right: 0;
+        }
+
+        .position-fixed {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+        }
+
+        .position-sticky {
+            position: sticky;
+            top: 0;
+        }
+
+        /* ===== FLOAT ===== */
+        .float-left {
+            float: left;
+            width: 200px;
+            margin: 10px;
+        }
+
+        .float-right {
+            float: right;
+        }
+
+        .clearfix::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* ===== FLEXBOX ===== */
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            /* row, column, row-reverse, column-reverse */
+            justify-content: space-between;
+            /* flex-start, center, space-around */
+            align-items: center;
+            /* flex-start, flex-end, stretch */
+            flex-wrap: wrap;
+            /* nowrap, wrap */
+            gap: 10px;
+        }
+
+        .flex-item {
+            flex: 1;
+            /* flex-grow flex-shrink flex-basis */
+            flex-grow: 1;
+            flex-shrink: 0;
+            flex-basis: 200px;
+            align-self: flex-start;
+        }
+
+        /* ===== CSS GRID ===== */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            /* repeat(3, 1fr) */
+            grid-template-rows: 100px auto;
+            gap: 20px;
+            grid-gap: 20px;
+            /* row-gap column-gap */
+        }
+
+        .grid-item {
+            grid-column: 1 / 3;
+            /* start / end */
+            grid-row: 1 / 2;
+            grid-area: 1 / 1 / 2 / 3;
+            /* row-start / col-start / row-end / col-end */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="header">CSS Properties Guide</h1>
+
+        <section class="color-examples">
+            <h2>Colors</h2>
+            <p>This text demonstrates color properties.</p>
+        </section>
+
+        <section class="background-examples">
+            <h2>Backgrounds</h2>
+            <p>Background with color and properties.</p>
+        </section>
+
+        <section class="border-examples">
+            <h2>Borders</h2>
+            <p>Box with border styling.</p>
+        </section>
+
+        <section class="margin-examples padding-examples">
+            <h2>Margins & Padding</h2>
+            <p>Box with spacing.</p>
+        </section>
+
+        <section class="box-model">
+            <h2>Box Model</h2>
+            <p>Content + Padding + Border + Margin</p>
+        </section>
+
+        <section class="text-examples">
+            <h2>Text Formatting</h2>
+            <p>Styled text with various properties.</p>
+        </section>
+
+        <section class="font-examples">
+            <h2>Fonts</h2>
+            <p>Custom font styling.</p>
+        </section>
+
+        <section class="flex-container">
+            <div class="flex-item">Flex Item 1</div>
+            <div class="flex-item">Flex Item 2</div>
+            <div class="flex-item">Flex Item 3</div>
+        </section>
+
+        <section class="grid-container">
+            <div class="grid-item">Grid Item 1</div>
+            <div>Grid Item 2</div>
+            <div>Grid Item 3</div>
+        </section>
+    </div>
+</body>
+
+</html>

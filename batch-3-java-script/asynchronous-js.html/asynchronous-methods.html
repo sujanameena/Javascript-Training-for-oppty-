@@ -1,0 +1,339 @@
+Asynchronous JavaScript lets code start a task now and finish it later without blocking the main thread (UI/event loop).
+
+Methods of Asynchronous JavaScript:
+1.Using Callbacks
+2.Using Promises
+
+1. Callbacks
+
+Older style: pass a function that runs when the async work finishes.
+
+Example:1
+
+<!-- <script>
+    setTimeout(function () {
+        console.log('Runs after 1 second');
+    }, 1000);
+</script> -->
+
+Problems: “callback hell”, hard error handling.
+
+2. Promises
+
+A Promise is an object representing a future value.
+
+Example:1 
+
+<!-- <script>
+    function mydata() {
+
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const data = { name: "Rohit", age: 23 };
+          resolve(data);
+        }, 2000);
+      });
+    }
+
+    mydata()
+      .then((data) => {
+        console.log("Data:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  </script> -->
+
+  JavaScript Callbacks:
+
+  A callback in JavaScript is a function that is passed as an argument to another function and is intended to be executed later, often after some operation has completed (synchronous or asynchronous).
+
+  A callback in JavaScript is a function you pass as an argument to another function, to be called later (often after some work finishes, like an async task).
+
+  Basic callback
+
+  <!-- <script>
+    function greet(name, callback) {
+      console.log('Hello, ' + name);
+      callback();
+    }
+
+    function afterGreet() {
+      console.log('Greeting done.');
+    }
+
+    greet('Sujana', afterGreet);
+  </script> -->
+
+  Async callback (e.g., setTimeout)
+
+  <!-- <script>
+    setTimeout(function () {
+      console.log('Runs after 1 second');
+    }, 1000);
+  </script> -->
+
+  Error‑first callback pattern (Node-style)
+
+  <!-- <script>
+    function readData(callback) {
+      // simulate async
+      setTimeout(() => {
+        const err = null;      // or some Error object
+        const data = 'result';
+        callback(err, data);
+      }, 500);
+    }
+
+    readData((err, data) => {
+      if (err) {
+        console.error('Error:', err);
+        return;
+      }
+      console.log('Data:', data);
+    });
+  </script> -->
+
+  callbacks real time Example:1 
+
+  <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>JavaScript Callback Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #loadBtn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    #loadBtn:disabled {
+      background-color: #888;
+      cursor: not-allowed;
+    }
+    #status {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    #result {
+      margin-top: 10px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Callback Demo: Load User Data</h1>
+
+  <button id="loadBtn">Load User Data</button>
+  <div id="status"></div>
+  <div id="result"></div>
+
+  <script>
+    // Simulate an async API request that uses a callback
+    function fetchUserData(callback) {
+      // show that we're "loading"
+      document.getElementById('status').textContent = 'Loading user data...';
+
+      // simulate network delay
+      setTimeout(function () {
+        const fakeData = {
+          name: 'Sujana',
+          age: 25,
+          city: 'Hyderabad'
+        };
+
+        // call the callback AFTER the "data" is ready
+        callback(fakeData);
+      }, 2000);
+    }
+
+    const loadBtn = document.getElementById('loadBtn');
+    const resultDiv = document.getElementById('result');
+    const statusDiv = document.getElementById('status');
+
+    loadBtn.addEventListener('click', function () {
+      loadBtn.disabled = true;
+
+      // pass a callback function to handle the data
+      fetchUserData(function (data) {
+        statusDiv.textContent = 'User data loaded!';
+        resultDiv.innerHTML =
+          'Name: ' + data.name + '<br>' +
+          'Age: ' + data.age + '<br>' +
+          'City: ' + data.city;
+
+        loadBtn.disabled = false;
+      });
+    });
+  </script>
+</body>
+</html> -->
+
+
+
+callbacks real time Example:2
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Break Management Callback Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f7fb;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    #controls {
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-right: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    #startBreak {
+      background: #28a745;
+      color: white;
+    }
+    #endBreak {
+      background: #dc3545;
+      color: white;
+    }
+    #endBreak:disabled,
+    #startBreak:disabled {
+      background: #aaa;
+      cursor: not-allowed;
+    }
+    #status {
+      font-weight: bold;
+      margin: 10px 0;
+    }
+    #log {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 4px;
+      background: white;
+      border: 1px solid #ddd;
+      max-height: 200px;
+      overflow-y: auto;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Break Management System</h1>
+
+  <div id="controls">
+    <button id="startBreak">Start 5s Break</button>
+    <button id="endBreak" disabled>End Break Now</button>
+  </div>
+
+  <div id="status">Status: Not on break</div>
+  <div id="countdown"></div>
+  <div id="log"></div>
+
+  <script>
+    const startBtn = document.getElementById('startBreak');
+    const endBtn = document.getElementById('endBreak');
+    const statusDiv = document.getElementById('status');
+    const countdownDiv = document.getElementById('countdown');
+    const logDiv = document.getElementById('log');
+
+    let breakTimerId = null;
+    let countdownId = null;
+    let remainingSeconds = 0; 
+
+    // Generic function that manages a break and calls a callback when the break ends
+    function startBreak(durationInSeconds, onBreakEndCallback) {
+      remainingSeconds = durationInSeconds;
+      updateCountdownText();
+
+      statusDiv.textContent = 'Status: On break';
+      log('Break started for ' + durationInSeconds + ' seconds');
+
+      // Countdown UI (every 1 second)
+      countdownId = setInterval(() => {
+        remainingSeconds--;
+        updateCountdownText();
+
+        if (remainingSeconds <= 0) {
+          clearInterval(countdownId);
+        }
+      }, 1000);
+
+      // Simulate async break time (e.g., waiting for timer to end)
+      breakTimerId = setTimeout(function () {
+        // When the break time ends, we call the callback
+        onBreakEndCallback(); // <-- CALLBACK
+      }, durationInSeconds * 1000);
+    }
+
+    function endBreakEarly() {
+      if (breakTimerId !== null) {
+        clearTimeout(breakTimerId);
+        breakTimerId = null;
+      }
+      if (countdownId !== null) {
+        clearInterval(countdownId);
+        countdownId = null;
+      }
+      remainingSeconds = 0;
+      updateCountdownText();
+      handleBreakEnd('Break ended early by user.');
+    }
+
+    // This function is passed as a callback to startBreak
+    function handleBreakEnd(message) {
+      statusDiv.textContent = 'Status: Working';
+      log(message || 'Break ended automatically.');
+      startBtn.disabled = false;
+      endBtn.disabled = true;
+    }
+
+    function updateCountdownText() {
+      if (remainingSeconds > 0) {
+        countdownDiv.textContent = 'Time remaining: ' + remainingSeconds + 's';
+      } else {
+        countdownDiv.textContent = '';
+      }
+    }
+
+    function log(text) {
+      const time = new Date().toLocaleTimeString();
+      logDiv.innerHTML += '[' + time + '] ' + text + '<br>';
+      logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    // Event handlers
+    startBtn.addEventListener('click', function () {
+      startBtn.disabled = true;
+      endBtn.disabled = false;
+
+      // Pass the callback (handleBreakEnd) to be executed when break is over
+      startBreak(5, function () {
+        handleBreakEnd('Break completed (5 seconds).');
+      });
+    });
+
+    endBtn.addEventListener('click', endBreakEarly);
+  </script>
+</body>
+</html> -->
+
+

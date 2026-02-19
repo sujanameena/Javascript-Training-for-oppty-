@@ -1,0 +1,296 @@
+JavaScript Callbacks:
+
+A callback function is a function that is passed as an argument to another function and executed later.
+
+* A function can accept another function as a parameter.
+* Callbacks allow one function to call another at a later time.
+* A callback function can execute after another function has finished.
+
+Example: 
+
+<!-- <script>
+    function greet(name, callback) {
+      console.log("Hello, " + name);
+      callback();
+    }
+
+    function sayBye() {
+      console.log("Goodbye!"); 
+    }
+
+    greet("Ajay", sayBye);
+  </script> -->
+
+  Here, sayBye() is passed as a callback to greet(), which executes after the greeting.
+
+  Working of Callbacks in JavaScript:
+
+  JavaScript executes code line by line (synchronously), but sometimes we need to delay execution or wait for a task to complete before running the next function. Callbacks help achieve this by passing a function that is executed later.
+
+  1. Basic idea
+
+  <!-- <script>
+    function greet(name) {
+      console.log("Hello " + name);
+    }
+
+    function processUserInput(callback) {
+      const name = "Sujana";
+      callback(name); // calling the callback
+    }
+
+    processUserInput(greet);
+  </script> -->
+
+  1.greet is a callback.
+2.processUserInput is a higher‑order function (it receives a function as an argument).
+3.When processUserInput runs, it later calls back greet.
+
+2. Callbacks with asynchronous code
+
+JavaScript is single‑threaded, but it can handle async operations (timers, network, file loading, etc.) using callbacks.
+
+<!-- <script>
+    console.log("Start");
+
+    setTimeout(function () {
+      console.log("Inside timeout (after 2 seconds)");
+    }, 2000); // callback runs later
+
+    console.log("End");
+  </script> -->
+
+  The callback inside setTimeout is stored and executed later, after 2 seconds, without blocking the rest of the code.
+
+3. Error‑first callbacks (common in Node.js and APIs)------Explain this late
+
+<!-- <script>
+    function getData(callback) {
+      const error = null;  // or some error object
+      const data = { id: 1, name: "sujana" };
+      callback(error, data);
+    }
+
+    getData(function (err, result) {
+      if (err) {
+        console.log("Error:", err);
+      } else {
+        console.log("Result:", result);
+      }
+    });
+  </script> -->
+
+  Convention: callback(error, result)
+
+If error is not null, something went wrong.
+If error is null, use result.
+
+4. Callback hell (nested callbacks)------Explain this late
+
+When many async steps depend on each other, callbacks can get deeply nested:
+
+<!-- <script>
+    const doStep1 = (callback) => callback("Step 1 result");
+    const doStep2 = (input, callback) => callback("Step 2 result");
+    const doStep3 = (input, callback) => callback("Step 3 result");
+
+    doStep1(function (result1) {
+      doStep2(result1, function (result2) {
+        doStep3(result2, function (result3) {
+          console.log("All done");
+        });
+      });
+    });
+  </script> -->
+
+  This is hard to read and maintain — called callback hell.
+
+  Modern JS uses Promises and async/await to make this cleaner, but under the hood they still rely on the same event loop and callback mechanism.
+
+
+  Uses of Callbacks in JavaScript
+  --------------------------------
+
+  1. Handling Asynchronous Operations
+
+  Callbacks are widely used in
+
+*API requests (fetching data & function)
+
+<!-- <script>
+    function getUserData(callback) {
+      // https://jsonplaceholder.typicode.com/users/1
+      fetch("https://jsonplaceholder.typicode.com/todos/1")
+        .then(function (response) {
+          return response.json();       // convert JSON
+        })
+        .then(function (data) {
+          callback(null, data);         // success: first arg = null (no error)
+        })
+        .catch(function (error) {
+          callback(error, null);        // error: pass error to callback
+        });
+    }
+
+    getUserData(function (error, data) {
+      if (error) {
+        console.log("Error:", error);
+      } else {
+        console.log("User Data:", data);
+      }
+    });
+  </script> -->
+
+*Reading files (Node.js file system)
+*Event listeners (clicks, keyboard inputs)
+*Database queries (retrieving data)
+
+2. Callbacks in Functions Handling Operations
+
+Callbacks in functions handling operations means: you write a general function that does some setup/work, and you pass in another function (the callback) to decide what to do with the result.
+
+When a function needs to execute different behaviors based on input, callbacks make the function flexible.
+
+a. Generic operation on two numbers
+
+<!-- <script>
+    function doOperation(a, b, callback) {
+      const result = callback(a, b);   // callback decides the operation
+      console.log("Result:", result);
+    }
+
+    function add(x, y)  {
+      return x + y;
+    }
+
+    function multiply(x, y) {
+      return x * y;
+    }
+  
+    doOperation(5, 3, add);       
+    doOperation(5, 3, multiply);  
+  </script> -->
+
+  b. Processing an array with a callback
+
+  <!-- <script>
+    function processArray(arr, callback) {
+      const result = [];
+      for (let i = 0; i < arr.length; i++) {
+        result.push(callback(arr[i]));  // apply callback to each item
+      }
+      return result;
+    }
+
+    const numbers = [1, 2, 3, 4];
+
+    const doubled = processArray(numbers, function (n) {
+      return n * 2;
+    });
+
+    console.log(doubled); // [2, 4, 6, 8] 
+  </script> -->
+
+  c. Validation / success-failure callbacks
+
+  <!-- <script>
+    function validateAge(age, onSuccess, onError) {
+      if (age >= 18) {
+        onSuccess("Access granted");
+      } else {
+        onError("Access denied");
+      }
+    }
+
+    validateAge(
+      20,
+      function (msg) {
+        console.log("SUCCESS:", msg);
+      },
+      function (err) {
+        console.log("ERROR:", err);
+      }
+    );
+  </script> -->
+
+  3. Callbacks in Event Listeners
+
+  In event listeners, the callback is the function that runs when the event happens (click, keyup, submit, etc.).
+
+  Basic example (button click):
+   <!-- <button id="myBtn">Click me</button>
+
+<script>
+  const button = document.getElementById("myBtn");
+
+  // This function is the callback
+  function handleClick() {
+    console.log("Button was clicked!");
+  }
+
+  // We pass the callback to addEventListener
+  button.addEventListener("click", handleClick);
+</script> -->
+
+With an anonymous callback and event object:
+
+<!-- <button id="myBtn">Click me</button>
+
+ <script>
+  const button = document.getElementById("myBtn");
+
+  // This function is the callback
+  function handleClick() {
+    console.log("Button was clicked!");
+  }
+
+  // We pass the callback to addEventListener
+  // button.addEventListener("click", handleClick);
+
+  button.addEventListener("click", function (event) {
+  //  Logs the mouse click’s horizontal (clientX) and vertical (clientY) positions in the viewport to the browser console for debugging or tracking click locations.
+  console.log("Clicked at:", event.clientX, event.clientY);
+});
+</script>  -->
+
+Keyboard event example:
+
+<!-- <input id="nameInput" placeholder="Type your name" />
+
+  <script>
+    const input = document.getElementById("nameInput");
+
+    input.addEventListener("keyup", function (event) {
+      console.log("You typed:", event.target.value);
+    });
+  </script> -->
+
+  4. Callbacks in API Calls (Fetching Data)
+
+  Example:1
+  
+  <!-- <script>
+    function fetchUser(userId, callback) {
+  fetch("https://jsonplaceholder.typicode.com/users/" + userId)
+    .then(function (response) {
+      return response.json();              // parse JSON
+    })
+    .then(function (data) {
+      callback(null, data);                // success → error = null
+    })
+    .catch(function (error) {
+      callback(error, null);               // failure → pass the error
+    });
+}
+
+// Using the function
+fetchUser(1, function (err, user) {
+  if (err) {
+    console.log("Error while fetching user:", err);
+  } else {
+    console.log("User data:", user);
+    console.log("User name:", user.name);
+  }
+});
+  </script> -->
+

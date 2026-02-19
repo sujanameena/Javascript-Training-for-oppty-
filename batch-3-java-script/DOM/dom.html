@@ -1,0 +1,589 @@
+HTML DOM (Document Object Model):
+
+The HTML DOM (Document Object Model) is a structured representation of a web page that allows developers to access, modify, and control its content and structure using JavaScript.
+
+1.The HTML Document Object Model (DOM) is a tree structure, where each HTML tag becomes a node in the hierarchy.
+2.At the top, the <html> tag is the root element, containing both <head> and<body> as child elements.
+3.These in turn have their own children, such as <title>, <div>, and nested elements like <h1>, <p>,<ul>, and<li>.
+  
+Working of DOM:
+---------------
+The DOM connects your webpage to JavaScript, allowing you to:
+
+Access elements (like finding an <h1> tag).
+Modify content (like changing the text of a <p> tag).
+React to events (like a button click).
+Create or remove elements dynamically.
+
+Commonly Used DOM Methods:
+--------------------------
+
+1.getElementById(id)
+2.getElementByClassName(class)
+3.querySelector
+4.querySelectorAll
+5.createElement
+6.remove()
+7.addEventListener
+
+How to select DOM Elements in JavaScript:
+-----------------------------------------
+Table of Content:
+
+1.Using getElementById:
+
+document.getElementById(id) returns the first element in the current document whose id attribute exactly matches the given string, or null if none exists.
+
+Example:1
+
+<!-- <h1 id="gfg">GeeksForGeeks</h1>
+
+    <script>
+        // styling the h1 tag
+        const element = document.getElementById('gfg');
+        element.style.color = "green";
+        element.style.textAlign = "center";
+        element.style.margin = "30px";
+        element.style.fontSize = "30px";
+    </script> -->
+
+Example:2
+
+    <!-- <style>
+         #title { 
+            font-size: 24px; color: #333; 
+        }
+    #changeBtn { margin-top: 8px; }
+    </style>
+
+    <h1 id="title">Welcome</h1>
+    <button id="changeBtn">Change title</button>
+    <script>
+        const title = document.getElementById('title');
+        const btn = document.getElementById('changeBtn');
+
+        btn.addEventListener('click', () => {
+            title.textContent = 'Hello from getElementById!';
+            title.style.color = 'green';
+        });
+    </script> -->
+
+2.Using getElementByClassName:
+
+document.getElementsByClassName(classNames) returns a live HTMLCollection of elements whose classList contains all class names in the space‑separated string.
+
+Example:1
+
+<!-- <h1 class="selector">GeeksForGeeks</h1>
+    <h2 class="selector">DOM selector in JavaScript</h2>
+
+    <script>
+        const elements = 
+        document.getElementsByClassName('selector');
+        elements[0].style.color = "red";
+        elements[1].style.color = "blue";
+        elements[0].style.textAlign = "center";
+        elements[1].style.textAlign = "center";
+        elements[0].style.marginTop = "60px";   
+        elements[1].style.marginTop = "80px";
+    </script> --> 
+
+Example:2
+
+    <!-- <style>
+        .item {
+            padding: 6px 10px;
+            margin: 4px 0;
+            border: 1px solid #ccc;
+        }
+
+        .highlight {
+            background: #ffef99;
+        }
+    </style>
+    <h2>Shopping List</h2>
+    <div class="item">Apples</div>
+    <div class="item">Bananas</div>
+    <div class="item">Oranges</div>
+
+    <button id="toggle">Toggle highlight on all .item</button>
+
+    <script>
+        // JavaScript: select by class name (HTMLCollection, live)
+        const items = document.getElementsByClassName('item');
+        
+            // Attaches a click event listener to the DOM element with id "toggle".
+            // When the element is clicked, the associated callback function executes
+            // (commonly to toggle UI state such as visibility, classes, or theme).
+            // Assumes #toggle exists and the script runs after the DOM is ready.
+        
+        document .getElementById('toggle').addEventListener('click', () => {
+            for (let i = 0; i < items.length; i++) {
+                items[i].classList.toggle('highlight');
+            }
+        });
+    </script> -->
+    
+3.Using getElementByTagName:
+
+document.getElementsByTagName(tagName) returns a live HTMLCollection of elements whose tag name matches tagName. Call on document or on a specific element; use "*" to match all tags.
+
+Example:1
+
+<!-- <p>Thanks for visiting GFG</p>
+    <p>This is showing how to select DOM element using tag name</p>
+
+    <script>
+        const paragraphs = document.getElementsByTagName('p');
+        paragraphs[0].style.color = "green";
+        paragraphs[1].style.color = "blue";
+        paragraphs[0].style.fontSize = "25px";
+        paragraphs[0].style.textAlign = "center";
+        paragraphs[1].style.textAlign = "center";
+        paragraphs[0].style.marginTop = "60px";
+    </script> -->
+
+4.Using querySelector:
+
+document.querySelector(selector) returns the first element in the document that matches the given CSS selector, or null if no match.
+
+Example:1
+
+<!-- <div class="query">GeeksForGeeks</div>
+
+    <script>
+        const element = 
+        document.querySelector('.query');
+        element.style.color = "green";
+        element.style.textAlign = "center";
+        element.style.margin = "30px";
+        element.style.fontSize = "30px";
+    </script> -->
+
+    Example:2
+
+    <!-- <style>
+        ul {
+            padding-left: 18px;
+        }
+
+        li {
+            padding: 4px 0;
+        }
+
+        .blue {
+            color: #1976d2;
+        }
+    </style>
+    
+    <h2>Todo List</h2>
+    <ul id="todos">
+        <li>Learn DOM</li>
+        <li>Practice JavaScript</li>   
+        <li>Build a project</li>
+    </ul>
+
+    <button id="numberBtn">Number items</button>
+    <button id="blueBtn">Toggle blue on all &lt;li&gt;</button>
+
+    <script>
+        // document.querySelectorAll(selector) returns a static NodeList of all elements that match the given CSS selector.
+        const listItems = document.querySelectorAll('#todos li');
+        const numberBtn = document.getElementById('numberBtn');
+        const blueBtn = document.getElementById('blueBtn');
+
+        // Save original text once so numbering doesn't stack
+        listItems.forEach(item => {
+            item.dataset.original = item.textContent.trim();
+        });
+
+
+        numberBtn.addEventListener('click', () => {
+            listItems.forEach((item, i) => {
+                item.textContent = `${i + 1}. ${item.dataset.original}`;
+            });
+        });
+
+        blueBtn.addEventListener('click', () => {
+            listItems.forEach(item => item.classList.toggle('blue'));
+        });
+    </script> -->
+
+5.Using querySelectorAll:
+
+document.querySelectorAll(selector) returns a static NodeList of all elements that match the CSS selector.
+
+Example:1
+
+<!-- <h1 class="selector">GeeksForGeeks</h1>
+    <p class="selector">
+        This is showing how to select DOM element
+        using tag name
+    </p>
+
+    <script>
+        const elements = document.querySelectorAll('.selector');
+        elements[0].style.color = "green";
+        elements[1].style.color = "red";
+        elements[0].style.textAlign = "center";
+        elements[1].style.textAlign = "center";
+        elements[0].style.marginTop = "60px";
+    </script> -->
+
+5.createElement/6.appendChild():
+
+document.createElement(tagName) returns a new Element of the given tag.
+
+Example: 1
+
+<!-- <style>
+        body {
+            font-family: system-ui, Arial, sans-serif;
+            margin: 24px;
+        }
+
+        ul {
+            padding-left: 18px;
+        }
+
+        li {
+            padding: 4px 0;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+
+
+    <h1>appendChild() example</h1>
+
+    <input id="itemText" placeholder="New item…" />
+    <button id="addBtn">Add with appendChild</button>
+    <button id="moveBtn">Move last item to top</button>
+
+    <ul id="list">
+        <li>Learn DOM</li>
+        <li>Use appendChild</li>
+    </ul>
+
+    <script>
+        const list = document.getElementById('list');
+        const input = document.getElementById('itemText');
+
+        documen t.getElementById('addBtn').addEventListener('click', () => {
+            const txt  = input.value.trim();
+            if (!txt) return;
+
+            const li = document.createElement('li');
+            // appendChild only accepts nodes; create a text node or set textContent
+            li.textContent = txt;
+
+            list.appendChild(li); 
+            input.value = '';
+        });
+
+        // Demonstrate that appendChild moves existing nodes
+        document.getElementById('moveBtn').addEventListener('click', () => {
+            const last = list.lastElementChild;
+            if (!last) return;
+            // Move last to top via insertBefore, or:
+            list.insertBefore(last, list.firstElementChild);
+        });
+    </script> -->
+
+
+parent.appendChild(child) appends a Node as the last child of parent and returns the appended node. If child is already in the DOM, it is moved.
+
+
+
+7.remove():
+
+node.remove() removes the node from its parent. It’s a shorthand for node.parentNode.removeChild(node).
+
+Safe to call even if the node is already detached; it just does nothing.
+
+Example: 1
+
+<!-- <style>
+        :root {
+            font-family: system-ui, Arial, sans-serif;
+        }
+
+        body {
+            margin: 24px;
+            line-height: 1.5;
+        }
+
+        .card {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            padding-left: 18px;
+        }
+
+        li {
+            padding: 4px 0;
+        }
+
+        button {
+            cursor: pointer;
+            margin-right: 8px;
+        }
+    </style>
+
+
+    <h1>DOM remove() example</h1>
+
+    <div id="card" class="card">
+        This card can be removed from the DOM.
+        <button id="removeCardBtn">Remove this card</button>
+    </div>
+
+    <ul id="tasks">
+        <li>Learn DOM</li>
+        <li>Practice JavaScript</li>
+        <li>Build a project</li>
+    </ul>
+    <button id="removeFirstBtn">Remove first task</button>
+    <button id="clearAllBtn">Clear all tasks</button>
+
+    <script>
+        // Remove a specific element by id
+        document.getElementById('removeCardBtn').addEventListener('click', () => {
+            document.getElementById('card')?.remove();
+        });
+
+        // Remove the first <li> under #tasks
+        document.getElementById('removeFirstBtn').addEventListener('click', () => {
+            document.querySelector('#tasks li')?.remove();
+        });
+
+        // Remove all <li> items under #tasks
+        document.getElementById('clearAllBtn').addEventListener('click', () => {
+            document.querySelectorAll('#tasks li').forEach(li => li.remove());
+        });
+    </script> -->
+
+
+<!-- Here’s a concise list of common HTML entities (use them in HTML to safely display reserved/special characters):
+
+1.&nbsp; => non‑breaking space
+
+2.&lt; => < less‑than
+
+3.&gt; => > greater‑than
+
+4.&amp; => & ampersand
+
+5.&quot; => " double quote
+
+6.&apos; => ' single quote
+
+7.&copy; => © copyright
+
+8.&reg; => ® registered
+
+9.&trade; => ™ trademark
+
+10.&euro; => € euro
+
+11.&pound; => £ pound
+
+12.&yen; => ¥ yen
+
+13.&cent; => ¢ cent
+
+14.&middot; => · middle dot
+
+15.&bull; => • bullet
+
+16.&hellip; => … ellipsis
+
+17.&ndash; => – en dash
+
+18.&mdash; => — em dash
+
+19.&lsquo; => ‘ left single quote
+
+20.&rsquo; => ’ right single quote
+
+21.&ldquo; => “ left double quote
+
+22.&rdquo; => ” right double quote
+
+23.&times; => × multiplication
+
+24.&divide; => ÷ division
+
+25.&plusmn; => ± plus/minus
+
+26.&deg; => ° degree
+
+27.&sup2; => ² superscript 2
+
+28.&frac12; => ½ one half
+
+29.&larr; => ← left arrow
+
+30.&uarr; => ↑ up arrow
+
+31.&rarr; => → right arrow
+
+32.&darr; => ↓ down arrow
+
+Notes:
+------
+
+You can also use numeric forms, e.g., &#160; or &#xA0; for &nbsp;. -->
+
+
+
+Event listeners run your code in response to events (clicks, input, scroll,keydown,submit etc.) on an EventTarget (Element, Document, Window)
+
+1.Syntax: target.addEventListener(type, listener, options?)
+2.type: Event name (e.g., 'click', 'input', 'keydown', 'scroll')
+3.listener: Function receiving an Event (e.g., e.target)
+4.options: { capture, once, passive, signal } or boolean capture
+5.Remove: target.removeEventListener(type, sameListener)
+
+Example: 1 (add event listerners) (click & hover) (Adding Multiple Event Listeners to an Element)
+
+ <!-- <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        #myButton {
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        #myButton:hover {
+            background-color: #45a049;
+        }
+
+        #message {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+
+    <div>
+        <button id="myButton">Click me!</button>
+        <h1 id="message"></h1>
+    </div>
+
+    <script>
+        const button = document.getElementById("myButton");
+        const message = document.getElementById("message");
+
+        button.addEventListener("click", function () {
+            button.style.backgroundColor = "lightblue";
+            message.innerText = "Button was clicked!";
+        });
+
+
+        button.addEventListener("mouseenter", function () {
+            message.innerText = "Mouse is over the button!";
+        });
+    </script> -->
+
+    Example: 2 (remove event listener)
+
+    <!-- <style>
+        #myButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: lightcoral;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+
+    <button id="myButton">Click me (3 times)</button>
+    <p id="message">You have clicked the button 0 times.</p>
+
+
+    <script>
+        const button = document.getElementById('myButton');
+        const message = document.getElementById('message');
+
+        let clickCount = 0;
+        function handleClick() {
+            clickCount++;
+            message.innerText = `You have clicked the button ${clickCount} times.`;
+            if (clickCount === 3) {
+                button.removeEventListener('click', handleClick);
+                message.innerText = 'You clicked the button 3 times. Event listener removed!';
+            }
+        }
+        button.addEventListener('click', handleClick);
+    </script> -->
+
+    Example: 3 ()
+
+     <!-- <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #222;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        body.dark-mode {
+            background-color: #121212;
+            /* color: #de1717; */
+        }
+        #theme-toggle {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: lightcoral;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            align-items: center;
+        }
+        .status-text {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+    </style>
+
+    <button id="theme-toggle">Toggle Theme</button>
+    <p class="status-text">Click the button to toggle theme.</p>
+
+    <script>
+        // 1. Select the elements
+        const btn = document.querySelector('#theme-toggle');
+        const text = document.querySelector('.status-text');
+
+        // 2. Add the listener
+        btn.addEventListener('click', () => {
+            // 3. Logic to execute
+            document.body.classList.toggle('dark-mode');
+            text.textContent = "Theme Updated!";
+            text.style.color = "gold";
+        });
+    </script> -->

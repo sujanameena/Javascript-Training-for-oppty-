@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays</title>
+</head>
+
+<body>
+    <script>
+        // // 1.JavaScript Array length
+        // let a = ["sujana", "nimisha", "akhila"];
+        // console.log(a.length);
+        // // a[0]=sujana
+        // // a[1]=nimisha
+        // // a[2]=akhila
+
+        // // 2. JavaScript Array toString() Method
+        // let a = ["sujana", "nimisha", "akhila"];
+        // let s = a.toString();
+        // console.log(s);
+
+        // // 3. JavaScript Array join() Method
+        // let a = ["sujana", "nimisha", "akhila"];
+        // console.log(a.join('?'));
+
+        // // 4. JavaScript Array delete Operator
+
+        // let emp = {
+        //     firstName: "Riya",
+        //     lastName: "Kaur",
+        //     salary: 40000
+        // }
+
+        // console.log(delete emp.salary);
+        // console.log(emp);
+
+        // // 5. JavaScript Array concat() Method
+
+        // let a1 = [11, 12, 13];
+        // let a2 = [14, 15, 16];
+        // let a3 = [17, 18, 19];
+
+        // let newArr = a1.concat(a2, a3);
+        // console.log(newArr);
+
+        // // 6. JavaScript Array flat() Method
+        // const a1 = [['1', '2'], ['3', '4', '5', ['6'], '7']];
+        // const a2 = a1.flat(Infinity);
+        // console.log(a2);
+
+        // // 7. JavaScript Array.push() Method
+        // let a = ["sujana", "nimisha", "akhila"];
+        // a.push("bhargav");
+        // a.push("ravi", "shyam", "uppendra");
+        // console.log(a);
+
+        // // 8. JavaScript Array.unshift() Method
+        // let a = ["sujana", "nimisha", "akhila"];
+        // a.unshift("bhargav", "ravi", "shyam", "uppendra");
+        // console.log(a);
+
+        // // 9. JavaScript Array.pop() Method
+        // let a = ["sujana", "nimisha", "akhila"];
+        // a.pop();
+        // console.log(a);
+
+        // // 10. JavaScript Array.shift() Method
+        // let a = ["sujana", "nimisha", "akhila"];
+        // a.shift();
+        // console.log(a);
+
+        // // // 11. JavaScript Array.splice() Method=(4(from 4th element),2(deletes 2 elements))
+        // let a = [20, 30, 40, 50, 60, 80];
+        // // a.splice(4, 2); //(4(from 4th element),2(deletes 2 elements after 4th element))
+        // a.splice(1, 2, 3, 4, 5); //(1(from element 1),(2=(removes 2 elements from element 1),3,4,5=(it will insert these elements))
+        // console.log(a);
+
+        // // 12. JavaScript Array.slice() Method-----It removes (1(remove),4(removes after 4))
+        // const a = [1, 2, 3, 4, 5];
+        // const result = a.slice(1, 3);
+        // console.log(result);
+
+        // // 13. JavaScript Array some() Method-----It checks whether the given element exists in array or not
+        // const a = [1, 2, 3, 4, 5];
+        // let res = a.some((val) => val > 40);
+        // console.log(res);
+
+
+        // // 14. JavaScript Array map() Method
+        // const users = [
+        //     { id: 1, name: 'Alice', email: 'alice@example.com' },
+        //     { id: 2, name: 'Bob', email: 'bob@example.com' },
+        //     { id: 3, name: 'Charlie', email: 'charlie@example.com' }
+        // ];
+
+        // const result = users.map(user => user.email);
+
+        // console.log(result);
+
+
+        // // 15. JavaScript Array filter() method-----It removes elements greater the number given in the syntax.
+        // let a1 = [10, 22, 53, 64, 85, 60, 50];
+        // let a2 = a1.filter((num) => num > 50);
+        // console.log(a2);
+
+
+        // // 16. JavaScript Array reduce() Method-----tot(tot=accumulator---accumulator means reduce)-num(it starts subtracting the numbers from first element to last and gives the remaining number as output)
+        // let a = [90, 50, 25, 10];
+        // let sub = a.reduce(geeks);
+
+        // function geeks(sub, result) {
+        //     return sub - result;
+        // }
+        // console.log(sub);
+
+        // 17. JavaScript Array reverse() method---it reverse the elements from last to first
+        // // Example:1
+        // let a = [1, 2, 3, 4, 5];
+        // a.reverse();
+        // console.log(a);
+
+        // // Example:2
+        // let a = ["sujana", "ravi", "shyam", "bhargav", "nimish"];
+        // let result = a.reverse();
+        // console.log(result);
+
+        // 18. JavaScript Array values() method----gives values from the elements of arrays
+        // // Example:1
+        // const a = ["Apple", "Banana", "Cherry"];
+        // const res = a.values();
+        // for (const value of res) {
+        //     console.log(value);
+        // }
+
+        // // Example:2
+        // let a = ['a', 'gfg', 'c', 'n'];
+        // let iterator = a.values();
+
+        // for (let elements of iterator) {
+        //     console.log(elements);
+        // }
+
+        // // Example:3
+        // let a = ["A", "B", , "C", "D"];
+
+        // let iterator = a.values();
+
+        // for (let value of iterator) {
+        //     console.log(value);
+        // }
+
+        // // Example:4
+        // let obj = [
+        //     { name: 'Jiya', age: 18 },
+        //     { name: 'Alia', age: 22 },
+        //     { name: 'Bibita', age: 20 }
+        // ];
+
+        // let iterator = obj.values();
+
+        // for (let student of iterator) {
+        //     console.log(student.name, student.age);
+        // }
+
+
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

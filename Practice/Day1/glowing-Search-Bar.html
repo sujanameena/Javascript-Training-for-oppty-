@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glowing Search Bar</title>
+</head>
+
+<body>
+    <style>
+        section {
+            display: block;
+        }
+
+        .search-button-container {
+            background: #151515;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            text-align: center;
+        }
+
+        .separator {
+            border: none;
+            height: 1px;
+            background-color: #444;
+            width: 100%;
+            max-width: 800px;
+            margin: 180px auto;
+        }
+
+        .rectangle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 322px;
+            height: 82px; 
+            background: linear-gradient(#1b1b1b, #111);
+            border: 1px solid #000;
+            border-radius: 5px;
+            box-shadow: inset 0 0 1px #272727;
+            position: absolute;
+            top: 180px;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        .rectangle-container input {
+            background: linear-gradient(#333, #222);
+            border-radius: 5px 0 0 5px;
+            box-shadow: 0 2px 0 #000;
+            color: #888;
+            display: block;
+            font-family: 'Cabin', helvetica, arial, sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            height: 40px;
+            text-shadow: 0 -1px 0 #000;
+            width: 200px;
+        }
+
+        @keyframes greenPulse {
+            0% {
+                box-shadow: 0 0 4px 1px #5f5, inset 0 0 2px #5f5;
+            }
+
+            50% {
+                box-shadow: 0 0 12px 4px #5f5, inset 0 0 6px #5f5;
+            }
+
+            100% {
+                box-shadow: 0 0 4px 1px #5f5, inset 0 0 2px #5f5;
+            }
+        }
+
+        .rectangle-container .glow-input:focus {
+            outline: none;
+            border-color: #5f5;
+            color: #5f5;
+            animation: greenPulse 1.2s ease-in-out infinite;
+        }
+
+        .rectangle-container button {
+            background: linear-gradient(#333, #222);
+            box-sizing: border-box;
+            /* border: 1px solid #444; */
+            /* border-left-color: #000; */
+            border-radius: 0 5px 5px 0;
+            /* box-shadow: 0 2px 0 #000; */
+            color: #fff;
+            display: block;
+            font-family: 'Cabin', helvetica, arial, sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            height: 40px;
+            line-height: 40px;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            /* text-shadow: 0 -1px 0 #000; */
+            width: 80px;
+            cursor: pointer;
+        }
+
+        .rectangle-container button:hover {
+            color: #5f5;
+        }
+    </style>
+    <section class="search-button-container">
+        <hr class="separator">
+        <div class="rectangle-container">
+            <input type="search" class="glow-input" placeholder="What are you looking for?">
+            <button>Search</button>
+        </div>
+
+    </section>
+</body>
+
+</html>

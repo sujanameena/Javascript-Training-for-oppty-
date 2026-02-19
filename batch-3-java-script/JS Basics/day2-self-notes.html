@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>conditions</title>
+</head>
+
+<body>
+    <script>
+        // 1.Conditional statements run different code depending on true or false conditions.
+
+        // 2.Conditional statements include:
+        // a.if conditions
+        // syntax:
+        // if (condition) {
+        //     // code to execute if the condition is true
+        // }
+
+        // b.if...else conditions
+        // Syntax:
+
+        // if (condition) {
+        //     // code to execute if the condition is true
+        // } else {
+        //     // code to execute if the condition is false
+        // }
+        // c.if...else if...else conditions
+        // syntax:
+
+        // if (condition1) {
+        //     // code to execute if condition1 is true
+        // } else if (condition2) {
+        //     // code to execute if the condition1 is false and condition2 is true
+        // } else {
+        //     // code to execute if the condition1 is false and condition2 is false
+        // }
+
+
+        //switch Example:1
+        // let dayNumber = 100;
+        // let dayName;
+
+        // switch (dayNumber) {
+        //     case 1:
+        //         dayName = "Monday";
+        //         break;
+        //     case 2:
+        //         dayName = "Tuesday";
+        //         break;
+        //     case 3:
+        //         dayName = "Wednesday";
+        //         break;
+        //     default:
+        //         dayName = "Unknown Day";
+        // }
+
+        // console.log(dayName); // Output: Wednesday.
+        Example: 2
+        let month = prompt("Month");
+        // let month = "November";
+        let season;
+        switch (month) {
+            case "November":
+            case "December":
+            case "January":
+            case "February":
+            case "March":
+                console.log("It's Winter.");
+                break;
+            case "July":
+            case "August":
+            case "September":
+            case "October":
+                console.log("It's Rainy.");
+                break;
+            case "April":
+            case "May":
+            case "June":
+                console.log("It's Summer.");
+                break;
+            default:
+                season = "Unknown season";
+        }
+        console.log(season);
+
+
+
+    </script>
+</body>
+
+</html>

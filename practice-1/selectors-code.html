@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        /* Universal Selector */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Element/Type Selector */
+        h1 {
+            color: blue;
+        }
+
+        /* Class Selector */
+        .highlight {
+            background-color: yellow;
+        }
+
+        /* ID Selector */
+        #header {
+            font-size: 24px;
+        }
+
+        /* Descendant Selector */
+        div p {
+            color: green;
+        }
+
+        /* Child Selector */
+        ul > li {
+            list-style-type: square;
+        }
+
+        /* Adjacent Sibling Selector */
+        h2 + p {
+            font-style: italic;
+        }
+
+        /* General Sibling Selector */
+        h2 ~ p {
+            margin-left: 20px;
+        }
+
+        /* Attribute Selector */
+        input[type="text"] {
+            border: 2px solid red;
+        }
+
+        /* Attribute Contains Selector */
+        a[href*="example"] {
+            color: purple;
+        }
+
+        /* Pseudo-class Selector */
+        a:hover {
+            text-decoration: none;
+        }
+
+        li:first-child {
+            font-weight: bold;
+        }
+
+        li:nth-child(2) {
+            color: orange;
+        }
+
+        /* Pseudo-element Selector */
+        p::first-line {
+            text-transform: uppercase;
+        }
+
+        p::before {
+            content: "→ ";
+        }
+
+        /* Group Selector */
+        h1, h2, h3 {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+
+    <h1>CSS Selectors Demo</h1>
+    <div id="header">This is a header with ID</div>
+
+    <p class="highlight">This paragraph has a highlight class.</p>
+
+    <div>
+        <p>This is a paragraph inside a div (descendant selector).</p>
+    </div>
+
+    <h2>Section Title</h2>
+    <p>This paragraph is adjacent to h2.</p>
+    <p>This is a general sibling of h2.</p>
+
+    <ul>
+        <li>First item (bold)</li>
+        <li>Second item (orange)</li>
+        <li>Third item</li>
+    </ul>
+
+    <input type="text" placeholder="Text input with border">
+    <br><br>
+    <a href="https://example.com">Link to example (purple)</a>
+    <br>
+    <a href="https://other.com">Regular link (hover to see effect)</a>
+
+    <h3>More Content</h3>
+    <p>Another paragraph demonstrating pseudo-elements.</p>
+</body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oppty.com</title>
+    <link rel="stylesheet" href="index.css">
+    <!-- Tailwind CSS for utility-first layout -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons for clean, font-based iconography -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- <link rel="stylesheet" href="index-mobile.css"> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="promo-ticker" aria-label="Announcements">
+        <div class="ticker__viewport">
+            <ul class="ticker__track" aria-live="polite">
+                <li class="ticker__item">IT SERVICES</li>
+                <li class="ticker__item" aria-hidden="true">★</li>
+                <li class="ticker__item">BPO</li>
+                <li class="ticker__item" aria-hidden="true">★</li>
+                <li class="ticker__item">E-COMMERCE</li>
+                <li class="ticker__item" aria-hidden="true">★</li>
+                <li class="ticker__item">WEB DEVELOPMENT</li>
+                <li class="ticker__item" aria-hidden="true">★</li>
+                <li class="ticker__item">AI SOLUTIONS</li>
+                <li class="ticker__item" aria-hidden="true">★</li>
+            </ul>
+        </div>
+    </div>
+    <!-- header -->
+    <header class="site-header" aria-label="Header">
+        <nav>
+            <div class="header-inner">
+                <a class="logo" href="/" aria-label="ArkzBags Home">
+                    <img src="assets/oppty-logo.png" alt="ArkzBags logo">
+                </a>
+
+                <div class="nav-right">
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="our-services.html">Our Services</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                    </ul>
+                    <div class="buttons">
+                        <button class="academy-button">academy</button>
+                        <button class="training-button">training partner</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- home-slider -->
+    <div class="slider-container">
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <img src="assets/1-slider-home.jpg" class="slide-image" alt="Modern Office">
+            <div class="content">
+                <h1>Innovative Solutions Unleashed</h1>
+                <ul class="feature-list">
+                    <li class="feature-item">Advanced IT</li>
+                    <li class="feature-item">✦ Tailored Strategies</li>
+                    <li class="feature-item">✦ Scalable Growth</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <img src="assets/2-slider-home.webp" class="slide-image" alt="Digital Future">
+            <div class="content">
+                <h1>Future-Ready Technology</h1>
+                <ul class="feature-list">
+                    <li class="feature-item">AI Automation</li>
+                    <li class="feature-item">✦ Efficient BPO</li>
+                    <li class="feature-item">✦ Proactive AIOPS</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <img src="assets/3-slider-home.webp" class="slide-image" alt="Growth Marketing">
+            <div class="content">
+                <h1>Elevate Online Presence</h1>
+                <ul class="feature-list">
+                    <li class="feature-item">Stunning Websites</li>
+                    <li class="feature-item">✦ Robust security</li>
+                    <li class="feature-item">✦ E-commerce optimization</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <button class="nav-btn prev-btn">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M15 19l-7-7 7-7" />
+            </svg>
+        </button>
+        <button class="nav-btn next-btn">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M9 5l7 7-7 7" />
+            </svg>
+        </button>
+
+        <!-- Indicators -->
+        <div class="indicators">
+            <div class="dot active" data-index="0"></div>
+            <div class="dot" data-index="1"></div>
+            <div class="dot" data-index="2"></div>
+        </div>
+    </div>
+    <!-- home-second-section -->
+    <section class="hero">
+        <div class="hero-box">
+            <h1>Ignite Your Business with Oppty TechHub</h1>
+            <p>Power up your success with innovative IT, BPO, E-commerce, Web Development, and AI solutions tailored to
+                your vision. Partner with us to transform challenges into opportunities and drive growth with
+                cutting-edge technology.</p>
+            <div class="know-more-button">
+                <button class="know-more">Know More</button>
+            </div>
+        </div>
+
+    </section>
+
+
+    <section class="scroll-section">
+        <div class="ticker-wrapper" id="tickerWrapper">
+            <!-- The content is duplicated in the ticker-content to allow seamless looping -->
+            <div class="ticker-content" id="originalContent">
+                <div class="feature-box">
+                    <h3>2K</h3>
+                    <p>Projects Complete</p>
+                </div>
+                <div class="feature-box">
+                    <h3>200+</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="feature-box">
+                    <h3>10+</h3>
+                    <p>Awards Achieve</p>
+                </div>
+                <div class="feature-box">
+                    <h3>5+</h3>
+                    <p>Global Branches</p>
+                </div>
+            </div>
+            <!-- Duplicate for Infinite Loop (Will be handled by JS for perfect cloning) -->
+        </div>
+    </section>
+    <!-- home-Page-third-section -->
+
+    <div class="animated-bg">
+        <!-- 1. HEADING -->
+        <div class="section-heading">
+            <h1>Strategic Growth Process</h1>
+        </div>
+
+        <!-- 2. FIVE BOXES IN ONE ROW -->
+        <div class="process-row">
+
+            <!-- 2.1 Discover Needs -->
+            <div class="process-box">
+                <div class="icon-container">
+                    <i data-lucide="eye" class="text-[#f97216] w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">1.Discover Your Needs</h3>
+                <p class="text-slate-400 text-sm">Analyze your business goals with our experts to identify tailored IT
+                    and AI solutions for maximum impact.</p>
+            </div>
+
+            <!-- 2.2 Strategize & Plan -->
+            <div class="process-box">
+                <div class="icon-container">
+                    <i data-lucide="compass" class="text-[#f97216] w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">2.Strategize & Plan</h3>
+                <p class="text-slate-400 text-sm">Craft a customized roadmap using cutting-edge technology to drive
+                    efficiency and growth.</p>
+            </div>
+
+            <!-- 2.3 Implement Solutions -->
+            <div class="process-box">
+                <div class="icon-container">
+                    <i data-lucide="code" class="text-[#f97216] w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">3.Implement Solutions</h3>
+                <p class="text-slate-400 text-sm">Deploy secure IT, BPO, e-commerce, or web development services with
+                    seamless integration.</p>
+            </div>
+
+            <!-- 2.4 Optimize Performance -->
+            <div class="process-box">
+                <div class="icon-container">
+                    <i data-lucide="bar-chart-3" class="text-[#f97216] w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">4.Optimize Performance</h3>
+                <p class="text-slate-400 text-sm">Leverage AI-driven insights and AIOps to enhance operations and reduce
+                    downtime.</p>
+            </div>
+
+            <!-- 2.5 Grow & Scale -->
+            <div class="process-box">
+                <div class="icon-container">
+                    <i data-lucide="rocket" class="text-[#f97216] w-8 h-8"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">5.Grow & Scale</h3>
+                <p class="text-slate-400 text-sm">Achieve sustainable success with scalable solutions designed to evolve
+                    with your business.</p>
+            </div>
+
+        </div>
+
+        <!-- 3. GLOWING BUTTON -->
+        <button class="glowing-btn" id="cta-button">
+            Follow Us On LinkedIn
+        </button>
+    </div>
+    <!-- home-page-fourth-section -->
+    <div class="wrapper">
+        <!-- Heading Section -->
+        <div class="header-section">
+            <p class="main-heading">Services</p>
+            <h1 class="sub-heading">Solutions We Provide</h1>
+            <div class="section-divider" role="separator" aria-label="Divider">
+                <span class="divider-text">Unlock your business potential with our innovative, SEO-optimized solutions
+                    designed for success.</span>
+            </div>
+        </div>
+
+        <!-- Solutions Container -->
+        <div id="solutions-container">
+            <!-- JavaScript will inject rows here -->
+        </div>
+    </div>
+    <!-- home-page-fifth-section -->
+
+
+    <section id="testimonials" class="testimonials-section" aria-label="Client testimonials">
+        <div class="bg-anim" aria-hidden="true">
+            <span class="blob b1"></span>
+            <span class="blob b2"></span>
+            <span class="blob b3"></span>
+            <span class="grid"></span>
+        </div>
+
+        <div class="testi-header">
+            <p class="eyebrow">Testimonials</p>
+            <h2>Our Clients Reviews</h2>
+            <p class="lead">Real stories from trusted partners across industries.</p>
+        </div>
+
+        <div class="testi-slider" role="region" aria-roledescription="carousel" aria-label="Client testimonials"
+            aria-live="polite">
+            <div class="viewport">
+                <div class="track" id="testiTrack" style="transform: translateX(0%);"></div>
+            </div>
+
+            <div class="controls">
+                <button class="nav prev" id="testiPrev" aria-label="Previous testimonials">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                </button>
+                <div class="dots" id="testiDots" role="tablist" aria-label="Slides"></div>
+                <button class="nav next" id="testiNext" aria-label="Next testimonials">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 6l6 6-6 6" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- home-page-sixth-section -->
+
+    <section id="clients" class="clients-section" aria-label="Our valued clients">
+        <div class="clients-inner">
+            <div class="clients-header">
+                <p class="eyebrow">We are proud to partner with industry leaders.</p>
+                <h2 class="title">Our Valued Clients</h2>
+                <!-- <p class="subtitle">Top software companies that trust us.</p> -->
+            </div>
+
+            <div class="clients-rail">
+                <!-- Lane 1 -->
+                <div class="clients-lane">
+                    <div class="track">
+                        <a class="logo-card" href="https://www.microsoft.com" target="_blank" rel="noopener">
+                            <img src="assets/microsSoft-logo.png" alt="Microsoft">
+                        </a>
+                        <a class="logo-card" href="https://www.salesforce.com" target="_blank" rel="noopener">
+                            <img src="assets/salesforce-logo.svg" alt="Salesforce">
+                        </a>
+                        <a class="logo-card" href="https://www.adobe.com" target="_blank" rel="noopener">
+                            <img src="assets/adobe-logo.svg" alt="Adobe">
+                        </a>
+
+                        <a class="logo-card" href="https://www.intel.com" target="_blank" rel="noopener">
+                            <img src="assets/intel-logo.svg" alt="Intel">
+                        </a>
+                        <a class="logo-card" href="https://www.tcs.com/" target="_blank" rel="noopener">
+                            <img src="assets/tcs-logo.svg" alt="TCS">
+                        </a>
+                        <a class="logo-card"
+                            href="https://www.smart-academy.in/tech-mahindra-foundation-about-us/?gad_source=1&gad_campaignid=23344106612&gbraid=0AAAAADLf7KUnQOQhwP-0ey21dhFewxdsF&gclid=Cj0KCQiA-NHLBhDSARIsAIhe9X3Y875zS61nglHapsr5z5N3eMuA-uppM4bdJ03_CQE5SsxfrWfVUNoaAlUXEALw_wcB"
+                            target="_blank" rel="noopener">
+                            <img src="assets/SMART-Academy-Logo.jpg" alt="Tech-Mahindra">
+                        </a>
+                        <a class="logo-card" href="https://www.capgemini.com/in-en/" target="_blank" rel="noopener">
+                            <img src="assets/capgemini-logo.svg" alt="Capegemini">
+                        </a>
+                        <a class="logo-card" href="https://www.cognizant.com/in/en" target="_blank" rel="noopener">
+                            <img src="assets/COGNIZANT-Logo.svg" alt="Cognizant">
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- home-page-footer-section -->
+
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Brand & Socials -->
+            <div class="footer-brand footer-col">
+                <!-- Replace src with your actual logo URL -->
+                <img src="assets/oppty.png" alt="oppty-logo" class="logo-img">
+                <p>Power up your success with innovative IT, BPO, E-commerce, Web Development, and AI solutions tailored
+                    to your vision.</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" aria-label="X"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+
+            <!-- Ecosystem Links -->
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+
+            <!-- Two Addresses Section -->
+            <div class="footer-col">
+                <h4>Global Offices</h4>
+                <div class="address-grid">
+                    <!-- Address 1 -->
+                    <div class="address-item">
+                        <h5>Hyderabad</h5>
+                        <ul class="contact-list">
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>108/43, Vijaya Lakshmi Enclave,<br>1st Floor, H.No 2, PJR Enclave<br>Rd, Gangaram,
+                                    ICRISAT Colony,<br>Hyderabad, Telangana 500050<br></span>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <span> +919491209900</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Address 2 -->
+                    <div class="address-item">
+                        <h5>Udaipur</h5>
+                        <ul class="contact-list">
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Udaipur - Plot No: 26, 100 Feet<br>Rd, Shobhagpura, Udaipur,<br>Rajasthan
+                                    313011</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <span>info@oppty.in</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-col footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Get the latest engineering updates delivered to your inbox.</p>
+                <form class="newsletter-form" id="subscribeForm">
+                    <div class="input-group">
+                        <input type="email" placeholder="email@company.com" required>
+                        <button type="submit">Join</button>
+                    </div>
+                    <div id="statusMessage" class="msg-box"></div>
+                </form>
+            </div>
+        </div>
+
+        <!-- 1. Top Image Showcase (White Background) -->
+        <section class="footer-gallery">
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="assets/footer-1.png" alt="footer-image1">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/footer-2.png" alt="footer-image2">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/footer-3.jpg" alt="footer-image3">
+                </div>
+            </div>
+        </section>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; <span id="year"></span> OPPTY TechHub Pvt Ltd. All rights reserved.
+            </div>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Cookie Settings</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- home page-arrow up button -->
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12l7-7 7 7"></path>
+            <path d="M12 19V5"></path>
+        </svg>
+    </button>
+
+        
+
+     
+    <script src="index.js" defer></script>
+</body>
+
+</html>

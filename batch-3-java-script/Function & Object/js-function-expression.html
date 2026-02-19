@@ -1,0 +1,385 @@
+JavaScript Function Expression:
+
+A function expression defines a function as part of an expression and can be assigned to a variable, passed as an
+argument, or returned from another function. Unlike function declarations, function expressions are not hoisted, so they
+cannot be called before they are defined.
+
+Example:1
+
+<!-- <script>
+        const multiply = (a, b) => a * b;
+        console.log(multiply(4, 5));
+    </script> -->
+
+Example:2
+
+<!-- <script>
+        const greet = function(name) {
+    return `Hello, ${name}!`;
+};
+console.log(greet("sanjeev"));
+    </script> -->
+
+Named vs Anonymous Function Expressions:
+
+Example:1 (Named Function)
+
+<!-- const sum = function(a, b) {
+    return a + b;
+};
+console.log(sum(5, 3)); -->
+
+Example:2 (Anonymous Function)
+
+<!-- const factorial = function fact(n) {
+    if (n === 0) return 1;
+    return n * fact(n - 1);
+};
+console.log(factorial(5)); -->
+
+
+Use Cases of Function Expressions:
+
+1. Storing in Variables:
+
+A function expression can be assigned to a variable, allowing you to reuse it by calling the variable name.  
+This is useful when you want to pass functions around or change the behavior by reassigning the variable.
+
+Example:1
+
+<!-- const add = function(x, y) {
+    return x + y;
+};
+console.log(add(3, 5)); -->
+
+Example:2
+
+<!-- <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        .card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 6px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .example {
+            margin-top: 15px;
+        }
+
+        input {
+            padding: 6px;
+            width: 100px;
+        }
+
+        button {
+            padding: 6px 12px;
+            margin-left: 8px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+
+    <div class="card">
+        <h2>Storing in Variables (Function Expression)</h2>
+        <p>
+            A function expression can be stored in a variable, so you can call the variable name like a function.
+            This is useful when you want to reuse or pass the function around.
+        </p>
+
+        <div class="example">
+            <label>Enter a number:</label>
+            <input type="number" id="numInput" value="4">
+            <button id="calcBtn">Calculate Square</button>
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <script>
+        // Function expression stored in a variable
+        const calculateSquare = function (n) {
+            return n + n;
+        };
+
+        const input = document.getElementById('numInput');
+        const btn = document.getElementById('calcBtn');
+        const resultDiv = document.getElementById('result');
+
+        btn.addEventListener('click', function () {
+            const value = Number(input.value);
+            const result = calculateSquare(value);
+            resultDiv.textContent = `Square of ${value} is: ${result}`;
+        });
+    </script> -->
+
+2. Callback Functions:
+
+Example:1
+
+<!-- <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        .card {
+            max-width: 500px;
+            margin: 0 auto 20px;
+            background: #fff;
+            border-radius: 6px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .example {
+            margin-top: 15px;
+        }
+
+        input {
+            padding: 6px;
+            width: 100px;
+        }
+
+        button {
+            padding: 6px 12px;
+            margin-left: 8px;
+            cursor: pointer;
+        }
+
+        #result,
+        #cbResult {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+
+    
+
+    <div class="card">
+        <h2>Callback Functions (Function Expression)</h2>
+        <p>
+            A callback function is a function expression passed as an argument to another function.
+            The other function <b>calls it back</b> later to complete a task.
+        </p>
+
+        <div class="example">
+            <label>Enter a number:</label>
+            <input type="number" id="cbNumInput" value="5">
+            <button id="cbBtn">Show After 1 Second</button>
+            <div id="cbResult"></div>
+        </div>
+    </div>
+
+    <script>
+
+        const cbInput = document.getElementById('cbNumInput');
+        const cbBtn = document.getElementById('cbBtn');
+        const cbResultDiv = document.getElementById('cbResult');
+
+        function showAfterDelay(callback) {
+            setTimeout(callback, 1000);
+        }
+
+        cbBtn.addEventListener('click', function () {
+            const value = Number(cbInput.value);
+
+            showAfterDelay(function () {
+                cbResultDiv.textContent = `You entered ${value} (shown after 1 second using a callback).`;
+            });
+        });
+
+    </script> -->
+
+
+    <!-- <script>
+        setTimeout(function () {
+            console.log("This message appears after 3 seconds!");
+        }, 3000);
+    </script> -->
+
+
+3. Event Handlers:
+
+Event handlers often use function expressions to respond to user actions like clicks, mouse moves, or key presses.  
+The function expression is passed directly to `addEventListener` and runs when the event occurs.
+
+
+Example:1
+
+<!-- <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        .card {
+            max-width: 500px;
+            margin: 0 auto 20px;
+            background: #fff;
+            border-radius: 6px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        button {
+            padding: 8px 14px;
+            cursor: pointer;
+        }
+
+        #msg {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+
+    <div class="card">
+        <h2>Event Handlers (Function Expression)</h2>
+        <p>
+            Here, a function expression is used as a click event handler.
+            It runs only when you click the button.
+        </p>
+
+        <button id="clickBtn">Click Me</button>
+        <div id="msg"></div>
+    </div>
+
+    <script>
+        const button = document.getElementById('clickBtn');
+        const msgDiv = document.getElementById('msg');
+
+        // function expression used as an event handler
+        button.addEventListener('click', function () {
+            msgDiv.textContent = 'Button was clicked! This message is shown by an event handler function expression.';
+        });
+    </script> -->
+
+4. Self-Invoking Functions:
+
+Example:1
+
+<!-- <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 20px;
+        }
+
+        .card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 6px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        button {
+            padding: 8px 14px;
+            cursor: pointer;
+        }
+
+        #msg {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+
+
+    <div class="card">
+        <h2>Self-Invoking Functions (IIFE)</h2>
+        <p>
+            A self-invoking function (IIFE) is a function <b>expression</b> that runs immediately after it is defined.
+            It is wrapped in parentheses and followed by <code>()</code>. It is useful for running setup code once and
+            keeping variables private.
+        </p>
+
+        <p>In this example, the IIFE sets up a click event handler for the button.</p>
+
+        <button id="clickBtn">Click Me</button>
+        <div id="msg"></div>
+    </div>
+
+    <script>
+        (function () {
+            const button = document.getElementById('clickBtn');
+            const msgDiv = document.getElementById('msg');
+
+            msgDiv.textContent = 'This text was set by a self-invoking function when the page loaded.';
+
+            button.addEventListener('click', function () {
+                msgDiv.textContent = 'Button clicked! Event handler set up by a self-invoking function.';
+            });
+        })();
+    </script> -->
+
+Arrow Functions: A Variant of Function Expressions
+
+Difference Between Function Expression and Function Declaration
+
+Function Expression:
+
+1.Function Expression cannot be hoisted, so they cannot be called before their definition.
+2.Can be passed as arguments or stored in variables
+3.Defined within an expression.
+4.Useful for callbacks and dynamic functions.
+5.Can be assigned to variables or passed as arguments
+
+Function Declaration:
+
+1.Function Declaration are Hoisted so that can be called before their definition.
+2.Typically used as standalone functions.
+3.Uses function keyword with a name.
+4.Best for defining reusable functions.
+5.Typically used as standalone functions.
+
+Difference B/W Function Expression and Function Declaration
+
+Example:1
+
+<!-- <script>
+        // Function Declaration
+
+        greet();
+        function greet() {
+            console.log("Hello! Declaration Function");
+        }
+
+        // Function Expression
+
+        const greetExpression = function () {
+            console.log("Hello from function expression!");
+        };
+
+        greetExpression();
+    </script> -->

@@ -1,0 +1,242 @@
+Object Oriented Programming in JavaScript:
+
+Object Oriented Programming (OOP) is a programming paradigm based on the concept of "objects", which can contain data (properties) and code (methods). In JavaScript, OOP is implemented using objects, constructor functions, and ES6 classes.
+
+Example using Constructor Function:
+
+<!-- function Student(name, course) {
+  this.name = name;
+  this.course = course;
+  this.introduce = function() {
+    console.log(`Hi, I'm ${this.name} and I'm learning ${this.course}.`);
+  };
+}
+
+let student1 = new Student("Sujana", "JavaScript");
+student1.introduce();  -->
+
+Example using ES6 Class:
+
+An ES6 class is a modern way to create objects and handle inheritance in JavaScript, introduced in ECMAScript 2015 (ES6). It provides a cleaner and more concise syntax for creating constructor functions and methods
+
+Example:1
+
+<!-- <script>
+class Teacher {
+  constructor(name, subject) {
+    this.name = name;
+    this.subject = subject;
+  }
+  introduce() {
+    console.log(`Hello, I'm ${this.name} and I teach ${this.subject}.`);
+  }
+}
+
+let teacher1 = new Teacher("Alex", "Javascript");
+teacher1.introduce(); 
+  </script> -->
+
+  CLASSES:
+  --------
+
+  This means that JavaScript classes allow you to define a blueprint for objects, so multiple objects can share the same properties and methods.
+
+* Inheritance: You can create new classes based on existing ones, reusing and extending their features.
+* Encapsulation: Classes group related data and functions together, keeping code organized.
+* Modularity: Classes help break code into reusable, manageable parts.
+
+Overall, classes make it easier to write and maintain object-oriented code in JavaScript.
+
+Syntax:
+
+<!-- class ClassName {
+    constructor() {
+        // Initialize properties here
+    }
+    // Define methods here
+    methodName() {
+        // Method code
+    }
+} -->
+
+
+
+Creating a Simple Class:
+
+Example:1 
+
+<!-- <script>
+    class Person {
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      result() {
+        console.log(`Hello, my name is ${this.name} and I am ${this.age} years old.`);
+      }
+    }
+    let details = new Person("Praneetha", 20);
+    details.result();
+  </script> -->
+
+  JavaScript Class Methods:
+
+Defining class methods in JavaScript is easy and simple, we just need to add () following a method name. 
+  
+  Example:1
+
+  <!-- <script>
+    class Person {
+      constructor(name) {
+        this.name = name;
+      }
+
+      // This is a class method
+      result() {
+        return `Hello, my name is ${this.name}`;  
+      }
+    }
+
+    const person1 = new Person("Sujana");
+    console.log(person1.result());
+  </script> -->
+
+  Class Getters and Setters:
+
+  In JavaScript classes, getters and setters are special methods that allow you to get and set property values in a controlled way.
+
+  Example:1 
+
+  <!-- <script>
+    class Student {
+  constructor(name, age) {
+    this._name = name;
+    this._age = age;
+  }
+
+  // Getter for name
+  get name() {
+    return this._name;
+  }
+
+  // Setter for name
+  set name(newName) {
+    this._name = newName;
+  }
+
+  // Getter for age
+  get age() {
+    return this._age;
+  }
+
+  // Setter for age
+  set age(newAge) {
+    if (newAge > 0) {
+      this._age = newAge;
+    }
+  }
+}
+
+const studentDetails = new Student("Sujana", 20);
+console.log(studentDetails.name); // Sujana
+studentDetails.name = "Chandar";
+console.log(studentDetails.name); // Chandar
+studentDetails.age = 25;
+console.log(studentDetails.age); // 25
+   </script> -->
+
+Object(In classes): 
+
+An object in JavaScript is a specific instance of a class. It contains its own set of data (properties) and can use the methods defined in its class. Multiple objects can be created from the same class, each having unique values for their properties.
+
+Example:1
+
+<!-- <script>
+class Car {
+  static type = "vehicle"; // class property
+}
+
+// Create an object from the class
+let car1 = new Car();
+
+// Access the class property
+console.log(Car.type); // vehicle
+   </script> -->
+
+      Object Properties
+
+   In JavaScript the members inside the object which are the key: values are called Object properties. For example, in the above code, name is an object property (unique to each instance), and type is a class property (shared by all instances of the class).
+
+   
+
+   JavaScript object properties are named values (key-value pairs) stored in an object. They allow you to associate data and behavior with an object, and can be accessed or modified using dot or bracket notation.
+
+   To Access Object Properties:
+
+
+
+   1. Using dot Notation / 2. Using bracket Notation
+
+   <!-- <script>
+// Creating an object with properties
+let car = {
+  brand: "Toyota",
+  model: "Camry",
+  year: 2022
+};
+
+// Accessing properties
+console.log(car.brand);      // Toyota
+console.log(car["model"]);   // Camry
+
+// Modifying a property
+car.year = 2023;
+console.log(car.year);       // 2023
+
+// Adding a new property
+car.color = "red";
+console.log(car.color);      // red
+   </script> -->
+
+   JavaScript Object Methods
+
+   JavaScript object methods are functions stored as properties inside an object. They allow objects to perform actions using their data.
+
+Example:1
+
+  <!-- <script>
+// Creating an object
+let calculator = {
+  num1: 10,
+  num2: 5
+};
+
+// Adding a method to the object
+calculator.add = function() {
+  return this.num1 + this.num2;
+};
+
+console.log(calculator.add()); // Output: 15
+   </script> -->
+
+   Example:2
+
+   In the given example we can see how we can apply Javascript nested objects and also use the different accessing methods.
+
+   <!-- <script>
+    // Example of JavaScript nested objects and different accessing methods
+    let student = {
+      name: "Sujana",
+      age: 20,
+      address: {
+        street: "123 Main St",
+        city: "Hyderabad",
+        pincode: 500001
+      }
+    };
+
+    // Accessing nested object properties
+    console.log(student.address.city);        // Hyderabad (dot notation)
+    console.log(student["address"]["street"]); // 123 Main St (bracket notation)
+    console.log(student.address.pincode);     // 500001
+  </script> -->

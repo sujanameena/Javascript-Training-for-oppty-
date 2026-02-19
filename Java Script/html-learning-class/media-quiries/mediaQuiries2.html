@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design Master Example</title>
+    <style>
+        /* =========================================
+           1. BASE STYLES (Desktop Default)
+           ========================================= */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header & Nav */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 18px;
+        }
+
+        nav:hover {
+            transform: scale(2.2);
+        }
+
+        /* Main Container: Holds the Article and the Sidebar */
+        .container {
+            display: flex;
+            /* Puts items side-by-side */
+            flex-wrap: wrap;
+            /* Allows wrapping if needed */
+            padding: 20px;
+        }
+
+        /* The Main Article (Left Side) */
+        .main-content {
+            flex: 70%;
+            /* Takes up 70% of width */
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        /* The Sidebar (Right Side) */
+        .sidebar {
+            flex: 30%;
+            /* Takes up 30% of width */
+            background-color: #ddd;
+            padding: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* =========================================
+           2. TABLET VIEW (Screens < 768px)
+           Target: iPads, Small Laptops
+           ========================================= */
+        @media (max-width: 800px) {
+
+            /* Change Flexbox from Side-by-Side to Top-to-Bottom */
+            .container {
+                flex-direction: column;
+            }
+
+            /* Both boxes must now be 100% width to fill the screen */
+            .main-content,
+            .sidebar {
+                flex: 50%;
+            }
+
+            /* Visual cue for students */
+            body {
+                background-color: #fff8dc;
+            }
+
+            /* Light yellow tint */
+        }
+
+        /* =========================================
+           3. MOBILE VIEW (Screens < 480px)
+           Target: iPhones, Androids
+           ========================================= */
+        @media (max-width: 480px) {
+
+            /* Make navigation links stack vertically */
+            nav a {
+                display: block;
+                border-bottom: 1px solid #555;
+                transform: scale(2.2);
+            }
+
+            /* HIDE the Sidebar completely to save space */
+            .sidebar {
+                display: none;
+            }
+
+            /* Make text smaller */
+            h1 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            /* Visual cue for students */
+            body {
+                background-color: #ffe4e1;
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>My Responsive Website</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Services</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <h2>Main Article Title</h2>
+            <p>This is the main content area. On a desktop, this takes up 70% of the screen. On a tablet, it takes up
+                100%. Resize your browser to see the magic happen!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua.</p>
+            <div style="height: 200px; background: white; border: 1px dashed black;">Image Placeholder</div>
+        </div>
+
+        <div class="sidebar">
+            <h3>Sidebar</h3>
+            <p>This is the sidebar with ads or links. On Mobile, this box will disappear completely!</p>
+            <ul>
+                <li>Link 1</li>
+                <li>Link 2</li>
+                <li>Link 3</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>Footer Content &copy; 2024</p>
+    </footer>
+
+</body>
+
+</html>

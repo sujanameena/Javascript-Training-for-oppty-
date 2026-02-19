@@ -1,0 +1,64 @@
+<!-- 
+CSS Selectors Documentation
+
+Selectors are patterns used to select and style HTML elements. They are fundamental to CSS and allow you to target specific elements on a webpage.
+
+Types of Selectors:
+
+1. Universal Selector (*)
+    - Selects all elements
+    Example: * { margin: 0; padding: 0; }
+
+2. Element/Type Selector
+    - Selects all elements of a given type
+    Example: p { color: blue; }
+    Example: h1 { font-size: 24px; }
+
+3. Class Selector (.)
+    - Selects elements with a specific class attribute
+    Example: .header { background: #fff; }
+    Example: .btn-primary { color: white; }
+
+4. ID Selector (#)
+    - Selects a single element with a specific id attribute
+    Example: #navbar { position: fixed; }
+    Example: #main-content { width: 100%; }
+
+5. Attribute Selector ([])
+    - Selects elements based on attribute or attribute value
+    Example: [type="text"] { border: 1px solid #ccc; }
+    Example: a[href^="https"] { color: green; }
+
+6. Descendant Selector (space)
+    - Selects elements that are descendants of a specified element
+    Example: div p { margin: 10px; }
+    Example: .container .item { display: flex; }
+
+7. Child Selector (>)
+    - Selects direct children only
+    Example: ul > li { list-style: none; }
+    Example: .parent > .child { padding: 5px; }
+
+8. Adjacent Sibling Selector (+)
+    - Selects an element immediately following another
+    Example: h1 + p { font-weight: bold; }
+
+9. General Sibling Selector (~)
+    - Selects all siblings following an element
+    Example: h1 ~ p { color: gray; }
+
+10. Pseudo-class Selector (:)
+     - Selects elements based on state or position
+     Example: a:hover { text-decoration: underline; }
+     Example: li:first-child { margin-top: 0; }
+     Example: input:focus { border-color: blue; }
+
+11. Pseudo-element Selector (::)
+     - Selects and styles part of an element
+     Example: p::first-line { font-weight: bold; }
+     Example: .box::before { content: "→"; }
+
+12. Grouping Selector (,)
+     - Applies same styles to multiple selectors
+     Example: h1, h2, h3 { font-family: Arial; }
+-->

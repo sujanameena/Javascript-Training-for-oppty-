@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Examples - Complete Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            background: #f0f2f5;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .example-section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .example-section h2 {
+            color: #3498db;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .example-section h3 {
+            color: #555;
+            margin: 15px 0 10px;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .demo-box {
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+
+        .highlight {
+            background: yellow;
+            padding: 3px 6px;
+            border-radius: 3px;
+        }
+
+        .active {
+            background: #2ecc71 !important;
+            color: white;
+        }
+
+        input[type="text"], 
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .item {
+            padding: 10px;
+            margin: 5px 0;
+            background: #ecf0f1;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .item:hover {
+            background: #d5dbdb;
+        }
+
+        .output {
+            background: #2c3e50;
+            color: #2ecc71;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            min-height: 50px;
+        }
+
+        .card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            min-width: 200px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .fade {
+            opacity: 0.3;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .todo-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 DOM Manipulation - Complete Examples</h1>
+
+        <!-- 1. Selecting Elements -->
+        <div class="example-section">
+            <h2>1. Selecting Elements</h2>
+            
+            <div class="demo-box" id="selectBox">
+                <p class="demo-text">This is a demo paragraph</p>
+                <p class="demo-text">Another paragraph</p>
+                <div data-id="123">Element with data attribute</div>
+            </div>
+
+            <button onclick="selectExamples()">Run Selection Examples</button>
+            <div class="output" id="selectOutput"></div>
+        </div>
+
+
+        <!-- 2. Content Manipulation -->
+        <div class="example-section">
+            <h2>2. Manipulating Content</h2>  
+            
+            <div class="demo-box" id="contentBox">
+                <p id="textDemo">Original text content</p>
+                <div id="htmlDemo">Original <strong>HTML</strong> content</div>
+            </div>
+
+            <button onclick="changeText()">Change Text</button>
+            <button onclick="changeHTML()">Change HTML</button>
+            <button onclick="addDataAttribute()">Add Data Attribute</button>
+            <div class="output" id="contentOutput"></div>
+        </div>
+
+        <!-- 3. Style Manipulation -->
+        <div class="example-section">
+            <h2>3. Modifying Styles</h2>
+            
+            <div class="demo-box" id="styleBox" style="padding: 20px; background: #ecf0f1;">
+                Target element for styling
+            </div>
+
+            <button onclick="changeColor()">Change Color</button>
+            <button onclick="changeSizeAndBg()">Change Size & Background</button>
+            <button onclick="toggleVisibility()">Toggle Visibility</button>
+            <button onclick="getComputedStyles()">Get Computed Styles</button>
+            <div class="output" id="styleOutput"></div>
+        </div>
+
+        <!-- 4. Working with Classes -->
+        <div class="example-section">
+            <h2>4. Working with Classes</h2>
+            
+            <div class="demo-box" id="classBox">Element without active class</div>
+
+            <button onclick="addClass()">Add Class</button>
+            <button onclick="removeClass()">Remove Class</button>
+            <button onclick="toggleClass()">Toggle Class</button>
+            <button onclick="checkClass()">Check if Has Class</button>
+            <div class="output" id="classOutput"></div>
+        </div>
+
+        <!-- 5. Creating & Inserting Elements -->
+        <div class="example-section">
+            <h2>5. Creating & Inserting Elements</h2>
+            
+            <div class="demo-box" id="insertBox">
+                <p>Existing content</p>
+            </div>
+
+            <button onclick="createAndAppend()">Append Element</button>
+            <button onclick="createAndPrepend()">Prepend Element</button>
+            <button onclick="insertBefore()">Insert Before</button>
+            <button onclick="insertAfter()">Insert After</button>
+            <button onclick="clearAll()">Clear All</button>
+        </div>
+
+        <!-- 6. Removing Elements -->
+        <div class="example-section">
+            <h2>6. Removing Elements</h2>
+            
+            <div class="demo-box" id="removeBox">
+                <div class="item" id="item1">Item 1 - Click to remove</div>
+                <div class="item" id="item2">Item 2 - Click to remove</div>
+                <div class="item" id="item3">Item 3 - Click to remove</div>
+            </div>
+
+            <button onclick="resetRemoveItems()">Reset Items</button>
+        </div>
+
+        <!-- 7. DOM Navigation -->
+        <div class="example-section">
+            <h2>7. Navigating the DOM</h2>
+            
+            <div class="demo-box" id="navParent">
+                <div id="navChild1">First Child</div>
+                <div id="navChild2">Second Child (Target)</div>
+                <div id="navChild3">Third Child</div>
+            </div>
+
+            <button onclick="navigateParent()">Get Parent</button>
+            <button onclick="navigateChildren()">Get Children</button>
+            <button onclick="navigateSiblings()">Get Siblings</button>
+            <div class="output" id="navOutput"></div>
+        </div>
+
+        <!-- 8. Event Handling -->
+        <div class="example-section">
+            <h2>8. Event Handling</h2>
+            
+            <div class="demo-box">
+                <button id="clickBtn">Click Me!</button>
+                <button id="dblClickBtn">Double Click Me!</button>
+                <div id="hoverBox" class="demo-box" style="margin-top: 10px; cursor: pointer;">
+                    Hover Over Me
+                </div>
+            </div>
+
+            <div class="output" id="eventOutput"></div>
+        </div>
+
+        <!-- 9. Form Handling -->
+        <div class="example-section">
+            <h2>9. Form Handling</h2>
+            
+            <form id="demoForm">
+                <input type="text" id="username" name="username" placeholder="Username">
+                <input type="email" id="email" name="email" placeholder="Email">
+                <select id="country" name="country">
+                    <option value="">Select Country</option>
+                    <option value="usa">USA</option>
+                    <option value="uk">UK</option>
+                    <option value="india">India</option>
+                </select>
+                <label>
+                    <input type="checkbox" id="subscribe" name="subscribe"> Subscribe to newsletter
+                </label>
+                <br><br>
+                <button type="submit">Submit Form</button>
+            </form>
+
+            <div class="output" id="formOutput"></div>
+        </div>
+
+        <!-- 10. Event Delegation -->
+        <div class="example-section">
+            <h2>10. Event Delegation</h2>
+            
+            <div id="todoContainer">
+                <input type="text" id="todoInput" placeholder="Enter a todo...">
+                <button onclick="addTodo()">Add Todo</button>
+                <ul id="todoList"></ul>
+            </div>
+        </div>
+
+        <!-- 11. Element Properties -->
+        <div class="example-section">
+            <h2>11. Element Size & Position</h2>
+            
+            <div class="demo-box" id="sizeBox" style="width: 300px; height: 150px; overflow: auto; padding: 20px;">
+                This is a box with specific dimensions. You can check its size, position, and scroll properties.
+                <br><br>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                <br><br>
+                More content to enable scrolling...
+            </div>
+
+            <button onclick="getElementSize()">Get Size & Position</button>
+            <div class="output" id="sizeOutput"></div>
+        </div>
+
+        <!-- 12. Cloning Elements -->
+        <div class="example-section">
+            <h2>12. Cloning Elements</h2>
+            
+            <div class="demo-box" id="cloneSource">
+                <div class="card">
+                    <h3>Original Card</h3>
+                    <p>This card can be cloned</p>
+                </div>
+            </div>
+            <div id="cloneTarget"></div>
+
+            <button onclick="cloneElement()">Clone Element</button>
+            <button onclick="deepClone()">Deep Clone</button>
+        </div>
+
+        <!-- 13. Document Fragment -->
+        <div class="example-section">
+            <h2>13. Using Document Fragment (Performance)</h2>
+            
+            <div id="fragmentTarget"></div>
+
+            <button onclick="addManyElements()">Add 100 Elements (Fragment)</button>
+            <button onclick="addManyElementsSlow()">Add 100 Elements (Slow)</button>
+            <button onclick="clearFragmentTarget()">Clear</button>
+            <div class="output" id="performanceOutput"></div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // 1. SELECTING ELEMENTS
+        // ============================================
+        function selectExamples() {
+            const output = document.getElementById('selectOutput');
+            
+            // Get by ID
+            const box = document.getElementById('selectBox');
+            
+            // Query selector
+            const firstP = document.querySelector('.demo-text');
+            const allP = document.querySelectorAll('.demo-text');
+            
+            // Get by data attribute
+            const dataElement = document.querySelector('[data-id="123"]');
+            
+            output.innerHTML = `
+                Selected by ID: ${box.tagName}<br>
+                First paragraph text: ${firstP.textContent}<br>
+                Total paragraphs: ${allP.length}<br>
+                Data attribute element: ${dataElement.textContent}
+            `;
+        }
+
+        // ============================================
+        // 2. CONTENT MANIPULATION
+        // ============================================
+        function changeText() {
+            const element = document.getElementById('textDemo');
+            element.textContent = 'Text changed using textContent!';
+            document.getElementById('contentOutput').innerHTML = 'Text updated successfully!';
+        }
+
+        function changeHTML() {
+            const element = document.getElementById('htmlDemo');
+            element.innerHTML = 'New <strong>Bold</strong> and <em>Italic</em> content!';
+            document.getElementById('contentOutput').innerHTML = 'HTML content updated!';
+        }
+
+        function addDataAttribute() {
+            const element = document.getElementById('contentBox');
+            element.setAttribute('data-custom', 'my-value');
+            element.dataset.userId = '12345';
+            
+            document.getElementById('contentOutput').innerHTML = `
+                Custom attribute: ${element.getAttribute('data-custom')}<br>
+                User ID: ${element.dataset.userId}
+            `;
+        }
+
+        // ============================================
+        // 3. STYLE MANIPULATION
+        // ============================================
+        function changeColor() {
+            const box = document.getElementById('styleBox');
+            box.style.color = 'white';
+            box.style.backgroundColor = '#e74c3c';
+            document.getElementById('styleOutput').innerHTML = 'Color changed!';
+        }
+
+        function changeSizeAndBg() {
+            const box = document.getElementById('styleBox');
+            box.style.fontSize = '24px';
+            box.style.padding = '40px';
+            box.style.backgroundColor = '#3498db';
+            box.style.borderRadius = '15px';
+            document.getElementById('styleOutput').innerHTML = 'Size and background changed!';
+        }
+
+        function toggleVisibility() {
+            const box = document.getElementById('styleBox');
+            if (box.style.display === 'none') {
+                box.style.display = 'block';
+                document.getElementById('styleOutput').innerHTML = 'Element shown!';
+            } else {
+                box.style.display = 'none';
+                document.getElementById('styleOutput').innerHTML = 'Element hidden!';
+            }
+        }
+
+        function getComputedStyles() {
+            const box = document.getElementById('styleBox');
+            const styles = window.getComputedStyle(box);
+            
+            document.getElementById('styleOutput').innerHTML = `
+                Background Color: ${styles.backgroundColor}<br>
+                Font Size: ${styles.fontSize}<br>
+                Padding: ${styles.padding}<br>
+                Display: ${styles.display}
+            `;
+        }
+
+        // ============================================
+        // 4. WORKING WITH CLASSES
+        // ============================================
+        function addClass() {
+            const box = document.getElementById('classBox');
+            box.classList.add('active');
+            box.textContent = 'Active class added!';
+            document.getElementById('classOutput').innerHTML = 'Class "active" added!';
+        }
+
+        function removeClass() {
+            const box = document.getElementById('classBox');
+            box.classList.remove('active');
+            box.textContent = 'Active class removed!';
+            document.getElementById('classOutput').innerHTML = 'Class "active" removed!';
+        }
+
+        function toggleClass() {
+            const box = document.getElementById('classBox');
+            box.classList.toggle('active');
+            const hasClass = box.classList.contains('active');
+            box.textContent = hasClass ? 'Active!' : 'Not Active';
+            document.getElementById('classOutput').innerHTML = `Class toggled! Has active: ${hasClass}`;
+        }
+
+        function checkClass() {
+            const box = document.getElementById('classBox');
+            const hasActive = box.classList.contains('active');
+            document.getElementById('classOutput').innerHTML = `Has "active" class: ${hasActive}`;
+        }
+
+        // ============================================
+        // 5. CREATING & INSERTING ELEMENTS
+        // ============================================
+        function createAndAppend() {
+            const box = document.getElementById('insertBox');
+            const newElement = document.createElement('p');
+            newElement.textContent = 'Appended element (at end)';
+            newElement.style.color = '#3498db';
+            box.appendChild(newElement);
+        }
+
+        function createAndPrepend() {
+            const box = document.getElementById('insertBox');
+            const newElement = document.createElement('p');
+            newElement.textContent = 'Prepended element (at start)';
+            newElement.style.color = '#e74c3c';
+            box.prepend(newElement);
+        }
+
+        function insertBefore() {
+            const box = document.getElementById('insertBox');
+            const reference = box.querySelector('p');
+            const newElement = document.createElement('p');
+            newElement.textContent = 'Inserted before first paragraph';
+            newElement.style.color = '#9b59b6';
+            box.insertBefore(newElement, reference);
+        }
+
+        function insertAfter() {
+            const box = document.getElementById('insertBox');
+            const reference = box.querySelector('p');
+            const newElement = document.createElement('p');
+            newElement.textContent = 'Inserted after first paragraph';
+            newElement.style.color = '#2ecc71';
+            reference.after(newElement);
+        }
+
+        function clearAll() {
+            const box = document.getElementById('insertBox');
+            box.innerHTML = '<p>Existing content</p>';
+        }
+
+        // ============================================
+        // 6. REMOVING ELEMENTS
+        // ============================================
+        document.getElementById('removeBox').addEventListener('click', (e) => {
+            if (e.target.classList.contains('item')) {
+                e.target.remove();
+            }
+        });
+
+        function resetRemoveItems() {
+            const box = document.getElementById('removeBox');
+            box.innerHTML = `
+                <div class="item" id="item1">Item 1 - Click to remove</div>
+                <div class="item" id="item2">Item 2 - Click to remove</div>
+                <div class="item" id="item3">Item 3 - Click to remove</div>
+            `;
+        }
+
+        // ============================================
+        // 7. DOM NAVIGATION
+        // ============================================
+        function navigateParent() {
+            const child = document.getElementById('navChild2');
+            const parent = child.parentElement;
+            document.getElementById('navOutput').innerHTML = `
+                Parent ID: ${parent.id}<br>
+                Parent Tag: ${parent.tagName}
+            `;
+        }
+
+        function navigateChildren() {
+            const parent = document.getElementById('navParent');
+            const children = parent.children;
+            const firstChild = parent.firstElementChild;
+            const lastChild = parent.lastElementChild;
+            
+            document.getElementById('navOutput').innerHTML = `
+                Total children: ${children.length}<br>
+                First child: ${firstChild.textContent}<br>
+                Last child: ${lastChild.textContent}
+            `;
+        }
+
+        function navigateSiblings() {
+            const target = document.getElementById('navChild2');
+            const prevSibling = target.previousElementSibling;
+            const nextSibling = target.nextElementSibling;
+            
+            document.getElementById('navOutput').innerHTML = `
+                Previous sibling: ${prevSibling.textContent}<br>
+                Next sibling: ${nextSibling.textContent}
+            `;
+        }
+
+        // ============================================
+        // 8. EVENT HANDLING
+        // ============================================
+        let clickCount = 0;
+        document.getElementById('clickBtn').addEventListener('click', () => {
+            clickCount++;
+            document.getElementById('eventOutput').innerHTML = `Button clicked ${clickCount} times!`;
+        });
+
+        document.getElementById('dblClickBtn').addEventListener('dblclick', () => {
+            document.getElementById('eventOutput').innerHTML = 'Button double-clicked!';
+        });
+
+        const hoverBox = document.getElementById('hoverBox');
+        hoverBox.addEventListener('mouseenter', () => {
+            hoverBox.style.backgroundColor = '#3498db';
+            hoverBox.style.color = 'white';
+        });
+
+        hoverBox.addEventListener('mouseleave', () => {
+            hoverBox.style.backgroundColor = '#f9f9f9';
+            hoverBox.style.color = 'black';
+        });
+
+        // ============================================
+        // 9. FORM HANDLING
+        // ============================================
+        document.getElementById('demoForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const country = document.getElementById('country').value;
+            const subscribe = document.getElementById('subscribe').checked;
+            
+            document.getElementById('formOutput').innerHTML = `
+                <strong>Form Submitted!</strong><br>
+                Username: ${username}<br>
+                Email: ${email}<br>
+                Country: ${country}<br>
+                Subscribed: ${subscribe}
+            `;
+        });
+
+        // ============================================
+        // 10. EVENT DELEGATION (TODO LIST)
+        // ============================================
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            const text = input.value.trim();
+            
+            if (text === '') return;
+            
+            const todoList = document.getElementById('todoList');
+            const li = document.createElement('li');
+            li.className = 'todo-item';
+            li.innerHTML = `
+                <span class="todo-text">${text}</span>
+                <button class="delete-btn">Delete</button>
+            `;
+            
+            todoList.appendChild(li);
+            input.value = '';
+        }
+
+        // Event delegation - handle all todo interactions
+        document.getElementById('todoList').addEventListener('click', (e) => {
+            if (e.target.classList.contains('delete-btn')) {
+                e.target.parentElement.remove();
+            } else if (e.target.classList.contains('todo-text')) {
+                e.target.parentElement.classList.toggle('completed');
+            }
+        });
+
+        // Allow Enter key to add todo
+        document.getElementById('todoInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addTodo();
+            }
+        });
+
+        // ============================================
+        // 11. ELEMENT PROPERTIES
+        // ============================================
+        function getElementSize() {
+            const box = document.getElementById('sizeBox');
+            const rect = box.getBoundingClientRect();
+            
+            document.getElementById('sizeOutput').innerHTML = `
+                <strong>Size Information:</strong><br>
+                offsetWidth: ${box.offsetWidth}px<br>
+                offsetHeight: ${box.offsetHeight}px<br>
+                clientWidth: ${box.clientWidth}px<br>
+                clientHeight: ${box.clientHeight}px<br>
+                scrollWidth: ${box.scrollWidth}px<br>
+                scrollHeight: ${box.scrollHeight}px<br>
+                <br><strong>Position (from viewport):</strong><br>
+                Top: ${rect.top}px<br>
+                Left: ${rect.left}px<br>
+                Right: ${rect.right}px<br>
+                Bottom: ${rect.bottom}px
+            `;
+        }
+
+        // ============================================
+        // 12. CLONING ELEMENTS
+        // ============================================
+        function cloneElement() {
+            const source = document.querySelector('#cloneSource .card');
+            const clone = source.cloneNode(false); // Shallow clone
+            clone.innerHTML = '<h3>Shallow Clone</h3>';
+            document.getElementById('cloneTarget').appendChild(clone);
+        }
+
+        function deepClone() {
+            const source = document.querySelector('#cloneSource .card');
+            const clone = source.cloneNode(true); // Deep clone
+            clone.querySelector('h3').textContent = 'Deep Clone';
+            document.getElementById('cloneTarget').appendChild(clone);
+        }
+
+        // ============================================
+        // 13. DOCUMENT FRAGMENT (PERFORMANCE)
+        // ============================================
+        function addManyElements() {
+            const start = performance.now();
+            const fragment = document.createDocumentFragment();
+            
+            for (let i = 0; i < 100; i++) {
+                const div = document.createElement('div');
+                div.className = 'item';
+                div.textContent = `Item ${i + 1}`;
+                fragment.appendChild(div);
+            }
+            
+            document.getElementById('fragmentTarget').appendChild(fragment);
+            const end = performance.now();
+            
+            document.getElementById('performanceOutput').innerHTML = 
+                `Added 100 elements using fragment in ${(end - start).toFixed(2)}ms`;
+        }
+
+        function addManyElementsSlow() {
+            const start = performance.now();
+            const target = document.getElementById('fragmentTarget');
+            
+            for (let i = 0; i < 100; i++) {
+                const div = document.createElement('div');
+                div.className = 'item';
+                div.textContent = `Item ${i + 1}`;
+                target.appendChild(div); // Multiple reflows
+            }
+            
+            const end = performance.now();
+            
+            document.getElementById('performanceOutput').innerHTML = 
+                `Added 100 elements directly in ${(end - start).toFixed(2)}ms (slower)`;
+        }
+
+        function clearFragmentTarget() {
+            document.getElementById('fragmentTarget').innerHTML = '';
+            document.getElementById('performanceOutput').innerHTML = 'Cleared!';
+        }
+
+        // ============================================
+        // INITIALIZATION
+        // ============================================
+        console.log('DOM Examples loaded successfully!');
+        console.log('Document ready state:', document.readyState);
+    </script>
+</body>
+</html>

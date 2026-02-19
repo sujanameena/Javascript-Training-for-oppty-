@@ -1,0 +1,33 @@
+
+    Classes are templates for creating objects in JavaScript. They were introduced in ES6 (2015) as syntactic sugar over
+    JavaScript's existing prototype-based inheritance.
+
+    *classes=combination of object & function
+
+    Why Use Classes?
+    1.Organize code better
+    2.Reusable code patterns
+    3.Easy to create multiple similar objects
+    4.Support inheritance and polymorphism
+    5.Cleaner than constructor functions
+
+    * The class name is often started with a capital letter.
+
+    JavaScript Class Syntax:
+    class Classname {
+    constructor() {
+    ...
+    }
+    }
+
+    class Student{
+    constructor(firstName, lastName, age, rollNo){ <!--firstName, lastName, age, rollNo=These are called constructor parameters-->
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+    this.rollNo = rollNo;
+    }
+    }
+    this=designates the current object in a method or constructor
+
+

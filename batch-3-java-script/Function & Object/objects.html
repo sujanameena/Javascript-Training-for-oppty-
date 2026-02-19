@@ -1,0 +1,689 @@
+Objects in JavaScript: 
+---------------------
+In JavaScript, an object is a collection of related data and functionality, stored as key–value pairs.
+Keys are called properties (for data) or methods (for functions).
+
+There are two primary ways to create an object in JavaScript:
+
+1. Creation Using Object Literal:
+
+Example:1
+<!-- let obj = {
+    name: "Sourav",
+    age: 23,
+    job: "Developer"
+};
+console.log(obj); -->
+
+2. Creation Using new Object() Constructor:
+
+Example:1
+
+<!-- let obj = new Object();
+obj.name= "Sourav",
+obj.age= 23,
+obj.job= "Developer"
+
+console.log(obj); -->
+
+Basic Operations on JavaScript Objects:
+
+1. Accessing Object Properties:
+
+Accessing object properties means reading the values stored in an object using its keys.  
+You can use **dot notation** (`obj.key`) or **bracket notation** (`obj["key"]`).
+
+Example:1 
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Accessing Object Properties - Real Time Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .product {
+      background: #e9f7ef;
+      padding: 20px;
+      border-radius: 8px;
+      width: 320px;
+    }
+
+    .product h3 {
+      margin-top: 0;
+    }
+
+    .product span {
+      font-weight: bold;
+    }
+
+    button {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Accessing Object Properties in JavaScript</h2>
+
+  <div class="product" id="product">
+    <h3>Product Details</h3>
+    <div><span>Name:</span> <span id="prodName"></span></div>
+    <div><span>Price:</span> <span id="prodPrice"></span></div>
+    <div><span>Category:</span> <span id="prodCategory"></span></div>
+  </div>
+  <button onclick="showProduct()">Show Product</button>
+  <script>
+
+    const product = {
+      name: "Laptop",
+      price: "$1200",
+      category: "Electronics"
+    };
+
+    function showProduct() {
+      document.getElementById('prodName').textContent = product.name;
+      document.getElementById('prodPrice').textContent = product["price"];
+      document.getElementById('prodCategory').textContent = product.category;
+    }
+  </script>
+</body>
+
+</html> -->
+
+
+<!-- * Note: Square brackets notation (product["price"]) is used to access the object property.
+             * If dot notation (product.price) were used instead, it would also work for this case.
+             * However, square brackets are necessary when:
+             * - Property names contain special characters or spaces (e.g., product["unit-price"])
+             * - Property names are stored in variables (e.g., product[variableName])
+             * - Property names are numbers (e.g., array[0])
+             * - Property names start with numbers or contain hyphens -->
+
+
+   2. Modifying Object Properties:
+
+   Modifying object properties means changing the values of existing keys in a JavaScript object. You can update properties using dot notation (obj.key = value) or bracket notation (obj["key"] = value).
+
+   Example:1 
+
+   <!-- <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+
+    .profile {
+      background: #f0f8ff;
+      padding: 20px;
+      border-radius: 8px;
+      width: 320px;
+    }
+
+    .profile h3 {
+      margin-top: 0;
+    }
+
+    .profile span {
+      font-weight: bold;
+    }
+
+    button {
+      margin-top: 15px;
+    }
+  </style>
+
+  <h2>Modifying Object Properties in JavaScript</h2>
+  
+  <div class="profile" id="profile">
+    <h3>User Profile</h3>
+    <div><span>Name:</span> <span id="userName"></span></div>
+    <div><span>Email:</span> <span id="userEmail"></span></div>
+    <div><span>Status:</span> <span id="userStatus"></span></div>
+  </div>
+  <button onclick="updateProfile()">Update Profile</button>
+  <script>
+
+    const user = {
+      name: "Sujana",
+      email: "sujana@example.com",
+      status: "Inactive"
+    };
+
+    document.getElementById('userName').textContent = user.name;
+    document.getElementById('userEmail').textContent = user.email;
+    document.getElementById('userStatus').textContent = user.status;
+
+    function updateProfile() {
+      user.status = "Active"; 
+      user["email"] = "sujana.new@example.com"; 
+
+      document.getElementById('userEmail').textContent = user.email;
+      document.getElementById('userStatus').textContent = user.status;
+    }
+  </script> -->
+   
+   
+ Example:2 
+
+ <!-- let obj = { name: "Sourav", age: 22 };
+console.log(obj);
+
+obj.age = 23;
+console.log(obj); -->
+
+3. Adding Properties to an Object:
+
+Adding properties to an object means creating new key–value pairs in an existing JavaScript object. You can add properties using dot notation (obj.newKey = value) or bracket notation (obj["newKey"] = value).
+
+Example:1 
+
+<!-- let obj = { model: "Tesla" };
+obj.color = "Red";
+
+console.log(obj); -->
+
+Example:2 
+
+<!-- <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        .product { background: #fffbe7; padding: 20px; border-radius: 8px; width: 320px; }
+        .product h3 { margin-top: 0; }
+        .product span { font-weight: bold; }
+        button { margin-top: 15px; }
+    </style>
+
+  <h2>Adding Properties to an Object in JavaScript</h2>
+    
+    <div class="product" id="product">
+        <h3>Product Details</h3>
+        <div><span>Name:</span> <span id="prodName"></span></div>
+        <div><span>Price:</span> <span id="prodPrice"></span></div>
+        <div><span>Category:</span> <span id="prodCategory"></span></div>
+        <div><span>In Stock:</span> <span id="prodStock"></span></div>
+    </div>
+    <button onclick="addStockStatus()">Add Stock Status</button>
+    <script>
+        const product = {
+            name: "Smartphone",
+            price: "$800",
+            category: "Electronics"
+        };
+
+        document.getElementById('prodName').textContent = product.name;
+        document.getElementById('prodPrice').textContent = product["price"];
+        document.getElementById('prodCategory').textContent = product.category;
+        document.getElementById('prodStock').textContent = "Not specified";
+
+        function addStockStatus() {
+            product.inStock = true;
+            document.getElementById('prodStock').textContent = product.inStock ? "Yes" : "No";
+        }
+    </script> -->
+
+   4. Removing Properties from an Object:
+
+   Removing properties from an object means deleting a key–value pair from an existing JavaScript object. You can remove properties using the delete operator (delete obj.key or delete obj["key"]).
+
+   Example:1
+
+<!-- let obj = { model: "Tesla", color: "Red" };
+delete obj.color;
+
+console.log(obj); -->
+
+ Example:2
+
+ <!-- <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        .product { background: #fbeee6; padding: 20px; border-radius: 8px; width: 320px; }
+        .product h3 { margin-top: 0; }
+        .product span { font-weight: bold; }
+        button { margin-top: 15px; }
+    </style>
+
+    <h2>Removing Properties from an Object in JavaScript</h2>
+    
+    <div class="product" id="product">
+        <h3>Product Details</h3>
+        <div><span>Name:</span> <span id="prodName"></span></div>
+        <div><span>Price:</span> <span id="prodPrice"></span></div>
+        <div><span>Category:</span> <span id="prodCategory"></span></div>
+    </div>
+    <button onclick="removeCategory()">Remove Category</button>
+    <script>
+        const product = {
+            name: "Tablet",
+            price: "$400",
+            category: "Electronics"
+        };
+
+        document.getElementById('prodName').textContent = product.name;
+        document.getElementById('prodPrice').textContent = product['price'];
+        document.getElementById('prodCategory').textContent = product.category;
+
+        // delete product.category;
+        // console.log(product);
+
+        function removeCategory() {
+            delete product.category;
+            // in electronics place we will get removed
+            document.getElementById('prodCategory').textContent = product.category || "Removed";
+            // It will remove elecronics and nothing is shown in electronics place
+            document.getElementById('prodCategory').textContent = product.category;
+
+        }
+//For removing entire category
+        function removeCategory() {
+            const categoryLine = document.getElementById('prodCategory')?.parentElement;
+            if (categoryLine) categoryLine.remove();
+            delete product.category;
+        }
+    </script>  -->
+
+    5. Checking if a Property Exists:
+
+    To check if a property exists in a JavaScript object, you can use either the in operator or the hasOwnProperty() method.
+
+    Example:1
+
+    <!-- let obj = { model: "Tesla" };
+console.log("color" in obj);
+console.log(obj.hasOwnProperty("model")); -->
+
+ Example:2 
+
+ <!-- <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    .result { margin-top: 10px; color: #2a7a2a; }
+    label, input { margin: 5px 0; }
+  </style>
+
+   
+<h2>Checking if a Property Exists in an Object</h2>
+  <p>Enter a property name to check if it exists in the <b>car</b> object:</p>
+  <input type="text" id="propertyInput" placeholder="e.g. brand">
+  <button onclick="checkProperty()">Check Property</button>
+  <div class="result" id="result"></div>
+
+  <script>
+    // Our sample object
+    const car = { brand: "Toyota", year: 2022 };
+
+    function checkProperty() {
+      const prop = document.getElementById('propertyInput').value.trim();
+      let message = "";
+
+      // Using 'in' operator
+      if (prop in car) {
+        message += `Property "<b>${prop}</b>" exists in car (using <code>in</code> operator).<br>`;
+      } else {
+        message += `Property "<b>${prop}</b>" does NOT exist in car (using <code>in</code> operator).<br>`;
+      }
+
+      // Using hasOwnProperty()
+      if (car.hasOwnProperty(prop)) {
+        message += `Property "<b>${prop}</b>" exists in car (using <code>hasOwnProperty()</code>).`;
+      } else {
+        message += `Property "<b>${prop}</b>" does NOT exist in car (using <code>hasOwnProperty()</code>).`;
+      }
+
+      document.getElementById('result').innerHTML = message;
+    }
+  </script> -->
+
+  6. Iterating Through Object Properties:
+
+  Iterating through object properties means accessing each key–value pair in a JavaScript object, usually to perform actions like displaying, modifying, or analyzing the data.
+
+
+
+     Example:1
+
+<!-- <script>
+     let obj = { name: "Sourav", age: 23 };
+for (let key in obj) {
+    console.log(key + ": " + obj[key]);
+}
+</script> -->
+
+Example:2
+
+
+<!-- <style>
+  body { font-family: Arial, sans-serif; margin: 30px; }
+  .user { background: #e7f3ff; padding: 20px; border-radius: 8px; width: 320px; }
+  .user h3 { margin-top: 0; }
+  .user span { font-weight: bold; }
+  .result { margin-top: 15px; color: #1a4d1a; }
+  button { margin-top: 15px; }
+</style>
+
+<h2>Iterating Through Object Properties in JavaScript</h2>
+<div class="user" id="user">
+  <h3>User Details</h3>
+  <div class="result" id="userResult"></div>
+</div>
+<button onclick="showUserDetails()">Show User Details</button>
+
+<script>
+  const user = {
+    name: "Sujana",
+    email: "sujana@example.com",
+    status: "Active"
+  };
+
+  function showUserDetails() {
+    let details = "";
+    for (let key in user) {
+      details += `<div><span>${key}:</span> ${user[key]}</div>`;
+    }
+    document.getElementById('userResult').innerHTML = details;
+  }
+</script> -->
+
+ <!-- Example output:
+        <div><span>name:</span> John Doe</div>
+        <div><span>email:</span> john@example.com</div> -->
+
+ 7. Merging Objects:
+
+ Merging objects means combining the properties of two or more JavaScript objects into a single object. This is often done using the spread operator (...) or Object.assign().
+
+ Example:1 
+
+ <!-- <script>
+    let obj1 = { name: "Sourav" };
+let obj2 = { age: 23};
+
+let obj3 = { ...obj1, ...obj2 };
+console.log(obj3);
+ </script> -->
+
+ Example:2
+
+  <!-- <style>
+  body { font-family: Arial, sans-serif; margin: 30px; }
+  .merge { background: #f0f7e7; padding: 20px; border-radius: 8px; width: 340px; }
+  .merge h3 { margin-top: 0; }
+  .result { margin-top: 15px; color: #2a4d1a; }
+  button { margin-top: 15px; }
+</style>
+
+<h2>Merging Objects in JavaScript</h2>
+<div class="merge">
+  <h3>Result of Merging</h3>
+  <div class="result" id="mergeResult"></div>
+</div>
+<button onclick="mergeObjects()">Merge Objects</button>
+
+<script>
+  const obj1 = { name: "Sourav", city: "Delhi" };
+  const obj2 = { age: 23, city: "Mumbai" };
+
+  function mergeObjects() {
+    // Using spread operator
+    // const merged = { ...obj1, ...obj2 };
+
+    // Using Object.assign()
+    // const merged = Object.assign({}, obj1, obj2);
+
+    let details = "";
+    for (let key in merged) {
+      details += `<div><span>${key}:</span> ${merged[key]}</div>`;
+    }
+    document.getElementById('mergeResult').innerHTML = details;
+  }
+</script> -->
+
+8. Object Length:
+
+Object length refers to the number of properties (keys) present in a JavaScript object. Since objects do not have a built-in length property, you can use Object.keys(obj).length to get the count.
+
+
+Example:1
+
+<!-- <script>
+let obj = { name: "Sourav", age: 23 };
+console.log(Object.keys(obj).length);
+</script> -->
+
+Example:2
+
+<!-- <style>
+  body { font-family: Arial, sans-serif; margin: 30px; }
+  .length { background: #f9f6e7; padding: 20px; border-radius: 8px; width: 320px; }
+  .length h3 { margin-top: 0; }
+  .result { margin-top: 15px; color: #7a4d1a; }
+  button { margin-top: 15px; }
+</style>
+
+<h2>Object Length in JavaScript</h2>
+<div class="length">
+  <h3>Count Object Properties</h3>
+  <div class="result" id="lengthResult"></div>
+</div>
+<button onclick="showObjectLength()">Show Object Length</button>
+
+<script>
+  const student = {
+    name: "Sujana",
+    age: 21,
+    course: "JavaScript",
+    enrolled: true
+  };
+
+  function showObjectLength() {
+    const length = Object.keys(student).length;
+    document.getElementById('lengthResult').innerHTML =
+      `The object has <b>${length}</b> properties.`;
+  }
+</script> -->
+
+
+
+Common Mistakes with JavaScript Objects
+
+Example:1
+
+<!-- // Object literal
+const obj1 = { key: "value" };
+
+// Object constructor
+const obj2 = new Object();
+obj2.key = "value";
+
+console.log(obj1);
+console.log(obj2); -->
+
+1.Using Dot Notation with Invalid Keys
+Dot notation only works with valid identifiers.
+
+<!-- let obj = {};
+obj.first-name = "Sujana"; // Incorrect, causes error
+obj["first-name"] = "Sujana"; // Correct -->
+
+2.Forgetting Quotes for String Keys
+When using special characters or spaces in keys, always use quotes.
+
+<!-- let obj = { "user name": "Sujana" }; // Correct -->
+
+3.Assuming Objects Have a Length Property
+Objects do not have a .length property.
+
+<!-- let obj = { a: 1, b: 2 };
+console.log(obj.length); // undefined
+console.log(Object.keys(obj).length); // Correct: 2 -->
+
+4.Accidentally Overwriting Properties
+Assigning a value to an existing key will overwrite the previous value.
+<!-- 
+let obj = { name: "Sujana" };
+obj.name = "Alex"; // "Sujana" is replaced by "Alex" -->
+
+5.Iterating with for...in Without hasOwnProperty Check
+for...in iterates over inherited properties too.
+
+Example:1 (Ignore)
+<!-- for (let key in obj) {
+  if (obj.hasOwnProperty(key)) {
+    // Safe to use key
+  }
+} -->
+
+Example:2
+<!-- const person = {
+  name: "Arjun",
+  age: 25
+};
+
+Object.prototype.city = "Hyderabad"; 
+
+for (let key in person) {
+  // if you dont use this in output you can see city property also
+  if (person.hasOwnProperty(key)) {
+    console.log(key + ": " + person[key]); 
+  }
+} -->
+
+
+6.Confusing Arrays and Objects
+Arrays are objects, but not all objects are arrays.
+
+<!-- let arr = [1, 2, 3];
+console.log(Array.isArray(arr)); // true -->
+
+7.Using Objects as Map Keys
+Object keys are always strings or symbols, not objects.
+
+<!-- let obj = {};
+let key = {};
+obj[key] = "value"; // key is converted to "[object Object]"
+ -->
+
+ Example:2
+
+ <!-- let obj = {};
+let key1 = {};
+let key2 = {};
+
+obj[key1] = "value1";
+obj[key2] = "value2";
+
+console.log(obj); // Output: { "[object Object]": "value2" }
+
+// Both key1 and key2 become the same string key, so the second value overwrites the first. -->
+
+
+If you need to use objects as keys, use a Map instead:
+
+<!-- let map = new Map();
+let key1 = "key1";
+let key2 = "key2";
+map.set(key1, "value1");
+map.set(key2, "value2");
+console.log(map); // Both keys are kept separate -->
+
+Assigning properties to the objects: There are two ways to assigning properties to the objects:
+-----------------------------------------------------------------------------------------------
+
+Using dot (.) operator:
+
+The dot (.) operator is used to access or assign properties to an object when the property name is a valid identifier (no spaces, special characters, or starts with a number).
+
+Example:1 
+
+<!-- let person = {};
+person.name = "Sujana";
+person.age = 22;
+
+console.log(person.name); 
+console.log(person.age);  -->
+
+Using third bracket:
+
+
+Example:1 
+
+<!-- let person = {};
+person["first-name"] = "Sujana";
+person["age"] = 22;
+
+console.log(person["first-name"]); // Output: Sujana
+console.log(person["age"]);        // Output: 22
+
+// Property name from a variable
+let key = "status";
+person[key] = "Active";
+console.log(person["status"]);     // Output: Active -->
+
+This example shows how to use function() with object constructor. 
+
+Example:1 
+
+<!-- function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.greet = function() {
+    console.log("Hello, my name is " + this.name);
+  };
+}
+
+let person1 = new Person("Sujana", 22);
+person1.greet(); -->
+
+Example:2
+
+<!-- let course = new Object();
+
+course.a = "JavaScript";
+course.b = "Oppty";
+course.c = function () {
+    return (course.a +" "+ course.b);
+};
+
+console.log("Subject: " + course.a);
+console.log("Author: " + course.b);
+console.log("Adding the strings: "+ course.c() ); -->
+
+Another way to create a function using function name:
+
+Example:1 
+
+<!-- let course = { };
+
+course.a = "JavaScript";
+course.b = "Oppty";
+course.c = add;
+
+// Declare function add()
+function add() {
+    return (course.a +" "+ course.b);
+};
+
+console.log("Subject: " + course.a);
+console.log("Author: " + course.b);
+console.log("Adding the strings: "+ course.c()); -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

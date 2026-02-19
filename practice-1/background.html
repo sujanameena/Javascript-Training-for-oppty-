@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Background Properties</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .demo-box {
+            width: 400px;
+            height: 300px;
+            margin: 20px 0;
+            padding: 20px;
+            border: 2px solid #333;
+        }
+
+        /* 1. Background Color */
+        .bg-color {
+            background-color: #3498db;
+        }
+
+        /* 2. Background Image */
+        .bg-image {
+            background-image: url('assets/background.jpg');
+        }
+
+        /* 3. Background Repeat */
+        .bg-repeat {
+            background-image: url('assets/oppty-logo.png');
+            background-repeat: repeat; /* repeat-x, repeat-y, no-repeat */
+        }
+
+        /* 4. Background Position */
+        .bg-position {
+            background-image: url('assets/oppty-logo.png');
+            background-repeat: no-repeat;
+            background-position: center center; /* top, bottom, left, right, or px/% */
+        }
+
+        /* 5. Background Size */
+        .bg-size {
+            background-image: url('assets/background.jpg-1.jpg');
+            background-repeat: no-repeat;
+            background-size: cover; /* contain, 100%, 200px 100px */
+        }
+
+        /* 6. Background Attachment */
+        .bg-attachment {
+            background-image: url('assets/1-slider-home.jpg');
+            background-attachment: fixed; /* scroll, local */
+            height: 500px;
+        }
+
+        /* 7. Background Origin */
+        .bg-origin {
+            background-image: url('assets/2-slider-home.webp');
+            background-repeat: no-repeat;
+            background-origin: content-box; /* padding-box, border-box */
+            padding: 40px;
+            border: 10px dashed #e74c3c;
+        }
+
+        /* 8. Background Clip */
+        .bg-clip {
+            background-color: #2ecc71;
+            background-clip: padding-box; /* border-box, content-box */
+            padding: 40px;
+            border: 10px dashed transparent;
+        }
+
+        /* 9. Multiple Backgrounds */
+        .bg-multiple {
+            background-image: 
+                url('assets/oppty-logo.png'),
+                url('assets/oppty-logo.png');
+            background-position: 
+                top left,
+                bottom right;
+            background-repeat: no-repeat, no-repeat;
+        }
+
+        /* 10. Background Shorthand */
+        .bg-shorthand {
+            background: #f39c12 url('assets/oppty-logo.png') no-repeat center/cover fixed;
+        }
+
+        /* 11. Linear Gradient */
+        .bg-gradient-linear {
+            background: linear-gradient(to right, #e74c3c, #3498db);
+        }
+
+        /* 12. Radial Gradient */
+        .bg-gradient-radial {
+            background: radial-gradient(circle, #9b59b6, #2c3e50);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Background Properties Demo</h1>
+
+    <h2>1. Background Color</h2>
+    <div class="demo-box bg-color">
+        <p style="color: white;">Solid background color</p>
+    </div>
+
+    <h2>2. Background Image</h2>
+    <div class="demo-box bg-image">
+        <p>Default background image (repeats)</p>
+    </div>
+
+    <h2>3. Background Repeat</h2>
+    <div class="demo-box bg-repeat">
+        <p>Background repeats in all directions</p>
+    </div>
+
+    <h2>4. Background Position</h2>
+    <div class="demo-box bg-position">
+        <p>Image positioned at center</p>
+    </div>
+
+    <h2>5. Background Size (cover)</h2>
+    <div class="demo-box bg-size">
+        <p style="color: white;">Image covers entire area</p>
+    </div>
+
+    <h2>6. Background Attachment (fixed)</h2>
+    <div class="demo-box bg-attachment">
+        <p style="color: white;">Scroll to see fixed background</p>
+    </div>
+
+    <h2>7. Background Origin</h2>
+    <div class="demo-box bg-origin">
+        <p>Background starts from content-box</p>
+    </div>
+
+    <h2>8. Background Clip</h2>
+    <div class="demo-box bg-clip">
+        <p>Background clipped to padding-box</p>
+    </div>
+
+    <h2>9. Multiple Backgrounds</h2>
+    <div class="demo-box bg-multiple">
+        <p>Two background images layered</p>
+    </div>
+
+    <h2>10. Background Shorthand</h2>
+    <div class="demo-box bg-shorthand">
+        <p style="color: white;">All properties in one line</p>
+    </div>
+
+    <h2>11. Linear Gradient</h2>
+    <div class="demo-box bg-gradient-linear">
+        <p style="color: white;">Gradient from red to blue</p>
+    </div>
+
+    <h2>12. Radial Gradient</h2>
+    <div class="demo-box bg-gradient-radial">
+        <p style="color: white;">Circular gradient</p>
+    </div>
+</body>
+</html>

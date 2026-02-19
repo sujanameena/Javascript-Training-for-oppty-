@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // symbols
+        // const id = Symbol('id');
+
+        // const person = {
+        //     name: 'Alice',
+        //     [id]: 12345
+        // };
+
+        // console.log(person.name); // 'Alice'
+        // console.log(person[id]);  // 12345
+
+
+        // big int 
+        // console.log(9007199254740992n + 1n); // 9007199254740993n (correct!)
+        // // BigInt simple example
+        // const bigA = 9007199254740991n; // > Number.MAX_SAFE_INTEGER
+        // console.log(bigA + 1n); // 9007199254740992n
+        // console.log(bigA + 2n); // 9007199254740993n
+
+        // // Create via BigInt()
+        // const bigB = BigInt(42);
+        // console.log(bigB * 3n); // 126n
+
+
+
+        // // operations
+        // const a = 100n;
+        // const b = 50n;
+
+        // console.log(a + b);  // 150n
+        // console.log(a - b);  // 50n
+        // console.log(a * b);  // 5000n
+        // console.log(a / b);  // 2n (no decimals)
+        // console.log(a % b);  // 0n
+
+        // // Cannot mix BigInt with regular numbers
+        // const x = 10n +  ;  // ❌ Error!
+        // const y = 10n + 5n; // ✅ 15n
+
+        // // Convert when needed
+        // const z = 10n + BigInt(5); // ✅ 15n
+
+
+        // Comparison operators examples
+
+        // Numeric comparisons
+        // console.log(5 > 3);      // true
+        // console.log(5 >= 5);     // true
+        // console.log(3 < 5);      // true
+        // console.log(3 <= 2);     // false
+
+
+        // console.log(2 == '2');   // true (coercion)
+        // /**
+        //  * Strict equality (===) compares both value and type without coercion.
+        //  * 2 is a Number and '2' is a String; since their types differ, the comparison evaluates to false.
+        //  * Using loose equality (==) would coerce '2' to the number 2, making that comparison true.
+        //  */
+        // console.log(2 === '2');  // false (no coercion)
+        // console.log(0 == false); // true
+        // console.log(0 === false);// false
+        // console.log(null == undefined);  // true
+        // console.log(null === undefined); // false 
+
+        // Inequality vs strict inequality
+
+        // console.log('10' != 10);  // false (coercion)
+        // console.log('10 ' !== 10); // true (no coercion)
+
+        // <!-- 
+        //     Demonstrates compound assignment operators in JavaScript:
+        //     - Initializes variable n with value 10
+        //     - Adds 5 to n (n becomes 15)
+        //     - Multiplies n by 2 (n becomes 30)
+        //     - Outputs the final result (30) to the console
+        // -->
+        // let n = 10;
+        // n += 5;
+        // n *= 2;
+        // console.log(n);
+
+        // let a= 10;
+        // let b=14;
+        // console.log(a===b);
+
+
+    </script>
+</body>
+
+</html>

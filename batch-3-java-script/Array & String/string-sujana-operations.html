@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>strings</title>
+</head>
+
+<body>
+    <script>
+        //    1. Through out your code you have to use single quotes or double quotes.
+
+        //   ********** Template Literals(String Interpolation)*********
+        //     -------------------------------------------
+        //         1.The ${ } syntax is used for string interpolation in template literals(strings with backticks).
+        //         2.Purpose: It evaluates any JavaScript expression inside the ${ } and inserts the result into the string.
+
+        //     let name = "John";
+        //     let age = 25;
+
+        //     // Variables
+        //     `Hello ${name}`  // "Hello John"
+
+        //         // Expressions
+        //         `I am ${age + 5} years old`  // "I am 30 years old"
+
+        //         // Function calls
+        //         `Result: ${Math.max(10, 20)}`  // "Result: 20" Math.max(10, 20) - JavaScript function that returns the larger of two numbers (10 and 20)
+
+        // ********** Empty String *********
+        // ********** Multiline Strings *********
+
+        // ********** Basic Operations on JavaScript Strings **********
+        // 1. Finding the length of a String: length property
+
+        // 2. String Concatenation: + oprator
+        //         let s1 = 'Java';
+        // let s2 = 'Script';
+        // let res = s1 + s2;
+
+        // console.log("Concatenated String: " + res);
+
+        // 3. Escape Characters
+        // Sequence, Character Represented, Use Case
+        // \',Single Quote,Using quotes inside a single-quoted string.
+        // "\""",Double Quote,Using quotes inside a double-quoted string.
+        // \\, Backslash, When you actually need to show a \.
+
+
+        // // \n, New Line, Breaking text onto a second line.
+        // // New lines and Tabs
+        // const list = "Items:\n\t- Apple\n\t- Banana";
+
+        // console.log(list);
+
+
+        // // \t, Tab, Adding a horizontal indentation.
+        // const header = "ID\tName\tRole";
+        // const user1 = "01\tAlice\tDeveloper";
+        // const user2 = "02\tBob\tDesigner";
+
+        // console.log(header);
+        // console.log(user1);
+        // console.log(user2);
+
+        // 4. Breaking Long Strings:Using a backslash (\) to break a long string is not recommended, as it is not supported in strict mode. Instead, use template literals or string concatenation
+        //         // Example: 1
+        //         const s = "'GeeksforGeeks' is \
+        // a learning portal";
+
+        //         console.log(s);
+
+        // // Example: 2
+        // const s = "'GeeksforGeeks' is a"
+        //     + " learning portal";
+
+        // console.log(s);
+
+        // // 5. Find Substring of a String: substring() method
+
+        // let s1 = 'JavaScript Training';
+        // let s2 = s1.substring(0, 10);
+
+        // console.log(s2);
+
+        // // 6. Convert String to Uppercase and Lowercase:toUpperCase() and toLowerCase() methods
+        // let s = 'JavaScript';
+        // let upperCase = s.toUpperCase();
+        // let lowerCase = s.toLowerCase();
+
+        // console.log(upperCase);
+        // console.log(lowerCase);
+
+        // 7. String Search in JavaScript: (index() method) Find the first index of a substring within a string using indexOf() method.
+        // // indexOf() method:
+        // let text = "Hello World";
+
+        // let position = text.indexOf("World");
+
+        // console.log(position);
+
+        // // // String Search in JavaScript
+        // let s1 = 'def abc abc';
+        // let i = s1.indexOf('abc');
+
+        // console.log(i);
+
+        // // 8. String Replace in JavaScript: replace() method. {g is flag}
+        // let s1 = 'sujana is Trainer and sujana is TeamLead';
+        // let s2 = s1.replace(/sujana/g, 'nimisha');
+
+        // console.log(s2);
+
+        // // 9. Trimming Whitespace from String:trim() method.
+        // // String with whitespace
+        // let s = "   Oppty TechHub Private Limited    ";
+        // let s1 = s.trim();
+        // console.log(s1);
+
+        // // 10. Access Characters from String: charAt() method
+        // let s1 = 'Learn JavaScript';
+        // let s2 = s1[6];
+        // console.log(s2); you will get this way 
+
+        // s2 = s1.charAt(6);
+        // console.log(s2); or else can get by using charAt also
+
+
+        // 11. String Comparison in JavaScript: localeCompare()
+        // <!-- 
+        //     String Comparison in JavaScript
+
+        //     This code demonstrates three different ways to compare strings in JavaScript:
+
+        //     1. s1 == s2 (Loose Equality):
+        //        - Compares values after type coercion
+        //        - Returns true because both represent the same string value "Ajay"
+        //        - The String object s2 is converted to a primitive string(A primitive string is a simple, immutable string value created using string literals (quotes).) for comparison
+
+        //     2. s1 === s2 (Strict Equality):
+        //        - Compares both value and type without coercion
+        //        - Returns false because s1 is a primitive string and s2 is a String object
+        //        - Different types result in false even though values are the same
+
+        //     3. s1.localeCompare(s2):
+        //        - Compares strings lexicographically (dictionary order)
+        //        - Returns 0 if strings are equal
+        //        - Returns negative number if s1 comes before s2
+        //        - Returns positive number if s1 comes after s2
+        //        - In this case, returns 0 as both strings are identical
+        // -->
+        // // Example:1
+        // let s1 = "sujana"
+        // let s2 = new String("sujana");
+
+        // console.log(s1 == s2);  
+        // console.log(s1 === s2); 
+        // console.log(s1.localeCompare(s2)); 
+
+        // // Example:2
+        // let str1 = "apple"; //string1 appears before string2=-1
+        // let str2 = "banana"; //string2 appears before string1=+1
+        // let result = str1.localeCompare(str2);
+        // console.log(result);
+
+        // // 12. Passing JavaScript String as Objects
+
+        // const str = "new String("sujana")"; //object notation(rarely needed)
+
+        // console.log(str);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

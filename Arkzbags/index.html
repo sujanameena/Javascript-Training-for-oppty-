@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArkzBags</title>
+  <link rel="stylesheet" href="index.css">
+  <!-- <link rel="stylesheet" href="index-mobile.css"> -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"> -->
+</head>
+
+<body>
+  <!-- Scrolling announcement header -->
+  <div class="promo-ticker" aria-label="Announcements">
+    <div class="ticker__viewport">
+      <ul class="ticker__track" aria-live="polite">
+        <li class="ticker__item">Welcome to ArkzBags</li>
+        <li class="ticker__item" aria-hidden="true">★</li>
+        <li class="ticker__item">30% Discount on every bag</li>
+        <li class="ticker__item" aria-hidden="true">★</li>
+        <li class="ticker__item">All school / college / travel essentials are available</li>
+        <li class="ticker__item" aria-hidden="true">★</li>
+        <li class="ticker__item">Women handbags are at reasonable prices</li>
+        <li class="ticker__item" aria-hidden="true">★</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header" aria-label="Header">
+    <div class="header-inner">
+      <a class="logo" href="/" aria-label="ArkzBags Home">
+        <img src="assets/logo.png" alt="ArkzBags logo">
+      </a>
+
+      <form class="search" role="search" action="#" method="get">
+        <label for="site-search" class="sr-only">Search</label>
+        <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"></circle>
+          <line x1="16.65" y1="16.65" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          </line>
+        </svg>
+        <input id="site-search" name="q" type="search" placeholder="Search for bags" autocomplete="off">
+      </form>
+
+      <nav class="actions" aria-label="User actions">
+        <a href="#login">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"></circle>
+            <path d="M4 20c1.8-3.5 5.1-5 8-5s6.2 1.5 8 5" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round"></path>
+          </svg>
+          <span>Login</span>
+        </a>
+
+        <a href="#wishlist">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M12 21s-6.5-4.3-8.6-7.5C1.2 10.5 2.1 7.5 4.7 6.3 6.5 5.4 8.8 6 10 7.6 11.2 6 13.5 5.4 15.3 6.3c2.6 1.2 3.5 4.2 1.3 7.2C18.5 16.7 12 21 12 21z"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path>
+          </svg>
+          <span>Wishlist</span>
+        </a>
+
+        <a href="#cart">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="9" cy="20" r="1.8" fill="currentColor"></circle>
+            <circle cx="17" cy="20" r="1.8" fill="currentColor"></circle>
+            <path d="M3 4h2l2.2 10.2A2 2 0 0 0 9.1 16H17a2 2 0 0 0 1.9-1.5L21 8H6.2" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          <span>Cart</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- second Header -->
+  <header class="secondary-header" aria-label="Secondary navigation">
+    <div class="secondary-inner">
+      <nav class="main-nav" aria-label="Primary menu">
+        <ul class="menu" role="menubar">
+          <li class="menu__item" role="none">
+            <a class="menu__link" role="menuitem" href="/">Home</a>
+          </li>
+          
+          <!-- School essentials -->
+          <li class="menu__item menu__item--has-dropdown" role="none">
+            <a class="menu__link" role="menuitem" href="#school-bags" aria-haspopup="true">School Essentials</a>
+            <ul class="dropdown" role="menu" aria-label="School Bags">
+              <li role="none"><a role="menuitem" href="#preschool-packs">Pre-School Pack</a></li>
+              <li role="none"><a role="menuitem" href="#school-bags">School Bags</a></li>
+              <li role="none"><a role="menuitem" href="#lunch-bags">Lunch Bags</a></li>
+            </ul>
+          </li>
+          <!-- college/office essentials -->
+          <li class="menu__item menu__item--has-dropdown" role="none">
+            <a class="menu__link" role="menuitem" href="#college-office-essentials" aria-haspopup="true">College / Office Essentials</a>
+            <ul class="dropdown" role="menu" aria-label="college-office-essentials">
+              <li role="none"><a role="menuitem" href="#casual-backpacks">Casual Backpacks</a></li>
+              <li role="none"><a role="menuitem" href="#laptop-backpacks">Laptop Backpacks</a></li>
+            </ul>
+          </li>
+          <!-- travel and accesories -->
+          <li class="menu__item menu__item--has-dropdown" role="none">
+            <a class="menu__link" role="menuitem" href="#travel-accessories" aria-haspopup="true">Travel &
+              Accessories</a>
+            <ul class="dropdown" role="menu" aria-label="travel-accessories">
+              <li role="none"><a role="menuitem" href="#trolly-bags">Trolley Bags</a></li>
+              <li role="none"><a role="menuitem" href="#waist-pouch">Waist Pouch</a></li>
+              <li role="none"><a role="menuitem" href="#travel-duffel-bags">Travel Duffel Bags</a></li>
+              <li role="none"><a role="menuitem" href="#travel-organisers">Travel Organisers</a></li>
+              <li role="none"><a role="menuitem" href="#travel-pouches">Travel Pouches/Kits</a></li>
+              <li role="none"><a role="menuitem" href="#cross-body-sling-bags">Cross Body/Sling Bags</a></li>
+            </ul>
+          </li>
+          <!-- womens collection -->
+          <li class="menu__item menu__item--has-dropdown" role="none">
+            <a class="menu__link" role="menuitem" href="#womens-collection" aria-haspopup="true">Women's Collection</a>
+            <ul class="dropdown" role="menu" aria-label="womens-collection">
+              <li role="none"><a role="menuitem" href="#hand-bags">Hand Bags</a></li>
+              <li role="none"><a role="menuitem" href="#sling-bags">Sling Bags</a></li>
+              <li role="none"><a role="menuitem" href="#wallets">Wallets</a></li>
+              <li role="none"><a role="menuitem" href="#shopping-bags">Shopping Bags</a></li>
+              <li role="none"><a role="menuitem" href="#laptop-handbags">Laptop Hand Bags</a></li>
+              <li role="none"><a role="menuitem" href="#back-packs">BackPacks For Daily Use</a></li>
+
+            </ul>
+          </li>
+          <!-- sports and outdoor -->
+          <li class="menu__item menu__item--has-dropdown" role="none">
+            <a class="menu__link" role="menuitem" href="#sports-outdoor" aria-haspopup="true">Sports & Outdoor</a>
+            <ul class="dropdown" role="menu" aria-label="sports-outdoor">
+              <li role="none"><a role="menuitem" href="#gym-bags">Gym Bags</a></li>
+            </ul>
+          </li>
+          <!-- accessories -->
+          <li class="menu__item menu__item--has-dropdown" role="none">
+            <a class="menu__link" role="menuitem" href="#accessories" aria-haspopup="true">Accessories</a>
+            <ul class="dropdown" role="menu" aria-label="accessories">
+              <li role="none"><a role="menuitem" href="#mens-wallets">Mens Wallets</a></li>
+              <li role="none"><a role="menuitem" href="#regular-caps">Regular Caps</a></li>
+              <li role="none"><a role="menuitem" href="#rain-coats">Rain coats</a></li>
+            </ul>
+          </li>
+          <li class="menu__item" role="none">
+            <a class="menu__link" role="menuitem" href="#contactUs">Contact Us</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- first section slider -->
+  <section class="hero-slider" aria-label="Featured">
+    <div class="slider" data-slider>
+      <div class="slider__viewport" aria-live="polite">
+        <ul class="slider__track">
+          <li class="slide" aria-hidden="false">
+            <img src="assets/slider-img-1.jpg" alt="Casual backpacks on display with 30% off">
+          </li>
+          <li class="slide" aria-hidden="true">
+            <img src="assets/slider-img-2.jpg" alt="Laptop backpacks for college and office">
+          </li>
+          <li class="slide" aria-hidden="true">
+            <img src="assets/slider-img-3.jpg" alt="Travel trolley bags at great prices">
+          </li>
+        </ul>
+      </div>
+
+      <button class="slider__control prev" type="button" aria-label="Previous slide">
+        <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="slider__control next" type="button" aria-label="Next slide">
+        <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="slider__dots" role="tablist" aria-label="Slide navigation"></div>
+    </div>
+  </section>
+  <style>
+    .top-picks {
+      --card-bg: #fff;
+      --card-radius: 14px;
+      --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --card-shadow-hover: 0 16px 38px rgba(0, 0, 0, 0.14);
+      --text-muted: #666;
+      padding: clamp(1.5rem, 2.5vw + 1rem, 3rem) 1rem;
+    }
+    .top-picks__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .top-picks__title {
+      font-size: clamp(1.25rem, 1vw + 1.1rem, 1.75rem);
+      text-align: center;
+      margin: 0 0 1rem;
+    }
+    .top-picks__subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      margin: 0 0 2rem;
+      font-size: 0.95rem;
+    }
+    .card-grid {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: clamp(0.9rem, 1.8vw, 1.4rem);
+      padding: 0;
+      margin: 0;
+    }
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--card-radius);
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+    .card:hover,
+    .card:focus-within {
+      transform: translateY(-4px);
+      box-shadow: var(--card-shadow-hover);
+    }
+    .card__link {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      color: inherit;
+      text-decoration: none;
+      height: 100%;
+    }
+    .card__media {
+      margin: 0;
+      line-height: 0;
+      background: #f3f3f3;
+    }
+    .card__media img {
+      width: 100%;
+      height: clamp(140px, 22vw, 220px);
+      object-fit: cover;
+      display: block;
+    }
+    .card__body {
+      padding: 0.9rem 1rem 1.1rem;
+    }
+    .card__title {
+      margin: 0 0 0.35rem;
+      font-size: 1.05rem;
+      line-height: 1.25;
+    }
+    .card__text {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .card { transition: none; }
+    }
+  </style>
+
+  <section class="top-picks" aria-label="Top Picks">
+    <div class="top-picks__inner">
+      <h2 class="top-picks__title">Top Picks</h2>
+      <p class="top-picks__subtitle">Browse popular categories at a glance</p>
+
+      <ul class="card-grid" role="list">
+        <li class="card">
+          <a class="card__link" href="#casual-backpacks">
+            <figure class="card__media">
+              <img src="assets/cards/casual-backpacks.jpg" alt="Casual backpacks in multiple colors" loading="lazy">
+            </figure>
+            <div class="card__body">
+              <h3 class="card__title">Casual Backpacks</h3>
+              <p class="card__text">Everyday comfort with roomy interiors.</p>
+            </div>
+          </a>
+        </li>
+
+        <li class="card">
+          <a class="card__link" href="#laptop-backpacks">
+            <figure class="card__media">
+              <img src="assets/cards/laptop-backpacks.jpg" alt="Sleek laptop backpack on a desk" loading="lazy">
+            </figure>
+            <div class="card__body">
+              <h3 class="card__title">Laptop Backpacks</h3>
+              <p class="card__text">Padded protection for your devices.</p>
+            </div>
+          </a>
+        </li>
+
+        <li class="card">
+          <a class="card__link" href="#trolly-bags">
+            <figure class="card__media">
+              <img src="assets/cards/trolley-bags.jpg" alt="Travel trolley bags at an airport" loading="lazy">
+            </figure>
+            <div class="card__body">
+              <h3 class="card__title">Trolley Bags</h3>
+              <p class="card__text">Roll with ease on every journey.</p>
+            </div>
+          </a>
+        </li>
+
+        <li class="card">
+          <a class="card__link" href="#hand-bags">
+            <figure class="card__media">
+              <img src="assets/cards/hand-bags.jpg" alt="Elegant women’s handbags" loading="lazy">
+            </figure>
+            <div class="card__body">
+              <h3 class="card__title">Hand Bags</h3>
+              <p class="card__text">Style-forward designs for any occasion.</p>
+            </div>
+          </a>
+        </li>
+
+        <li class="card">
+          <a class="card__link" href="#gym-bags">
+            <figure class="card__media">
+              <img src="assets/cards/gym-bags.jpg" alt="Sporty gym duffel bag" loading="lazy">
+            </figure>
+            <div class="card__body">
+              <h3 class="card__title">Gym Bags</h3>
+              <p class="card__text">Durable build for active lifestyles.</p>
+            </div>
+          </a>
+        </li>
+
+        <li class="card">
+          <a class="card__link" href="#wallets">
+            <figure class="card__media">
+              <img src="assets/cards/wallets.jpg" alt="Leather wallets arranged on a table" loading="lazy">
+            </figure>
+            <div class="card__body">
+              <h3 class="card__title">Wallets</h3>
+              <p class="card__text">Slim profiles with smart storage.</p>
+            </div>
+          </a>
+        </li>
+
+        <li class="card">
+          <a class="card__link" href="#travel-duffel-bags">
+            <figure class="card__media">
+              <img src="assets/cards/travel-duffel.jpg" alt="Spacious travel duffel bag" loading="lazy">
+            </figure>
+            <div class="card__body">
+              <h3 class="card__title">Travel Duffel Bags</h3>
+              <p class="card__text">Pack light, move fast, go far.</p>
+            </div>
+          </a>
+        </li>
+
+        <li class="card">
+          <a class="card__link" href="#sling-bags">
+            <figure class="card__media">
+              <img src="assets/cards/sling-bags.jpg" alt="Compact crossbody sling bag" loading="lazy">
+            </figure>
+            <div class="card__body">
+              <h3 class="card__title">Sling Bags</h3>
+              <p class="card__text">Hands-free convenience on the go.</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+    
+
+  
+  
+  <script src="index.js" defer></script>
+</body>
+
+</html>
