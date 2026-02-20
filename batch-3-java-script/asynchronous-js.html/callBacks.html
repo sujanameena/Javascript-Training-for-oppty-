@@ -294,3 +294,45 @@ fetchUser(1, function (err, user) {
 });
   </script> -->
 
+Problems with Callbacks:
+
+Although callbacks are useful, they have some drawbacks.
+
+1. Callback Hell (Nested Callbacks):
+
+Callback hell happens when you have many asynchronous operations that depend on each other, and you handle them with deeply nested callbacks. This creates the classic “pyramid of doom” and makes code hard to read, debug, and maintain.
+
+When callbacks are nested deeply, the code becomes unreadable and hard to maintain.
+
+Example:1 
+
+ <!-- <script>
+   function step1(callback) {
+    setTimeout(() => {
+        console.log("Step 1 completed");
+        callback();
+    }, 1000);
+}
+
+function step2(callback) {
+    setTimeout(() => {
+        console.log("Step 2 completed");
+        callback();
+    }, 1000);
+}
+
+function step3(callback) {
+    setTimeout(() => {
+        console.log("Step 3 completed");
+        callback();
+    }, 1000);
+}
+
+step1(() => {
+    step2(() => {
+        step3(() => {
+            console.log("All steps completed");
+        });
+    });
+});
+  </script> -->
