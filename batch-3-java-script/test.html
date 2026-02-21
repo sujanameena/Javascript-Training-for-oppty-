@@ -2,43 +2,57 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Object Factory Function Example</title>
+  <meta charset="UTF-8" />
+  <title>Callback Hell Simple Demo</title>
 </head>
 
 <body>
 
   <script>
-   function step1(callback) {
-    setTimeout(() => {
-        console.log("Step 1 completed");
-        callback();
-    }, 1000);
+    // Fake async: get marks from "server"
+function getMarks(studentId, callback) {
+  setTimeout(function () {
+    console.log("Marks received for student:", studentId);
+    callback(null, { studentId: studentId, marks: 90 }); // no error
+  }, 500);
 }
 
-function step2(callback) {
-    setTimeout(() => {
-        console.log("Step 2 completed");
-        callback();
-    }, 1000);
+// Fake async: save result to "database" (this fails)
+function saveResult(result, callback) {
+  setTimeout(function () {
+    // Something goes wrong
+    callback(new Error("Database error while saving result"));
+  }, 500);
 }
 
-function step3(callback) {
-    setTimeout(() => {
-        console.log("Step 3 completed");
-        callback();
-    }, 1000);
-}
+function start() {
+  getMarks(1, function (err, result) {
+    if (err) {
+      console.log("Error getting marks:", err.message);
+      return;
+    }
 
-step1(() => {
-    step2(() => {
-        step3(() => {
-            console.log("All steps completed");
-        });
+    // ❌ We forget to check `err2` here
+    saveResult(result, function (err2, savedData) {
+      // if (err2) { ... }  // <-- missing
+
+      console.log("Result saved:", savedData); // prints: undefined
+      console.log("Done (real error was ignored)");
     });
-});
-  </script>
+  });
+}
 
+start();
+
+/*
+Console output:
+
+Marks received for student: 1
+Result saved: undefined
+Done (real error was ignored)
+*/
+    
+  </script>
 </body>
 
 </html>

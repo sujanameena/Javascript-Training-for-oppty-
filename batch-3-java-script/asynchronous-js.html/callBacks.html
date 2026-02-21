@@ -336,3 +336,221 @@ step1(() => {
     });
 });
   </script> -->
+
+  Example:2 (Do not explain this to the students)
+
+  <!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Callback Hell Simple Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    button {
+      padding: 8px 16px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    #log {
+      border: 1px solid #ccc;
+      padding: 10px;
+      min-height: 80px;
+      background: #f9f9f9;
+      white-space: pre-line;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Callback Hell (Simple Example)</h1>
+
+  <button id="startBtn">Start Process</button>
+
+  <div id="log"></div>
+
+  <script>
+    // Get elements
+    const logBox = document.getElementById("log");
+    const startBtn = document.getElementById("startBtn");
+
+    // Helper to show messages on the page
+    function log(message) {
+      logBox.textContent += message + "\n";
+    }
+
+    // 1. Fake async function: user login
+    function login(username, password, callback) {
+      setTimeout(() => {
+        log("Step 1: User logged in as " + username);
+        // Pass null for error, and a fake result object
+        callback(null, { userId: 1 });
+      }, 500);
+    }
+
+    // 2. Fake async function: get user profile
+    function getProfile(userId, callback) {
+      setTimeout(() => {
+        log("Step 2: Got profile for user id " + userId);
+        callback(null, { userId: userId, name: "Alice" });
+      }, 500);
+    }
+
+    // 3. Fake async function: get user notifications
+    function getNotifications(userId, callback) {
+      setTimeout(() => {
+        log("Step 3: Got notifications for user id " + userId);
+        callback(null, ["New message", "New friend request"]);
+      }, 500);
+    }
+
+    // When button is clicked, start the whole flow
+    startBtn.addEventListener("click", () => {
+      logBox.textContent = ""; // clear old messages
+
+      // Nested callbacks (callback hell)
+      login("alice@example.com", "123456", (error1, loginResult) => {
+        if (error1) {
+          log("Login failed");
+          return;
+        }
+
+        getProfile(loginResult.userId, (error2, profile) => {
+          if (error2) {
+            log("Profile fetch failed");
+            return;
+          }
+
+          getNotifications(profile.userId, (error3, notifications) => {
+            if (error3) {
+              log("Notifications fetch failed");
+              return;
+            }
+
+            // Final result
+            log("Step 4: All data ready");
+            log("Name: " + profile.name);
+            log("Notifications: " + notifications.join(", "));
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html> -->
+
+Example:3 
+
+<!-- <script>
+    // Example: Online food order with nested callbacks (callback hell)
+    // 1) Place order
+    function placeOrder(order, callback) {
+      setTimeout(() => {
+        console.log("Order placed:", order);
+        callback(null, { orderId: 101, ...order });
+      }, 500);
+    }
+
+    // 2) Process payment
+    function processPayment(order, callback) {
+      setTimeout(() => {
+        console.log("Payment done for order:", order.orderId);
+        callback(null, { ...order, paymentStatus: "Success" });
+      }, 500);
+    }
+
+    // 3) Prepare order
+    function prepareOrder(order, callback) {
+      setTimeout(() => {
+        console.log("Order prepared:", order.orderId);
+        callback(null, { ...order, status: "Ready for delivery" });
+      }, 500);
+    }
+
+    // 4) Send notification to user
+    function sendNotification(order, callback) {
+      setTimeout(() => {
+        console.log("Notification sent to user for order:", order.orderId);
+        callback(null, "Notification sent successfully");
+      }, 500);
+    }
+
+    // ---- Using all functions with nested callbacks (callback hell) ----
+    const myOrder = { item: "Pizza", quantity: 2 };
+
+    placeOrder(myOrder, (err1, orderResult) => {
+      if (err1) {
+        console.log("Error placing order");
+        return;
+      }
+
+      processPayment(orderResult, (err2, paidOrder) => {
+        if (err2) {
+          console.log("Error in payment");
+          return;
+        }
+
+        prepareOrder(paidOrder, (err3, preparedOrder) => {
+          if (err3) {
+            console.log("Error preparing order");
+            return;
+          }
+
+          sendNotification(preparedOrder, (err4, message) => {
+            if (err4) {
+              console.log("Error sending notification");
+              return;
+            }
+
+            console.log("All steps done!");
+            console.log("Final order:", preparedOrder);
+            console.log("Message:", message);
+          });
+        });
+      });
+    });
+  </script> -->
+
+  2. Error Handling Issues in Callbacks:
+
+  Error handling issues in callbacks are the problems that arise because each asynchronous callback must manually manage its own errors.
+
+In classic “error‑first” callbacks (err, result) this causes:
+
+* Every callback must remember to check if (err) and handle it.
+* It’s easy to forget an if (err) check, so errors get silently ignored.
+* Error handling code is duplicated at every nesting level.
+* try/catch around async calls cannot catch errors thrown inside later callbacks.
+* If a callback is never called, or called twice, errors are lost or handled incorrectly.
+
+Example:1 
+
+<!-- <script>
+    function divide(a, b, callback) {
+      if (b === 0) {
+        callback(new Error("Cannot divide by zero"), null);
+      } else {
+        callback(null, a / b);
+      }
+    }
+
+    function result(error, result) {
+      if (error) {
+        console.log("Error:", error.message);
+      } else {
+        console.log("Result:", result);
+      }
+    }
+
+    divide(10, 2, result);
+    divide(10, 0, result);
+  </script> -->
+  
+Example:2 
+
