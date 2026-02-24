@@ -9,50 +9,24 @@
 <body>
 
   <script>
-    // Fake async: get marks from "server"
-function getMarks(studentId, callback) {
-  setTimeout(function () {
-    console.log("Marks received for student:", studentId);
-    callback(null, { studentId: studentId, marks: 90 }); // no error
-  }, 500);
-}
+  // 1) Wrap a normal value into a resolved Promise
+  const p1 = Promise.resolve("Hello, Promise!");
 
-// Fake async: save result to "database" (this fails)
-function saveResult(result, callback) {
-  setTimeout(function () {
-    // Something goes wrong
-    callback(new Error("Database error while saving result"));
-  }, 500);
-}
-
-function start() {
-  getMarks(1, function (err, result) {
-    if (err) {
-      console.log("Error getting marks:", err.message);
-      return;
-    }
-
-    // ❌ We forget to check `err2` here
-    saveResult(result, function (err2, savedData) {
-      // if (err2) { ... }  // <-- missing
-
-      console.log("Result saved:", savedData); // prints: undefined
-      console.log("Done (real error was ignored)");
-    });
+  p1.then((msg) => {
+    console.log(msg); // "Hello, Promise!"
   });
-}
 
-start();
+  // 2) If value is already a Promise, it is returned as-is
+  const existingPromise = new Promise((resolve) => {
+    setTimeout(() => resolve("Done after 1s"), 1000);
+  });
 
-/*
-Console output:
+  const p2 = Promise.resolve(existingPromise);
 
-Marks received for student: 1
-Result saved: undefined
-Done (real error was ignored)
-*/
-    
-  </script>
+  p2.then((result) => {
+    console.log(result); // "Done after 1s"
+  });
+</script>
 </body>
 
 </html>

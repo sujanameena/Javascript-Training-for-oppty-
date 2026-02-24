@@ -552,5 +552,100 @@ Example:1
     divide(10, 0, result);
   </script> -->
   
-Example:2 
+Alternatives to Callbacks:
+
+1. Promises (Fixing Callback Hell)
+
+Promises provide a better way to handle asynchronous tasks without deep nesting.
+Promises make code more readable by chaining .then() instead of nesting callbacks.
+
+Example:1 
+
+  <!-- <script>
+    function step1() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            console.log("Step 1 completed");
+            resolve();
+        }, 1000);
+    });
+}
+
+function step2() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            console.log("Step 2 completed");
+            resolve();
+        }, 1000);
+    });
+}
+
+function step3() {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            console.log("Step 3 completed");
+            resolve();
+        }, 1000);
+    });
+}
+
+step1()
+    .then(step2)
+    .then(step3)
+    .then(() => console.log("All steps completed"));
+  </script> -->
+
+  2. Async/Await (Cleaner Alternative) 
+
+  <!-- <script>
+    function step1() {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          console.log("Step 1 completed");
+          resolve();
+        }, 1000);
+      });
+    }
+
+    function step2() {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          console.log("Step 2 completed");
+          resolve();
+        }, 1000);
+      });
+    }
+
+    function step3() {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          console.log("Step 3 completed");
+          resolve();
+        }, 1000);
+      });
+    }
+
+    async function processSteps() {
+      await step1();
+      await step2();
+      await step3();
+      console.log("All steps completed");
+    }
+
+    processSteps();
+  </script> -->
+
+
+When to Use Callbacks
+
+* For simple, one‑step asynchronous tasks (e.g., a single setTimeout, one API call).
+* For event handling in the browser (e.g., addEventListener for clicks, key presses).
+* When using older libraries or Node.js APIs that are designed around callbacks.
+* For small, custom utilities where the callback is called only once and logic is simple.
+When to Avoid Callbacks
+
+* When you have multiple async steps that depend on each other (to avoid “callback hell”).
+* When error handling becomes repeated and messy (if (err) at every level).
+* When you need to compose or chain many async operations.
+* In modern JavaScript projects where Promises and async/await are available and make code easier to read and maintain.
 

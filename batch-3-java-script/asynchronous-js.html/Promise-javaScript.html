@@ -1,0 +1,448 @@
+JavaScript Promise:
+
+A Promise is a JavaScript object that represents the eventual result (or failure) of an asynchronous operation.
+
+1.It can be in one of three states:
+
+* pending – operation is still running(The task is in the initial state.)
+* fulfilled – operation finished successfully(The task was completed successfully, and the result is available.)
+* rejected – operation failed (The task failed, and an error is provided.)
+
+2. You attach callbacks using:
+
+* .then(onFulfilled) for success
+* .catch(onRejected) for errors
+* .finally(onFinally) for cleanup
+
+Syntax:
+
+<!-- let promise = new Promise((resolve, reject) => {
+    // Perform async operation
+    if (operationSuccessful) {
+        resolve("Task successful");
+    } else {
+        reject("Task failed");
+    }
+}); -->
+
+Example:1 
+
+<!-- <script>
+    let checkEven = new Promise((resolve, reject) => {
+      let number = 6;
+      if (number % 2 === 0) resolve("The number is even!");
+      else reject("The number is odd!");
+    });
+    checkEven
+      .then((message) => console.log(message)) // On success
+      .catch((error) => console.error(error)); // On failure
+  </script> -->
+
+Example:2  
+
+<!-- <script>
+    // Creating a Promise
+function getData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const success = true; // change to false to test reject
+      if (success) {
+        resolve("Data loaded");
+      } else {
+        reject("Error loading data");
+      }
+    }, 1000);
+  });
+}
+
+// Using the Promise
+getData()
+  .then((result) => {
+    console.log("SUCCESS:", result);
+  })
+  .catch((error) => {
+    console.log("ERROR:", error);
+  })
+  .finally(() => {
+    console.log("Done");
+  });
+  </script> -->
+
+  Note: The "resolve" and "reject" are not keywords. You can use any name that you want to give to a function.
+
+  * resolve(value): Marks the promise as fulfilled and provides a result.
+* reject(error): Marks the promise as rejected with an error.
+
+Let's See Advanced Promise Methods and Patterns for Effective Async Handling
+----------------------------------------------------------------------------
+
+1. Promise.all() Method  
+
+Promise.all() takes an array of Promises and returns a single Promise that:
+
+* fulfills when all Promises in the array are fulfilled
+→ it resolves with an array of results (in the same order).
+* rejects immediately if any one Promise rejects
+→ it rejects with that first error.
+
+Syntax:
+
+<!-- Promise.all([promise1, promise2, promise3])
+  .then((results) => {
+    // results is an array: [result1, result2, result3]
+  })
+  .catch((error) => {
+    // runs if any promise rejects
+  }); -->
+
+Example:1 
+
+  <!-- <script>
+   function step1() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("Step 1 done");
+      resolve("Result 1");
+    }, 1000);
+  });
+}
+
+function step2() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("Step 2 done");
+      resolve("Result 2");
+    }, 1500);
+  });
+}
+
+function step3() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("Step 3 done");
+      resolve("Result 3");
+    }, 500);
+  });
+}
+
+Promise.all([step1(), step2(), step3()])
+  .then((results) => {
+    console.log("All steps completed");
+    console.log(results); // ["Result 1", "Result 2", "Result 3"]
+  })
+  .catch((error) => {
+    console.log("One of the steps failed:", error);
+  });
+  </script> -->
+
+  Example:2 (when condition fails)
+
+  <!-- <script>
+  function task1() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("Task 1 done");
+      resolve("Result 1");
+    }, 500);
+  });
+}
+
+function task2() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      console.log("Task 2 failed");
+      reject("Error in Task 2"); // ❌ this one fails
+    }, 800);
+  });
+}
+
+function task3() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log("Task 3 done");
+      resolve("Result 3");
+    }, 300);
+  });
+}
+
+Promise.all([task1(), task2(), task3()])
+  .then((results) => {
+    // This will NOT run because task2 rejects
+    console.log("All tasks success:", results);
+  })
+  .catch((error) => {
+    // Runs as soon as the first promise (task2) rejects
+    console.log("At least one task failed:", error);
+  });
+  </script> -->
+
+  2. Promise.allSettled() Method 
+
+  Promise.allSettled() takes an array of Promises and returns a Promise that always fulfills after all input Promises have settled (either fulfilled or rejected).
+
+# It never rejects.
+# It resolves with an array of result objects, each like:
+* { status: "fulfilled", value: ... }
+* { status: "rejected", reason: ... }
+
+Syntax:
+
+<!-- Promise.allSettled([promise1, promise2, promise3])
+  .then((results) => {
+    // results is an array of { status, value/reason }
+  }); -->
+
+  Example:1 
+
+  <!-- <script>
+    function task1() {
+      return new Promise((resolve) => {
+        setTimeout(() => resolve("Task 1 OK"), 500);
+      }); 
+    }
+
+    function task2() {
+      return new Promise((_, reject) => {
+        setTimeout(() => reject("Task 2 FAILED"), 300);
+      });
+    }
+
+    function task3() {
+      return new Promise((resolve) => {
+        setTimeout(() => resolve("Task 3 OK"), 700);
+      });
+    }
+
+    Promise.allSettled([task1(), task2(), task3()])
+      .then((results) => {
+        console.log(results);
+        // [
+        //   { status: "fulfilled", value: "Task 1 OK" },
+        //   { status: "rejected",  reason: "Task 2 FAILED" },
+        //   { status: "fulfilled", value: "Task 3 OK" }
+        // ]
+      });
+  </script> -->
+
+  3. Promise.race() Method
+
+  Promise.race() takes an array of Promises and returns a Promise that settles (fulfills or rejects) with the result of the first Promise that settles.
+
+* If the first settled Promise fulfills, race fulfills with its value.
+* If the first settled Promise rejects, race rejects with its reason.
+
+Promise.race() Method resolves or rejects as soon as the first promise settles.
+
+Syntax:
+
+<!-- Promise.race([promise1, promise2, promise3])
+  .then((result) => {
+    // first fulfilled result
+  })
+  .catch((error) => {
+    // if the first settled promise rejected
+  }); -->
+
+  Example:1 Basic Example
+
+  <!-- <script>
+    function slowTask() {
+      return new Promise((resolve) => {
+        setTimeout(() => resolve("Slow task finished"), 2000);
+      });
+    }
+
+    function fastTask() {
+      return new Promise((resolve) => {
+        setTimeout(() => resolve("Fast task finished"), 500);
+      });
+    }
+
+    Promise.race([slowTask(), fastTask()])
+      .then((result) => {
+        console.log("Winner:", result); // "Fast task finished"
+      })
+      .catch((error) => {
+        console.log("Race rejected with:", error);
+      });
+  </script> -->
+
+
+  Example:2 
+
+  <!-- <script>
+  function fetchWithTimeout(url, timeoutMs) {
+    const fetchPromise = fetch(url);
+
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => {
+        reject("Request timed out");
+      }, timeoutMs);
+    });
+
+    // Promise.race will settle with whichever promise settles first
+    return Promise.race([fetchPromise, timeoutPromise]);
+  }
+
+  fetchWithTimeout("https://jsonplaceholder.typicode.com/posts/1", 2000)
+    .then((response) => {
+      // If fetch finishes first and is OK
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Data received before timeout:", data);
+    })
+    .catch((error) => {
+      // Runs if request timed out OR fetch failed
+      console.log("Failed:", error);
+    });
+</script> -->
+
+4. Promise.any() Method
+
+Promise.any() returns a Promise that fulfills as soon as any one of the given Promises fulfills.
+It only rejects if all of the input Promises reject (with an AggregateError).
+
+Promise.any() takes an array of Promises and:
+
+* fulfills with the value of the **first fulfilled** Promise.
+* rejects with an AggregateError if **all** Promises reject.
+
+Syntax:
+
+<!-- Promise.any([promise1, promise2, promise3])
+  .then((result) => {
+    // result of the first fulfilled promise
+  })
+  .catch((error) => {
+    // runs only if ALL promises reject
+    console.log(error); // AggregateError
+  }); -->
+
+  Example:1 
+
+  <!-- <script>
+    function fastReject() {
+      return new Promise((_, reject) => {
+        setTimeout(() => reject("Fast error"), 300);
+      });
+    }
+
+    function slowResolve() {
+      return new Promise((resolve) => {
+        setTimeout(() => resolve("Slow success"), 800);
+      });
+    }
+
+    function mediumReject() {
+      return new Promise((_, reject) => {
+        setTimeout(() => reject("Medium error"), 500);
+      });
+    }
+
+    Promise.any([fastReject(), slowResolve(), mediumReject()])
+      .then((result) => {
+        console.log("Promise.any fulfilled with:", result);
+        // "Slow success" (first fulfilled)
+      })
+      .catch((error) => {
+        console.log("All promises rejected:", error);
+      });
+  </script> -->
+
+  Example:2 
+
+  <!-- <script>
+  // Fake APIs for student read (R in CRUD)
+  function getStudentFromMainAPI(id) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // imagine main API is down
+        reject("Main API not available");
+      }, 500);
+    });
+  }
+
+  function getStudentFromBackupAPI(id) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ id, name: "John Doe", course: "B.Sc CS" });
+      }, 800); // responds a bit later, but succeeds
+    });
+  }
+
+  function getStudentFromCache(id) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        // imagine cache miss
+        reject("Cache miss");
+      }, 300);
+    });
+  }
+
+  function getStudent(id) {
+    return Promise.any([
+      getStudentFromMainAPI(id),
+      getStudentFromBackupAPI(id),
+      getStudentFromCache(id),
+    ]);
+  }
+
+  getStudent(101)
+    .then((student) => {
+      console.log("Student fetched:", student);
+    })
+    .catch((error) => {
+      // runs only if ALL sources failed
+      console.log("Could not fetch student from any source:", error);
+    });
+</script> -->
+
+5.Promise.resolve() Method
+
+Promise.resolve() creates a Promise that is immediately fulfilled with the given value.
+
+* If you pass a normal value → it becomes a fulfilled Promise.
+* If you pass a Promise / thenable → it returns a Promise that adopts that Promise’s state.
+
+Syntax:
+
+<!-- Promise.resolve(value)
+  .then((result) => {
+    // result === value (if value was not a promise)
+  })
+  .catch((error) => {
+    // will not run for a simple resolved value
+  }); -->
+
+  Example:1 
+
+  <!-- <script>
+  // 1) Wrap a normal value into a resolved Promise
+  const p1 = Promise.resolve("Hello, Promise!");
+
+  p1.then((msg) => {
+    console.log(msg); // "Hello, Promise!"
+  });
+
+  // 2) If value is already a Promise, it is returned as-is
+  const existingPromise = new Promise((resolve) => {
+    setTimeout(() => resolve("Done after 1s"), 1000);
+  });
+
+  const p2 = Promise.resolve(existingPromise);
+
+  p2.then((result) => {
+    console.log(result); // "Done after 1s"
+  });
+</script> -->
+
+  Example:2
+
+
+
+
+
