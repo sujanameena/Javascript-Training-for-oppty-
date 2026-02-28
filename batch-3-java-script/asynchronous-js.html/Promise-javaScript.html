@@ -442,7 +442,148 @@ Syntax:
 
   Example:2
 
+  <!-- <script>
+  const settingsCache = {
+    theme: "dark",
+    language: "english",
+  };
 
+  function fetchSettingsFromServer() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ theme: "light", language: "english" });
+      }, 1000);
+    });
+  }
+
+  function getUserSettings() {
+    if (settingsCache) {
+      // Synchronous value → wrap in a resolved Promise
+      return Promise.resolve(settingsCache);
+    } else {
+      // Async value → already returns a Promise
+      return fetchSettingsFromServer();
+    }
+  }
+
+  // Usage
+  getUserSettings()
+    .then((settings) => {
+      console.log("User settings:", settings);
+    })
+    .catch((err) => {
+      console.log("Error loading settings:", err);
+    });
+</script> -->
+
+6. Promise.reject() Method
+
+Promise.reject() creates a Promise that is immediately rejected with the given reason (error).
+
+* Use it to quickly create a rejected Promise (for testing or normalizing errors).
+* The rejection is handled in .catch() or try/catch with await.
+
+Syntax:
+
+<!-- Promise.reject(reason)
+  .then((result) => {
+    // will NOT run
+  })
+  .catch((error) => {
+    // error === reason
+  }); -->
+
+  Example:1 
+
+<!-- <script>
+  function validateAge(age) {
+    if (age < 18) {
+      // instantly return a rejected Promise
+      return Promise.reject("Age must be 18 or above");
+    }
+    // valid → resolved promise
+    return Promise.resolve("Age is valid");
+  }
+
+  validateAge(16)
+    .then((msg) => {
+      console.log(msg);
+    })
+    .catch((err) => {
+      console.log("Validation failed:", err); // "Validation failed: Age must be 18 or above"
+    });
+</script> -->
+
+  Example:2 
+
+  <!-- <script>
+  // Step 1: basic validation
+  function validateStudentData(student) {
+    if (!student.name || !student.email) {
+      return Promise.reject("Name and email are required");
+    }
+    if (!student.email.includes("@")) {
+      return Promise.reject("Invalid email format");
+    }
+    return Promise.resolve(student);
+  }
+
+  // Step 2: check if student already exists (fake async call)
+  function checkStudentExists(email) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const existingEmails = ["test@example.com", "john@college.com"];
+        if (existingEmails.includes(email)) {
+          // reject inside async promise
+          reject("Student with this email already exists");
+        } else {
+          resolve(email);
+        }
+      }, 500);
+    });
+  }
+
+  // Step 3: save student (fake async DB write)
+  function saveStudent(student) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ id: Date.now(), ...student });
+      }, 500);
+    });
+  }
+
+  function registerStudent(student) {
+    return validateStudentData(student)
+      .then((validStudent) => checkStudentExists(validStudent.email)
+        .then(() => validStudent)
+      )
+      .then((validStudent) => saveStudent(validStudent))
+      .catch((err) => {
+        // Normalize any error into a rejected Promise with extra info
+        return Promise.reject("Registration failed: " + err);
+      });
+  }
+
+  // Try to register an invalid student (missing email)
+  registerStudent({ name: "Alice" })
+    .then((saved) => {
+      console.log("Student registered:", saved);
+    })
+    .catch((err) => {
+      console.log(err); // "Registration failed: Name and email are required"
+    });
+
+  // Try to register a duplicate email student
+  registerStudent({ name: "Bob", email: "test@example.com" })
+    .then((saved) => {
+      console.log("Student registered:", saved);
+    })
+    .catch((err) => {
+      console.log(err); // "Registration failed: Student with this email already exists"
+    });
+</script> -->
+
+7. Promise.finally() Method
 
 
 

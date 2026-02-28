@@ -1,0 +1,340 @@
+HTML (HyperText Markup Language) is the standard language for creating and structuring web pages using tags and
+elements. It defines how content like text, images, and links appear in a browser.
+
+** It is a markup language, not a programming language.
+** This means it annotates text to define how it is structured and displayed by web browsers.
+** It is a static language, meaning it does not inherently provide interactive features but can be combined with CSS for
+styling and JavaScript for interactivity.
+
+Basic HTML Tags for Document Structure:
+---------------------------------------
+<!-- <html> </html>
+<head> </head>
+<title> </title>
+<body>  </body> -->
+
+
+Structure:
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Training</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
+</head>
+<body>
+    <style>
+/* Css properties */
+    </style>
+
+    <script>
+/* JavaScript code */
+    </script>
+
+</body>
+</html> -->
+
+<meta charset="UTF-8">
+<!-- Meta tag that specifies the character encoding for the HTML document.
+        UTF-8 (Unicode Transformation Format - 8-bit) is the standard encoding that supports all languages and special characters.
+        This declaration should be placed in the <head> section of the HTML document to ensure proper text rendering across all browsers.
+        Without this meta tag, browsers may display characters incorrectly, especially non-ASCII characters. -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Meta Viewport Tag Documentation:
+    This meta tag configures how a web page is displayed on different devices and screen sizes.
+
+    Attributes:
+    - name="viewport": Declares this as a viewport configuration tag
+    - content="width=device-width, initial-scale=1.0": 
+        * width=device-width: Sets the viewport width to match the device's screen width
+        * initial-scale=1.0: Sets the initial zoom level to 100% (no zooming on page load)
+
+        Purpose:
+    Ensures responsive design by making web pages render properly on mobile devices, 
+    tablets, and desktops. Without this tag, mobile browsers may render the page at 
+    desktop width and scale it down, resulting in poor user experience.
+
+    Best Practice:
+    Include this tag in the <head> section of every HTML document for optimal 
+    mobile responsiveness. -->
+
+Example:
+
+<!-- <p class="text">Hello World</p>
+    <p> = Opening Tag
+        Class=Attribute
+        text=value
+        Hello World=content
+        </p> = Closing tag -->
+
+HTML Headings
+-------------
+
+The HTML heading tags are used to create headings for the content of a webpage. These tags are typically placed inside
+the body tag. HTML offers six heading tags, from <h1> to <h6>, each displaying the heading in a different font size.
+
+        Syntax:
+
+        <!-- <h1></h1>
+        <h2></h2>
+        <h3></h3>
+        <h4></h4>
+        <h5></h5>
+        <h6></h6> -->
+
+        Example:
+
+        <!-- <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>HTML</title>
+        </head>
+
+        <body>
+            <h1>Heading 1 (h1)</h1>
+            <h2>Heading 2 (h2)</h2>
+            <h3>Heading 3 (h3)</h3>
+            <h4>Heading 4 (h4)</h4>
+            <h5>Heading 5 (h5)</h5>
+            <h6>Heading 6 (h6)</h6>
+        </body>
+
+        </html> -->
+
+        HTML Paragraph and Break Elements(tags)
+        ----------------------------------
+    
+        Syntax:
+
+        <!-- // for Paragraph
+        <p> Content... </p>
+        // for Break
+        <br> -->
+
+        Example:
+
+        <!-- <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>HTML</title>
+        </head>
+
+        <body>
+            <p>
+                HTML stands for HyperText Markup Language.<br>
+                It is used to design web pages using a markup
+                language.<br>HTML is a combination of Hypertext
+                and Markup language.<br>Hypertext defines the
+                link between web pages.<br>A markup language
+                is used to define the text document within the
+                tag which defines the structure of web pages.
+            </p>
+        </body>
+
+        </html> -->
+
+        HTML Horizontal Line(tag): 
+
+        Syntax:
+
+        <hr>
+
+        Example: 
+
+        <!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+</head>
+<body>
+    <p>
+        A Computer Science portal for geeks<br>
+        A Computer Science portal for geeks<br>
+        A Computer Science portal for geeks<br>
+    </p>
+    <hr>
+    <p>
+        A Computer Science portal for geeks<br>
+        A Computer Science portal for geeks<br>
+        A Computer Science portal for geeks<br>
+    </p>
+    <hr>
+    <p>
+        A Computer Science portal for geeks<br>
+        A Computer Science portal for geeks<br>
+        A Computer Science portal for geeks<br>
+    </p>
+    <hr>
+</body>
+</html> -->
+
+HTML Comments:
+-------------- 
+
+Syntax of HTML Comments
+
+* Single-line comment:
+<!-- This is a single-line comment -->
+ * Multi-line comment:
+ <!--
+This is a multi-line comment
+spanning multiple lines
+-->
+
+Show how comment exists in html,css and  js files
+
+Example:
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+</head>
+<body>
+     This is a heading tag
+    <h1>Welcome to Oppty</h1>
+     This is a paragraph tag 
+    <p>Learn HTML, CSS, and JavaScript here & grow.</p>
+
+  </body>
+</html> -->
+
+HTML Images(tag):
+----------------
+The <img> tag is used to insert an image into a webpage. The source of the image is specified within the src attribute, like this: <img src="source_of_image">.
+
+Syntax:
+
+<img src="oppty.png">
+
+Example: 
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML</title>
+</head>
+
+<body>
+    
+    <p class="html-images-heading">HTML Images(tag):</p>
+
+    <p>
+        The &lt;img&gt; tag is used to insert an image into a webpage. The source of the image is
+        specified within the src attribute, like this: &lt;img src="source_of_image"&gt;.
+    </p>
+
+    <img src="https://cdn.mos.cms.futurecdn.net/wtqqnkYDYi2ifsWZVW2MT4-970-80.jpg.webp" alt="beach" width="200" height="200">
+    <img src="assets/beach.jpg" alt="beach" width="200" height="200">
+
+</body>
+
+</html> -->
+
+HTML entities:
+
+<!-- Here’s a concise list of common HTML entities (use them in HTML to safely display reserved/special characters):
+
+1.&nbsp; => non‑breaking space
+
+2.&lt; => < less‑than
+
+3.&gt; => > greater‑than
+
+4.&amp; => & ampersand
+
+5.&quot; => " double quote
+
+6.&apos; => ' single quote
+
+7.&copy; => © copyright
+
+8.&reg; => ® registered
+
+9.&trade; => ™ trademark
+
+10.&euro; => € euro
+
+11.&pound; => £ pound
+
+12.&yen; => ¥ yen
+
+13.&cent; => ¢ cent
+
+14.&middot; => · middle dot
+
+15.&bull; => • bullet
+
+16.&hellip; => … ellipsis
+
+17.&ndash; => – en dash
+
+18.&mdash; => — em dash
+
+19.&lsquo; => ‘ left single quote
+
+20.&rsquo; => ’ right single quote
+
+21.&ldquo; => “ left double quote
+
+22.&rdquo; => ” right double quote
+
+23.&times; => × multiplication
+
+24.&divide; => ÷ division
+
+25.&plusmn; => ± plus/minus
+
+26.&deg; => ° degree
+
+27.&sup2; => ² superscript 2
+
+28.&frac12; => ½ one half
+
+29.&larr; => ← left arrow
+
+30.&uarr; => ↑ up arrow
+
+31.&rarr; => → right arrow
+
+32.&darr; => ↓ down arrow
+
+Notes:
+------
+
+You can also use numeric forms, e.g., &#160; or &#xA0; for &nbsp;. -->
+
+View HTML Source Code:
+---------------------- 
+
+1. View HTML Source Code of Entire Page
+
+To view the source code of a webpage press ctrl + u on the page, or right-click on the page and select the "view page source" option.
+
+2. Inspect an HTML Element on a Page
+
+To check the HTML code for a specific element on a page, right-click on the page and select the "Inspect" option.
+This lets you see the HTML and CSS behind that element. You can also try making changes and see the changes.
+
+
+

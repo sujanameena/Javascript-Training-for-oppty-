@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Web Quiz</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: #f8fafc;
+        }
+
+        .glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .progress-bar {
+            transition: width 1s linear;
+        }
+
+        .option-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .option-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            background: rgba(59, 130, 246, 0.2);
+            border-color: #3b82f6;
+        }
+
+        .correct {
+            background: rgba(34, 197, 94, 0.2) !important;
+            border-color: #22c55e !important;
+            color: #4ade80;
+        }
+
+        .wrong {
+            background: rgba(239, 68, 68, 0.2) !important;
+            border-color: #ef4444 !important;
+            color: #f87171;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        .shake {
+            animation: shake 0.2s ease-in-out 0s 2;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <!-- Quiz Container -->
+    <div id="quiz-container" class="glass w-full max-w-xl rounded-2xl p-6 md:p-8 shadow-2xl relative overflow-hidden">
+        
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="text-center space-y-6">
+            <div class="inline-block p-4 bg-blue-500/10 rounded-full mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold">Web Developer Quiz</h1>
+            <p class="text-slate-400">Test your knowledge of HTML, CSS, and JS. You have 15 seconds per question!</p>
+            <button onclick="startQuiz()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-4 rounded-xl shadow-lg shadow-blue-500/20 transition-all active:scale-95">
+                Start Challenge
+            </button>
+        </div>
+
+        <!-- Question Screen -->
+        <div id="question-screen" class="hidden">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-6">
+                <div class="text-sm font-medium text-slate-400 uppercase tracking-wider">
+                    Question <span id="current-idx" class="text-blue-400">1</span>/<span id="total-idx">5</span>
+                </div>
+                <div class="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded-full border border-slate-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-orange-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                    </svg>
+                    <span id="timer-text" class="text-orange-400 font-bold tabular-nums">15s</span>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full h-1.5 bg-slate-800 rounded-full mb-8 overflow-hidden">
+                <div id="timer-bar" class="progress-bar h-full bg-blue-500" style="width: 100%"></div>
+            </div>
+
+            <h2 id="question-text" class="text-xl md:text-2xl font-semibold mb-8 leading-relaxed">Loading question...</h2>
+
+            <div id="options-container" class="grid grid-cols-1 gap-3">
+                <!-- Options injected here -->
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="result-screen" class="hidden text-center">
+            <div id="result-emoji" class="text-6xl mb-4">🏆</div>
+            <h2 class="text-3xl font-bold mb-2">Quiz Completed!</h2>
+            <p class="text-slate-400 mb-8">You've finished the challenge.</p>
+            
+            <div class="grid grid-cols-2 gap-4 mb-8">
+                <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700">
+                    <div class="text-sm text-slate-400 mb-1">Score</div>
+                    <div class="text-2xl font-bold text-blue-400"><span id="final-score">0</span>/<span id="result-total">0</span></div>
+                </div>
+                <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700">
+                    <div class="text-sm text-slate-400 mb-1">Accuracy</div>
+                    <div id="final-accuracy" class="text-2xl font-bold text-emerald-400">0%</div>
+                </div>
+            </div>
+
+            <button onclick="location.reload()" class="w-full bg-slate-700 hover:bg-slate-600 text-white font-semibold py-4 rounded-xl transition-all">
+                Try Again
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "Which HTML tag is used to define an internal style sheet?",
+                options: ["<css>", "<script>", "<style>", "<link>"],
+                correct: 2
+            },
+            {
+                question: "Inside which HTML element do we put the JavaScript?",
+                options: ["<scripting>", "<js>", "<javascript>", "<script>"],
+                correct: 3
+            },
+            {
+                question: "How do you write 'Hello World' in an alert box?",
+                options: ["msgBox('Hello World');", "alert('Hello World');", "msg('Hello World');", "alertBox('Hello World');"],
+                correct: 1
+            },
+            {
+                question: "Which property is used to change the background color?",
+                options: ["color", "bgcolor", "background-color", "canvas-color"],
+                correct: 2
+            },
+            {
+                question: "What does CSS stand for?",
+                options: ["Computer Style Sheets", "Cascading Style Sheets", "Creative Style System", "Colorful Style Sheets"],
+                correct: 1
+            }
+        ];
+
+        let currentIdx = 0;
+        let score = 0;
+        let timerSeconds = 15;
+        let timerInterval = null;
+        let canAnswer = true;
+
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const questionScreen = document.getElementById('question-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const timerText = document.getElementById('timer-text');
+        const timerBar = document.getElementById('timer-bar');
+        const currentIdxDisplay = document.getElementById('current-idx');
+        const totalIdxDisplay = document.getElementById('total-idx');
+
+        function startQuiz() {
+            welcomeScreen.classList.add('hidden');
+            questionScreen.classList.remove('hidden');
+            totalIdxDisplay.innerText = quizData.length;
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            canAnswer = true;
+            const data = quizData[currentIdx];
+            
+            currentIdxDisplay.innerText = currentIdx + 1;
+            questionText.innerText = data.question;
+            optionsContainer.innerHTML = '';
+            
+            data.options.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.className = "option-btn w-full text-left p-4 rounded-xl border border-slate-700 glass font-medium";
+                btn.innerText = opt;
+                btn.onclick = () => handleAnswer(i);
+                optionsContainer.appendChild(btn);
+            });
+
+            startTimer();
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerSeconds = 15;
+            updateTimerUI();
+            
+            timerInterval = setInterval(() => {
+                timerSeconds--;
+                updateTimerUI();
+                
+                if (timerSeconds <= 0) {
+                    clearInterval(timerInterval);
+                    handleAnswer(-1); // Time out
+                }
+            }, 1000);
+        }
+
+        function updateTimerUI() {
+            timerText.innerText = `${timerSeconds}s`;
+            const width = (timerSeconds / 15) * 100;
+            timerBar.style.width = `${width}%`;
+            
+            if (timerSeconds <= 5) {
+                timerBar.classList.remove('bg-blue-500');
+                timerBar.classList.add('bg-orange-500');
+            } else {
+                timerBar.classList.add('bg-blue-500');
+                timerBar.classList.remove('bg-orange-500');
+            }
+        }
+
+        function handleAnswer(selectedIndex) {
+            if (!canAnswer) return;
+            canAnswer = false;
+            clearInterval(timerInterval);
+
+            const data = quizData[currentIdx];
+            const buttons = optionsContainer.querySelectorAll('button');
+
+            if (selectedIndex === data.correct) {
+                score++;
+                buttons[selectedIndex].classList.add('correct');
+            } else {
+                if (selectedIndex !== -1) {
+                    buttons[selectedIndex].classList.add('wrong');
+                    document.getElementById('quiz-container').classList.add('shake');
+                    setTimeout(() => document.getElementById('quiz-container').classList.remove('shake'), 400);
+                }
+                // Show the correct answer
+                buttons[data.correct].classList.add('correct');
+            }
+
+            // Disable all buttons
+            buttons.forEach(btn => btn.disabled = true);
+
+            // Wait and go to next
+            setTimeout(() => {
+                currentIdx++;
+                if (currentIdx < quizData.length) {
+                    loadQuestion();
+                } else {
+                    showResults();
+                }
+            }, 1500);
+        }
+
+        function showResults() {
+            questionScreen.classList.add('hidden');
+            resultScreen.classList.remove('hidden');
+            
+            document.getElementById('final-score').innerText = score;
+            document.getElementById('result-total').innerText = quizData.length;
+            
+            const accuracy = Math.round((score / quizData.length) * 100);
+            document.getElementById('final-accuracy').innerText = `${accuracy}%`;
+
+            const emojiEl = document.getElementById('result-emoji');
+            if (accuracy >= 80) emojiEl.innerText = "🔥";
+            else if (accuracy >= 50) emojiEl.innerText = "👍";
+            else emojiEl.innerText = "😅";
+        }
+    </script>
+</body>
+</html>
