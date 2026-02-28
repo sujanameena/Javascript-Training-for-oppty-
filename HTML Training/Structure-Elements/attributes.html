@@ -7,32 +7,32 @@ functionality in a variety of ways.
 
 Example:
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <!-- charset attribute  -->
+     charset attribute  
     <title>HTML Attributes Example</title>
-    <!-- title attribute  -->
+     title attribute  
 </head>
 
 <body>
 
-    <!-- id, class, style, title  -->
+    id, class, style, title  
     <p id="intro" class="highlight" style="color: blue;" title="This is a tooltip">
         This is a paragraph with several attributes.
     </p>
 
-    <!-- href, target  -->
+     href, target  
     <a href="https://www.google.com" target="_blank">
         Visit Google
     </a>
 
-    <!-- src, alt, width, height -->
+     src, alt, width, height 
     <img src="assets/beach.jpg" alt="sun-rise" width="150" height="150">
 
-    <!-- type, name, placeholder, required  -->
+    type, name, placeholder, required 
     <form action="/submit" method="post">
         <input type="text" name="username" placeholder="Enter username" required>
         <button type="submit">Submit</button>
@@ -40,4 +40,257 @@ Example:
 
 </body>
 
+</html> -->
+
+Components of Attribute:
+-----------------------
+
+An HTML attribute consists of two primary components:
+
+1. attribute_name: This is the name of the attribute, which specifies what kind of additional information or property you are defining for the element. Common attribute names include href, src, class, id, etc.
+
+Common attribute names: id, class, style, href, src, alt, type, name, value, placeholder, required, etc.
+
+2. attribute_value: The value is assigned to the attribute to define the specific setting or behavior. It is always placed in quotes.
+
+Values are usually in quotes and can be text, numbers, URLs, colors, etc., depending on the attribute.
+
+Types of HTML Attributes:
+-------------------------
+
+1.Global attributes
+
+Can be used on (almost) any element.
+Examples: id, class, style, title, hidden, lang, data-*
+
+Example:
+
+ <!-- id, class, style, title -->
+    <h1 id="page-title" class="main-heading" style="color: darkblue;" title="This text appears as a tooltip on hover">
+        Global Attributes Example
+    </h1>
+
+    <!-- lang on an element -->
+    <p class="intro-text" lang="en">
+        This paragraph uses <code>class</code> and <code>lang</code> global attributes.
+    </p>
+
+    <!-- hidden -->
+    <p hidden>You cannot see this paragraph because it has the hidden attribute.</p>
+
+    <!-- data-* custom attributes -->
+    <button id="save-btn" data-user-id="123" data-theme="dark">Save</button>
+
+
+2.Element-specific attributes
+
+Only valid on certain tags.
+
+<a>: href, target, rel
+<img>: src, alt, width, height
+<form>: action, method
+<input>: type, name, placeholder, required
+
+Example:
+
+ <!-- <a> with href, target, rel -->
+    <a href="https://www.wikipedia.org" target="_blank" rel="noopener">
+        Open Wikipedia in a new tab
+    </a>
+
+    <hr>
+
+    <!-- <img> with src, alt, width, height -->
+    <img src="assets/beach.jpg"
+         alt="Sunrise at the beach"
+         width="300"
+         height="200">
+
+    <hr>
+
+    <!-- <form> and <input> with action, method, type, name, placeholder, required -->
+    <form action="/login" method="post">
+        <label>
+            Username:
+            <input type="text" name="username" placeholder="Enter username" required>
+        </label>
+        <br>
+        <label>
+            Password:
+            <input type="password" name="password" placeholder="Enter password" required>
+        </label>
+        <br>
+        <button type="submit">Login</button>
+    </form>
+
+3.Boolean attributes
+
+Present = true, absent = false (no value needed, but often written with one).
+Examples: disabled, checked, required, readonly, multiple, autofocus
+
+* If disabled, required, checked, autoplay, etc. are present, they are treated as true.
+* If they are not written at all, they are treated as false.
+
+   <!-- 1. Disabled button (cannot be clicked) -->
+<button disabled>Submit</button>
+
+<!-- 2. Required input (form won’t submit if empty) -->
+<form>
+  <input type="email" name="email" required>
+  <button>Send</button>
+</form>
+
+<!-- 3. Checkbox checked by default -->
+<label>
+  <input type="checkbox" checked> I agree to the terms
+</label>
+
+<!-- 4. Video that starts playing automatically -->
+<video controls autoplay muted>
+  <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+4.Event attributes
+Used to run JavaScript when something happens.
+Examples: onclick, onchange, onmouseover, onkeyup
+
+Example: 
+
+<h2>Event Attribute Demo</h2>
+
+<!-- 1. onclick: runs when button is clicked -->
+<button onclick="alert('Button clicked!')">
+    Click me (onclick)
+</button>
+
+<hr>
+
+<!-- 2. onchange: runs when selection changes -->
+<label>
+    Choose a city:
+    <select onchange="alert('You chose: ' + this.value)">
+        <option value="">--Select--</option>
+        <option value="Hyderabad">Hyderabad</option>
+        <option value="Bangalore">Bangalore</option>
+        <option value="Chennai">Chennai</option>
+    </select>
+</label>
+
+<hr>
+
+<!-- 3. onmouseover / onmouseout: runs when mouse enters/leaves -->
+<p onmouseover="this.style.color='red'"
+   onmouseout="this.style.color='black'">
+    Hover over this text (onmouseover / onmouseout)
+</p>
+
+<hr>
+
+<!-- 4. onkeyup: runs when a key is released -->
+<input type="text"
+       placeholder="Type something..."
+       onkeyup="document.getElementById('live-text').textContent = this.value">
+
+<p>Live text: <span id="live-text"></span></p>
+
+5.Data attributes
+Custom attributes for storing extra data.
+Example: data-user-id="123" on any element.
+
+Example: 
+
+<h2>Data Attribute Demo</h2>
+
+<!-- Example 1: Read data-* in an onclick event -->
+<button data-user-id="501" data-role="admin"
+        onclick="alert('User ID: ' + this.dataset.userId + ', Role: ' + this.dataset.role)">
+    Show User Info (data-*)
+</button>
+
+<hr>
+
+<!-- Example 2: Use data-* with JavaScript to fill text -->
+<div id="product" data-name="Laptop" data-price="55000">
+    <p>Product: <span id="product-name"></span></p>
+    <p>Price: <span id="product-price"></span></p>
+</div>
+
+<script>
+    const product = document.getElementById('product');
+    document.getElementById('product-name').textContent = product.dataset.name;
+    document.getElementById('product-price').textContent = product.dataset.price;
+</script>
+
+Common HTML Attributes
+-----------------------
+
+1. HTML alt Attribute
+
+<img src="assets/beach.jpg" alt="Sunrise at the beach" width="300" height="200">
+
+2. HTML width and height Attribute
+
+<img src="assets/beach.jpg"
+     alt="Sunrise at the beach"
+     width="500"
+     height="550">
+
+3. HTML id Attribute
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #main-heading {
+      color: darkblue;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="main-heading">This is a heading with an id</h1>
+</body>
 </html>
+
+4. HTML title Attribute
+
+ <p title="This is a tooltip text">
+  Hover over this paragraph to see the title attribute.
+</p>
+
+5. HTML href Attribute
+
+<a href="https://www.google.com">
+  Visit Google
+</a>
+
+6. HTML style Attribute
+
+<p style="color: green; font-size: 20px; background-color: lightyellow;">
+  This paragraph is styled using the HTML style attribute.
+</p>
+
+7. HTML lang attribute
+en=english language
+fr=french language
+es=spanish language
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Page with lang attribute</title>
+</head>
+<body>
+  <p>This page is marked as English using the lang attribute.</p>
+</body>
+</html>
+
+Important Points About HTML Attributes
+--------------------------------------- 
+1. Always Use Lowercase Attributes:
+2. Always Quote Attribute Values:
+3. Declare Quote as an Attribute Value:
+4. Boolean Attributes Should Be Written Without Values:
+5. Proper Attribute Order for Readability:
+6. Avoid Deprecated Attributes:
