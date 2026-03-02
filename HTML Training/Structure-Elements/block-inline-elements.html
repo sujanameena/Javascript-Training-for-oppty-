@@ -191,27 +191,245 @@ method="post" → how it’s sent.
   <li>Login</li>
 </ol> -->
 
-<pre>
-<section>
-<tfoot>
-<ul>
-<table>
+<pre>: The <pre> (preformatted) tag preserves spaces, tabs, and line breaks exactly as you type them. The text is shown in a monospace font.
+   
+    Use cases:
+
+* Showing code snippets
+* Displaying poems, logs, or any text where exact spacing and line breaks matter
+
+    Example:
+
+    <!-- <pre>
+Line 1
+  Line 2 (indented)
+    Line 3 (more indented)
+</pre> -->
+
+<section>:The <section> element groups thematically related content within a page.Each section should normally have its own heading.
+
+    Use case:
+Divide a long page into logical parts like “Introduction”, “Courses”, “Contact”, etc., for better structure, styling, and accessibility.
+
+    Example:
+
+     <!-- <main>
+  <section id="intro">
+    <h2>Introduction</h2>
+    <p>Welcome to OPPTY Training. This section introduces the website.</p>
+  </section>
+
+  <section id="courses">
+    <h2>Our Courses</h2>
+    <p>We offer HTML, CSS, and JavaScript training.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: info@oppty.com</p>
+  </section>
+</main> -->
+
+<tfoot>: <tfoot> defines the footer row(s) of a table, usually for totals, summaries, or notes. It’s grouped separately from <thead> and <tbody> and helps with accessibility and styling.
+
+    Use case: Show a total at the bottom of a price table.
+
+   Example:
+   
+   <!-- <center>
+    <h1>Oppty Training</h1>
+    <h2>tfoot Tag</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Laptop</td>
+          <td>$1000</td>
+        </tr>
+        <tr>
+          <td>Mouse</td>
+          <td>$50</td>
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <tr>
+          <td>Total</td>
+          <td>$1050</td>
+        </tr>
+      </tfoot>
+    </table>
+  </center> -->
+
+<ul>:The <ul> tag defines an unordered list (bulleted list). Each item inside it is a <li>.
+
+    Use cases:
+
+* Navigation menus
+* Feature lists
+* Steps where order is not important
+
+    Example:
+
+    <!-- <ul>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JavaScript</li>
+</ul> -->
+
+<table>:The <table> tag is used to display data in rows and columns (like in Excel).
+
+    Common use cases:
+
+* Price lists, invoices, bills
+* Timetables (class schedule, train schedule)
+* Comparison charts (features vs products)
+* Any tabular numeric/text data
+
+    Example:
+
+    <!-- <center>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Duration</th>
+      <th>Fee</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>HTML</td>
+      <td>1 Month</td>
+      <td>$100</td>
+    </tr>
+    <tr>
+      <td>JavaScript</td>
+      <td>2 Months</td>
+      <td>$200</td>
+    </tr>
+  </tbody>
+</table>
+</center> -->
 <p>
-<Video>
-<aside>
+<Video>:The <video> tag is used to embed video files directly in a web page with built‑in controls (play, pause, volume, etc.).
+
+    Use cases:
+
+* Product or course introduction videos
+* Tutorials and training content
+* Promotional clips or announcements directly on your site
+
+Example:
+
+<!-- <video width="320" height="240" controls>
+  <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+</video> -->
+
+<aside>:<aside> defines content that is related to the main content, but not the primary content. Often used for sidebars, tips, ads, related links, etc.
+    Use cases:
+
+Sidebar with extra info
+“Did you know?” / tips box
+Related links or ads next to an article
+
+Example:
+<!-- <article>
+  <h2>HTML Block Elements</h2>
+  <p>This article explains block-level elements in HTML.</p>
+
+  <aside>
+    <h3>Note</h3>
+    <p>Block elements usually start on a new line and take full width.</p>
+  </aside>
+</article> -->
+
 <article>
-<figcaption>
-<fieldset>
-<figure>
+
+    The <article> element represents a self‑contained, independent piece of content that could be reused or distributed on its own.
+
+Use cases:
+
+* Blog post
+* News article
+* Forum post
+* Product card
+* User comment
+
+Example:
+
+<!-- <article>
+  <h2>What is HTML?</h2>
+  <p>HTML stands for HyperText Markup Language. It is used to structure web pages.</p>
+  <p>Published on: <time datetime="2026-03-02">2 March 2026</time></p>
+</article> -->
+
+<figcaption>: <figcaption> is used to add a caption (title/description) for a <figure> (image, chart, code snippet, etc.).
+
+    Use case:
+When you show an image or diagram and want a short text explaining what it is.
+
+    Example:
+    <!-- <figure>
+  <img src="assets/beach.jpg" alt="Sunrise at the beach" width="300">
+  <figcaption>Figure 1: Sunrise at the beach during summer.</figcaption>
+</figure> -->
+
+<fieldset>: The <fieldset> tag groups related form controls, and <legend> gives that group a caption. It improves structure and accessibility of forms.
+
+Use case: Group “Personal Details”, “Login Info”, “Payment Details”, etc. inside a form.
+
+    Example:
+    <!-- <form>
+  <fieldset>
+    <legend>Personal Details</legend>
+
+    <p>
+      <label>
+        Name:
+        <input type="text" name="name">
+      </label>
+    </p>
+
+    <p>
+      <label>
+        Email:
+        <input type="email" name="email">
+      </label>
+    </p>
+  </fieldset>
+</form> -->
+
+<figure>: The <figure> tag groups self-contained content like an image, chart, code snippet, or diagram, often with a caption. It's useful when that content could stand alone or be referenced as “Figure 1”, etc.
+
+Use case: Show an image with a caption that explains it.
 
     
 
 Inline elements:
+<!-- <p>This is <strong>inline</strong> text with an <a href="https://bridge269.qodeinteractive.com/">inline link</a>.</p> -->
 
 List:
 
-<!-- <br>
-<button>
+<br>: 
+
+<button>:The <button> tag creates a clickable button, often used to submit forms or trigger JavaScript actions.
+
+    Use cases:
+
+* Submit a form (type="submit").
+* Reset a form (type="reset").
+* Run JavaScript on click (onclick="...").
+
+Example: 
+
+
 <time>
 <tt>
 <var>
@@ -242,11 +460,10 @@ List:
 <kbd>
 <label>
 <map>
-<Object> -->
+<Object>
 
 1.Do not start on a new line.
 2.Only take as much width as their content.
 3.Usually used inside block elements.
 4.Examples: span, a, img, strong, em, b, i, small.
 
-<!-- <p>This is <strong>inline</strong> text with an <a href="https://bridge269.qodeinteractive.com/">inline link</a>.</p> -->
