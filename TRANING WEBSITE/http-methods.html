@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Array Methods - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* --- HEADER STYLES --- */
+        .main-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;        
+            justify-content: space-between;
+        }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; font-size: 30px; align-items: center; text-align: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; transition: 0.3s; }
+        .signin:hover { color: #158e39; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .explore-btn:hover { background: #ee730f; }
+
+        /* --- TUTORIAL LAYOUT STYLES --- */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; }
+        .wrapper { display: flex; }
+        
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 70px); /* Adjust for sticky header */
+            position: sticky; 
+            top: 70px; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; 
+            flex-shrink: 0;
+        }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+        
+        .main { flex: 1; padding: 40px;  }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        .note { background-color: #ffffcc; border-left: 5px solid #ffeb3b; padding: 15px; margin: 20px 0; }
+
+        /* --- FOOTER STYLES --- */
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; font-family: Arial, sans-serif; clear: both; }
+        .footer-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: center; }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 150px; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; line-height: 1.6; }
+        .footer-box ul { list-style: none; padding: 0; }
+        .footer-box ul li { margin-bottom: 8px; font-size: 14px; cursor: pointer; }
+        .footer-box ul li:hover { color:#158e39; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; margin: 0 5px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: #158e39; color: #000; }
+        .social-icons .whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .header-container { flex-wrap: wrap; gap: 12px; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; gap: 20px; }
+            .nav-right { order: 2; }
+            .wrapper { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+        </div>
+        <nav class="nav-menu"> 
+            <a href="./structure.html">Html</a> 
+            <a href="./css/cssintro.html">Css</a>
+            <a href="./introduction.html">JavaScript</a>
+        </nav>
+        <div class="nav-right">
+            <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+        </div>
+    </div>
+</header>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <h2 style="padding:10px; font-size:18px;">JS Basics</h2>
+        <a href="introduction.html">Introduction to JS</a>
+        <a href="variables.html">Variables (var, let, const)</a>
+        <a href="data-types.html">Data Types</a>
+        <a href="operators.html">Operators</a>
+        <a href="conditionals.html">Conditionals (if, switch)</a>
+        <a href="loops.html">Loops (for, while, forEach)</a>
+        <a href="scope.html">Scope</a>
+
+        <h2 style="padding:10px; font-size:18px;">Functions & Logic</h2>
+        <a href="functions-basic.html">Standard Functions</a>
+        <a href="arrow-functions.html">Arrow Functions</a>
+        <a href="arrays-methods.html" style="background:#ccc;">Array Methods (map, filter, reduce)</a>
+        <a href="objects.html">Objects & JSON</a>
+
+        <h2 style="padding:10px; font-size:18px;">DOM Manipulation</h2>
+        <a href="jsselectors.html">Selectors (ID, querySelector)</a>
+        <a href="content-manipulation.html">innerText vs innerHTML</a>
+        <a href="classlist.html">classList Manipulation</a>
+        <a href="style-manipulation.html">Style Manipulation</a>
+        <a href="dynamic-elements.html">Creating Elements Dynamically</a>
+
+        <h2 style="padding:10px; font-size:18px;">Events</h2>
+        <a href="event-listeners.html">addEventListener</a>
+        <a href="mouse-keyboard.html">Mouse & Keyboard Events</a>
+        <a href="form-events.html">Form Events</a>
+        <a href="custom-events.html">Custom Events</a>
+
+        <h2 style="padding:10px; font-size:18px;">Timers & Async ⭐⭐</h2>
+        <a href="timers.html">setTimeout & setInterval</a>
+        <a href="callbacks.html">Callbacks</a>
+        <a href="promises.html">Promises</a>
+        <a href="async-await.html">Async / Await</a>
+        <h2 style="padding:10px; font-size:18px;">API & Networking</h2>
+    <a href="apibasics.html">Intro to REST APIs</a>
+<a href="fetch-api.html">Fetch API (GET/POST)</a>
+<a href="http-methods.html">HTTP Methods & Status Codes</a>
+<a href="json-methods.html">JSON (parse & stringify)</a>
+<a href="url-params.html">URL Params & Query Strings</a>
+<a href="error-handling.html">Handling Network Errors</a>
+<a href="cors.html">CORS & Security</a>
+
+        <h2 style="padding:10px; font-size:18px;">Browser & Storage ⭐</h2>
+        <a href="web-storage.html">Local & Session Storage</a>
+        <a href="cookies.html">Cookies</a>
+
+
+    </div>
+    <div class="main">
+    <h1>HTTP Methods & Status Codes</h1>
+    <p>Every time a browser talks to a server, it uses an <strong>HTTP Method</strong> to describe the action and receives an <strong>HTTP Status Code</strong> to describe the result. Understanding these is essential for debugging and building APIs.</p>
+
+    <h2>1. Understanding HTTP Methods</h2>
+    <p>HTTP methods (also called verbs) define the desired action to be performed on a specific resource. They tell the server whether you want to read, create, update, or delete data.</p>
+    
+    <table style="width:100%; border-collapse: collapse; margin-bottom: 25px; background: white;">
+        <thead>
+            <tr style="background-color: #158e39; color: white;">
+                <th style="padding: 12px; border: 1px solid #ddd;">Method</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Description</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Idempotent?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>GET</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Requests data from a specified resource. Should only retrieve data.</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Yes</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>POST</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Sends data to a server to create a new resource.</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">No</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>PUT</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Sends data to a server to update or replace an existing resource.</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Yes</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>PATCH</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Applies partial modifications to a resource.</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">No</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>DELETE</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Deletes the specified resource.</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Yes</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2. HTTP Status Codes Breakdown</h2>
+    <p>Status codes are 3-digit numbers returned by the server. They are grouped into five distinct classes to help developers identify the nature of the response at a glance:</p>
+
+    <table style="width:100%; border-collapse: collapse; margin-bottom: 25px; background: white;">
+        <thead>
+            <tr style="background-color: #333; color: white;">
+                <th style="padding: 12px; border: 1px solid #ddd;">Range</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Category</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Common Examples</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr style="background-color: #e8f5e9;">
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>1xx</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Informational</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">100 (Continue), 101 (Switching Protocols)</td>
+            </tr>
+            <tr style="background-color: #e8f5e9;">
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>2xx</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Success</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">200 (OK), 201 (Created)</td>
+            </tr>
+            <tr style="background-color: #e3f2fd;">
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>3xx</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Redirection</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">301 (Moved Permanently), 304 (Not Modified)</td>
+            </tr>
+            <tr style="background-color: #fffde7;">
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>4xx</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Client Error</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">400 (Bad Request), 401 (Unauthorized), 404 (Not Found)</td>
+            </tr>
+            <tr style="background-color: #ffebee;">
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>5xx</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Server Error</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">500 (Internal Server Error), 503 (Service Unavailable)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>3. Comprehensive Status Codes Reference (30+ Codes)</h2>
+    <p>Knowing these specific codes will help you debug your code much faster!</p>
+
+    <h3 style="color: #158e39;">2xx Success (Everything is Good)</h3>
+    <table style="width:100%; border-collapse: collapse; margin-bottom: 25px; background: white;">
+        <tr style="background-color: #e8f5e9;">
+            <th style="width: 15%; padding: 10px; border: 1px solid #ddd;">Code</th>
+            <th style="width: 30%; padding: 10px; border: 1px solid #ddd;">Status</th>
+            <th style="padding: 10px; border: 1px solid #ddd;">Meaning</th>
+        </tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">200</td><td style="padding: 8px; border: 1px solid #ddd;">OK</td><td>Success for GET/PUT requests.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">201</td><td style="padding: 8px; border: 1px solid #ddd;">Created</td><td>Success for POST (new resource created).</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">202</td><td style="padding: 8px; border: 1px solid #ddd;">Accepted</td><td>Request accepted but processing is not complete.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">204</td><td style="padding: 8px; border: 1px solid #ddd;">No Content</td><td>Success, but no data returned (common for DELETE).</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">206</td><td style="padding: 8px; border: 1px solid #ddd;">Partial Content</td><td>Used for range requests (e.g., streaming video).</td></tr>
+    </table>
+
+    <h3 style="color: #007bff;">3xx Redirection (The resource moved)</h3>
+    <table style="width:100%; border-collapse: collapse; margin-bottom: 25px; background: white;">
+        <tr style="background-color: #e3f2fd;">
+            <th style="width: 15%; padding: 10px; border: 1px solid #ddd;">Code</th>
+            <th style="width: 30%; padding: 10px; border: 1px solid #ddd;">Status</th>
+            <th style="padding: 10px; border: 1px solid #ddd;">Meaning</th>
+        </tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">301</td><td style="padding: 8px; border: 1px solid #ddd;">Moved Permanently</td><td>Resource is now at a new URL forever.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">302</td><td style="padding: 8px; border: 1px solid #ddd;">Found</td><td>Temporary redirect to a different URL.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">304</td><td style="padding: 8px; border: 1px solid #ddd;">Not Modified</td><td>Cached version is still valid; no need to re-download.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">307</td><td style="padding: 8px; border: 1px solid #ddd;">Temporary Redirect</td><td>Redirection while maintaining the same HTTP method.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">308</td><td style="padding: 8px; border: 1px solid #ddd;">Permanent Redirect</td><td>Permanent move while maintaining the same HTTP method.</td></tr>
+    </table>
+
+    <h3 style="color: #ee730f;">4xx Client Errors (Check your request)</h3>
+    <table style="width:100%; border-collapse: collapse; margin-bottom: 25px; background: white;">
+        <tr style="background-color: #fffde7;">
+            <th style="width: 15%; padding: 10px; border: 1px solid #ddd;">Code</th>
+            <th style="width: 30%; padding: 10px; border: 1px solid #ddd;">Status</th>
+            <th style="padding: 10px; border: 1px solid #ddd;">Meaning</th>
+        </tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">400</td><td style="padding: 8px; border: 1px solid #ddd;">Bad Request</td><td>Server cannot understand the request (Syntax error).</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">401</td><td style="padding: 8px; border: 1px solid #ddd;">Unauthorized</td><td>Authentication is missing or invalid (Login failed).</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">403</td><td style="padding: 8px; border: 1px solid #ddd;">Forbidden</td><td>Authenticated but not allowed to access this resource.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">404</td><td style="padding: 8px; border: 1px solid #ddd;">Not Found</td><td>The requested URL does not exist.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">405</td><td style="padding: 8px; border: 1px solid #ddd;">Method Not Allowed</td><td>Using GET on a URL that only supports POST.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">408</td><td style="padding: 8px; border: 1px solid #ddd;">Request Timeout</td><td>Client took too long to send the request.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">409</td><td style="padding: 8px; border: 1px solid #ddd;">Conflict</td><td>Resource conflict (e.g., trying to use an existing email).</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">410</td><td style="padding: 8px; border: 1px solid #ddd;">Gone</td><td>The resource is deleted and no longer has a redirect.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">413</td><td style="padding: 8px; border: 1px solid #ddd;">Payload Too Large</td><td>The request data (or file) is too large for the server.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">415</td><td style="padding: 8px; border: 1px solid #ddd;">Unsupported Media</td><td>Sending the wrong format (e.g., XML instead of JSON).</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">422</td><td style="padding: 8px; border: 1px solid #ddd;">Unprocessable Entity</td><td>Semantic errors (Valid JSON, but wrong field values).</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">429</td><td style="padding: 8px; border: 1px solid #ddd;">Too Many Requests</td><td>Rate limiting (Requesting too fast).</td></tr>
+    </table>
+
+    <h3 style="color: #d1105a;">5xx Server Errors (The server is struggling)</h3>
+    <table style="width:100%; border-collapse: collapse; margin-bottom: 25px; background: white;">
+        <tr style="background-color: #ffebee;">
+            <th style="width: 15%; padding: 10px; border: 1px solid #ddd;">Code</th>
+            <th style="width: 30%; padding: 10px; border: 1px solid #ddd;">Status</th>
+            <th style="padding: 10px; border: 1px solid #ddd;">Meaning</th>
+        </tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">500</td><td style="padding: 8px; border: 1px solid #ddd;">Internal Server Error</td><td>The server crashed or encountered an unknown error.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">501</td><td style="padding: 8px; border: 1px solid #ddd;">Not Implemented</td><td>Server doesn't recognize the request method.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">502</td><td style="padding: 8px; border: 1px solid #ddd;">Bad Gateway</td><td>Invalid response from the upstream server.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">503</td><td style="padding: 8px; border: 1px solid #ddd;">Service Unavailable</td><td>Down for maintenance or overloaded.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">504</td><td style="padding: 8px; border: 1px solid #ddd;">Gateway Timeout</td><td>The upstream server took too long to respond.</td></tr>
+        <tr><td style="padding: 8px; border: 1px solid #ddd;">505</td><td style="padding: 8px; border: 1px solid #ddd;">HTTP Version Not Supported</td><td>Server does not support the HTTP protocol version.</td></tr>
+    </table>
+
+    <h2>4. Runnable Example: Checking Status Codes</h2>
+    <p>Use this code to see how JavaScript captures the status code from an API response.</p>
+    <div class="example-container">
+        <div class="code-box" id="status_code_ex">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;button onclick="checkStatus()"&gt;Check API Status&lt;/button&gt;
+  &lt;p id="result"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    async function checkStatus() {
+      // Calling a post that exists (Status 200 expected)
+      const response = await fetch('https://jsonplaceholder.typicode.com/posts/1');
+      
+      // Accessing the status property
+      const code = response.status; 
+      const ok = response.ok; // true if status is 200-299
+      
+      document.getElementById("result").innerHTML = 
+      `Status Code: ${code} <br> Was successful? ${ok}`;
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('status_code_ex')">Try it Yourself</button>
+    </div>
+
+    <h2>5. Detailed Methods Table</h2>
+    <table style="width:100%; border-collapse: collapse; margin-bottom: 25px; background: white;">
+        <thead>
+            <tr style="background-color: #158e39; color: white;">
+                <th style="padding: 12px; border: 1px solid #ddd;">Method</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Usage</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Request Body?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">GET</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Retrieving a list of users or data.</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">No</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">POST</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Submitting a signup form or new data.</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Yes</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">PUT</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Replacing user profile data entirely.</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Yes</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">DELETE</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Removing a specific comment or file.</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">No</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="note">
+        <strong>Oppty Academy Tip:</strong> <b>Idempotency</b> means that making the same request multiple times will have the same result. For example, deleting a post once is the same as deleting it ten times—it stays deleted. This is why <code>DELETE</code> is idempotent, but <code>POST</code> is not (as it creates a new item every time).
+    </div>
+     <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+      const quizData = [
+    {
+        q: "Which status code category represents a 'Client Error'?",
+        options: ["2xx", "3xx", "4xx", "5xx"],
+        correct: 2,
+        explanations: ["Incorrect: 2xx is for Success.", "Incorrect: 3xx is for Redirection.", "<b>Correct!</b> 4xx codes (like 404) mean the client sent a request that the server cannot process.", "Incorrect: 5xx is for Server Errors."]
+    },
+    {
+        q: "What does the 404 status code specifically mean?",
+        options: ["Unauthorized", "Not Found", "Internal Server Error", "Bad Request"],
+        correct: 1,
+        explanations: ["Incorrect: That is 401.", "<b>Correct!</b> 404 means the requested resource does not exist on the server.", "Incorrect: That is 500.", "Incorrect: That is 400."]
+    },
+    {
+        q: "Which HTTP method is considered NOT idempotent?",
+        options: ["GET", "POST", "PUT", "DELETE"],
+        correct: 1,
+        explanations: ["Incorrect: GET is idempotent.", "<b>Correct!</b> POST is not idempotent because repeating the request usually creates multiple new resources.", "Incorrect: PUT is idempotent.", "Incorrect: DELETE is idempotent."]
+    },
+    {
+        q: "What status code is typically returned when a POST request successfully creates a new resource?",
+        options: ["200", "201", "204", "404"],
+        correct: 1,
+        explanations: ["Incorrect: 200 is a general 'OK'.", "<b>Correct!</b> 201 Created is the specific success code for new resources.", "Incorrect: 204 means 'No Content'.", "Incorrect: 404 is an error."]
+    },
+    {
+        q: "Which property of the Fetch response object is a boolean that returns true for status codes 200-299?",
+        options: ["response.status", "response.success", "response.ok", "response.done"],
+        correct: 2,
+        explanations: ["Incorrect: .status returns the number.", "Incorrect: .success is not a fetch property.", "<b>Correct!</b> response.ok is a shorthand way to check for any 2xx success code.", "Incorrect: .done is not a fetch property."]
+    },
+    {
+        q: "A 500 status code indicates a problem with:",
+        options: ["The User's Internet", "The API Endpoint URL", "The Server's internal logic", "The Browser's cache"],
+        correct: 2,
+        explanations: ["Incorrect.", "Incorrect: That would usually be a 404.", "<b>Correct!</b> 500 Internal Server Error means something went wrong on the server side.", "Incorrect."]
+    },
+    {
+        q: "Which method is best suited for updating only a specific part of a resource, such as changing a password?",
+        options: ["GET", "POST", "PUT", "PATCH"],
+        correct: 3,
+        explanations: ["Incorrect.", "Incorrect.", "Incorrect: PUT usually replaces the whole resource.", "<b>Correct!</b> PATCH is used for partial updates."]
+    }
+];
+
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+</div>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-box">
+            <img src="./images/LOGO.jpeg" alt=Oppty Logo>
+            <p>Learn Web Development with practical courses in HTML, CSS & JavaScript. Beginner-friendly training with real-time projects.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/919999999999" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h3>Courses</h3>
+            <ul>
+                <li>HTML for Beginners</li>
+                <li>CSS & Responsive Design</li>
+                <li>JavaScript Basics</li>
+                <li>Mini Projects</li>
+            </ul>
+        </div>
+        <div class="footer-box">
+            <h3>Contact Us</h3>
+            <p>Email: support@opptyacademy.com</p>
+            <p>Phone: +91 99999 99999</p>
+            <p>WhatsApp Support Available</p>
+        </div>
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li>About Us</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2026 Oppty Academy. All Rights Reserved.
+    </div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Conditionals - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* --- ORIGINAL TUTORIAL STYLES --- */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; }
+        
+        .page-wrapper { display: flex; flex-direction: row; }
+
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 70px); /* Adjust height to account for header */
+            position: sticky; 
+            top: 70px; /* Aligns below the sticky header */
+            border-right: 1px solid #ddd; 
+            overflow-y: auto;
+        }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+        
+        .main { flex: 1; padding: 40px; }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        .note { background-color: #ffffcc; border-left: 5px solid #ffeb3b; padding: 15px; margin: 20px 0; }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 16px; }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 12px; text-align: left; }
+        th { background-color: #04AA6D; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+
+        /* --- HEADER & FOOTER CSS (PROVIDED) --- */
+        .main-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;        
+            justify-content: space-between;
+        }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; transition: 0.3s; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .explore-btn:hover { background: #ee730f; }
+
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; font-family: Arial, sans-serif; }
+        .footer-container {
+            max-width: 1200px;
+            margin: auto;                  
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;             
+        }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 140px; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; line-height: 1.6; }
+        .footer-box ul { list-style: none; padding: 0; }
+        .footer-box ul li { margin-bottom: 8px; font-size: 14px; cursor: pointer; }
+        .footer-box ul li:hover { color: #158e39; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; margin: 0 5px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: #158e39; color: #000; }
+        .social-icons .whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .page-wrapper { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+            .header-container { flex-wrap: wrap; gap: 12px; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; gap: 20px; }
+        }
+        /* --- Sidebar Scrollbar Styling --- */
+.sidebar {
+    /* Ensures the sidebar takes up the full remaining height and scrolls internally */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar for a cleaner look (Chrome, Safari, and Edge) */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #158e39; /* Changes to your brand green on hover */
+}
+
+/* For Firefox */
+.sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f1f1f1;
+}
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo">
+      <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+        </div>
+        <nav class="nav-menu"> 
+            <a href="./structure.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+        <a href="./introduction.html">JavaScript</a>
+        </nav>
+        <div class="nav-right">
+            <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+        </div>
+    </div>
+</header>
+
+<div class="page-wrapper">
+     <aside class="sidebar">
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">JS Basics</h2>
+            <a href="introduction.html">Introduction to JS</a>
+            <a href="variables.html">Variables (var, let, const)</a>
+            <a href="data-types.html">Data Types</a>
+            <a href="operators.html">Operators</a>
+            <a href="conditionals.html">Conditionals (if, switch)</a>
+            <a href="loops.html">Loops (for, while, forEach)</a>
+            <a href="scope.html">Scope</a>
+
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">Functions & Logic</h2>
+            <a href="functions-basic.html">Standard Functions</a>
+            <a href="arrow-functions.html">Arrow Functions</a>
+            <a href="arrays-methods.html">Array Methods (map, filter, reduce)</a>
+            <a href="objects.html">Objects & JSON</a>
+
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">DOM Manipulation</h2>
+            <a href="jsselectors.html">Selectors (ID, querySelector)</a>
+            <a href="content-manipulation.html">innerText vs innerHTML</a>
+            <a href="classlist.html" style="background:#ccc;">classList Manipulation</a>
+            <a href="style-manipulation.html">Style Manipulation</a>
+            <a href="dynamic-elements.html">Creating Elements Dynamically</a>
+
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">Events</h2>
+            <a href="event-listeners.html">addEventListener</a>
+            <a href="mouse-keyboard.html">Mouse & Keyboard Events</a>
+            <a href="form-events.html">Form Events</a>
+            <a href="custom-events.html">Custom Events</a>
+
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">Timers & Async ⭐⭐</h2>
+            <a href="timers.html">setTimeout & setInterval</a>
+            <a href="callbacks.html">Callbacks</a>
+            <a href="promises.html">Promises</a>
+            <a href="async-await.html">Async / Await</a>
+            <h2 style="padding:10px; font-size:18px;">API & Networking</h2>
+<a href="apibasics.html">Intro to REST APIs</a>
+<a href="fetch-api.html">Fetch API (GET/POST)</a>
+<a href="http-methods.html">HTTP Methods & Status Codes</a>
+<a href="json-methods.html">JSON (parse & stringify)</a>
+<a href="url-params.html">URL Params & Query Strings</a>
+<a href="error-handling.html">Handling Network Errors</a>
+<a href="cors.html">CORS & Security</a>
+
+
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">Browser & Storage ⭐</h2>
+            <a href="web-storage.html">Local & Session Storage</a>
+            <a href="cookies.html">Cookies</a>
+        </aside>
+
+    
+
+    <div class="main">
+        <h1>JavaScript Conditional Statements</h1>
+        <p>Conditional statements are used to perform different actions based on different conditions. In JavaScript, we use these to control the flow of the program.</p>
+        
+        
+
+        <h2>Summary of Conditional Statements</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Statement</th>
+                    <th>Description</th>
+                    <th>Purpose</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>if</code></td>
+                    <td>Executes code if a specified condition is true.</td>
+                    <td>Simple binary check.</td>
+                </tr>
+                <tr>
+                    <td><code>else</code></td>
+                    <td>Executes code if the same condition is false.</td>
+                    <td>Fallback option.</td>
+                </tr>
+                <tr>
+                    <td><code>else if</code></td>
+                    <td>Specifies a new condition to test if the first condition is false.</td>
+                    <td>Multiple alternative checks.</td>
+                </tr>
+                <tr>
+                    <td><code>switch</code></td>
+                    <td>Selects one of many code blocks to be executed.</td>
+                    <td>Efficiently handles multiple specific values.</td>
+                </tr>
+                <tr>
+                    <td><code>Ternary (? :)</code></td>
+                    <td>Shorthand for an <code>if...else</code> statement.</td>
+                    <td>Inline assignments.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2>1. The <code>if</code> Statement</h2>
+        <p>Use the <code>if</code> statement to specify a block of JavaScript code to be executed if a condition is true.</p>
+        <div class="example-container">
+            <div class="code-box" id="condEx1">&lt;script&gt;
+  let hour = 10;
+  if (hour < 12) {
+    document.write("Good Morning!");
+  }
+&lt;/script&gt;</div>
+            <button class="try-btn" onclick="openEditor('condEx1')">Try it Yourself</button>
+        </div>
+
+        <h2>2. The <code>if...else</code> Statement</h2>
+        <p>Use the <code>else</code> statement to specify a block of code to be executed if the condition is false.</p>
+        <div class="example-container">
+            <div class="code-box" id="condEx2">&lt;script&gt;
+  let age = 15;
+  if (age >= 18) {
+    document.write("You are eligible to vote.");
+  } else {
+    document.write("You are too young to vote.");
+  }
+&lt;/script&gt;</div>
+            <button class="try-btn" onclick="openEditor('condEx2')">Try it Yourself</button>
+        </div>
+
+        <h2>3. The <code>else if</code> Statement</h2>
+        <p>Use <code>else if</code> to specify a new condition if the first condition is false.</p>
+        <div class="example-container">
+            <div class="code-box" id="condEx3">&lt;script&gt;
+  let time = 20;
+  if (time < 10) {
+    document.write("Good morning");
+  } else if (time < 20) {
+    document.write("Good day");
+  } else {
+    document.write("Good evening");
+  }
+&lt;/script&gt;</div>
+            <button class="try-btn" onclick="openEditor('condEx3')">Try it Yourself</button>
+        </div>
+
+        <h2>4. The <code>switch</code> Statement</h2>
+        <p>The <code>switch</code> statement is used to perform different actions based on different conditions, often replacing multiple <code>else if</code> blocks for readability.</p>
+        <div class="example-container">
+            <div class="code-box" id="condEx4">&lt;script&gt;
+  let day;
+  switch (new Date().getDay()) {
+    case 0: day = "Sunday"; break;
+    case 1: day = "Monday"; break;
+    case 6: day = "Saturday"; break;
+    default: day = "Weekday";
+  }
+  document.write("Today is " + day);
+&lt;/script&gt;</div>
+            <button class="try-btn" onclick="openEditor('condEx4')">Try it Yourself</button>
+        </div>
+
+        <h2>5. Nested <code>if</code> Statements</h2>
+        <p>You can use an <code>if</code> statement inside another <code>if</code> statement to check more specific conditions.</p>
+        <div class="example-container">
+            <div class="code-box" id="condEx5">&lt;script&gt;
+  let num = 10;
+  if (num > 0) {
+    if (num % 2 == 0) {
+      document.write("Positive even number.");
+    }
+  }
+&lt;/script&gt;</div>
+            <button class="try-btn" onclick="openEditor('condEx5')">Try it Yourself</button>
+        </div>
+
+        <h2>6. Ternary Operator Logic</h2>
+        <p>The conditional (ternary) operator assigns a value to a variable based on a condition.</p>
+        <div class="example-container">
+            <div class="code-box" id="condEx6">&lt;script&gt;
+  let authenticated = true;
+  let status = authenticated ? "Welcome back!" : "Please log in.";
+  document.write(status);
+&lt;/script&gt;</div>
+            <button class="try-btn" onclick="openEditor('condEx6')">Try it Yourself</button>
+        </div>
+
+        <div class="note">
+            <strong> Pro Tip:</strong> Use the <code>switch</code> statement when you have many fixed values to compare against a single variable. It makes the code much cleaner than long <code>else if</code> chains.
+        </div>
+        <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+        const quizData = [
+    {
+        q: "Which statement is used to execute a block of code only if a specified condition is true?",
+        options: ["else", "if", "switch", "for"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> 'else' executes when a condition is false, not true.",
+            "<b>Correct!</b> The 'if' statement is the fundamental way to run code based on a true condition.",
+            "<b>Incorrect:</b> 'switch' is for multiple fixed values, though it does check conditions.",
+            "<b>Incorrect:</b> 'for' is a loop, not a conditional statement."
+        ]
+    },
+    {
+        q: "In an 'if...else' structure, when does the 'else' block run?",
+        options: ["When the condition is true", "When the condition is false", "Every time the page loads", "Only if there is an error"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> That's what the 'if' block is for.",
+            "<b>Correct!</b> The 'else' block serves as the fallback for when the 'if' condition fails.",
+            "<b>Incorrect:</b> It only runs if the logic dictates the condition is false.",
+            "<b>Incorrect:</b> 'else' is for logic flow, not error handling."
+        ]
+    },
+    {
+        q: "Which statement allows you to check a second condition if the first one was false?",
+        options: ["else if", "then if", "another if", "if else"],
+        correct: 0,
+        explanations: [
+            "<b>Correct!</b> 'else if' allows you to chain multiple specific conditions together.",
+            "<b>Incorrect:</b> 'then if' is not valid JavaScript syntax.",
+            "<b>Incorrect:</b> While you can nest 'if' statements, 'else if' is the standard for alternative checks.",
+            "<b>Incorrect:</b> 'if else' is not a single statement; it's usually 'else if'."
+        ]
+    },
+    {
+        q: "When is it recommended to use a 'switch' statement instead of multiple 'else if' blocks?",
+        options: ["When checking ranges (e.g., age > 18)", "When you only have one condition", "When comparing a single variable against many fixed values", "When you want the code to run faster"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> 'switch' is poor at handling ranges; 'if' is better for that.",
+            "<b>Incorrect:</b> A simple 'if' is better for a single condition.",
+            "<b>Correct!</b> 'switch' is much cleaner and more readable when comparing one variable to many specific cases.",
+            "<b>Incorrect:</b> Modern engines optimize both; readability is the main reason to choose 'switch'."
+        ]
+    },
+    {
+        q: "What does the 'default' keyword do in a switch statement?",
+        options: ["It stops the switch from running", "It runs if no other case matches", "It skips the next case", "It is required at the start"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> 'break' is what stops the switch.",
+            "<b>Correct!</b> 'default' acts like the 'else' in an if-statement—it's the catch-all option.",
+            "<b>Incorrect:</b> It doesn't skip cases; it is a case itself.",
+            "<b>Incorrect:</b> It is optional and usually placed at the end."
+        ]
+    },
+    {
+        q: "What is the result of this ternary operation: 'let status = (5 > 10) ? \"Yes\" : \"No\";'?",
+        options: ["Yes", "No", "undefined", "true"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> 5 is not greater than 10, so the first option is skipped.",
+            "<b>Correct!</b> Since (5 > 10) is false, the value after the colon (\":\") is assigned.",
+            "<b>Incorrect:</b> Ternary operators will return one of the two specified values.",
+            "<b>Incorrect:</b> It returns the string \"No\", not the boolean 'true'."
+        ]
+    },
+    {
+        q: "What is a 'Nested if' statement?",
+        options: ["An if statement placed inside another if statement", "An if statement that has no else", "An if statement that repeats", "A way to combine HTML and JS"],
+        correct: 0,
+        explanations: [
+            "<b>Correct!</b> Nesting allows you to check a secondary condition only if the first one is already true.",
+            "<b>Incorrect:</b> That is just a simple if statement.",
+            "<b>Incorrect:</b> Repeating logic is handled by loops.",
+            "<b>Incorrect:</b> Nesting refers to the structural placement of logic within JavaScript."
+        ]
+    }
+];
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-box">
+            <img src="./images/LOGO.jpeg" alt="Oppty Logo">
+            <p>Learn Web Development with practical courses in HTML, CSS & JavaScript. Beginner-friendly training with real-time projects.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/919999999999" target="_blank" class="whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-box">
+            <h3>Courses</h3>
+            <ul>
+                <li>HTML for Beginners</li>
+                <li>CSS & Responsive Design</li>
+                <li>JavaScript Basics</li>
+                <li>Mini Projects</li>
+            </ul>
+        </div>
+
+        <div class="footer-box">
+            <h3>Contact Us</h3>
+            <p>Email: support@opptyacademy.com</p>
+            <p>Phone: +91 99999 99999</p>
+            <p>WhatsApp Support Available</p>
+        </div>
+
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li>About Us</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2026 Oppty Academy. All Rights Reserved.
+    </div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

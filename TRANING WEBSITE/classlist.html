@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>classList Manipulation - Tutorial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh;
+        }
+
+        /* --- Header CSS --- */
+        .main-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;        
+            justify-content: space-between;
+        }
+        .logo img {
+            width: 150px;
+            display: block;
+        }
+        .nav-menu {
+            display: flex;
+            font-size: 30px;
+            align-items: center;
+            text-align: center;        
+            gap: 30px;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            color: #000;
+            position: relative;
+            transition: 0.3s;
+        }
+        .nav-menu a:hover {
+            color: #158e39;
+        }
+        .nav-menu a::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            left: 0;
+            bottom: -6px;
+            background: #158e39;
+            transition: 0.3s;
+        }
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;        
+            gap: 18px;
+        }
+        .signin {
+            text-decoration: none;
+            font-size: 15px;
+            color: #000;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .signin:hover {
+            color: #158e39;
+        }
+        .explore-btn {
+            background: #158e39;
+            border-bottom: none;
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .explore-btn:hover {
+            background: #ee730f;
+        }
+        @media (max-width: 768px) {
+            .header-container { flex-wrap: wrap; gap: 12px; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; gap: 20px; }
+            .nav-right { order: 2; }
+        }
+
+        /* --- Content Layout Wrapper --- */
+        .content-wrapper {
+            display: flex;
+            flex: 1;
+        }
+
+        /* --- Sidebar CSS --- */
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 65px); 
+            position: sticky; 
+            top: 65px; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; 
+        }
+        .sidebar::-webkit-scrollbar { width: 8px; }
+        .sidebar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+        .sidebar::-webkit-scrollbar-thumb:hover { background: #aaa; }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+        
+        /* --- Main Content CSS --- */
+        .main { flex: 1; padding: 40px; max-width: 900px; }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        .note { background-color: #ffffcc; border-left: 5px solid #ffeb3b; padding: 15px; margin: 20px 0; }
+
+        /* --- Footer CSS --- */
+        .footer {
+            background: #0f0f0f;
+            color: #ccc;
+            padding: 50px 20px 20px;
+            font-family: Arial, sans-serif;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: auto;                 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;              
+        }
+        .footer-logo {
+            width: 160px;
+            margin: 0 auto 15px;            
+            display: block;
+        }
+        .footer-box img {
+            background: #ffffff;
+            padding: 4px;
+            border-radius: 6px
+        }
+        .footer-box h3 {
+            color: #158e39;
+            margin-bottom: 15px;
+        }
+        .footer-box p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .footer-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-box ul li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .footer-box ul li:hover {
+            color:#158e39;
+        }
+        .social-icons {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;      
+        }
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 38px;
+            height: 38px;
+            background: #222;
+            color: #fff;
+            border-radius: 50%;
+            margin: 0 5px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            background: #158e39;
+            color: #000;
+        }
+        .social-icons .whatsapp {
+            background: #25D366;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            border-top: 1px solid #333;
+            padding-top: 15px;
+            font-size: 13px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">
+      <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+            </div>
+            <nav class="nav-menu"> 
+                <a href="./structure.html">Html</a> 
+                <a href="./css/cssintro.html">Css</a>
+                <a href="./introduction.html">JavaScript</a>
+            </nav>
+            <div class="nav-right">
+                    <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+        
+        <aside class="sidebar">
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">JS Basics</h2>
+            <a href="introduction.html">Introduction to JS</a>
+            <a href="variables.html">Variables (var, let, const)</a>
+            <a href="data-types.html">Data Types</a>
+            <a href="operators.html">Operators</a>
+            <a href="conditionals.html">Conditionals (if, switch)</a>
+            <a href="loops.html">Loops (for, while, forEach)</a>
+            <a href="scope.html">Scope</a>
+
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">Functions & Logic</h2>
+            <a href="functions-basic.html">Standard Functions</a>
+            <a href="arrow-functions.html">Arrow Functions</a>
+            <a href="arrays-methods.html">Array Methods (map, filter, reduce)</a>
+            <a href="objects.html">Objects & JSON</a>
+
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">DOM Manipulation</h2>
+            <a href="jsselectors.html">Selectors (ID, querySelector)</a>
+            <a href="content-manipulation.html">innerText vs innerHTML</a>
+            <a href="classlist.html" style="background:#ccc;">classList Manipulation</a>
+            <a href="style-manipulation.html">Style Manipulation</a>
+            <a href="dynamic-elements.html">Creating Elements Dynamically</a>
+
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">Events</h2>
+            <a href="event-listeners.html">addEventListener</a>
+            <a href="mouse-keyboard.html">Mouse & Keyboard Events</a>
+            <a href="form-events.html">Form Events</a>
+            <a href="custom-events.html">Custom Events</a>
+
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">Timers & Async ⭐⭐</h2>
+            <a href="timers.html">setTimeout & setInterval</a>
+            <a href="callbacks.html">Callbacks</a>
+            <a href="promises.html">Promises</a>
+            <a href="async-await.html">Async / Await</a>
+            <h2 style="padding:10px; font-size:18px;">API & Networking</h2>
+<a href="apibasics.html">Intro to REST APIs</a>
+<a href="fetch-api.html">Fetch API (GET/POST)</a>
+<a href="http-methods.html">HTTP Methods & Status Codes</a>
+<a href="json-methods.html">JSON (parse & stringify)</a>
+<a href="url-params.html">URL Params & Query Strings</a>
+<a href="error-handling.html">Handling Network Errors</a>
+<a href="cors.html">CORS & Security</a>
+
+
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">Browser & Storage ⭐</h2>
+            <a href="web-storage.html">Local & Session Storage</a>
+            <a href="cookies.html">Cookies</a>
+        </aside>
+
+        <main class="main">
+            <h1 style="color: black;">JavaScript classList Manipulation</h1>
+            <p>You can add, remove, or toggle classes on an element using JavaScript's <code>classList</code> property. This is highly helpful for applying styles or applying CSS animations dynamically without manipulating raw strings.</p>
+
+            <h2 style="color: #5c64f2;">1. Adding a Class (classList.add)</h2>
+            <p>The <code>classList.add()</code> method adds one or more classes to an element. If the specified class already exists, it simply ignores it.</p>
+            
+            <div class="example-container">
+                <div class="code-box" id="cls1">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .highlight { color: red; font-weight: bold; background: yellow; padding: 5px; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h3&gt;Add a CSS Class&lt;/h3&gt;
+&lt;div id="example1"&gt;This is a normal text element.&lt;/div&gt;
+
+&lt;br&gt;
+&lt;button onclick="addClass()"&gt;Add 'highlight' Class&lt;/button&gt;
+
+&lt;script&gt;
+function addClass() {
+  document.getElementById("example1").classList.add("highlight");
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+                <button class="try-btn" onclick="openEditor('cls1')">Try it Yourself</button>
+            </div>
+
+            <h2 style="color: #5c64f2;">2. Removing a Class (classList.remove)</h2>
+            <p>The <code>classList.remove()</code> method removes one or more classes from an element. If the class doesn't exist, it won't throw an error.</p>
+            
+            <div class="example-container">
+                <div class="code-box" id="cls2">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .bold-text { font-weight: bold; font-size: 20px; color: blue; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h3&gt;Remove a CSS Class&lt;/h3&gt;
+&lt;div id="example2" class="bold-text"&gt;This text has the "bold-text" class applied.&lt;/div&gt;
+
+&lt;br&gt;
+&lt;button onclick="removeClass()"&gt;Remove Class&lt;/button&gt;
+
+&lt;script&gt;
+function removeClass() {
+  document.getElementById("example2").classList.remove("bold-text");
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+                <button class="try-btn" onclick="openEditor('cls2')">Try it Yourself</button>
+            </div>
+
+            <h2 style="color: #5c64f2;">3. Toggling a Class (classList.toggle)</h2>
+            <p>The <code>classList.toggle()</code> method toggles a class on an element. If the class is not present, it adds it. If it is already present, it removes it.</p>
+
+            <div class="example-container">
+                <div class="code-box" id="cls3">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .active { border-left: 5px solid green; padding-left: 10px; color: green; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h3&gt;Toggle a CSS Class&lt;/h3&gt;
+&lt;div id="example3"&gt;Click the button to toggle my active state.&lt;/div&gt;
+
+&lt;br&gt;
+&lt;button onclick="toggleClass()"&gt;Toggle 'active' Class&lt;/button&gt;
+
+&lt;script&gt;
+function toggleClass() {
+  document.getElementById("example3").classList.toggle("active");
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+                <button class="try-btn" onclick="openEditor('cls3')">Try it Yourself</button>
+            </div>
+
+            <h2 style="color: #5c64f2;">4. Checking for a Class (classList.contains)</h2>
+            <p>The <code>classList.contains()</code> method returns a boolean value indicating whether an element has the specified class. This is excellent for conditional logic.</p>
+
+            <div class="example-container">
+                <div class="code-box" id="cls4">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h3&gt;Check if Class Exists&lt;/h3&gt;
+&lt;div id="example4" class="hidden-module"&gt;I am an element with a class.&lt;/div&gt;
+&lt;p id="output"&gt;&lt;/p&gt;
+
+&lt;button onclick="checkClass()"&gt;Check Contains&lt;/button&gt;
+
+&lt;script&gt;
+function checkClass() {
+  const el = document.getElementById("example4");
+  const hasClass = el.classList.contains("hidden-module");
+  
+  document.getElementById("output").innerText = 
+    "Does it have 'hidden-module'? " + hasClass;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+                <button class="try-btn" onclick="openEditor('cls4')">Try it Yourself</button>
+            </div>
+
+            <h2 style="color: #5c64f2;">5. Replacing a Class (classList.replace)</h2>
+            <p>The <code>classList.replace()</code> method replaces an existing class with a new class. It returns <code>true</code> if the class was successfully replaced.</p>
+
+            <div class="example-container">
+                <div class="code-box" id="cls5">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .theme-light { background: white; color: black; border: 1px solid gray; padding: 10px; }
+  .theme-dark { background: black; color: white; border: 1px solid gray; padding: 10px; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h3&gt;Replace a CSS Class&lt;/h3&gt;
+&lt;div id="example5" class="theme-light"&gt;This is a themed box.&lt;/div&gt;
+
+&lt;br&gt;
+&lt;button onclick="replaceClass()"&gt;Switch to Dark Theme&lt;/button&gt;
+
+&lt;script&gt;
+function replaceClass() {
+  document.getElementById("example5").classList.replace("theme-light", "theme-dark");
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+                <button class="try-btn" onclick="openEditor('cls5')">Try it Yourself</button>
+            </div>
+
+            <div class="note">
+                <strong>Pro Tip:</strong> Using <code>classList</code> is much safer and easier than manipulating the raw <code>className</code> string, because it automatically handles spaces and prevents accidentally overwriting other classes!
+            </div>
+            <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+      const quizData = [
+    {
+        q: "Which property is used to add, remove, and toggle CSS classes on an element?",
+        options: ["className", "classList", "style", "cssText"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> className handles the entire class string at once, which is harder to manage.",
+            "<b>Correct!</b> The <code>classList</code> property provides methods like add, remove, and toggle for easy manipulation.",
+            "<b>Incorrect:</b> The style property is for manipulating inline CSS styles directly.",
+            "<b>Incorrect:</b> cssText is used to set multiple inline styles as a single string."
+        ]
+    },
+    {
+        q: "What happens if you use classList.add() to add a class that the element already has?",
+        options: ["It throws an error", "It creates a duplicate class", "It simply ignores the command", "It removes the existing class"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> No error is thrown; classList methods are designed to be safe.",
+            "<b>Incorrect:</b> classList ensures that class names remain unique.",
+            "<b>Correct!</b> If the specified class already exists on the element, <code>classList.add()</code> does nothing.",
+            "<b>Incorrect:</b> Toggling or removing would change the state, but 'add' only ensures it is present."
+        ]
+    },
+    {
+        q: "Which method is best for switching a class on or off (adding it if missing, removing it if present)?",
+        options: ["add()", "remove()", "replace()", "toggle()"],
+        correct: 3,
+        explanations: [
+            "<b>Incorrect:</b> add() only adds the class.",
+            "<b>Incorrect:</b> remove() only takes the class away.",
+            "<b>Incorrect:</b> replace() swaps one existing class for a new one.",
+            "<b>Correct!</b> <code>classList.toggle()</code> is specifically designed for 'on/off' functionality based on the current state."
+        ]
+    },
+    {
+        q: "What does classList.contains('my-class') return?",
+        options: ["The index of the class", "The element itself", "A boolean value (true or false)", "Nothing"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> It does not return a position number.",
+            "<b>Incorrect:</b> It returns a status check, not a DOM reference.",
+            "<b>Correct!</b> <code>classList.contains()</code> returns <code>true</code> if the class exists and <code>false</code> if it doesn't, making it great for logic.",
+            "<b>Incorrect:</b> It returns a very useful boolean value."
+        ]
+    },
+    {
+        q: "How do you swap 'theme-light' for 'theme-dark' using a single classList method?",
+        options: ["classList.swap()", "classList.replace()", "classList.toggle()", "classList.change()"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> 'swap' is not a valid method of classList.",
+            "<b>Correct!</b> <code>classList.replace('oldClass', 'newClass')</code> efficiently replaces one class with another.",
+            "<b>Incorrect:</b> Toggle only handles a single class name's presence.",
+            "<b>Incorrect:</b> 'change' is not a standard DOM method for classes."
+        ]
+    },
+    {
+        q: "According to the 'Pro Tip', why is classList safer than using the raw className property?",
+        options: [
+            "It makes the website load faster",
+            "It prevents accidentally overwriting other existing classes",
+            "It is required for all CSS animations",
+            "It only works with the ID selector"
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Performance isn't the primary safety benefit.",
+            "<b>Correct!</b> <code>className</code> replaces the whole string, while <code>classList</code> lets you target specific classes without touching the rest.",
+            "<b>Incorrect:</b> Animations can be triggered with className too, it's just harder to code.",
+            "<b>Incorrect:</b> classList works on any element regardless of how it was selected."
+        ]
+    },
+    {
+        q: "If an element has no classes and you call classList.remove('test'), what happens?",
+        options: [
+            "The browser console shows an error",
+            "The element is deleted",
+            "JavaScript stops running",
+            "Nothing happens and no error is thrown"
+        ],
+        correct: 3,
+        explanations: [
+            "<b>Incorrect:</b> classList methods fail silently to make coding more convenient.",
+            "<b>Incorrect:</b> Removing a class does not affect the element's existence in the DOM.",
+            "<b>Incorrect:</b> The script execution continues normally.",
+            "<b>Correct!</b> <code>classList.remove()</code> is designed to ignore requests for classes that aren't there."
+        ]
+    }
+];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+        </main>
+    </div> 
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-box">
+                <img src="./logo.jpeg" alt="Oppty Logo" class="logo">
+                <p>
+                    Learn Web Development with practical courses in
+                    HTML, CSS & JavaScript. Beginner-friendly training
+                    with real-time projects.
+                </p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://wa.me/919999999999" target="_blank" class="whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-box">
+                <h3>Courses</h3>
+                <ul>
+                    <li>HTML for Beginners</li>
+                    <li>CSS & Responsive Design</li>
+                    <li>JavaScript Basics</li>
+                    <li>Mini Projects</li>
+                </ul>
+            </div>
+            
+            <div class="footer-box">
+                <h3>Contact Us</h3>
+                <p>Email: support@opptyacademy.com</p>
+                <p>Phone: +91 99999 99999</p>
+                <p>WhatsApp Support Available</p>
+            </div>
+            
+            <div class="footer-box">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li>Home</li>
+                    <li>Courses</li>
+                    <li>About Us</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 Oppty Academy. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        function openEditor(id) {
+            let code = document.getElementById(id).innerText;
+            localStorage.setItem('tempCode', code);
+            window.location.href = 'editor.html';
+        }
+    </script>
+</body>
+</html>

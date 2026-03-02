@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Fundamentals - Tutorial</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            background-color: #fff;
+        }
+
+        /* Sidebar with Scrolling */
+        .sidebar { 
+            width: 300px; 
+            background: #f1f1f1; 
+            height: 100vh; 
+            position: sticky; 
+            top: 0; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; /* Enables scrolling for long lists */
+             min-width: 300px;         /* Ensures it never gets smaller */
+    flex-shrink: 0
+        }
+ .explore-btn:hover { background: #ee730f; }
+
+        /* Custom Scrollbar for Sidebar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        .sidebar h2 {
+            padding: 15px 20px 5px 20px;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a { 
+            display: block; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            color: #444; 
+            border-bottom: 1px solid #e7e7e7; 
+            font-size: 14px;
+        }
+        
+        .sidebar a:hover { 
+            background-color: #bbb; 
+            color: white;
+        }
+
+        /* Main Content Area */
+        .main { 
+            flex: 1; 
+            padding: 40px; 
+           
+        }
+
+        /* GeeksforGeeks Style UI Components */
+        .example-container { 
+            background-color: #E7E9EB; 
+            padding: 20px; 
+            border-radius: 5px; 
+            margin: 25px 0; 
+            border: 1px solid #ccc; 
+        }
+
+        .code-box { 
+            background-color: white; 
+            padding: 15px; 
+            border-left: 4px solid #04AA6D; 
+            font-family: 'Courier New', monospace; 
+            white-space: pre; 
+            margin-bottom: 15px; 
+            overflow-x: auto; 
+            font-size: 14px; 
+            line-height: 1.5;
+        }
+
+        .try-btn { 
+            background-color: #04AA6D; 
+            color: white; 
+            padding: 12px 25px; 
+            border: none; 
+            border-radius: 25px; 
+            font-weight: bold; 
+            cursor: pointer; 
+        }
+
+        h1 { color: #2c3e50; font-size: 32px; font-weight: bold;}
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; color: #2c3e50; }
+        p { line-height: 1.6; color: #444; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+
+        .note-box {
+            background-color: #ffffcc;
+            border-left: 5px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+        }
+          /* --- Header Integration --- */
+.main-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 1001; /* Higher than sidebar */
+  width: 100%;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;        
+  justify-content: space-between;
+}
+
+.logo img { width: 140px; display: block; }
+
+.nav-menu { display: flex; align-items: center; gap: 30px; }
+
+.nav-menu a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-menu a:hover { color: #158e39; }
+
+.explore-btn {
+  background: #158e39;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* --- Layout Correction --- */
+body { display: block; } /* Change body from flex to block */
+
+.content-container {
+  display: flex; /* Move flex here to keep sidebar and main side-by-side */
+}
+
+.sidebar {
+  top: 70px; /* Adjust this so sidebar sticks BELOW the header */
+  height: calc(100vh - 70px);
+}
+    
+    </style>
+</head>
+<body>
+    <header class="main-header">
+  <div class="header-container">
+
+   
+    <div class="logo">
+      <a href="../index.html"><img src="../images/LOGO.jpeg" alt="Oppty Academy Logo"></a>
+    </div>
+    
+     <nav class="nav-menu"> 
+       <a href="../structure.html">Html</a> 
+        <a href="../css/cssintro.html">Css</a>
+         <a href="../introduction.html">JavaScript</a>
+          </nav>
+    
+    <div class="nav-right">
+      <a href="../index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+
+  </div>
+</header>  
+<div class="content-container">
+<div class="sidebar">
+    <h2>CSS Fundamentals</h2>
+    <a href="../css/cssintro.html">CSS Introduction</a>    <a href="../css/selectors.html">Selectors (class, id, element)</a>
+    <a href="../css/colors.html">Colors, Units (px, %, em, rem)</a>
+    <a href="../css/boxmodel.html">Box Model (margin, border, padding, content)</a>
+
+    <h2>Layout Systems</h2>
+    <a href="../css/flexbox.html">Flexbox (very important)</a>
+    <a href="../css/grid.html">Grid (important)</a>
+    <a href="../css/positioning.html">Positioning (static, relative, absolute, fixed, sticky)</a>
+    <a href="../css/z-index.html">z-index</a>
+
+    <h2>Styling & UI</h2>
+    <a href="../css/backgrounds.html">Backgrounds & Gradients</a>
+    <a href="../css/borders.html">Borders & Border-radius</a>
+        <a href="../css/margins.html">Margin& Padding </a>
+<a href="../css/fonts.html">fonts & Text formatting </a>
+    <a href="../css/display.html">Display and Visibility Properties </a>
+
+    <a href="../css/shadows.html">Shadows (box-shadow, text-shadow)</a>
+    <a href="../css/buttons.html">Buttons & Forms styling</a>
+
+    <h2>Responsive Design</h2>
+    <a href="../css/mediaquiries.html">Media Queries</a>
+    <a href="../css/mobilefirst.html">Mobile-first design</a>
+    <a href="../css/responsive.html">Responsive images</a>
+
+    <h2>Animations</h2>
+    <a href="../css/transitions.html">Transitions</a>
+    <a href="../css/keyframes.html">Keyframe Animations</a>
+    <a href="../css/hovers.html">Hover effects</a>
+</div>
+<div class="main">
+    <h1>CSS Shadows (Text & Box): Ultimate Master Class</h1>
+    <p>Shadows add depth, dimension, and emphasis to web elements. CSS provides two primary properties for this: <code>text-shadow</code> for typography and <code>box-shadow</code> for element containers. Mastering these allows for modern designs ranging from subtle "skeuomorphic" elevations to neon glowing effects.</p>
+
+    <hr>
+
+    <h2>1. The Shadow Property Matrix</h2>
+    <p>Both properties follow a similar logic but target different parts of the DOM. Below are the syntax and parameter definitions.</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ddd; font-size: 0.85em;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Parameter</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Description</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Required?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>h-shadow</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">The horizontal offset. Positive values move shadow right, negative move left.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Yes</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>v-shadow</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">The vertical offset. Positive moves shadow down, negative moves up.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Yes</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>blur-radius</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Higher values create a softer, lighter, and larger shadow.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">No (Default 0)</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>spread-radius</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">(Box-shadow only) Positive values expand the shadow, negative values shrink it.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">No (Default 0)</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>color</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Sets the shadow color. Transparent RGBA is recommended for realism.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">No (Default text color)</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>inset</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">(Box-shadow only) Changes the shadow from an outer shadow to an inner shadow.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">No</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>2. Deep Dive: Text Shadows</h2>
+    <p>Text shadows can be layered to create complex effects like neon, outlines, or retro 3D text.</p>
+
+    <div class="example-container">
+        <h3>Example 1: Text Shadow Variations</h3>
+        <div class="code-box" id="shadowEx1">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+    .simple-text { text-shadow: 2px 2px #ff0000; font-size: 30px; font-weight: bold; }
+    .blur-text { text-shadow: 2px 2px 8px #0000ff; font-size: 30px; }
+    .neon-text { 
+        color: white;
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff00de, 0 0 30px #ff00de;
+        font-size: 30px;
+        background: #333;
+        padding: 10px;
+    }
+    .retro-3d {
+        color: white;
+        text-shadow: 1px 1px 0 #ccc, 2px 2px 0 #c9c9c9, 3px 3px 0 #bbb, 4px 4px 0 #b9b9b9, 5px 5px 0 #aaa, 6px 6px 1px rgba(0,0,0,.1);
+        font-size: 40px;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p class="simple-text"&gt;Basic Red Shadow&lt;/p&gt;
+    &lt;p class="blur-text"&gt;Blurred Blue Shadow&lt;/p&gt;
+    &lt;p class="neon-text"&gt;Neon Glow Effect&lt;/p&gt;
+    &lt;p class="retro-3d"&gt;Stacked 3D Text&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('shadowEx1')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>3. Box Shadows: Elevation & Inset</h2>
+    <p>Box shadows are used to make cards look lifted off the page or recessed into it.</p>
+
+    <div class="example-container">
+        <h3>Example 2: Box Shadow Styles</h3>
+        <div class="code-box" id="shadowEx2">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+    .card {
+        width: 200px; height: 100px; background: white; margin: 20px; padding: 10px; display: inline-block; border-radius: 8px;
+    }
+    .soft-elevated { box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    .heavy-shadow { box-shadow: 10px 10px 5px grey; }
+    .inset-shadow { box-shadow: inset 0 0 10px #000000; background: #f0f0f0; }
+    .spread-box { box-shadow: 0 0 20px 10px rgba(0,255,0,0.3); }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="card soft-elevated"&gt;Modern Elevation&lt;/div&gt;
+    &lt;div class="card heavy-shadow"&gt;Retro Offset&lt;/div&gt;
+    &lt;div class="card inset-shadow"&gt;Inner Shadow&lt;/div&gt;
+    &lt;div class="card spread-box"&gt;Shadow with Spread&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('shadowEx2')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>4. Advanced Multiple Shadows</h2>
+    <p>You can apply multiple shadows to a single element by separating them with commas.</p>
+
+    <div class="example-container">
+        <h3>Example 3: Multi-Layered Shadows</h3>
+        <div class="code-box" id="shadowEx3">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+    .multi-card {
+        width: 250px; padding: 20px; border: 1px solid #ddd;
+        box-shadow: 
+            0 1px 1px rgba(0,0,0,0.12), 
+            0 2px 2px rgba(0,0,0,0.12), 
+            0 4px 4px rgba(0,0,0,0.12), 
+            0 8px 8px rgba(0,0,0,0.12);
+        background: white;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="multi-card"&gt;
+        High-fidelity shadow using multiple layers for extreme realism.
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('shadowEx3')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>5. Pro-Tips & Best Practices</h2>
+    <div style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 6px solid #ff9800;">
+        <p><strong>1. Performance:</strong> Avoid very large blur-radii on elements that animate (like <code>:hover</code>) as it can cause significant lag in mobile browsers.</p>
+        <p><strong>2. Color Choice:</strong> Never use pure black (<code>#000</code>) for shadows. Use semi-transparent black (e.g., <code>rgba(0,0,0,0.2)</code>) so the background color peeks through, making the design look more natural.</p>
+        <p><strong>3. Contrast:</strong> Ensure that <code>text-shadow</code> doesn't interfere with readability. Subtle shadows are often better than harsh ones.</p>
+    </div>
+    <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+       const quizData = [
+    {
+        q: "What is the primary difference between Margin and Padding in the CSS Box Model?",
+        options: [
+            "Margin is inside the border, Padding is outside.",
+            "Margin is affected by background color, Padding is always transparent.",
+            "Margin creates space outside the border, Padding creates space inside the border.",
+            "There is no functional difference between them."
+        ],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> This is reversed. Padding is inside the border; Margin is outside.",
+            "<b>Incorrect:</b> Padding shows the background color; Margin is the property that is always transparent.",
+            "<b>Correct!</b> Margin provides spacing between elements (outside the border), while Padding provides internal spacing (between content and border).",
+            "<b>Incorrect:</b> They serve distinct roles in spacing and layout."
+        ]
+    },
+    {
+        q: "Which property allows you to include an element's padding and border within its total specified width and height?",
+        options: ["box-sizing: content-box", "box-sizing: border-box", "display: flex", "margin: auto"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> <code>content-box</code> is the default behavior where padding is added to the outside of the width.",
+            "<b>Correct!</b> <code>border-box</code> ensures the element's width stays consistent by shrinking the content area to accommodate padding and borders.",
+            "<b>Incorrect:</b> <code>display: flex</code> is a layout model, not a sizing calculation property.",
+            "<b>Incorrect:</b> <code>margin: auto</code> is used for centering, not sizing calculations."
+        ]
+    },
+    {
+        q: "In the CSS shorthand 'padding: 10px 50px;', what does the '50px' value represent?",
+        options: ["Top and Bottom padding", "Right and Left padding", "All four sides", "Only the Right padding"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> The first value (10px) represents the Top and Bottom.",
+            "<b>Correct!</b> When two values are used, the first applies to top/bottom and the second applies to right/left.",
+            "<b>Incorrect:</b> One value would be needed for all four sides.",
+            "<b>Incorrect:</b> While it includes the right side, it also applies to the left side."
+        ]
+    },
+    {
+        q: "What is 'Margin Collapse' based on the Pro-Tips section?",
+        options: [
+            "When margins disappear on small screens.",
+            "When top/bottom margins of adjacent elements overlap into a single margin.",
+            "When left/right margins combine with padding.",
+            "A layout error caused by using negative margins."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Margin collapse is not related to screen size or responsiveness.",
+            "<b>Correct!</b> Margin collapse is a behavior where the vertical margins of neighboring elements merge into a single space equal to the largest margin.",
+            "<b>Incorrect:</b> Collapse only happens with vertical (top/bottom) margins.",
+            "<b>Incorrect:</b> It is a standard CSS behavior, not an error."
+        ]
+    },
+    {
+        q: "Which unit/value is used with margins to horizontally center a block element within its parent?",
+        options: ["100%", "center", "auto", "50%"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> 100% width makes the element fill the container, but doesn't center it.",
+            "<b>Incorrect:</b> <code>center</code> is a value for <code>text-align</code>, not <code>margin</code>.",
+            "<b>Correct!</b> <code>margin: auto</code> tells the browser to split the available horizontal space equally, centering the element.",
+            "<b>Incorrect:</b> 50% width makes the element half-size, but it still requires <code>auto</code> margin to center."
+        ]
+    },
+    {
+        q: "If you have an element with a background-color, which area will NOT show that color?",
+        options: ["Content", "Padding", "Margin", "Border"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> The background color shows through the content area.",
+            "<b>Incorrect:</b> Background colors and images extend into the padding area.",
+            "<b>Correct!</b> Margins are always transparent. They are outside the element's border and background.",
+            "<b>Incorrect:</b> In most cases, the background extends to the outer edge of the padding, right up to the border."
+        ]
+    },
+    {
+        q: "Which property is used to pull elements closer together or even overlap them?",
+        options: ["Negative Padding", "Negative Margin", "Zero Padding", "Auto Margin"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Padding cannot have negative values in CSS.",
+            "<b>Correct!</b> Unlike padding, <code>margin</code> can accept negative values to move an element into the space of another.",
+            "<b>Incorrect:</b> Zero padding just removes the internal space but won't cause overlap.",
+            "<b>Incorrect:</b> Auto margin splits available space; it does not cause overlapping."
+        ]
+    }
+];
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+   <div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling with space-between layout */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between; 
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+            margin-bottom: 40px;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button styling */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button styling */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Highlight style for the current page in the sidebar */
+        .sidebar a.active-link {
+            background-color: #04AA6D !important;
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Get all links from your sidebar
+            const sidebarLinks = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // 2. Identify the current page path
+            const currentPath = window.location.pathname;
+            
+            // 3. Find the index and highlight the active link
+            let currentIndex = -1;
+            
+            sidebarLinks.forEach((link, index) => {
+                const linkHref = link.getAttribute('href').replace('..', '');
+                if (currentPath.endsWith(linkHref)) {
+                    currentIndex = index;
+                    link.classList.add('active-link');
+                    
+                    // Auto-scroll sidebar to the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 4. Configure Previous Button
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 5. Configure Next Button
+            if (currentIndex !== -1 && currentIndex < sidebarLinks.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+</div>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = '../editor.html';
+    }
+</script>
+
+<footer class="footer">
+  <div class="footer-container">
+    
+    <div class="footer-box">
+      <img src="../images/LOGO.jpeg" alt="Oppty Logo">
+      <p style="color: white;">
+        Learn Web Development with practical courses in
+        HTML, CSS & JavaScript. Beginner-friendly training
+        with real-time projects.
+      </p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li><a href="#">HTML for Beginners</a></li>
+        <li><a href="../css/cssintro.html">CSS & Responsive Design</a></li>
+        <li><a href="#">JavaScript Basics</a></li>
+        <li><a href="#">Mini Projects</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p style="color: white;">Email: <a href="mailto:support@opptyacademy.com" style="color:white; text-decoration:none;">support@opptyacademy.com</a></p>
+      <p style="color: white;">Phone: +91 99999 99999</p>
+      <p style="color: white;">WhatsApp Support Available</p>
+    </div>
+
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#cs">Courses</a></li>
+        <li><a href="../index.html#as">About Us</a></li>
+        <li><a href="../index.html#cto">Contact</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Oppty Academy. All Rights Reserved.
+  </div>
+</footer>
+<style>
+    /* --- Footer Styles --- */
+.footer {
+    background: #0f0f0f;
+    color: white;
+    padding: 50px 20px 20px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;                  
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    text-align: center;             
+}
+
+.footer-box img {
+    background: #ffffff;
+    padding: 4px;
+    border-radius: 6px;
+    width: 160px;
+    margin: 0 auto 15px;
+    display: block;
+}
+
+.footer-box h3 {
+    color: #158e39;
+    margin-bottom: 15px;
+}
+
+.footer-box p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-box ul li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Link styling within list */
+.footer-box ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-box ul li a:hover {
+    color: #158e39;
+}
+
+.social-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;     
+}
+
+.social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background: #222;
+    color: #fff;
+    border-radius: 50%;
+    margin: 0 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #158e39;
+    color: #000;
+}
+
+.social-icons .whatsapp { background: #25D366; }
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+    font-size: 13px;
+    color: #aaa;
+}
+</style>
+</body>
+</html>

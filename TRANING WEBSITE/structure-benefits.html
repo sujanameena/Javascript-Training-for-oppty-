@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SEO Benefits of HTML - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* --- Base Layout --- */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        .page-wrapper { display: flex; flex: 1; }
+
+        /* --- Header Styles --- */
+        .main-header { background: #ffffff; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 1000; }
+        .header-container { max-width: 1200px; margin: auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; transition: 0.3s; }
+        .signin:hover { color: #158e39; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .explore-btn:hover { background: #ee730f; }
+
+        /* --- Sidebar Styles (Maintained) --- */
+        .sidebar { 
+    width: 220px !important; /* Forces the width to 300px */
+    min-width: 220px;         /* Ensures it never gets smaller */
+    flex-shrink: 0;          /* Prevents the main content from squishing it */
+    
+    /* Keep your existing styles below */
+    background: #f1f1f1; 
+    height: calc(100vh - 75px); 
+    position: sticky; 
+    top: 75px; 
+    border-right: 1px solid #ddd; 
+    overflow-y: auto; 
+}
+        .sidebar::-webkit-scrollbar { width: 6px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        .sidebar::-webkit-scrollbar-thumb:hover { background: #888; }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+        
+        /* --- Tutorial Content Styles --- */
+        .main { flex: 1; padding: 40px;  }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        .summary-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .summary-table th, .summary-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .summary-table th { background-color: #f1f1f1; }
+
+        /* --- Footer Styles --- */
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; font-family: Arial, sans-serif; }
+        .footer-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: center; }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 150px; display: block; margin: 0 auto 15px; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; line-height: 1.6; }
+        .footer-box ul { list-style: none; padding: 0; }
+        .footer-box ul li { margin-bottom: 8px; font-size: 14px; cursor: pointer; }
+        .footer-box ul li:hover { color:#158e39; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; margin: 0 5px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: #158e39; color: #000; }
+        .social-icons .whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+       
+        @media (max-width: 768px) {
+            .header-container { flex-wrap: wrap; gap: 12px; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; gap: 20px; }
+            .nav-right { order: 2; }
+            .page-wrapper { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo">
+      <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+    </div>
+    <nav class="nav-menu"> 
+        <a href="./structure.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+        <a href="./introduction.html">JavaScript</a>
+    </nav>
+    <div class="nav-right">
+      
+      <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+  </div>
+</header>
+
+<div class="page-wrapper">
+   
+<div class="sidebar" id="sd">
+
+    <h2 style="padding:10px; font-size:18px;">HTML Basics</h2>
+
+    <a href="structure.html">Structure</a>
+
+    <a href="tags.html">Common Tags</a>
+
+    <a href="headings.html">Headings</a>
+
+    <a href="lists.html">Lists</a>
+
+    <a href="tables.html">Tables</a>
+
+    <h2 style="padding:10px; font-size:18px; ">Forms & Inputs</h2>
+
+    <a href="forms.html">Form Elements</a>
+
+    <a href="inputs.html">Input Types</a>
+
+    <a href="validation.html">Form Validation</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Semantic HTML</h2>
+
+    <a href="semantic.html">Semantic Tags</a>
+
+    <a href="Non-semantic.html">Non-semantic Tags</a>
+
+    <a href="structure-benefits.html" style="background:#ccc;">SEO Benefits</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Media & SEO</h2>
+
+    <a href="media.html">Images, Audio, Video</a>
+
+    <a href="seo.html">Meta Tags & SEO</a>
+
+    <a href="accessibility.html">Accessibility (ARIA)</a>
+
+</div>
+
+
+<div class="main">
+
+    <h1>SEO Benefits of HTML Tags</h1>
+
+    <p>Using the correct HTML tags helps search engines crawl, index, and understand your content, which directly impacts your search rankings.</p>
+
+
+
+    <h2>1. Title Tags (&lt;title&gt;)</h2>
+
+    <p>The Title Tag is widely considered the most important HTML tag for SEO. It defines the clickable headline that appears in search engine results.</p>
+
+   
+
+   
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="seo1">&lt;head&gt;
+
+  &lt;title&gt;Learn HTML SEO: Best Practices for 2026&lt;/title&gt;
+
+&lt;/head&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('seo1')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>SEO Benefit:</strong> Primary factor used to determine the topic of a page. A well-optimized title improves ranking and click-through rate.</li>
+
+        <li><strong>Best Practice:</strong> Keep it between 50–60 characters to prevent truncation.</li>
+
+    </ul>
+
+
+
+    <h2>2. Meta Description Tags</h2>
+
+    <p>While not a direct ranking factor, meta descriptions are critical for Click-Through Rate (CTR).</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="seo2">&lt;meta name="description" content="Master the art of HTML SEO. Learn how to use tags to improve your search visibility and drive organic traffic."&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('seo2')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>SEO Benefit:</strong> Provides a summary that convinces users your page has the answers they need.</li>
+
+        <li><strong>Best Practice:</strong> Include your primary keyword and stay between 155–160 characters.</li>
+
+    </ul>
+
+
+
+    <h2>3. Header Tags (&lt;h1&gt; to &lt;h6&gt;)</h2>
+
+    <p>Header tags create a logical hierarchy for your content, acting like a table of contents for crawlers.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="seo3">&lt;h1&gt;Top 5 HTML SEO Tips&lt;/h1&gt;
+
+&lt;h2&gt;1. Use Semantic Tags&lt;/h2&gt;
+
+&lt;h2&gt;2. Optimize Alt Text&lt;/h2&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('seo3')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>SEO Benefit:</strong> Helps engines identify key sub-topics. Well-organized headers are more likely to earn "Rich Snippets."</li>
+
+        <li><strong>Best Practice:</strong> Use only one <code>&lt;h1&gt;</code> per page.</li>
+
+    </ul>
+
+
+
+    <h2>4. Image Alt Tags (alt attribute)</h2>
+
+    <p>Search engine crawlers cannot "see" images; the alt attribute describes the image content in text form.</p>
+
+   
+
+   
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="seo4">&lt;img src="seo-chart.jpg" alt="Bar chart showing SEO traffic growth over 12 months"&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('seo4')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>SEO Benefit:</strong> Allows images to appear in Google Image Search and improves accessibility for screen readers.</li>
+
+        <li><strong>Best Practice:</strong> Be descriptive and natural; avoid keyword stuffing.</li>
+
+    </ul>
+
+
+
+    <h2>5. Canonical Tags (rel="canonical")</h2>
+
+    <p>Informs search engines which version of a URL is the "master" copy when duplicate content exists.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="seo5">&lt;link rel="canonical" href="https://example.com/main-page/" /&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('seo5')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>SEO Benefit:</strong> Prevents Duplicate Content penalties and consolidates ranking power to a single URL.</li>
+
+    </ul>
+
+
+
+    <h2>Summary of SEO Advantages</h2>
+
+    <table class="summary-table">
+
+        <thead>
+
+            <tr>
+
+                <th>HTML Tag</th>
+
+                <th>Main SEO Role</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr><td><strong>Title</strong></td><td>Defines the main topic for ranking.</td></tr>
+
+            <tr><td><strong>Meta Description</strong></td><td>Increases the percentage of users who click your link.</td></tr>
+
+            <tr><td><strong>Headers</strong></td><td>Organizes content for crawlers and rich snippets.</td></tr>
+
+            <tr><td><strong>Alt Text</strong></td><td>Helps images rank in search results.</td></tr>
+
+            <tr><td><strong>Canonical</strong></td><td>Prevents penalties for duplicate content.</td></tr>
+
+        </tbody>
+
+    </table>
+<section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+        const quizData = [
+    {
+        q: "Which HTML tag is widely considered the most important for SEO and defines the clickable headline in search results?",
+        options: ["<meta name='description'>", "<title>", "<h1>", "<link rel='canonical'>"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> The meta description provides a summary for users but is not the primary ranking headline.",
+            "<b>Correct!</b> The Title Tag is a primary factor used to determine the topic of a page and affects click-through rates.",
+            "<b>Incorrect:</b> While important for hierarchy, the h1 tag is not the clickable headline in search results.",
+            "<b>Incorrect:</b> Canonical tags manage duplicate content but do not define search headlines."
+        ]
+    },
+    {
+        q: "What is the recommended character limit for a Title Tag to prevent it from being cut off in search results?",
+        options: ["30–40 characters", "50–60 characters", "100–120 characters", "155–160 characters"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> This range is a bit too short for most descriptive titles.",
+            "<b>Correct!</b> Keeping titles between 50–60 characters ensures they display fully on most devices.",
+            "<b>Incorrect:</b> Titles this long will be truncated (cut off) by search engines.",
+            "<b>Incorrect:</b> This is the recommended range for meta descriptions, not title tags."
+        ]
+    },
+    {
+        q: "How many <h1> tags should be used per page according to SEO best practices?",
+        options: ["None", "Only one", "At least three", "One for every paragraph"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> An h1 is necessary to tell search engines the main topic of the page.",
+            "<b>Correct!</b> Using only one h1 per page maintains a clear hierarchy and avoids confusing search crawlers.",
+            "<b>Incorrect:</b> Multiple h1 tags can dilute the importance of the page's main topic.",
+            "<b>Incorrect:</b> Using an h1 for every paragraph would break the structural logic of the document."
+        ]
+    },
+    {
+        q: "What is the primary SEO role of the Meta Description tag?",
+        options: ["To set the page's primary ranking keywords", "To prevent duplicate content penalties", "To increase the Click-Through Rate (CTR)", "To describe images to search engines"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Meta descriptions are not a direct ranking factor for keywords.",
+            "<b>Incorrect:</b> Canonical tags are used for managing duplicate content.",
+            "<b>Correct!</b> A compelling meta description convinces users to click your link by summarizing the page content.",
+            "<b>Incorrect:</b> Image Alt tags are used to describe images to search engines."
+        ]
+    },
+    {
+        q: "Why is the 'alt' attribute important for SEO in the <img> tag?",
+        options: ["It makes the image load faster", "It allows images to appear in Google Image Search", "It changes the image color for accessibility", "It creates a border around the image"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Alt text does not affect the loading speed of the image file.",
+            "<b>Correct!</b> Since crawlers cannot 'see' images, alt text describes the content so it can be indexed in image search results.",
+            "<b>Incorrect:</b> Alt text is a text description and does not change visual styling.",
+            "<b>Incorrect:</b> Borders are controlled by CSS, not the alt attribute."
+        ]
+    },
+    {
+        q: "What is the main purpose of a Canonical Tag (rel='canonical')?",
+        options: ["To link to external websites", "To organize content into a table of contents", "To inform search engines which version of a URL is the 'master' copy", "To provide a summary for screen readers"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Standard anchor tags (<a>) are used to link to external sites.",
+            "<b>Incorrect:</b> Header tags (h1-h6) are used for organization.",
+            "<b>Correct!</b> Canonical tags prevent duplicate content penalties by pointing to a single 'master' URL.",
+            "<b>Incorrect:</b> Alt text and ARIA tags are primarily used for screen reader accessibility."
+        ]
+    },
+    {
+        q: "Which tag is best suited for earning 'Rich Snippets' in search results?",
+        options: ["Canonical Tags", "Header Tags (h1-h6)", "Title Tags", "Image Tags"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Canonical tags are for backend indexing, not visual snippets.",
+            "<b>Correct!</b> Well-organized headers act like a table of contents, making it easier for engines to pull content into rich snippets.",
+            "<b>Incorrect:</b> Title tags define the main headline but rarely generate the list-style rich snippets.",
+            "<b>Incorrect:</b> While images appear in results, headers are the primary driver for text-based rich snippets."
+        ]
+    }
+];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+
+</div>
+</div>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-box">
+      <img src="./images/LOGO.jpeg" alt="Oppty Logo" class="logo">
+      <p>Learn Web Development with practical courses in HTML, CSS & JavaScript. Beginner-friendly training with real-time projects.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li>HTML for Beginners</li>
+        <li>CSS & Responsive Design</li>
+        <li>JavaScript Basics</li>
+        <li>Mini Projects</li>
+      </ul>
+    </div>
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p>Email: support@opptyacademy.com</p>
+      <p>Phone: +91 99999 99999</p>
+    </div>
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li>Home</li>
+        <li>Courses</li>
+        <li>About Us</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Oppty Academy. All Rights Reserved.</div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

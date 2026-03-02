@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Array Methods - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* --- HEADER STYLES --- */
+        .main-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;        
+            justify-content: space-between;
+        }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; font-size: 30px; align-items: center; text-align: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; transition: 0.3s; }
+        .signin:hover { color: #158e39; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .explore-btn:hover { background: #ee730f; }
+
+        /* --- TUTORIAL LAYOUT STYLES --- */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; }
+        .wrapper { display: flex; }
+        
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 70px); /* Adjust for sticky header */
+            position: sticky; 
+            top: 70px; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; 
+            flex-shrink: 0;
+        }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+        
+        .main { flex: 1; padding: 40px;  }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        .note { background-color: #ffffcc; border-left: 5px solid #ffeb3b; padding: 15px; margin: 20px 0; }
+
+        /* --- FOOTER STYLES --- */
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; font-family: Arial, sans-serif; clear: both; }
+        .footer-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: center; }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 150px; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; line-height: 1.6; }
+        .footer-box ul { list-style: none; padding: 0; }
+        .footer-box ul li { margin-bottom: 8px; font-size: 14px; cursor: pointer; }
+        .footer-box ul li:hover { color:#158e39; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; margin: 0 5px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: #158e39; color: #000; }
+        .social-icons .whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .header-container { flex-wrap: wrap; gap: 12px; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; gap: 20px; }
+            .nav-right { order: 2; }
+            .wrapper { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+        </div>
+        <nav class="nav-menu"> 
+            <a href="./structure.html">Html</a> 
+            <a href="./css/cssintro.html">Css</a>
+            <a href="./introduction.html">JavaScript</a>
+        </nav>
+        <div class="nav-right">
+            <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+        </div>
+    </div>
+</header>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <h2 style="padding:10px; font-size:18px;">JS Basics</h2>
+        <a href="introduction.html">Introduction to JS</a>
+        <a href="variables.html">Variables (var, let, const)</a>
+        <a href="data-types.html">Data Types</a>
+        <a href="operators.html">Operators</a>
+        <a href="conditionals.html">Conditionals (if, switch)</a>
+        <a href="loops.html">Loops (for, while, forEach)</a>
+        <a href="scope.html">Scope</a>
+
+        <h2 style="padding:10px; font-size:18px;">Functions & Logic</h2>
+        <a href="functions-basic.html">Standard Functions</a>
+        <a href="arrow-functions.html">Arrow Functions</a>
+        <a href="arrays-methods.html" style="background:#ccc;">Array Methods (map, filter, reduce)</a>
+        <a href="objects.html">Objects & JSON</a>
+
+        <h2 style="padding:10px; font-size:18px;">DOM Manipulation</h2>
+        <a href="jsselectors.html">Selectors (ID, querySelector)</a>
+        <a href="content-manipulation.html">innerText vs innerHTML</a>
+        <a href="classlist.html">classList Manipulation</a>
+        <a href="style-manipulation.html">Style Manipulation</a>
+        <a href="dynamic-elements.html">Creating Elements Dynamically</a>
+
+        <h2 style="padding:10px; font-size:18px;">Events</h2>
+        <a href="event-listeners.html">addEventListener</a>
+        <a href="mouse-keyboard.html">Mouse & Keyboard Events</a>
+        <a href="form-events.html">Form Events</a>
+        <a href="custom-events.html">Custom Events</a>
+
+        <h2 style="padding:10px; font-size:18px;">Timers & Async ⭐⭐</h2>
+        <a href="timers.html">setTimeout & setInterval</a>
+        <a href="callbacks.html">Callbacks</a>
+        <a href="promises.html">Promises</a>
+        <a href="async-await.html">Async / Await</a>
+        <h2 style="padding:10px; font-size:18px;">API & Networking</h2>
+<a href="apibasics.html">Intro to REST APIs</a>
+<a href="fetch-api.html">Fetch API (GET/POST)</a>
+<a href="http-methods.html">HTTP Methods & Status Codes</a>
+<a href="json-methods.html">JSON (parse & stringify)</a>
+<a href="url-params.html">URL Params & Query Strings</a>
+<a href="error-handling.html">Handling Network Errors</a>
+<a href="cors.html">CORS & Security</a>
+
+        <h2 style="padding:10px; font-size:18px;">Browser & Storage ⭐</h2>
+        <a href="web-storage.html">Local & Session Storage</a>
+        <a href="cookies.html">Cookies</a>
+
+
+    </div>
+    <div class="main">
+    <h1>Handling Network Errors</h1>
+    <p>In web development, things will go wrong. A user's internet might drop, a server might crash, or a URL might change. <strong>Error Handling</strong> is the art of catching these issues so your app doesn't break.</p>
+
+    <div class="note">
+        <strong>The Fetch Trap:</strong> A <code>fetch()</code> promise <b>does not</b> reject on HTTP errors (like 404 or 500). It only rejects if the network request fails entirely (e.g., DNS error or being offline).
+    </div>
+
+    <h2>1. The Professional Fetch Pattern</h2>
+    <p>To handle errors correctly, you must check two things: if the promise rejected and if the <code>response.ok</code> property is false.</p>
+    
+    <table style="width:100%; border-collapse: collapse; margin-bottom: 25px; background: white;">
+        <thead>
+            <tr style="background-color: #d1105a; color: white;">
+                <th style="padding: 12px; border: 1px solid #ddd;">Type of Error</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Status</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">How to Catch it</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>HTTP Error</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">404, 500, 403</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Check <code>if (!response.ok)</code></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>Network Error</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Offline, DNS Failure</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Use <code>.catch()</code> or <code>try...catch</code></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>Data Error</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Invalid JSON</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Catch during <code>response.json()</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2. Basic Error Handling (.then / .catch)</h2>
+    <p>This example tries to fetch a non-existent page to trigger a 404 error manually.</p>
+    <div class="example-container">
+        <div class="code-box" id="err_basic">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;p id="basic-res"&gt;Waiting for request...&lt;/p&gt;
+
+  &lt;script&gt;
+    fetch('https://jsonplaceholder.typicode.com/invalid-page-name')
+      .then(response =&gt; {
+        if (!response.ok) {
+          // Manually throw error for HTTP 404
+          throw new Error("Page Not Found (404)");
+        }
+        return response.json();
+      })
+      .then(data =&gt; {
+        document.getElementById("basic-res").innerText = "Success!";
+      })
+      .catch(error =&gt; {
+        document.getElementById("basic-res").innerHTML = 
+        "&lt;b style='color:red'&gt;Caught:&lt;/b&gt; " + error.message;
+      });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('err_basic')">Try it Yourself</button>
+    </div>
+
+    <h2>3. Modern Error Handling (Async / Await)</h2>
+    <p>Using <code>try...catch</code> blocks makes your code much cleaner. This example simulates a user lookup.</p>
+    <div class="example-container">
+        <div class="code-box" id="err_async">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;button onclick="loadUser()"&gt;Fetch User #999&lt;/button&gt;
+  &lt;p id="status"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    async function loadUser() {
+      const statusEl = document.getElementById("status");
+      statusEl.innerText = "Loading...";
+      statusEl.style.color = "black";
+
+      try {
+        const response = await fetch('https://jsonplaceholder.typicode.com/users/999');
+        
+        if (!response.ok) {
+          // This jumps straight to the 'catch' block
+          throw new Error(`Server returned error code: ${response.status}`);
+        }
+
+        const data = await response.json();
+        statusEl.innerText = "Success: " + data.name;
+      } catch (err) {
+        statusEl.innerText = "Error: " + err.message;
+        statusEl.style.color = "red";
+      }
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('err_async')">Try it Yourself</button>
+    </div>
+
+    <h2>4. Handling Data (JSON) Parsing Errors</h2>
+    <p>Sometimes the URL is correct, but the data returned is not valid JSON (e.g., the server sends an HTML error page instead).</p>
+    <div class="example-container">
+        <div class="code-box" id="err_json">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;p id="json-msg"&gt;Click to test invalid data handling.&lt;/p&gt;
+  &lt;button onclick="testJSON()"&gt;Parse Broken Data&lt;/button&gt;
+
+  &lt;script&gt;
+    async function testJSON() {
+      try {
+        // We will mimic a response that isn't JSON
+        const fakeResponse = new Response("&lt;html&gt;Not JSON&lt;/html&gt;");
+        const data = await fakeResponse.json(); 
+      } catch (err) {
+        document.getElementById("json-msg").innerHTML = 
+        "&lt;span style='color:orange'&gt;Warning:&lt;/span&gt; Could not read data as JSON!";
+      }
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('err_json')">Try it Yourself</button>
+    </div>
+
+    <h2>5. Handling Timeouts</h2>
+    <p>A request might take too long to complete. You can use <code>AbortController</code> to stop a request after a certain time.</p>
+    <div class="example-container">
+        <div class="code-box" id="err_timeout">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;button onclick="fetchWithTimeout()"&gt;Fetch with 10ms Timeout&lt;/button&gt;
+  &lt;p id="tout-res"&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    async function fetchWithTimeout() {
+      const controller = new AbortController();
+      const id = setTimeout(() =&gt; controller.abort(), 10); // Abort after 10ms
+
+      try {
+        await fetch('https://jsonplaceholder.typicode.com/posts', { signal: controller.signal });
+        document.getElementById("tout-res").innerText = "Success!";
+      } catch (err) {
+        document.getElementById("tout-res").innerText = "Request Timed Out!";
+        document.getElementById("tout-res").style.color = "red";
+      }
+    }
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('err_timeout')">Try it Yourself</button>
+    </div>
+
+    <div class="note">
+        <strong>Oppty Academy Tip:</strong> In a real project, never just <code>console.log</code> an error. Always show a friendly message to the user (like "Please check your connection") so they aren't staring at a blank screen!
+    </div>
+    <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+ const quizData = [
+    {
+        q: "What happens to a fetch() promise if the server returns a 404 (Not Found) error?",
+        options: ["The promise is rejected", "The promise resolves normally", "The browser crashes", "The script stops executing"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Fetch only rejects on network failures, not HTTP errors.",
+            "<b>Correct!</b> The promise resolves successfully; you must manually check the status code.",
+            "<b>Incorrect.</b>",
+            "<b>Incorrect.</b>"
+        ]
+    },
+    {
+        q: "Which property of the Response object should you check to see if an HTTP request was successful (status 200-299)?",
+        options: ["response.success", "response.ok", "response.statusText", "response.done"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect.</b>",
+            "<b>Correct!</b> <code>response.ok</code> is a boolean that returns true if the status is in the successful range.",
+            "<b>Incorrect.</b>",
+            "<b>Incorrect.</b>"
+        ]
+    },
+    {
+        q: "When using async/await, what block do you use to catch network failures?",
+        options: ["catch {}", "try {}", "finally {}", "error {}"],
+        correct: 0,
+        explanations: [
+            "<b>Correct!</b> The <code>catch</code> block handles any errors thrown in the <code>try</code> block.",
+            "<b>Incorrect:</b> try contains the code that might fail.",
+            "<b>Incorrect.</b>",
+            "<b>Incorrect.</b>"
+        ]
+    },
+    {
+        q: "In which scenario will a fetch() promise actually REJECT?",
+        options: ["The user is offline", "The server returns a 500 Error", "The page is Not Found (404)", "The user is unauthorized (401)"],
+        correct: 0,
+        explanations: [
+            "<b>Correct!</b> Network failures, like being offline or a DNS error, cause the promise to reject.",
+            "<b>Incorrect:</b> This is an HTTP success response (technically).",
+            "<b>Incorrect.</b>",
+            "<b>Incorrect.</b>"
+        ]
+    },
+    {
+        q: "Why should you wrap 'response.json()' in a try...catch block?",
+        options: ["To make it faster", "To handle cases where the server sends non-JSON data", "Because fetch requires it", "To hide the data from users"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect.</b>",
+            "<b>Correct!</b> If the server sends HTML instead of JSON, <code>.json()</code> will throw a syntax error.",
+            "<b>Incorrect.</b>",
+            "<b>Incorrect.</b>"
+        ]
+    },
+    {
+        q: "What is the best way to alert a user about an API error?",
+        options: ["Alerting the raw error code", "Showing a friendly UI message like 'Server busy'", "Doing nothing", "Refreshing the page automatically"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Users don't understand 'Error: 500'.",
+            "<b>Correct!</b> Good UX means translating technical errors into helpful human messages.",
+            "<b>Incorrect.</b>",
+            "<b>Incorrect.</b>"
+        ]
+    },
+    {
+        q: "What does 'throw new Error()' do in a fetch chain?",
+        options: ["It stops the internet", "It sends a message to the server", "It forces the execution into the .catch() block", "It fixes the error automatically"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect.</b>",
+            "<b>Incorrect.</b>",
+            "<b>Correct!</b> By throwing an error when <code>!response.ok</code>, you can handle HTTP errors in your central catch block.",
+            "<b>Incorrect.</b>"
+        ]
+    }
+];
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+</div>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-box">
+            <img src="./images/LOGO.jpeg" alt=Oppty Logo>
+            <p>Learn Web Development with practical courses in HTML, CSS & JavaScript. Beginner-friendly training with real-time projects.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/919999999999" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h3>Courses</h3>
+            <ul>
+                <li>HTML for Beginners</li>
+                <li>CSS & Responsive Design</li>
+                <li>JavaScript Basics</li>
+                <li>Mini Projects</li>
+            </ul>
+        </div>
+        <div class="footer-box">
+            <h3>Contact Us</h3>
+            <p>Email: support@opptyacademy.com</p>
+            <p>Phone: +91 99999 99999</p>
+            <p>WhatsApp Support Available</p>
+        </div>
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li>About Us</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2026 Oppty Academy. All Rights Reserved.
+    </div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

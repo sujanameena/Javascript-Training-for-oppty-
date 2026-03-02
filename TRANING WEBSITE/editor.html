@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tryit Editor v1.0</title>
+    <style>
+        :root { --bg: #f1f1f1; --header: white; --text: black; }
+        .dark-mode { --bg: #282A35; --header: #383A45; --text: white; }
+
+        body { margin: 0; font-family: sans-serif; background: var(--bg); height: 100vh; display: flex; flex-direction: column; color: var(--text); transition: 0.3s; }
+        
+        /* Toolbar */
+        .toolbar { background: var(--header); padding: 8px 15px; display: flex; align-items: center; border-bottom: 1px solid #ddd; gap: 10px; }
+        .btn-icon { background: none; border: 1px solid #ccc; padding: 5px 10px; cursor: pointer; border-radius: 4px; color: var(--text); }
+        .run-btn { background: #04AA6D; color: white; border: none; padding: 10px 30px; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; }
+        .res-size { margin-left: auto; font-size: 13px; color: gray; }
+
+        /* Split Screen Area */
+        .editor-container { display: flex; flex: 1; padding: 10px; gap: 10px; overflow: hidden; }
+        .pane { flex: 1; background: white; border: 1px solid #ddd; display: flex; flex-direction: column; position: relative; }
+        
+        textarea { flex: 1; border: none; padding: 15px; font-family: 'Consolas', monospace; font-size: 15px; resize: none; outline: none; background: white; color: black; }
+        iframe { flex: 1; border: none; background: white; }
+
+        /* Dark Mode overrides for Textarea */
+        .dark-mode textarea { background: #151515; color: #ffffff; }
+        .dark-mode .pane { border-color: #555; }
+    </style>
+</head>
+<body>
+
+<div class="toolbar">
+    <button class="btn-icon" onclick="location.href='index.html'" title="Home">🏠</button>
+    <button class="btn-icon" onclick="alert('Menu Opened')">☰</button>
+    <button class="run-btn" onclick="runCode()">Run ❯</button>
+    <button class="btn-icon" onclick="toggleDarkMode()" title="Dark Mode">🌓</button>
+    <div class="res-size" id="size-display">Result Size: 0 x 0</div>
+</div>
+
+<div class="editor-container">
+    <div class="pane">
+        <textarea id="code-input" spellcheck="false"></textarea> 
+    </div>
+    <div class="pane">
+        <iframe id="output-frame"></iframe>
+    </div>
+</div>
+
+<script>
+    const input = document.getElementById('code-input');
+    const output = document.getElementById('output-frame');
+    const sizeDisplay = document.getElementById('size-display');
+
+    // Load initial code
+    window.onload = () => {
+        const savedCode = localStorage.getItem('tempCode');
+        input.value = savedCode || "<h1>Hello World</h1>";
+        runCode(); // Loads the initial preview
+        updateSize();
+    };
+
+    // 1. Function to RUN the code - Now ONLY triggers when Run button is clicked
+    function runCode() {
+        const code = input.value;
+        const frameDoc = output.contentDocument || output.contentWindow.document;
+        frameDoc.open();
+        frameDoc.write(code);
+        frameDoc.close();
+        updateSize(); // Updates dimensions after rendering
+    }
+
+    // 2. Function for DARK MODE
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
+
+    // 3. Function to update SIZE display
+    function updateSize() {
+        const width = output.clientWidth;
+        const height = output.clientHeight;
+        sizeDisplay.innerText = `Result Size: ${width} x ${height}`;
+    }
+
+    // Update size whenever window changes
+    window.onresize = updateSize;
+</script>
+
+</body>
+</html>

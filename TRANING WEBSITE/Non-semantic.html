@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Non-Semantic HTML - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        /* --- Base Layout --- */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        .content-wrapper { display: flex; flex: 1; }
+
+        /* --- Oppty Header Styles --- */
+        .main-header { background: #ffffff; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 1000; }
+        .header-container { max-width: 1200px; margin: auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; transition: 0.3s; }
+        .signin:hover { color: #158e39; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .explore-btn:hover { background: #ee730f; }
+
+        /* --- Sidebar Styles (Maintained) --- */
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 75px); /* Height minus header */
+            position: sticky; 
+            top: 75px; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; 
+        }
+        .sidebar::-webkit-scrollbar { width: 6px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        .sidebar::-webkit-scrollbar-thumb:hover { background: #888; }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+        
+        /* --- Main Content --- */
+        .main { flex: 1; padding: 40px;  }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        .summary-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .summary-table th, .summary-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .summary-table th { background-color: #f1f1f1; }
+
+        /* --- Oppty Footer Styles --- */
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; font-family: Arial, sans-serif; }
+        .footer-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: center; }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 150px; display: block; margin: 0 auto 15px; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; line-height: 1.6; }
+        .footer-box ul { list-style: none; padding: 0; }
+        .footer-box ul li { margin-bottom: 8px; font-size: 14px; cursor: pointer; }
+        .footer-box ul li:hover { color:#158e39; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; margin: 0 5px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: #158e39; color: #000; }
+        .social-icons .whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .content-wrapper { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+            .header-container { flex-wrap: wrap; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; margin-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo">
+      <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+    </div>
+    <nav class="nav-menu"> 
+       <a href="./structure.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+        <a href="./introduction.html">JavaScript</a>
+    </nav>
+    <div class="nav-right">
+      
+      <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+  </div>
+</header>
+
+<div class="content-wrapper">
+    <div class="sidebar">
+
+    <h2 style="padding:10px; font-size:18px;">HTML Basics</h2>
+
+    <a href="structure.html">Structure</a>
+
+    <a href="tags.html">Common Tags</a>
+
+    <a href="headings.html">Headings</a>
+
+    <a href="lists.html">Lists</a>
+
+    <a href="tables.html">Tables</a>
+
+    <h2 style="padding:10px; font-size:18px; ">Forms & Inputs</h2>
+
+    <a href="forms.html">Form Elements</a>
+
+    <a href="inputs.html">Input Types</a>
+
+    <a href="validation.html">Form Validation</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Semantic HTML</h2>
+
+    <a href="semantic.html">Semantic Tags</a>
+
+    <a href="Non-semantic.html" style="background:#ccc;">Non-Semantic Tags</a>
+
+    <a href="structure-benefits.html">SEO Benefits</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Media & SEO</h2>
+
+    <a href="media.html">Images, Audio, Video</a>
+
+    <a href="seo.html">Meta Tags & SEO</a>
+
+    <a href="accessibility.html">Accessibility (ARIA)</a>
+
+</div>
+
+
+
+<div class="main">
+
+    <h1>Non-Semantic HTML Elements</h1>
+
+    <p>Non-semantic elements are containers that hold no inherent meaning about their content. They are used primarily for styling and layout purposes.</p>
+
+
+
+    <h2>1. The &lt;div&gt; Tag</h2>
+
+    <p>The <code>&lt;div&gt;</code> (division) tag is the most common non-semantic element. It is a block-level container.</p>
+
+   
+
+   
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="non1">&lt;div style="background-color: lightgrey; padding: 20px;"&gt;
+
+  &lt;h2&gt;Section Heading&lt;/h2&gt;
+
+  &lt;p&gt;This content is grouped inside a div.&lt;/p&gt;
+
+&lt;/div&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('non1')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Purpose:</strong> Grouping large sections to apply CSS styles or JavaScript operations.</li>
+
+        <li><strong>Limitation:</strong> It tells search engines nothing about the content's role (header, footer, etc.).</li>
+
+    </ul>
+
+
+
+    <h2>2. The &lt;span&gt; Tag</h2>
+
+    <p>The <code>&lt;span&gt;</code> tag is the inline counterpart to the <code>&lt;div&gt;</code>.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="non2">&lt;p&gt;This is a &lt;span style="color: red; font-weight: bold;"&gt;highlighted word&lt;/span&gt; in a paragraph.&lt;/p&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('non2')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Purpose:</strong> Wrapping small portions of text for specific styling without breaking the line flow.</li>
+
+        <li><strong>Limitation:</strong> Like the div, it is purely a visual or functional hook for developers.</li>
+
+    </ul>
+
+
+
+    <h2>3. Bold (&lt;b&gt;) and Italic (&lt;i&gt;) Tags</h2>
+
+    <p>These define physical style rather than structural importance.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="non3">&lt;b&gt;Bold text&lt;/b&gt; (visual only)
+
+&lt;i&gt;Italic text&lt;/i&gt; (visual only)</div>
+
+        <button class="try-btn" onclick="openEditor('non3')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>&lt;b&gt;:</strong> Makes text bold without implying importance.</li>
+
+        <li><strong>&lt;i&gt;:</strong> Makes text italic without adding special emphasis.</li>
+
+        <li><strong>Modern Alternative:</strong> Use <code>&lt;strong&gt;</code> and <code>&lt;em&gt;</code> for semantic emphasis.</li>
+
+    </ul>
+
+
+
+    <h2>4. The &lt;font&gt; Tag (Deprecated)</h2>
+
+    <p>Historically used to define font face, size, and color directly in HTML.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="non4">&lt;!-- Deprecated: Use CSS instead --&gt;
+
+&lt;font color="blue" size="5"&gt;Old Style Text&lt;/font&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('non4')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Status:</strong> Deprecated in HTML5. All formatting should now be handled by CSS.</li>
+
+    </ul>
+
+
+
+    <h2>5. The &lt;center&gt; Tag (Deprecated)</h2>
+
+    <p>Used to align text or images to the middle of the page.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="non5">&lt;!-- Deprecated: Use CSS text-align: center --&gt;
+
+&lt;center&gt;Centered Content&lt;/center&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('non5')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Status:</strong> Deprecated. Layout alignment is strictly a job for CSS.</li>
+
+    </ul>
+
+
+
+    <h2>Key Summary: Semantic vs. Non-Semantic</h2>
+
+    <table class="summary-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Feature</th>
+
+                <th>Semantic (&lt;header&gt;, &lt;nav&gt;)</th>
+
+                <th>Non-Semantic (&lt;div&gt;, &lt;span&gt;)</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr><td><strong>Meaning</strong></td><td>Clearly describes content.</td><td>No inherent meaning.</td></tr>
+
+            <tr><td><strong>SEO</strong></td><td>Helps indexing.</td><td>No direct benefit.</td></tr>
+
+            <tr><td><strong>Accessibility</strong></td><td>Critical for screen readers.</td><td>Does not help.</td></tr>
+
+            <tr><td><strong>Best Practice</strong></td><td>Use whenever possible.</td><td>Use only for generic layout.</td></tr>
+
+        </tbody>
+
+    </table>
+<section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+        const quizData = [
+    {
+        q: "What is the primary characteristic of non-semantic HTML elements?",
+        options: ["They describe the content's meaning to the browser.", "They have no inherent meaning about their content.", "They are used exclusively for SEO purposes.", "They are required for all accessibility features."],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Semantic elements describe meaning; non-semantic elements do not.",
+            "<b>Correct!</b> Non-semantic elements are generic containers used mainly for styling and layout.",
+            "<b>Incorrect:</b> Non-semantic elements provide no direct SEO benefit.",
+            "<b>Incorrect:</b> Actually, screen readers rely more on semantic elements than non-semantic ones."
+        ]
+    },
+    {
+        q: "Which tag is a block-level non-semantic container used to group large sections of content?",
+        options: ["<span>", "<div>", "<b>", "<i>"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> The span tag is an inline-level container, not block-level.",
+            "<b>Correct!</b> The div (division) tag is the most common block-level non-semantic element.",
+            "<b>Incorrect:</b> The b tag is used for making text bold, not for grouping sections.",
+            "<b>Incorrect:</b> The i tag is used for italicizing text, not for structural grouping."
+        ]
+    },
+    {
+        q: "When should you use the <span> tag instead of the <div> tag?",
+        options: ["When you need to group large blocks of content.", "When you want to wrap small portions of text without breaking the line flow.", "When you need to define a footer section.", "When you want to help search engines index your page."],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Div tags are better for grouping large blocks because they are block-level.",
+            "<b>Correct!</b> Span is an inline element, making it perfect for styling specific words or phrases within a line.",
+            "<b>Incorrect:</b> The semantic <footer> tag should be used for footers.",
+            "<b>Incorrect:</b> Neither tag provides a direct benefit for search engine indexing."
+        ]
+    },
+    {
+        q: "What is the non-semantic physical style alternative to the semantic <strong> tag?",
+        options: ["<i>", "<em>", "<b>", "<font>"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> The i tag is for italics, not bolding.",
+            "<b>Incorrect:</b> The em tag is a semantic element for emphasis.",
+            "<b>Correct!</b> The b tag makes text bold visually but does not imply structural importance like strong.",
+            "<b>Incorrect:</b> The font tag is used for typeface and color, and is now deprecated."
+        ]
+    },
+    {
+        q: "Which of the following describes the current status of the <font> and <center> tags in HTML5?",
+        options: ["They are widely recommended for modern layouts.", "They are semantic tags used for better SEO.", "They are deprecated and formatting should be handled by CSS.", "They are only used for mobile development."],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Modern development favors CSS over these tags.",
+            "<b>Incorrect:</b> These tags are non-semantic and offer no SEO benefits.",
+            "<b>Correct!</b> These tags were removed from standard use because styling should be separate from HTML structure.",
+            "<b>Incorrect:</b> They are deprecated across all platforms, including mobile."
+        ]
+    },
+    {
+        q: "How does non-semantic HTML affect accessibility for screen readers?",
+        options: ["It makes the content easier to navigate.", "It provides critical context for the user.", "It does not help as it lacks inherent meaning.", "It automatically translates content into different languages."],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Semantic tags make navigation easier, not non-semantic ones.",
+            "<b>Incorrect:</b> Non-semantic tags lack the metadata needed to provide context.",
+            "<b>Correct!</b> Screen readers cannot determine the role of a div or span, making them less helpful for accessibility.",
+            "<b>Incorrect:</b> HTML tags do not perform language translation."
+        ]
+    },
+    {
+        q: "What is the modern CSS alternative to using the <center> tag?",
+        options: ["vertical-align: middle", "text-align: center", "float: center", "display: center"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Vertical-align is used for inline or table-cell alignment.",
+            "<b>Correct!</b> The text-align: center property in CSS is the standard way to center content.",
+            "<b>Incorrect:</b> 'Center' is not a valid value for the float property.",
+            "<b>Incorrect:</b> 'Center' is not a valid value for the display property."
+        ]
+    },
+    {
+        q: "Which physical style tag makes text italic without adding special emphasis?",
+        options: ["<em>", "<i>", "<span style='italic'>", "<b>"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Em is semantic and adds structural emphasis.",
+            "<b>Correct!</b> The i tag is purely visual and does not signal importance to crawlers.",
+            "<b>Incorrect:</b> While span can be styled, the i tag is the specific physical style tag mentioned.",
+            "<b>Incorrect:</b> The b tag is used for bold text, not italics."
+        ]
+    },
+    {
+        q: "In the context of SEO, how do semantic tags compare to non-semantic tags?",
+        options: ["They are identical in the eyes of search engines.", "Semantic tags help indexing, while non-semantic tags have no direct benefit.", "Non-semantic tags are preferred by modern search crawlers.", "Non-semantic tags provide better rich snippets."],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Search engines use semantic tags to understand the site structure.",
+            "<b>Correct!</b> Semantic tags like <header> or <nav> give crawlers clues about content hierarchy.",
+            "<b>Incorrect:</b> Modern crawlers strongly prefer semantic HTML.",
+            "<b>Incorrect:</b> Rich snippets are typically generated from semantic structure."
+        ]
+    },
+    {
+        q: "What is considered a 'Best Practice' when choosing between semantic and non-semantic elements?",
+        options: ["Use <div> for everything to keep it simple.", "Use semantic tags whenever possible.", "Only use non-semantic tags for mobile sites.", "Use <font> tags to ensure colors look the same in all browsers."],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Overusing div tags is often called 'div-itis' and is discouraged.",
+            "<b>Correct!</b> You should always aim to use the tag that most accurately describes your content.",
+            "<b>Incorrect:</b> Semantic HTML is important for all types of devices.",
+            "<b>Incorrect:</b> Font tags are deprecated; you should use CSS for consistent colors."
+        ]
+    }
+];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    const links = Array.from(document.querySelectorAll('.sidebar a'));
+    
+    // Get the exact current filename (e.g., "Non-semantic.html")
+    const currentPath = window.location.pathname;
+    const currentFile = currentPath.split("/").pop() || "index.html";
+
+    let currentIndex = -1;
+
+    links.forEach((link, index) => {
+        // Get the exact filename from the link's href
+        const linkHref = link.getAttribute('href');
+        const linkFile = linkHref.split("/").pop();
+
+        // Perform an EXACT match on the filename to prevent "semantic" matching "Non-semantic"
+        if (linkFile === currentFile) {
+            currentIndex = index;
+            
+            // Remove active-page from all others first to be safe
+            links.forEach(l => l.classList.remove('active-page'));
+            
+            // Add to current
+            link.classList.add('active-page');
+            
+            // Automatically scroll the sidebar to show the active link
+            link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    });
+
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    // Set up Previous Button logic
+    if (currentIndex > 0) {
+        prevBtn.onclick = () => {
+            window.location.href = links[currentIndex - 1].getAttribute('href');
+        };
+    } else {
+        prevBtn.style.visibility = "hidden"; 
+    }
+
+    // Set up Next Button logic
+    if (currentIndex !== -1 && currentIndex < links.length - 1) {
+        nextBtn.onclick = () => {
+            window.location.href = links[currentIndex + 1].getAttribute('href');
+        };
+    } else {
+        nextBtn.style.visibility = "hidden";
+    }
+});
+    </script>
+</div>
+</div>
+</div>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-box">
+      <img src="./images/LOGO.jpeg" alt="Oppty Logo">
+      <p>Learn Web Development with practical courses in HTML, CSS & JavaScript. Beginner-friendly training with real-time projects.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li>HTML for Beginners</li>
+        <li>CSS & Responsive Design</li>
+        <li>JavaScript Basics</li>
+        <li>Mini Projects</li>
+      </ul>
+    </div>
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p>Email: support@opptyacademy.com</p>
+      <p>Phone: +91 99999 99999</p>
+    </div>
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li>Home</li>
+        <li>Courses</li>
+        <li>About Us</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Oppty Academy. All Rights Reserved.</div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

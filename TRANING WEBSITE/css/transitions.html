@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Fundamentals - Tutorial</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            background-color: #fff;
+        }
+
+        /* Sidebar with Scrolling */
+        .sidebar { 
+            width: 300px; 
+            background: #f1f1f1; 
+            height: 100vh; 
+            position: sticky; 
+            top: 0; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; /* Enables scrolling for long lists */
+               min-width: 300px;         /* Ensures it never gets smaller */
+    flex-shrink: 0
+        }
+ .explore-btn:hover { background: #ee730f; }
+
+        /* Custom Scrollbar for Sidebar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        .sidebar h2 {
+            padding: 15px 20px 5px 20px;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a { 
+            display: block; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            color: #444; 
+            border-bottom: 1px solid #e7e7e7; 
+            font-size: 14px;
+        }
+        
+        .sidebar a:hover { 
+            background-color: #bbb; 
+            color: white;
+        }
+
+        /* Main Content Area */
+        .main { 
+            flex: 1; 
+            padding: 40px; 
+           
+        }
+
+        /* GeeksforGeeks Style UI Components */
+        .example-container { 
+            background-color: #E7E9EB; 
+            padding: 20px; 
+            border-radius: 5px; 
+            margin: 25px 0; 
+            border: 1px solid #ccc; 
+        }
+
+        .code-box { 
+            background-color: white; 
+            padding: 15px; 
+            border-left: 4px solid #04AA6D; 
+            font-family: 'Courier New', monospace; 
+            white-space: pre; 
+            margin-bottom: 15px; 
+            overflow-x: auto; 
+            font-size: 14px; 
+            line-height: 1.5;
+        }
+
+        .try-btn { 
+            background-color: #04AA6D; 
+            color: white; 
+            padding: 12px 25px; 
+            border: none; 
+            border-radius: 25px; 
+            font-weight: bold; 
+            cursor: pointer; 
+        }
+
+        h1 { color: #2c3e50; font-size: 32px; font-weight: bold;}
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; color: #2c3e50; }
+        p { line-height: 1.6; color: #444; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+
+        .note-box {
+            background-color: #ffffcc;
+            border-left: 5px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+        }
+          /* --- Header Integration --- */
+.main-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 1001; /* Higher than sidebar */
+  width: 100%;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;        
+  justify-content: space-between;
+}
+
+.logo img { width: 140px; display: block; }
+
+.nav-menu { display: flex; align-items: center; gap: 30px; }
+
+.nav-menu a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-menu a:hover { color: #158e39; }
+
+.explore-btn {
+  background: #158e39;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* --- Layout Correction --- */
+body { display: block; } /* Change body from flex to block */
+
+.content-container {
+  display: flex; /* Move flex here to keep sidebar and main side-by-side */
+}
+
+.sidebar {
+  top: 70px; /* Adjust this so sidebar sticks BELOW the header */
+  height: calc(100vh - 70px);
+}
+    
+    </style>
+</head>
+<body>
+    <header class="main-header">
+  <div class="header-container">
+
+   
+    <div class="logo">
+      <a href="../index.html"><img src="../images/LOGO.jpeg" alt="Oppty Academy Logo"></a>
+    </div>
+    
+     <nav class="nav-menu"> 
+       <a href="../structure.html">Html</a> 
+        <a href="../css/cssintro.html">Css</a>
+         <a href="../introduction.html">JavaScript</a>
+          </nav>
+    
+    <div class="nav-right">
+      <a href="../index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+
+  </div>
+</header>  
+<div class="content-container">
+<div class="sidebar">
+    <h2>CSS Fundamentals</h2>
+    <a href="../css/cssintro.html">CSS Introduction</a>    <a href="../css/selectors.html">Selectors (class, id, element)</a>
+    <a href="../css/colors.html">Colors, Units (px, %, em, rem)</a>
+    <a href="../css/boxmodel.html">Box Model (margin, border, padding, content)</a>
+
+    <h2>Layout Systems</h2>
+    <a href="../css/flexbox.html">Flexbox (very important)</a>
+    <a href="../css/grid.html">Grid (important)</a>
+    <a href="../css/positioning.html">Positioning (static, relative, absolute, fixed, sticky)</a>
+    <a href="../css/z-index.html">z-index</a>
+
+    <h2>Styling & UI</h2>
+    <a href="../css/backgrounds.html">Backgrounds & Gradients</a>
+    <a href="../css/borders.html">Borders & Border-radius</a>
+        <a href="../css/margins.html">Margin& Padding </a>
+<a href="../css/fonts.html">fonts & Text formatting </a>
+    <a href="../css/display.html">Display and Visibility Properties </a>
+
+    <a href="../css/shadows.html">Shadows (box-shadow, text-shadow)</a>
+    <a href="../css/buttons.html">Buttons & Forms styling</a>
+
+    <h2>Responsive Design</h2>
+    <a href="../css/mediaquiries.html">Media Queries</a>
+    <a href="../css/mobilefirst.html">Mobile-first design</a>
+    <a href="../css/responsive.html">Responsive images</a>
+
+    <h2>Animations</h2>
+    <a href="../css/transitions.html">Transitions</a>
+    <a href="../css/keyframes.html">Keyframe Animations</a>
+    <a href="../css/hovers.html">Hover effects</a>
+</div>
+<div class="main">
+    <h1>CSS Transitions</h1>
+    <p>CSS transitions allow you to change property values smoothly (from one value to another), over a given duration. Instead of an instant change, transitions create a "tweening" effect that makes the UI feel organic and polished.</p>
+
+    <hr>
+
+    <h2>1. The Transition Property Matrix</h2>
+    <p>To create a transition, you must specify two things: the <strong>property</strong> you want to change and the <strong>duration</strong> of the effect.</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ddd; font-size: 0.85em;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Property</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Description</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Values</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>transition-property</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">The name of the CSS property to track.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>width</code>, <code>color</code>, <code>all</code></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>transition-duration</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">How many seconds or milliseconds the transition takes.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>0.3s</code>, <code>500ms</code></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>transition-timing-function</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Specifies the speed curve (acceleration).</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>ease</code>, <code>linear</code>, <code>cubic-bezier</code></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>transition-delay</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Wait time before the effect starts.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>1s</code>, <code>0.2s</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>2. Basic Syntax & Shorthand</h2>
+    <p>While you can write properties individually, the <strong>shorthand</strong> is the industry standard for clean code:</p>
+    
+    <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; font-family: monospace; margin: 20px 0; border: 1px solid #ddd;">
+        /* transition: [property] [duration] [timing-function] [delay] */ <br>
+        .box { transition: background-color 0.5s ease-in-out 0.1s; }
+    </div>
+
+    <hr>
+
+    <h2>3. 5 Interactive Transition Examples</h2>
+
+    <div class="example-container">
+        <h3>Example 1: Color & Background Smoothness</h3>
+        <p>A simple property change that makes buttons feel premium.</p>
+        <div class="code-box" id="transEx1">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .color-box {
+    width: 200px; padding: 20px; text-align: center;
+    background-color: #667eea; color: white;
+    transition: background-color 0.5s ease;
+    cursor: pointer; border-radius: 8px;
+  }
+  .color-box:hover { background-color: #ff6b6b; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="color-box"&gt;Hover to change color&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('transEx1')">Try it Yourself</button>
+    </div>
+
+    <div class="example-container">
+        <h3>Example 2: Transform & Scaling</h3>
+        <p>Using <code>transform</code> is performant and creates great visual impact.</p>
+        <div class="code-box" id="transEx2">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .transform-box {
+    width: 100px; height: 100px; background: #4ecdc4;
+    transition: transform 0.4s ease-in-out;
+    display: flex; align-items: center; justify-content: center; color: white;
+  }
+  .transform-box:hover { transform: rotate(15deg) scale(1.2); }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="transform-box"&gt;Grow & Rotate&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('transEx2')">Try it Yourself</button>
+    </div>
+
+    <div class="example-container">
+        <h3>Example 3: Timing Functions Comparison</h3>
+        <p>Compare how <code>linear</code> (constant speed) feels vs <code>ease-in-out</code> (smooth acceleration).</p>
+        <div class="code-box" id="transEx3">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .bar { width: 100px; height: 30px; margin: 10px 0; color: white; padding-left: 10px; }
+  .container:hover .bar { width: 300px; }
+  
+  .linear { background: red; transition: width 2s linear; }
+  .ease-io { background: blue; transition: width 2s ease-in-out; }
+  .cubic { background: green; transition: width 2s cubic-bezier(0.68, -0.55, 0.27, 1.55); }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="bar linear"&gt;Linear&lt;/div&gt;
+    &lt;div class="bar ease-io"&gt;Ease-In-Out&lt;/div&gt;
+    &lt;div class="bar cubic"&gt;Bouncy (Cubic)&lt;/div&gt;
+    &lt;p&gt;Hover here to start!&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('transEx3')">Try it Yourself</button>
+    </div>
+
+    <div class="example-container">
+        <h3>Example 4: Delayed Transitions</h3>
+        <p>Using <code>transition-delay</code> to create a sequence of movements.</p>
+        <div class="code-box" id="transEx4">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .delay-box {
+    width: 100px; height: 100px; background: #ffd93d;
+    transition: transform 0.5s ease;
+  }
+  .delay-box:hover {
+    transform: translateX(200px);
+    transition-delay: 0.5s; /* Wait half a second */
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="delay-box"&gt;Wait for it...&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('transEx4')">Try it Yourself</button>
+    </div>
+
+    <div class="example-container">
+        <h3>Example 5: Multiple Property Transition</h3>
+        <p>Transitioning width, height, and border-radius simultaneously.</p>
+        <div class="code-box" id="transEx5">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .multi-box {
+    width: 100px; height: 100px; background: #764ba2;
+    transition: width 0.3s, height 0.3s, border-radius 0.3s, background 1s;
+  }
+  .multi-box:hover {
+    width: 150px; height: 150px; border-radius: 50%; background: #667eea;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="multi-box"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('transEx5')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>4. Pro-Tips & Best Practices</h2>
+    <div style="background-color: #e7f3fe; padding: 20px; border-radius: 8px; border-left: 6px solid #2196F3;">
+        <p><strong>1. Performance:</strong> Always prefer transitioning <code>transform</code> and <code>opacity</code>. Transitioning <code>width</code>, <code>height</code>, or <code>top/left</code> causes the browser to recalculate the entire layout (reflow), which can be slow.</p>
+        <p><strong>2. All vs. Specific:</strong> While <code>transition: all</code> is easy, it is better for performance to list specific properties like <code>transition: color 0.2s, opacity 0.2s;</code>.</p>
+        <p><strong>3. Hidden to Visible:</strong> You cannot transition from <code>display: none</code> to <code>display: block</code>. Instead, transition <code>opacity</code> from 0 to 1 and <code>visibility</code>.</p>
+    </div>
+    <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+        const quizData = [
+    {
+        q: "What is the primary difference between 'text-shadow' and 'box-shadow'?",
+        options: [
+            "text-shadow is for images, box-shadow is for text.",
+            "text-shadow targets typography, while box-shadow targets element containers.",
+            "box-shadow only works on mobile devices.",
+            "There is no difference; they are interchangeable."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Shadows for images would typically use box-shadow, while text uses text-shadow.",
+            "<b>Correct!</b> text-shadow is specifically designed for letters and words, whereas box-shadow applies to the entire bounding box (container) of an element.",
+            "<b>Incorrect:</b> Both properties are standard CSS and work across all modern devices.",
+            "<b>Incorrect:</b> They are distinct properties that apply to different parts of the DOM."
+        ]
+    },
+    {
+        q: "In the shadow syntax, what does a positive 'v-shadow' value do?",
+        options: [
+            "Moves the shadow to the left.",
+            "Moves the shadow up.",
+            "Moves the shadow down.",
+            "Increases the blurriness."
+        ],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Horizontal movement is handled by h-shadow.",
+            "<b>Incorrect:</b> Negative v-shadow values move the shadow up.",
+            "<b>Correct!</b> Vertical shadow (v-shadow) moves the shadow downward when the value is positive.",
+            "<b>Incorrect:</b> Blurriness is controlled by the blur-radius parameter."
+        ]
+    },
+    {
+        q: "Which parameter is unique to 'box-shadow' and not available for 'text-shadow'?",
+        options: ["blur-radius", "spread-radius", "color", "h-shadow"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Both properties use blur-radius to soften the shadow.",
+            "<b>Correct!</b> Spread-radius allows you to expand or shrink the size of a box-shadow, but it is not supported for text-shadows.",
+            "<b>Incorrect:</b> Both properties allow you to define the color of the shadow.",
+            "<b>Incorrect:</b> Both properties require horizontal and vertical offsets."
+        ]
+    },
+    {
+        q: "What happens when you add the 'inset' keyword to a box-shadow rule?",
+        options: [
+            "The shadow disappears.",
+            "The shadow becomes a neon glow.",
+            "The shadow changes from an outer shadow to an inner shadow.",
+            "The shadow only appears on the top side."
+        ],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> The shadow remains, but its position relative to the border changes.",
+            "<b>Incorrect:</b> Neon glows are created using large blur-radii, not the inset keyword.",
+            "<b>Correct!</b> The <code>inset</code> keyword makes the shadow appear inside the container, giving it a recessed or 'pressed in' look.",
+            "<b>Incorrect:</b> Inset applies to the entire internal perimeter of the box."
+        ]
+    },
+    {
+        q: "Why is 'rgba()' color recommended for shadows instead of solid HEX codes?",
+        options: [
+            "It makes the code shorter.",
+            "It allows for transparency, making the shadow look more natural by letting the background peek through.",
+            "It is the only format browsers understand for shadows.",
+            "It automatically calculates the blur-radius."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> RGBA values are usually longer than HEX codes.",
+            "<b>Correct!</b> As noted in the Pro-Tips, semi-transparent colors (like rgba(0,0,0,0.2)) create much more realistic depth than solid, harsh colors.",
+            "<b>Incorrect:</b> Browsers understand HEX, RGB, and HSL for shadows, but RGBA is the design standard.",
+            "<b>Incorrect:</b> Color and blur are separate parameters in the shadow syntax."
+        ]
+    },
+    {
+        q: "According to the Pro-Tips, why should you avoid very large 'blur-radii' on animated elements?",
+        options: [
+            "It makes the text impossible to read.",
+            "It can cause significant performance lag, especially in mobile browsers.",
+            "It changes the color of the element.",
+            "It is forbidden by the CSS specification."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> While it might affect readability, the main technical concern is performance.",
+            "<b>Correct!</b> Calculating large, blurred areas is mathematically heavy for the browser's rendering engine and can cause stuttering during animations.",
+            "<b>Incorrect:</b> Blur only affects the shadow, not the element's base color.",
+            "<b>Incorrect:</b> It is allowed by the spec, but discouraged for performance reasons."
+        ]
+    },
+    {
+        q: "How do you apply more than one shadow to a single element?",
+        options: [
+            "Write multiple box-shadow properties one after another.",
+            "Use a semicolon to separate different shadow definitions.",
+            "Separate each shadow definition with a comma within the same property.",
+            "It is not possible to have more than one shadow."
+        ],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> CSS will only respect the last property if you write it multiple times.",
+            "<b>Incorrect:</b> Semicolons end the entire CSS rule.",
+            "<b>Correct!</b> As shown in Example 3, you can layer multiple shadows by separating each set of parameters with a comma.",
+            "<b>Incorrect:</b> Multi-layered shadows are a key feature for creating high-fidelity designs."
+        ]
+    }
+];
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling with space-between layout */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between; 
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+            margin-bottom: 40px;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button styling */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button styling */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Highlight style for the current page in the sidebar */
+        .sidebar a.active-link {
+            background-color: #04AA6D !important;
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Get all links from your sidebar
+            const sidebarLinks = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // 2. Identify the current page path
+            const currentPath = window.location.pathname;
+            
+            // 3. Find the index and highlight the active link
+            let currentIndex = -1;
+            
+            sidebarLinks.forEach((link, index) => {
+                const linkHref = link.getAttribute('href').replace('..', '');
+                if (currentPath.endsWith(linkHref)) {
+                    currentIndex = index;
+                    link.classList.add('active-link');
+                    
+                    // Auto-scroll sidebar to the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 4. Configure Previous Button
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 5. Configure Next Button
+            if (currentIndex !== -1 && currentIndex < sidebarLinks.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+</div>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = '../editor.html';
+    }
+</script>
+
+<footer class="footer">
+  <div class="footer-container">
+    
+    <div class="footer-box">
+      <img src="../images/LOGO.jpeg" alt="Oppty Logo">
+      <p style="color: white;">
+        Learn Web Development with practical courses in
+        HTML, CSS & JavaScript. Beginner-friendly training
+        with real-time projects.
+      </p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li><a href="#">HTML for Beginners</a></li>
+        <li><a href="../css/cssintro.html">CSS & Responsive Design</a></li>
+        <li><a href="#">JavaScript Basics</a></li>
+        <li><a href="#">Mini Projects</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p style="color: white;">Email: <a href="mailto:support@opptyacademy.com" style="color:white; text-decoration:none;">support@opptyacademy.com</a></p>
+      <p style="color: white;">Phone: +91 99999 99999</p>
+      <p style="color: white;">WhatsApp Support Available</p>
+    </div>
+
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#cs">Courses</a></li>
+        <li><a href="../index.html#as">About Us</a></li>
+        <li><a href="../index.html#cto">Contact</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Oppty Academy. All Rights Reserved.
+  </div>
+</footer>
+<style>
+    /* --- Footer Styles --- */
+.footer {
+    background: #0f0f0f;
+    color: white;
+    padding: 50px 20px 20px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;                  
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    text-align: center;             
+}
+
+.footer-box img {
+    background: #ffffff;
+    padding: 4px;
+    border-radius: 6px;
+    width: 160px;
+    margin: 0 auto 15px;
+    display: block;
+}
+
+.footer-box h3 {
+    color: #158e39;
+    margin-bottom: 15px;
+}
+
+.footer-box p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-box ul li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Link styling within list */
+.footer-box ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-box ul li a:hover {
+    color: #158e39;
+}
+
+.social-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;     
+}
+
+.social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background: #222;
+    color: #fff;
+    border-radius: 50%;
+    margin: 0 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #158e39;
+    color: #000;
+}
+
+.social-icons .whatsapp { background: #25D366; }
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+    font-size: 13px;
+    color: #aaa;
+}
+</style>
+</body>
+</html>

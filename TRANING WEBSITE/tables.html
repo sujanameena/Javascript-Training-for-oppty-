@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Tables - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* --- Base Layout --- */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        .page-container { display: flex; flex: 1; }
+
+        /* --- Header Styles --- */
+        .main-header { background: #ffffff; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 1000; }
+        .header-container { max-width: 1200px; margin: auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .explore-btn:hover { background: #ee730f; }
+
+        /* --- Sidebar Styles --- */
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 70px); 
+            position: sticky; 
+            top: 70px; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; 
+        }
+        .sidebar::-webkit-scrollbar { width: 6px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+        
+        /* --- Main Content Styles --- */
+        .main { flex: 1; padding: 40px; }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        
+        .summary-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .summary-table th, .summary-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .summary-table th { background-color: #f1f1f1; }
+
+        /* --- Footer Styles --- */
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; font-family: Arial, sans-serif; margin-top: auto; }
+        .footer-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: center; }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 150px; margin-bottom: 15px; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; line-height: 1.6; }
+        .footer-box ul { list-style: none; padding: 0; }
+        .footer-box ul li { margin-bottom: 8px; font-size: 14px; cursor: pointer; }
+        .footer-box ul li:hover { color:#158e39; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; gap: 10px; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: #158e39; color: #000; }
+        .social-icons .whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .header-container { flex-wrap: wrap; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; margin-top: 10px; }
+            .page-container { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+        </div>
+        <nav class="nav-menu"> 
+            <a href="./structure.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+        <a href="./introduction.html">JavaScript</a>
+        </nav>
+        <div class="nav-right">
+            <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+        </div>
+    </div>
+</header>
+
+<div class="page-container">
+    
+<div class="sidebar">
+
+    <h2 style="padding:10px; font-size:18px;">HTML Basics</h2>
+
+    <a href="structure.html">Structure</a>
+
+    <a href="tags.html">Common Tags</a>
+
+    <a href="headings.html">Headings</a>
+
+    <a href="lists.html">Lists</a>
+
+    <a href="tables.html" style="background:#ccc;">Tables</a>
+
+    <h2 style="padding:10px; font-size:18px; ">Forms & Inputs</h2>
+
+    <a href="forms.html">Form Elements</a>
+
+    <a href="inputs.html">Input Types</a>
+
+    <a href="validation.html">Form Validation</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Semantic HTML</h2>
+
+    <a href="semantic.html">Semantic Tags</a>
+
+    <a href="Non-semantic.html">Non-Semantic Tags</a>
+
+    <a href="structure-benefits.html">SEO Benefits</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Media & SEO</h2>
+
+    <a href="media.html">Images, Audio, Video</a>
+
+    <a href="seo.html">Meta Tags & SEO</a>
+
+    <a href="accessibility.html">Accessibility (ARIA)</a>
+
+</div>
+
+
+
+<div class="main">
+
+    <h1>HTML Tables</h1>
+
+    <p>HTML tables allow web developers to arrange data into rows and columns.</p>
+
+
+
+    <h2>1. Basic HTML Table</h2>
+
+    <p>A basic table is defined using the <code>&lt;table&gt;</code> tag. Inside, data is organized into rows using the <code>&lt;tr&gt;</code> (Table Row) tag, and individual data cells are defined using the <code>&lt;td&gt;</code> (Table Data) tag.</p>
+
+   
+
+    <div class="example-container">
+
+        <div class="code-box" id="table1">&lt;table border="1"&gt;
+
+  &lt;tr&gt;
+
+    &lt;td&gt;Emil&lt;/td&gt;
+
+    &lt;td&gt;Tobias&lt;/td&gt;
+
+  &lt;/tr&gt;
+
+  &lt;tr&gt;
+
+    &lt;td&gt;Linus&lt;/td&gt;
+
+    &lt;td&gt;16&lt;/td&gt;
+
+  &lt;/tr&gt;
+
+&lt;/table&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('table1')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Structure:</strong> Every table must have at least one row and one cell.</li>
+
+        <li><strong>Default Styling:</strong> By default, table data is left-aligned and has no visible border unless specified via CSS (or the legacy <code>border</code> attribute).</li>
+
+    </ul>
+
+
+
+    <h2>2. Adding Table Headers</h2>
+
+    <p>To make a table readable, headers are used to label columns or rows.</p>
+
+   
+
+    <div class="example-container">
+
+        <div class="code-box" id="table2">&lt;table border="1"&gt;
+
+  &lt;tr&gt;
+
+    &lt;th&gt;Name&lt;/th&gt;
+
+    &lt;th&gt;Age&lt;/th&gt;
+
+  &lt;/tr&gt;
+
+  &lt;tr&gt;
+
+    &lt;td&gt;Jill&lt;/td&gt;
+
+    &lt;td&gt;25&lt;/td&gt;
+
+  &lt;/tr&gt;
+
+&lt;/table&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('table2')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Tag:</strong> Use <code>&lt;th&gt;</code> (Table Header) instead of <code>&lt;td&gt;</code> for header cells.</li>
+
+        <li><strong>Visual Difference:</strong> Browsers typically render <code>&lt;th&gt;</code> content as <strong>bold and centered</strong> by default.</li>
+
+        <li><strong>Scope:</strong> You can use the <code>scope</code> attribute (col or row) to tell screen readers whether the header is for a column or a row, improving accessibility.</li>
+
+    </ul>
+
+
+
+    <h2>3. Table with Colspan</h2>
+
+    <p>The <code>colspan</code> attribute stands for "column span." It is used when you want a single cell to stretch horizontally across multiple columns.</p>
+
+   
+
+   
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="table3">&lt;table border="1"&gt;
+
+  &lt;tr&gt;
+
+    &lt;th colspan="2"&gt;Phone Numbers&lt;/th&gt;
+
+  &lt;/tr&gt;
+
+  &lt;tr&gt;
+
+    &lt;td&gt;555-0123&lt;/td&gt;
+
+    &lt;td&gt;555-0124&lt;/td&gt;
+
+  &lt;/tr&gt;
+
+&lt;/table&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('table3')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Usage:</strong> <code>&lt;td colspan="2"&gt;</code> will make that cell take up the space of two columns.</li>
+
+        <li><strong>Common Use Case:</strong> Creating a "Total" row at the bottom of a financial table or a main heading that centers across the entire table width.</li>
+
+    </ul>
+
+
+
+    <h2>4. Table with Rowspan</h2>
+
+    <p>The <code>rowspan</code> attribute is the vertical counterpart to colspan. It allows a single cell to span across multiple rows.</p>
+
+   
+
+   
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="table4">&lt;table border="1"&gt;
+
+  &lt;tr&gt;
+
+    &lt;th&gt;Name:&lt;/th&gt;
+
+    &lt;td&gt;Bill Gates&lt;/td&gt;
+
+  &lt;/tr&gt;
+
+  &lt;tr&gt;
+
+    &lt;th rowspan="2"&gt;Phone:&lt;/th&gt;
+
+    &lt;td&gt;555-1234&lt;/td&gt;
+
+  &lt;/tr&gt;
+
+  &lt;tr&gt;
+
+    &lt;td&gt;555-8765&lt;/td&gt;
+
+  &lt;/tr&gt;
+
+&lt;/table&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('table4')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Usage:</strong> <code>&lt;td rowspan="3"&gt;</code> will make the cell extend downwards across three rows.</li>
+
+        <li><strong>Common Use Case:</strong> When the first column of a table contains a category name that applies to several rows of data.</li>
+
+    </ul>
+
+
+
+    <h2>5. Table Captions</h2>
+
+    <p>A caption serves as a title or a brief description for the table, helping users and search engines understand what the data represents.</p>
+
+   
+
+    <div class="example-container">
+
+        <div class="code-box" id="table5">&lt;table border="1"&gt;
+
+  &lt;caption&gt;Monthly Savings&lt;/caption&gt;
+
+  &lt;tr&gt;
+
+    &lt;th&gt;Month&lt;/th&gt;
+
+    &lt;th&gt;Savings&lt;/th&gt;
+
+  &lt;/tr&gt;
+
+  &lt;tr&gt;
+
+    &lt;td&gt;January&lt;/td&gt;
+
+    &lt;td&gt;$100&lt;/td&gt;
+
+  &lt;/tr&gt;
+
+&lt;/table&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('table5')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Tag:</strong> Defined using the <code>&lt;caption&gt;</code> tag.</li>
+
+        <li><strong>Placement:</strong> The <code>&lt;caption&gt;</code> tag must be inserted <strong>immediately after</strong> the opening <code>&lt;table&gt;</code> tag.</li>
+
+        <li><strong>Alignment:</strong> By default, the caption appears centered at the very top of the table.</li>
+
+    </ul>
+
+
+
+    <h2>Summary Table of Tags</h2>
+
+    <table class="summary-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Tag</th>
+
+                <th>Description</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr><td><code>&lt;table&gt;</code></td><td>The main container for the table.</td></tr>
+
+            <tr><td><code>&lt;tr&gt;</code></td><td>Defines a single row.</td></tr>
+
+            <tr><td><code>&lt;th&gt;</code></td><td>Defines a header cell (bold/centered).</td></tr>
+
+            <tr><td><code>&lt;td&gt;</code></td><td>Defines a standard data cell.</td></tr>
+
+            <tr><td><code>&lt;caption&gt;</code></td><td>Provides a title for the table.</td></tr>
+
+        </tbody>
+
+    </table>
+<section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+       const quizData = [
+    {
+        q: "Which HTML tag is used to define the main container for a table?",
+        options: ["<tmain>", "<table>", "<tr>", "<tab>"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> <tmain> is not a valid HTML tag.",
+            "<b>Correct!</b> The <table> tag is the required wrapper for all table content.",
+            "<b>Incorrect:</b> <tr> defines a table row, not the container itself.",
+            "<b>Incorrect:</b> <tab> is not a valid HTML tag for creating tables."
+        ]
+    },
+    {
+        q: "What is the primary purpose of the <tr> tag?",
+        options: ["To create a table data cell", "To define a table header", "To define a single row in a table", "To title the table"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Data cells are defined by <td>.",
+            "<b>Incorrect:</b> Table headers are defined by <th>.",
+            "<b>Correct!</b> <tr> stands for 'Table Row' and organizes cells horizontally.",
+            "<b>Incorrect:</b> <caption> is used for titling the table."
+        ]
+    },
+    {
+        q: "How do browser default styles typically render content inside a <th> tag?",
+        options: ["Italicized and left-aligned", "Bold and centered", "Underlined and blue", "Small and right-aligned"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Browsers usually make headers stand out more than just italics.",
+            "<b>Correct!</b> <th> cells are rendered as bold and centered to distinguish them from standard data.",
+            "<b>Incorrect:</b> This styling is typical for links, not table headers.",
+            "<b>Incorrect:</b> Header text is usually prioritized and centered."
+        ]
+    },
+    {
+        q: "Which attribute allows a cell to stretch horizontally across multiple columns?",
+        options: ["rowspan", "colspan", "width", "scope"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> rowspan stretches a cell vertically across rows.",
+            "<b>Correct!</b> 'colspan' stands for column span and expands a cell across the width of the table.",
+            "<b>Incorrect:</b> width sets the size but doesn't merge adjacent column cells.",
+            "<b>Incorrect:</b> scope is used for accessibility to define the relationship between headers and cells."
+        ]
+    },
+    {
+        q: "Where must the <caption> tag be placed for it to be valid?",
+        options: ["Before the opening <table> tag", "Immediately after the opening <table> tag", "Inside the first <tr> tag", "After the closing </table> tag"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> It must be inside the table element.",
+            "<b>Correct!</b> The <caption> must be the first element inside the <table> to be valid.",
+            "<b>Incorrect:</b> <caption> cannot be a child of a <tr> tag.",
+            "<b>Incorrect:</b> Placing it after the table makes it external text, not a table caption."
+        ]
+    },
+    {
+        q: "If you want a cell to extend downwards across three rows, which attribute should you use?",
+        options: ["colspan=\"3\"", "rowspan=\"3\"", "height=\"3\"", "expand=\"down\""],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> colspan expands cells sideways (columns).",
+            "<b>Correct!</b> 'rowspan' allows a single <td> or <th> to occupy the space of multiple vertical rows.",
+            "<b>Incorrect:</b> height is a CSS property for size, not for spanning rows.",
+            "<b>Incorrect:</b> 'expand' is not a valid HTML table attribute."
+        ]
+    },
+    {
+        q: "What is the default alignment for standard <td> (Table Data) cells?",
+        options: ["Centered", "Right-aligned", "Left-aligned", "Justified"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Only <th> tags are centered by default.",
+            "<b>Incorrect:</b> Right-alignment must be specified manually.",
+            "<b>Correct!</b> By default, most browsers align table data to the left.",
+            "<b>Incorrect:</b> Justification is rarely a default for table cells."
+        ]
+    },
+    {
+        q: "Which attribute is used with <th> to improve accessibility for screen readers?",
+        options: ["border", "id", "scope", "alt"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> border affects visual appearance, not accessibility.",
+            "<b>Incorrect:</b> id identifies an element but doesn't explain the header's relationship to data.",
+            "<b>Correct!</b> The 'scope' attribute tells screen readers if the header is for a row or a column.",
+            "<b>Incorrect:</b> alt is used for images, not table headers."
+        ]
+    },
+    {
+        q: "In the code <table border=\"1\">, what does the 'border' attribute do?",
+        options: ["Changes the background color", "Adds visible lines around cells", "Merged all rows into one", "Hidden the table"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> background-color is handled by CSS.",
+            "<b>Correct!</b> Although legacy, the border attribute adds visible grid lines to the table.",
+            "<b>Incorrect:</b> Borders do not affect row structure.",
+            "<b>Incorrect:</b> Border makes the table more visible, not hidden."
+        ]
+    },
+    {
+        q: "What is the minimum requirement for a valid HTML table structure?",
+        options: ["At least one <th>", "At least one <caption>", "At least one row and one cell", "A <thead> and <tbody>"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Headers are optional (though recommended).",
+            "<b>Incorrect:</b> Captions are optional descriptions.",
+            "<b>Correct!</b> To display any data, a table must contain at least one row (<tr>) and one cell (<td>).",
+            "<b>Incorrect:</b> Semantic sections like <thead> are optional for basic tables."
+        ]
+    }
+];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-box">
+            <img src="./images/LOGO.jpeg" alt="Oppty Logo" class="logo">
+            <p>Learn Web Development with practical courses in HTML, CSS & JavaScript. Beginner-friendly training with real-time projects.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/919999999999" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h3>Courses</h3>
+            <ul>
+                <li>HTML for Beginners</li>
+                <li>CSS & Responsive Design</li>
+                <li>JavaScript Basics</li>
+                <li>Mini Projects</li>
+            </ul>
+        </div>
+        <div class="footer-box">
+            <h3>Contact Us</h3>
+            <p>Email: support@opptyacademy.com</p>
+            <p>Phone: +91 99999 99999</p>
+        </div>
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li>About Us</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">© 2026 Oppty Academy. All Rights Reserved.</div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

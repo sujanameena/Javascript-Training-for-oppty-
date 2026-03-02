@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Fundamentals - Tutorial</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            background-color: #fff;
+        }
+ .explore-btn:hover { background: #ee730f; }
+
+        /* Sidebar with Scrolling */
+        .sidebar { 
+            width: 300px; 
+            background: #f1f1f1; 
+            height: 100vh; 
+            position: sticky; 
+            top: 0; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; /* Enables scrolling for long lists */
+               min-width: 300px;         /* Ensures it never gets smaller */
+    flex-shrink: 0
+        }
+
+        /* Custom Scrollbar for Sidebar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        .sidebar h2 {
+            padding: 15px 20px 5px 20px;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a { 
+            display: block; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            color: #444; 
+            border-bottom: 1px solid #e7e7e7; 
+            font-size: 14px;
+        }
+        
+        .sidebar a:hover { 
+            background-color: #bbb; 
+            color: white;
+        }
+
+        /* Main Content Area */
+        .main { 
+            flex: 1; 
+            padding: 40px; 
+           
+        }
+
+        /* GeeksforGeeks Style UI Components */
+        .example-container { 
+            background-color: #E7E9EB; 
+            padding: 20px; 
+            border-radius: 5px; 
+            margin: 25px 0; 
+            border: 1px solid #ccc; 
+        }
+
+        .code-box { 
+            background-color: white; 
+            padding: 15px; 
+            border-left: 4px solid #04AA6D; 
+            font-family: 'Courier New', monospace; 
+            white-space: pre; 
+            margin-bottom: 15px; 
+            overflow-x: auto; 
+            font-size: 14px; 
+            line-height: 1.5;
+        }
+
+        .try-btn { 
+            background-color: #04AA6D; 
+            color: white; 
+            padding: 12px 25px; 
+            border: none; 
+            border-radius: 25px; 
+            font-weight: bold; 
+            cursor: pointer; 
+        }
+
+        h1 { color: #2c3e50; font-size: 32px; font-weight: bold;}
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; color: #2c3e50; }
+        p { line-height: 1.6; color: #444; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+
+        .note-box {
+            background-color: #ffffcc;
+            border-left: 5px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+        }
+          /* --- Header Integration --- */
+.main-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 1001; /* Higher than sidebar */
+  width: 100%;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;        
+  justify-content: space-between;
+}
+
+.logo img { width: 140px; display: block; }
+
+.nav-menu { display: flex; align-items: center; gap: 30px; }
+
+.nav-menu a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-menu a:hover { color: #158e39; }
+
+.explore-btn {
+  background: #158e39;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* --- Layout Correction --- */
+body { display: block; } /* Change body from flex to block */
+
+.content-container {
+  display: flex; /* Move flex here to keep sidebar and main side-by-side */
+}
+
+.sidebar {
+  top: 70px; /* Adjust this so sidebar sticks BELOW the header */
+  height: calc(100vh - 70px);
+}
+    
+    </style>
+</head>
+<body>
+<header class="main-header">
+  <div class="header-container">
+
+   
+    <div class="logo">
+      <a href="../index.html"><img src="../images/LOGO.jpeg" alt="Oppty Academy Logo"></a>
+    </div>
+    
+     <nav class="nav-menu"> 
+       <a href="../structure.html">Html</a> 
+        <a href="../css/cssintro.html">Css</a>
+         <a href="../introduction.html">JavaScript</a>
+     </nav>
+    <div class="nav-right">
+      <a href="../index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+
+  </div>
+</header>  
+<div class="content-container">
+<div class="sidebar">
+    <h2>CSS Fundamentals</h2>
+    <a href="../css/cssintro.html">CSS Introduction</a>    <a href="../css/selectors.html">Selectors (class, id, element)</a>
+    <a href="../css/colors.html">Colors, Units (px, %, em, rem)</a>
+    <a href="../css/boxmodel.html">Box Model (margin, border, padding, content)</a>
+
+    <h2>Layout Systems</h2>
+    <a href="../css/flexbox.html">Flexbox (very important)</a>
+    <a href="../css/grid.html">Grid (important)</a>
+    <a href="../css/positioning.html">Positioning (static, relative, absolute, fixed, sticky)</a>
+    <a href="../css/z-index.html">z-index</a>
+
+    <h2>Styling & UI</h2>
+    <a href="../css/backgrounds.html">Backgrounds & Gradients</a>
+    <a href="../css/borders.html">Borders & Border-radius</a>
+        <a href="../css/margins.html">Margin& Padding </a>
+<a href="../css/fonts.html">fonts & Text formatting </a>
+    <a href="../css/display.html">Display and Visibility Properties </a>
+
+    <a href="../css/shadows.html">Shadows (box-shadow, text-shadow)</a>
+    <a href="../css/buttons.html">Buttons & Forms styling</a>
+
+    <h2>Responsive Design</h2>
+    <a href="../css/mediaquiries.html">Media Queries</a>
+    <a href="../css/mobilefirst.html">Mobile-first design</a>
+    <a href="../css/responsive.html">Responsive images</a>
+
+    <h2>Animations</h2>
+    <a href="../css/transitions.html">Transitions</a>
+    <a href="../css/keyframes.html">Keyframe Animations</a>
+    <a href="../css/hovers.html">Hover effects</a>
+</div>
+<div class="main">
+    <h1>CSS Responsive Images</h1>
+    <p>In a world of varying screen sizes, images must be flexible. A responsive image will automatically adjust to fit the size of the screen. Mastering responsive images prevents horizontal scrolling, improves page load speed, and ensures a professional look on mobile, tablet, and desktop.</p>
+
+    <hr>
+
+    <h2>1. The Responsive Image Property Matrix</h2>
+    <p>These core properties allow images to scale dynamically within their parent containers without losing their aspect ratio.</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ddd; font-size: 0.85em;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Property</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Purpose</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Usage Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>max-width: 100%</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Ensures the image never gets wider than its container.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>img { max-width: 100%; height: auto; }</code></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>height: auto</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Maintains the original aspect ratio while scaling.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Required alongside <code>max-width</code>.</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>object-fit</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Specifies how an image should be resized to fit its container.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>cover</code>, <code>contain</code>, <code>fill</code></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>background-size</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Controls scaling for CSS background images.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>background-size: cover;</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>2. Deep Dive: Fluid Layouts & Grids</h2>
+    <p>Combining responsive images with CSS Grids or Flexbox allows for complex galleries that rearrange themselves based on viewport width.</p>
+
+    <div class="example-container">
+        <h3>Example 1: Basic Responsive Image</h3>
+        <p>The simplest way to make an image responsive. Resize the browser to see it scale.</p>
+        <div class="code-box" id="imgEx1">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .responsive-img {
+    max-width: 100%;
+    height: auto;
+    border: 5px solid #ddd;
+    border-radius: 8px;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h2&gt;Scaling Image&lt;/h2&gt;
+  &lt;img src="https://www.w3schools.com/howto/img_nature_wide.jpg" class="responsive-img" alt="Nature"&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('imgEx1')">Try it Yourself</button>
+    </div>
+
+    <div class="example-container">
+        <h3>Example 2: Responsive Image Grid</h3>
+        <p>A 4-column grid on desktop that collapses to 2 columns on tablets and 1 column on mobile.</p>
+        <div class="code-box" id="imgEx2">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .row { display: flex; flex-wrap: wrap; padding: 0 4px; }
+  .column { flex: 25%; max-width: 25%; padding: 0 4px; }
+  .column img { width: 100%; height: auto; margin-top: 8px; vertical-align: middle; }
+
+  /* Tablet: 2 columns */
+  @media screen and (max-width: 800px) {
+    .column { flex: 50%; max-width: 50%; }
+  }
+
+  /* Mobile: 1 column */
+  @media screen and (max-width: 600px) {
+    .column { flex: 100%; max-width: 100%; }
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="column"&gt;
+      &lt;img src="https://www.w3schools.com/w3images/wedding.jpg"&gt;
+      &lt;img src="https://www.w3schools.com/w3images/rocks.jpg"&gt;
+    &lt;/div&gt;
+    &lt;div class="column"&gt;
+      &lt;img src="https://www.w3schools.com/w3images/falls2.jpg"&gt;
+      &lt;img src="https://www.w3schools.com/w3images/paris.jpg"&gt;
+    &lt;/div&gt;
+    &lt;div class="column"&gt;
+      &lt;img src="https://www.w3schools.com/w3images/nature.jpg"&gt;
+      &lt;img src="https://www.w3schools.com/w3images/mist.jpg"&gt;
+    &lt;/div&gt;
+    &lt;div class="column"&gt;
+      &lt;img src="https://www.w3schools.com/w3images/underwater.jpg"&gt;
+      &lt;img src="https://www.w3schools.com/w3images/ocean.jpg"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('imgEx2')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>3. Advanced: Object-Fit & Hero Backgrounds</h2>
+    <p>Sometimes you need an image to fill a specific height and width without getting squashed. Use <code>object-fit: cover</code>.</p>
+
+    <div class="example-container">
+        <h3>Example 3: Object-Fit Cover</h3>
+        <div class="code-box" id="imgEx3">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .crop-container {
+    width: 100%;
+    height: 300px;
+    background-color: #333;
+    overflow: hidden;
+  }
+  .crop-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Crops the image to fill the 300px height */
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="crop-container"&gt;
+    &lt;img src="https://www.w3schools.com/w3images/mountains.jpg" alt="Mountains"&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('imgEx3')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>4. Pro-Tips & Best Practices</h2>
+    <div style="background-color: #e7f3fe; padding: 20px; border-radius: 8px; border-left: 6px solid #2196F3;">
+        <p><strong>1. Avoid Fixed Widths:</strong> Never use <code>width: 500px;</code> on images. Always use relative units like <code>%</code>, <code>vw</code>, or <code>max-width</code>.</p>
+        <p><strong>2. The Viewport Meta Tag:</strong> Responsive images will not work correctly on mobile devices without the <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code> tag in your HTML head.</p>
+        <p><strong>3. Use Modern Formats:</strong> Whenever possible, use <code>.webp</code> or <code>.avif</code> formats to reduce file size without losing quality.</p>
+        <p><strong>4. Background Cover:</strong> For hero sections, use <code>background-size: cover;</code> and <code>background-position: center;</code> to ensure the most important part of the image is always visible.</p>
+    </div>
+    <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+       const quizData = [
+    {
+        q: "What is the primary goal of the 'Progressive Advancement' design strategy used in Mobile-First Design?",
+        options: [
+            "To build for desktop first and then remove complicated features for mobile.",
+            "To build essential content for the smallest screens first and add layout complexity for larger screens.",
+            "To make the website load only on mobile devices to save server space.",
+            "To ensure that all devices use the exact same fixed layout."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> This is 'Graceful Degradation,' which is the opposite of the mobile-first approach.",
+            "<b>Correct!</b> Progressive Advancement starts with the core mobile experience and adds enhancements (upgrades) as more screen space becomes available.",
+            "<b>Incorrect:</b> Mobile-first design aims to support all devices, not just mobile phones.",
+            "<b>Incorrect:</b> The goal of responsive design is for layouts to change and adapt, not to remain fixed."
+        ]
+    },
+    {
+        q: "In a Mobile-First CSS workflow, what is the purpose of using '@media (min-width: 768px)'?",
+        options: [
+            "To define styles that only apply to screens smaller than 768px.",
+            "To hide all content when the screen reaches 768px.",
+            "To add 'upgrades' or desktop-specific styles once the screen is at least 768px wide.",
+            "To reset the CSS for mobile devices."
+        ],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> That would require a <code>max-width</code> query. <code>min-width</code> targets screens that are equal to or wider than the value.",
+            "<b>Incorrect:</b> Media queries are used to change layout and styling, not to break the site.",
+            "<b>Correct!</b> In mobile-first design, base styles are mobile by default. You use <code>min-width</code> to introduce multi-column layouts or larger font sizes for tablets and desktops.",
+            "<b>Incorrect:</b> Mobile styles are already defined outside the media query; the query is for larger screens."
+        ]
+    },
+    {
+        q: "According to the lesson, what is a key reasoning for starting with a single-column layout on mobile?",
+        options: [
+            "Because mobile devices cannot render more than one column.",
+            "It is easier to read and navigate on narrow, constrained screens.",
+            "To make the website look like a mobile app.",
+            "Because mobile browsers do not support CSS Grid or Flexbox."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Mobile devices can render multiple columns, but it often results in a poor user experience.",
+            "<b>Correct!</b> On narrow screens, a single-column layout ensures text is legible and users don't have to zoom or scroll horizontally.",
+            "<b>Incorrect:</b> While mobile-first is app-like, the primary driver is usability and focus on content.",
+            "<b>Incorrect:</b> Modern mobile browsers have excellent support for Grid and Flexbox."
+        ]
+    },
+    {
+        q: "Which property is used in Example 2 to make cards stack vertically on mobile but sit side-by-side on desktop?",
+        options: ["display: block", "flex-direction", "grid-template-areas", "float: left"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> While block elements stack, <code>flex-direction</code> is the specific tool used in the example to toggle the layout flow.",
+            "<b>Correct!</b> The example uses <code>flex-direction: column</code> for mobile and switches to <code>flex-direction: row</code> inside a media query for desktop.",
+            "<b>Incorrect:</b> Grid areas are used for 2D layouts, but the example specifically uses Flexbox.",
+            "<b>Incorrect:</b> Floats are an older layout method and were not used in the modern examples provided."
+        ]
+    },
+    {
+        q: "What is the 'Mobile Menu Toggle Strategy' mentioned in Example 3?",
+        options: [
+            "Showing the full navigation only on mobile.",
+            "Hiding complex navigation on mobile and revealing it only on desktop screens.",
+            "Deleting the menu entirely for desktop users.",
+            "Changing the color of the menu for mobile users."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Full navigation is usually too bulky for mobile screens.",
+            "<b>Correct!</b> To save space, mobile sites often hide links behind a menu button and only display the full nav bar on wider desktop screens.",
+            "<b>Incorrect:</b> Navigation is essential for all users; it is simply formatted differently based on screen size.",
+            "<b>Incorrect:</b> The strategy focuses on visibility and layout, not just color."
+        ]
+    },
+    {
+        q: "Why is it important for touch targets (like buttons) to be at least 44x44px?",
+        options: [
+            "To make the button text easier to read.",
+            "Because finger tips are less precise than mouse cursors.",
+            "To satisfy the requirements of the Viewport Meta Tag.",
+            "So the button can fit more background images."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Font size handles readability; 44px refers to the physical 'hit area' for tapping.",
+            "<b>Correct!</b> As noted in the Pro-Tips, mobile design must account for the physical size of a finger to prevent accidental clicks or frustration.",
+            "<b>Incorrect:</b> The Viewport tag handles scaling, not the size of individual elements.",
+            "<b>Incorrect:</b> Element size is determined by user needs, not image capacity."
+        ]
+    },
+    {
+        q: "In Example 5, why is 'max-width: 400px' used on the desktop media query for the image?",
+        options: [
+            "To make the image take up the full screen width.",
+            "To prevent the image from becoming too large and blurry on big monitors.",
+            "To hide the image on mobile devices.",
+            "To turn the image into a background."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Full width is handled by <code>width: 100%</code>, which is the mobile style in the example.",
+            "<b>Correct!</b> Capping the width on desktop ensures the image remains crisp and doesn't overwhelm the layout on very wide screens.",
+            "<b>Incorrect:</b> The image is visible on mobile at 100% width.",
+            "<b>Incorrect:</b> <code>max-width</code> simply limits size; it doesn't change the element type."
+        ]
+    }
+];
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+    
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling with space-between layout */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between; 
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+            margin-bottom: 40px;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button styling */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button styling */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Highlight style for the current page in the sidebar */
+        .sidebar a.active-link {
+            background-color: #04AA6D !important;
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Get all links from your sidebar
+            const sidebarLinks = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // 2. Identify the current page path
+            const currentPath = window.location.pathname;
+            
+            // 3. Find the index and highlight the active link
+            let currentIndex = -1;
+            
+            sidebarLinks.forEach((link, index) => {
+                const linkHref = link.getAttribute('href').replace('..', '');
+                if (currentPath.endsWith(linkHref)) {
+                    currentIndex = index;
+                    link.classList.add('active-link');
+                    
+                    // Auto-scroll sidebar to the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 4. Configure Previous Button
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 5. Configure Next Button
+            if (currentIndex !== -1 && currentIndex < sidebarLinks.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+</div>
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = '../editor.html';
+    }
+</script>
+
+<footer class="footer">
+  <div class="footer-container">
+    
+    <div class="footer-box">
+      <img src="../images/LOGO.jpeg" alt="Oppty Logo">
+      <p style="color: white;">
+        Learn Web Development with practical courses in
+        HTML, CSS & JavaScript. Beginner-friendly training
+        with real-time projects.
+      </p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li><a href="#">HTML for Beginners</a></li>
+        <li><a href="../css/cssintro.html">CSS & Responsive Design</a></li>
+        <li><a href="#">JavaScript Basics</a></li>
+        <li><a href="#">Mini Projects</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p style="color: white;">Email: <a href="mailto:support@opptyacademy.com" style="color:white; text-decoration:none;">support@opptyacademy.com</a></p>
+      <p style="color: white;">Phone: +91 99999 99999</p>
+      <p style="color: white;">WhatsApp Support Available</p>
+    </div>
+
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#cs">Courses</a></li>
+        <li><a href="../index.html#as">About Us</a></li>
+        <li><a href="../index.html#cto">Contact</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Oppty Academy. All Rights Reserved.
+  </div>
+</footer>
+<style>
+    /* --- Footer Styles --- */
+.footer {
+    background: #0f0f0f;
+    color: white;
+    padding: 50px 20px 20px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;                  
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    text-align: center;             
+}
+
+.footer-box img {
+    background: #ffffff;
+    padding: 4px;
+    border-radius: 6px;
+    width: 160px;
+    margin: 0 auto 15px;
+    display: block;
+}
+
+.footer-box h3 {
+    color: #158e39;
+    margin-bottom: 15px;
+}
+
+.footer-box p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-box ul li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Link styling within list */
+.footer-box ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-box ul li a:hover {
+    color: #158e39;
+}
+
+.social-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;     
+}
+
+.social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background: #222;
+    color: #fff;
+    border-radius: 50%;
+    margin: 0 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #158e39;
+    color: #000;
+}
+
+.social-icons .whatsapp { background: #25D366; }
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+    font-size: 13px;
+    color: #aaa;
+}
+</style>
+</body>
+</html>

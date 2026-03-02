@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Fundamentals - Tutorial</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            background-color: #fff;
+        }
+
+        /* Sidebar with Scrolling */
+        .sidebar { 
+            width: 300px; 
+            background: #f1f1f1; 
+            height: 100vh; 
+            position: sticky; 
+            top: 0; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; /* Enables scrolling for long lists */
+        }
+
+        /* Custom Scrollbar for Sidebar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        .sidebar h2 {
+            padding: 15px 20px 5px 20px;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a { 
+            display: block; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            color: #444; 
+            border-bottom: 1px solid #e7e7e7; 
+            font-size: 14px;
+        }
+        
+        .sidebar a:hover { 
+            background-color: #bbb; 
+            color: white;
+        }
+
+        /* Main Content Area */
+        .main { 
+            flex: 1; 
+            padding: 40px; 
+           
+        }
+
+        /* GeeksforGeeks Style UI Components */
+        .example-container { 
+            background-color: #E7E9EB; 
+            padding: 20px; 
+            border-radius: 5px; 
+            margin: 25px 0; 
+            border: 1px solid #ccc; 
+        }
+
+        .code-box { 
+            background-color: white; 
+            padding: 15px; 
+            border-left: 4px solid #04AA6D; 
+            font-family: 'Courier New', monospace; 
+            white-space: pre; 
+            margin-bottom: 15px; 
+            overflow-x: auto; 
+            font-size: 14px; 
+            line-height: 1.5;
+        }
+
+        .try-btn { 
+            background-color: #04AA6D; 
+            color: white; 
+            padding: 12px 25px; 
+            border: none; 
+            border-radius: 25px; 
+            font-weight: bold; 
+            cursor: pointer; 
+        }
+
+        h1 { color: #2c3e50; font-size: 32px; font-weight: bold;}
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; color: #2c3e50; }
+        p { line-height: 1.6; color: #444; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+
+        .note-box {
+            background-color: #ffffcc;
+            border-left: 5px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+        }
+          /* --- Header Integration --- */
+.main-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 1001; /* Higher than sidebar */
+  width: 100%;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;        
+  justify-content: space-between;
+}
+
+.logo img { width: 140px; display: block; }
+
+.nav-menu { display: flex; align-items: center; gap: 30px; }
+
+.nav-menu a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-menu a:hover { color: #158e39; }
+
+.explore-btn {
+  background: #158e39;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* --- Layout Correction --- */
+body { display: block; } /* Change body from flex to block */
+
+.content-container {
+  display: flex; /* Move flex here to keep sidebar and main side-by-side */
+}
+
+.sidebar {
+  top: 70px; /* Adjust this so sidebar sticks BELOW the header */
+  height: calc(100vh - 70px);
+     min-width: 300px;         /* Ensures it never gets smaller */
+    flex-shrink: 0
+}
+ .explore-btn:hover { background: #ee730f; }
+
+    
+    </style>
+</head>
+<body>
+    <header class="main-header">
+  <div class="header-container">
+
+   
+    <div class="logo">
+      <a href="../index.html"><img src="../images/LOGO.jpeg" alt="Oppty Academy Logo"></a>
+    </div>
+    
+     <nav class="nav-menu"> 
+       <a href="../structure.html">Html</a> 
+        <a href="../css/cssintro.html">Css</a>
+         <a href="../introduction.html">JavaScript</a>
+          </nav>
+    
+    <div class="nav-right">
+      <a href="../index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+
+  </div>
+</header>  
+<div class="content-container">
+<div class="sidebar">
+    <h2>CSS Fundamentals</h2>
+    <a href="../css/cssintro.html">CSS Introduction</a>    <a href="../css/selectors.html">Selectors (class, id, element)</a>
+    <a href="../css/colors.html">Colors, Units (px, %, em, rem)</a>
+    <a href="../css/boxmodel.html">Box Model (margin, border, padding, content)</a>
+
+    <h2>Layout Systems</h2>
+    <a href="../css/flexbox.html">Flexbox (very important)</a>
+    <a href="../css/grid.html">Grid (important)</a>
+    <a href="../css/positioning.html">Positioning (static, relative, absolute, fixed, sticky)</a>
+    <a href="../css/z-index.html">z-index</a>
+
+    <h2>Styling & UI</h2>
+    <a href="../css/backgrounds.html">Backgrounds & Gradients</a>
+    <a href="../css/borders.html">Borders & Border-radius</a>
+        <a href="../css/margins.html">Margin& Padding </a>
+<a href="../css/fonts.html">fonts & Text formatting </a>
+    <a href="../css/display.html">Display and Visibility Properties </a>
+
+    <a href="../css/shadows.html">Shadows (box-shadow, text-shadow)</a>
+    <a href="../css/buttons.html">Buttons & Forms styling</a>
+
+    <h2>Responsive Design</h2>
+    <a href="../css/mediaquiries.html">Media Queries</a>
+    <a href="../css/mobilefirst.html">Mobile-first design</a>
+    <a href="../css/responsive.html">Responsive images</a>
+
+    <h2>Animations</h2>
+    <a href="../css/transitions.html">Transitions</a>
+    <a href="../css/keyframes.html">Keyframe Animations</a>
+    <a href="../css/hovers.html">Hover effects</a>
+</div>
+<div class="main">
+    <h1>CSS Display & Visibility: Ultimate Master Class</h1>
+    <p>The <code>display</code> property is the most important CSS property for controlling layout. It determines how an element is rendered in the document flow, while the <code>visibility</code> property controls whether an element is seen or hidden without changing the document structure.</p>
+
+    <hr>
+
+    <h2>1. The Display Property Matrix</h2>
+    <p>Every HTML element has a default display value depending on what type of element it is. Most elements are usually <code>block</code> or <code>inline</code>.</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ddd; font-size: 0.85em;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Value</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>inline</strong></td><td style="border: 1px solid #ddd; padding: 10px;">Displays an element as an inline element (like &lt;span&gt;). Height and width properties have no effect. Default for text.</td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>block</strong></td><td style="border: 1px solid #ddd; padding: 10px;">Displays an element as a block element (like &lt;p&gt;). It starts on a new line and takes up the full width available.</td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>inline-block</strong></td><td style="border: 1px solid #ddd; padding: 10px;">Formats as an inline element, but allows you to apply height and width values.</td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>none</strong></td><td style="border: 1px solid #ddd; padding: 10px;">The element is completely removed from the layout. It takes up no space.</td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>flex</strong></td><td style="border: 1px solid #ddd; padding: 10px;">Displays an element as a block-level flex container.</td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>grid</strong></td><td style="border: 1px solid #ddd; padding: 10px;">Displays an element as a block-level grid container.</td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>contents</strong></td><td style="border: 1px solid #ddd; padding: 10px;">Makes the container disappear, making child elements direct children of the next level up.</td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>list-item</strong></td><td style="border: 1px solid #ddd; padding: 10px;">Let the element behave like a &lt;li&gt; element.</td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>table</strong></td><td style="border: 1px solid #ddd; padding: 10px;">Let the element behave like a &lt;table&gt; element.</td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>initial/inherit</strong></td><td style="border: 1px solid #ddd; padding: 10px;">Sets the property to its default value or inherits from the parent.</td></tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>2. Interactive Examples: Core Display Values</h2>
+    <p>The difference between <code>inline</code>, <code>block</code>, and <code>inline-block</code> is the foundation of CSS layouts.</p>
+
+    <div class="example-container">
+        <h3>Example 1: Block vs. Inline vs. Inline-Block</h3>
+        <div class="code-box" id="displayEx1">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+    .box { background-color: #ff6b6b; color: white; padding: 10px; border: 1px solid black; }
+    .block-box { display: block; margin-bottom: 5px; }
+    .inline-box { display: inline; }
+    .inline-block-box { display: inline-block; width: 150px; height: 50px; margin: 5px; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h4&gt;Display: Block (Full width, new line)&lt;/h4&gt;
+    &lt;div class="box block-box"&gt;Box 1&lt;/div&gt;
+    &lt;div class="box block-box"&gt;Box 2&lt;/div&gt;
+
+    &lt;h4&gt;Display: Inline (Width only as wide as content)&lt;/h4&gt;
+    &lt;div class="box inline-box"&gt;Inline Box 1&lt;/div&gt;
+    &lt;div class="box inline-box"&gt;Inline Box 2&lt;/div&gt;
+
+    &lt;h4&gt;Display: Inline-Block (Inline flow + Custom Size)&lt;/h4&gt;
+    &lt;div class="box inline-block-box"&gt;150x50px Box&lt;/div&gt;
+    &lt;div class="box inline-block-box"&gt;150x50px Box&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('displayEx1')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>3. Display: None vs. Visibility: Hidden</h2>
+    <p>A common point of confusion is the difference between removing an element and simply hiding it.</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 10px; border: 1px solid #ddd; font-size: 0.9em;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Property</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Space in Layout</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Interaction</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>display: none;</code></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Space is collapsed (removed).</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Cannot be clicked/focused.</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>visibility: hidden;</code></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Space is preserved (invisible gap).</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Cannot be clicked/focused.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="example-container">
+        <h3>Example 2: Hiding Elements</h3>
+        <div class="code-box" id="displayEx2">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+    .box { width: 100px; height: 50px; margin: 10px; background: #667eea; color: white; display: inline-block; }
+    .hidden-none { display: none; }
+    .hidden-vis { visibility: hidden; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="box"&gt;Box 1&lt;/div&gt;
+    &lt;div class="box hidden-none"&gt;Box 2 (none)&lt;/div&gt;
+    &lt;div class="box"&gt;Box 3&lt;/div&gt;
+    &lt;p&gt;Above: Box 2 uses &lt;b&gt;display: none&lt;/b&gt;. Box 3 moves to take its spot.&lt;/p&gt;
+
+    &lt;div class="box"&gt;Box A&lt;/div&gt;
+    &lt;div class="box hidden-vis"&gt;Box B (hidden)&lt;/div&gt;
+    &lt;div class="box"&gt;Box C&lt;/div&gt;
+    &lt;p&gt;Above: Box B uses &lt;b&gt;visibility: hidden&lt;/b&gt;. The space remains empty.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('displayEx2')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>4. Advanced Display: Flex & Grid</h2>
+    <p>Modern layouts use <code>flex</code> for one-dimensional layouts (rows or columns) and <code>grid</code> for two-dimensional layouts.</p>
+
+    <div class="example-container">
+        <h3>Example 3: Flexbox Basics</h3>
+        <div class="code-box" id="displayEx3">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+    .flex-container { 
+        display: flex; 
+        justify-content: space-around; 
+        background-color: #e9ecef; 
+        padding: 10px; 
+    }
+    .flex-item { 
+        background: #4ecdc4; 
+        padding: 20px; 
+        color: white; 
+        font-weight: bold;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="flex-container"&gt;
+        &lt;div class="flex-item"&gt;1&lt;/div&gt;
+        &lt;div class="flex-item"&gt;2&lt;/div&gt;
+        &lt;div class="flex-item"&gt;3&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('displayEx3')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>5. Pro-Tips & Best Practices</h2>
+    <div style="background-color: #e7f3fe; padding: 20px; border-radius: 8px; border-left: 6px solid #2196F3;">
+        <p><strong>1. Accessibility:</strong> Elements with <code>display: none</code> are hidden from screen readers. Use CSS techniques like "sr-only" if you want text hidden visually but available to assistive technology.</p>
+        <p><strong>2. Centering:</strong> <code>display: block</code> elements can be centered horizontally using <code>margin: auto</code> if they have a set width.</p>
+        <p><strong>3. Hover Effects:</strong> Use <code>visibility</code> or <code>opacity</code> instead of <code>display: none</code> if you want to animate an element appearing, as <code>display</code> cannot be transitioned.</p>
+    </div>
+    <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+        const quizData = [
+    {
+        q: "What is the primary difference between 'display: none' and 'visibility: hidden'?",
+        options: [
+            "Both remove the element and its space from the layout.",
+            "'display: none' removes the space, while 'visibility: hidden' preserves an empty gap.",
+            "'visibility: hidden' removes the space, while 'display: none' preserves the gap.",
+            "There is no difference; they behave exactly the same way."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Only 'display: none' removes the space entirely.",
+            "<b>Correct!</b> 'display: none' collapses the layout as if the element doesn't exist, whereas 'visibility: hidden' keeps the element's box in the layout as an invisible gap.",
+            "<b>Incorrect:</b> This is the opposite of how these properties work.",
+            "<b>Incorrect:</b> They have a very significant difference in how they affect the document flow."
+        ]
+    },
+    {
+        q: "Which 'display' value is the default for text-level elements like <span> and does NOT allow height or width settings?",
+        options: ["block", "inline-block", "inline", "flex"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Block elements take up the full width and allow height/width settings.",
+            "<b>Incorrect:</b> Inline-block behaves like inline but DOES allow height/width settings.",
+            "<b>Correct!</b> The <code>inline</code> value only takes up as much width as necessary and ignores height and width properties.",
+            "<b>Incorrect:</b> Flex is a layout container value, not a default for basic text elements."
+        ]
+    },
+    {
+        q: "If you want an element to sit on the same line as other elements but also have a specific width and height, which value should you use?",
+        options: ["display: block", "display: inline", "display: inline-block", "display: contents"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Block elements always start on a new line.",
+            "<b>Incorrect:</b> Inline elements ignore width and height settings.",
+            "<b>Correct!</b> <code>inline-block</code> provides the best of both worlds: it flows with text/other elements but respects size properties.",
+            "<b>Incorrect:</b> 'contents' makes the container itself disappear, which isn't for sizing the element."
+        ]
+    },
+    {
+        q: "Which property value should be used to create a two-dimensional layout (rows AND columns)?",
+        options: ["display: flex", "display: grid", "display: table", "display: block"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Flex is primarily for one-dimensional layouts (either a row OR a column).",
+            "<b>Correct!</b> <code>display: grid</code> is specifically designed for complex two-dimensional layouts.",
+            "<b>Incorrect:</b> While tables have rows/columns, 'grid' is the modern standard for general layouts.",
+            "<b>Incorrect:</b> Block simply stacks elements vertically."
+        ]
+    },
+    {
+        q: "What happens to child elements when a parent element is set to 'display: none'?",
+        options: [
+            "Only the parent is hidden; children remain visible.",
+            "The children are still clickable even if invisible.",
+            "The entire element tree (parent and all children) is removed from the layout.",
+            "The children inherit 'visibility: visible'."
+        ],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> If a parent is removed from the layout, its children are gone too.",
+            "<b>Incorrect:</b> Elements with 'display: none' cannot be interacted with.",
+            "<b>Correct!</b> <code>display: none</code> is recursive; it removes the element and everything inside it from the rendered page.",
+            "<b>Incorrect:</b> Children cannot be visible if the parent has no layout presence."
+        ]
+    },
+    {
+        q: "How can you center a 'display: block' element horizontally?",
+        options: [
+            "Use 'text-align: center' on the element itself.",
+            "Use 'margin: auto' if the element has a defined width.",
+            "Use 'display: inline'.",
+            "Set 'visibility: centered'."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> 'text-align' only centers inline content (like text) inside the block.",
+            "<b>Correct!</b> For block-level elements, <code>margin: auto</code> (specifically margin-left and margin-right) centers the box within its parent.",
+            "<b>Incorrect:</b> Converting to inline would stop it from behaving as a block and change the layout rules.",
+            "<b>Incorrect:</b> 'centered' is not a valid value for the visibility property."
+        ]
+    },
+    {
+        q: "According to the 'Pro-Tips', why should you use 'visibility' instead of 'display' for hover animations?",
+        options: [
+            "Because 'display' cannot be transitioned/animated.",
+            "Because 'visibility' is faster to load.",
+            "Because 'display: none' makes the page crash.",
+            "Because 'visibility' removes the element from screen readers."
+        ],
+        correct: 0,
+        explanations: [
+            "<b>Correct!</b> Browsers cannot calculate the intermediate steps between 'none' and 'block', so transitions won't work. Use <code>visibility</code> or <code>opacity</code> for animations.",
+            "<b>Incorrect:</b> The speed difference is negligible for this use case.",
+            "<b>Incorrect:</b> 'display: none' is perfectly safe and won't crash a page.",
+            "<b>Incorrect:</b> 'display: none' is actually what removes elements from screen readers; 'visibility' also hides them but the tip focuses on animation."
+        ]
+    }
+];
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+    <div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling with space-between layout */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between; 
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+            margin-bottom: 40px;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button styling */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button styling */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Highlight style for the current page in the sidebar */
+        .sidebar a.active-link {
+            background-color: #04AA6D !important;
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Get all links from your sidebar
+            const sidebarLinks = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // 2. Identify the current page path
+            const currentPath = window.location.pathname;
+            
+            // 3. Find the index and highlight the active link
+            let currentIndex = -1;
+            
+            sidebarLinks.forEach((link, index) => {
+                const linkHref = link.getAttribute('href').replace('..', '');
+                if (currentPath.endsWith(linkHref)) {
+                    currentIndex = index;
+                    link.classList.add('active-link');
+                    
+                    // Auto-scroll sidebar to the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 4. Configure Previous Button
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 5. Configure Next Button
+            if (currentIndex !== -1 && currentIndex < sidebarLinks.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+</div>
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = '../editor.html';
+    }
+</script>
+
+<footer class="footer">
+  <div class="footer-container">
+    
+    <div class="footer-box">
+      <img src="../images/LOGO.jpeg" alt="Oppty Logo">
+      <p style="color: white;">
+        Learn Web Development with practical courses in
+        HTML, CSS & JavaScript. Beginner-friendly training
+        with real-time projects.
+      </p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li><a href="#">HTML for Beginners</a></li>
+        <li><a href="../css/cssintro.html">CSS & Responsive Design</a></li>
+        <li><a href="#">JavaScript Basics</a></li>
+        <li><a href="#">Mini Projects</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p style="color: white;">Email: <a href="mailto:support@opptyacademy.com" style="color:white; text-decoration:none;">support@opptyacademy.com</a></p>
+      <p style="color: white;">Phone: +91 99999 99999</p>
+      <p style="color: white;">WhatsApp Support Available</p>
+    </div>
+
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#cs">Courses</a></li>
+        <li><a href="../index.html#as">About Us</a></li>
+        <li><a href="../index.html#cto">Contact</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Oppty Academy. All Rights Reserved.
+  </div>
+</footer>
+<style>
+    /* --- Footer Styles --- */
+.footer {
+    background: #0f0f0f;
+    color: white;
+    padding: 50px 20px 20px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;                  
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    text-align: center;             
+}
+
+.footer-box img {
+    background: #ffffff;
+    padding: 4px;
+    border-radius: 6px;
+    width: 160px;
+    margin: 0 auto 15px;
+    display: block;
+}
+
+.footer-box h3 {
+    color: #158e39;
+    margin-bottom: 15px;
+}
+
+.footer-box p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-box ul li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Link styling within list */
+.footer-box ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-box ul li a:hover {
+    color: #158e39;
+}
+
+.social-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;     
+}
+
+.social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background: #222;
+    color: #fff;
+    border-radius: 50%;
+    margin: 0 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #158e39;
+    color: #000;
+}
+
+.social-icons .whatsapp { background: #25D366; }
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+    font-size: 13px;
+    color: #aaa;
+}
+</style>
+</body>
+</html>

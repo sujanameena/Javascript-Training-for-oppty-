@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Web Development - Course Landing Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            min-height: 100vh;
+        }
+
+        /* --- Left Side Content --- */
+        .hero-content {
+            flex: 1.1;
+            padding-right: 50px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            color: #2d2d2d;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 580px;
+            line-height: 1.6;
+        }
+
+        .cta-area {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .btn-explore {
+            background-color: #16a085; /* Matching the green in your image */
+            color: white;
+            padding: 18px 38px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-explore:hover {
+            background-color: #12876f;
+            box-shadow: 0 10px 20px rgba(22, 160, 133, 0.2);
+        }
+
+        .btn-link {
+            color: #16a085;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* --- Stats/Counter Section --- */
+        .stats-row {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .stat-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* The vertical divider line */
+        .stat-divider {
+            width: 1px;
+            height: 50px;
+            background-color: #ddd;
+        }
+
+        .stat-box h2 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #222;
+            margin-bottom: 2px;
+        }
+
+        .stat-box span {
+            font-size: 14px;
+            color: #888;
+            font-weight: 500;
+        }
+
+        /* --- Right Side Image --- */
+        .hero-image-container {
+            flex: 0.9;
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .main-student-img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            display: block;
+            /* Using your actual file name from the reference */
+            animation: floatIn 1.2s ease-out;
+        }
+
+        @keyframes floatIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 60px;
+            }
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 60px;
+            }
+            .hero-content p {
+                margin: 0 auto 40px;
+            }
+            .cta-area, .stats-row {
+                justify-content: center;
+            }
+            .stat-divider {
+                display: none; /* Stack stats on small screens */
+            }
+            .stats-row {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+        }
+        .about-section {
+            padding: 100px 5%;
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        /* --- Image Side: Same as image_284db7.jpg --- */
+        .about-images {
+            flex: 1;
+            position: relative;
+        }
+
+        .main-img-box {
+            width: 85%;
+            position: relative;
+        }
+
+        .main-img-box img {
+            width: 100%;
+            border-radius: 24px;
+            display: block;
+        }
+
+        .overlap-img-box {
+            position: absolute;
+            bottom: -30px;
+            right: 0;
+            width: 55%;
+            border: 12px solid #fff; /* Thick white border for overlap look */
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .overlap-img-box img {
+            width: 100%;
+            display: block;
+        }
+
+        .stats-text {
+            margin-top: 50px;
+            font-size: 16px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .stats-text span {
+            color: #6a3de8;
+            font-weight: 700;
+        }
+
+        /* --- Text Side: Exact Layout --- */
+        .about-content {
+            flex: 1;
+        }
+
+        .about-label {
+            color: #6a3de8;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .heading {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #1a1a1a;
+            margin-bottom: 25px;
+        }
+
+        .highlight-box {
+            position: relative;
+            display: inline-block;
+        }
+
+        /* The Sparkle from image_277384.png */
+        .sparkle-icon {
+            position: absolute;
+            top: -20px;
+            right: -35px;
+            width: 40px;
+            height: 40px;
+        }
+
+        /* The Handwritten Underline */
+        .underline-svg {
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+        }
+
+        .desc {
+            color: #666;
+            font-size: 17px;
+            line-height: 1.7;
+            margin-bottom: 35px;
+            max-width: 500px;
+        }
+
+        /* Fire Guard Solutions Grid */
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            background: #f8f9fc;
+            padding: 30px;
+            border-radius: 24px;
+            margin-bottom: 40px;
+        }
+
+        .sol-item {
+            display: flex;
+            gap: 15px;
+        }
+
+        .sol-icon {
+            font-size: 24px;
+            color: #2d3e50;
+            margin-top: 5px;
+        }
+
+        .sol-info h4 {
+            font-size: 18px;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .sol-info p {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.4;
+        }
+
+        /* Button with circle arrow */
+        .btn-purple {
+            background: #6a3de8;
+            color: #fff;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.3s;
+        }
+
+        .btn-purple:hover {
+            background: #562bc4;
+            transform: translateY(-3px);
+        }
+
+        .btn-circle {
+            background: #fff;
+            color: #6a3de8;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+         .advantage-wrapper {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        /* --- Left Side: Image Layout --- */
+        .advantage-visual {
+            flex: 1;
+            position: relative;
+        }
+
+        .primary-image-holder {
+            width: 90%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .primary-image-holder img {
+            width: 100%;
+            border-radius: 30px;
+            display: block;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        /* --- Right Side: Content & Feature Cards --- */
+        .advantage-content {
+            flex: 1.2;
+        }
+
+        .advantage-title {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #2d2d2d;
+            margin-bottom: 40px;
+        }
+
+        .cards-layout {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .advantage-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            /* Subtle card styling */
+            border: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+            border-color: #e0e0e0;
+        }
+
+        .card-icon {
+            font-size: 32px;
+            color: #16a085; /* Teal */
+            height: 50px;
+            width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(22, 160, 133, 0.05);
+            border-radius: 12px;
+        }
+
+        .advantage-card h3 {
+            font-size: 19px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+
+        .advantage-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+       
+        .tmn {
+            background-color: var(--bg-accent);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            --primary-purple: #6a3de8;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --card-bg: #ffffff;
+            --bg-accent: #f8f9fc;
+        }
+
+        .testimonial-container {
+            max-width: 1100px;
+            width: 100%;
+            position: relative;
+        }
+
+        /* --- Slider Card --- */
+        .testimonial-card {
+            background: var(--card-bg);
+            border-radius: 40px;
+            display: flex;
+            align-items: stretch;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+            position: relative;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        /* --- Left Content Area --- */
+        .testimonial-content {
+            flex: 1.2;
+            padding: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quote-icon {
+            font-size: 60px;
+            color: rgba(106, 61, 232, 0.1);
+            position: absolute;
+            top: 40px;
+            left: 60px;
+        }
+
+        .rating-stars {
+            color: #ffcc4d;
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .testimonial-text {
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1.4;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+            min-height: 120px;
+        }
+
+        .student-info h4 {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .student-info p {
+            font-size: 14px;
+            color: var(--primary-purple);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+        }
+
+        /* --- Right Image Area --- */
+        .testimonial-image-area {
+            flex: 0.8;
+            position: relative;
+            min-height: 500px;
+        }
+
+        .student-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Unique Overlapping Badge */
+        .floating-badge {
+            position: absolute;
+            bottom: 40px;
+            left: -60px;
+            background: #fff;
+            padding: 20px 25px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 3;
+        }
+
+        .badge-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-purple);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .badge-text h5 {
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .badge-text p {
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* --- Navigation --- */
+        .slider-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: #d1d1d1;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            width: 35px;
+            border-radius: 10px;
+            background: var(--primary-purple);
+        }
+        
+    /* Scoped Styles for Oppty Page Integration */
+    .oppty-contact-section {
+        background-color: #f8f9fc;
+        padding: 100px 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .oppty-contact-container {
+        max-width: 1250px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 80px;
+    }
+
+    /* Text Content Styling */
+    .oppty-contact-content {
+        flex: 1.1;
+    }
+
+    .oppty-contact-title {
+        font-size: 48px;
+        font-weight: 800;
+        color: #1a1a1a;
+        line-height: 1.2;
+        margin-bottom: 25px;
+    }
+
+    .oppty-contact-desc {
+        font-size: 18px;
+        color: #666;
+        line-height: 1.7;
+        margin-bottom: 45px;
+        max-width: 550px;
+    }
+
+    /* Form and Input Styling */
+    .oppty-contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 480px;
+    }
+
+    .oppty-email-input {
+        width: 100%;
+        padding: 20px 25px;
+        border: 2px solid #e0e0e0;
+        border-radius: 12px;
+        font-size: 16px;
+        outline: none;
+        transition: border-color 0.3s ease;
+    }
+
+    .oppty-email-input:focus {
+        border-color: #16a085; /* Using the primary teal accent */
+    }
+
+    .oppty-send-btn {
+        width: 180px;
+        padding: 18px;
+        background-color: #16a085; /* Teal action color */
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        font-size: 17px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .oppty-send-btn:hover {
+        background-color: #12876f;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(22, 160, 133, 0.2);
+    }
+
+    /* Instructor Image Styling */
+    .oppty-contact-visual {
+        flex: 0.9;
+    }
+
+    .oppty-instructor-img {
+        width: 100%;
+        height: auto;
+        border-radius: 30px;
+        display: block;
+        box-shadow: 0 25px 50px rgba(0,0,0,0.06);
+    }
+
+    
+.main-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.header-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;        
+  justify-content: space-between;
+}
+
+.logo img {
+  width: 150px;
+  display: block;
+}
+
+.nav-menu {
+  display: flex;
+  font-size: 30px;
+  align-items: center;
+  text-align: center;        
+  gap: 30px;
+}
+.nav-menu a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-menu a:hover {
+  color: #158e39;
+}
+
+
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -6px;
+  background: #158e39;
+  transition: 0.3s;
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;        
+  gap: 18px;
+}
+
+.signin {
+  text-decoration: none;
+  font-size: 15px;
+  color: #000;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.signin:hover {
+  color: #158e39;
+}
+
+
+.explore-btn {
+  background: #158e39;
+  border-bottom: none;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.explore-btn:hover {
+  background: #ee730f;
+}
+
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .nav-menu {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .nav-right {
+    order: 2;
+  }
+}
+
+.footer {
+  background: #0f0f0f;
+  color: #ccc;
+  padding: 50px 20px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: auto;                  
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  text-align: center;             
+}
+
+.footer-logo {
+  width: 160px;
+  margin: 0 auto 15px;           
+  display: block;
+  
+}
+
+.footer-box img{
+    background: #ffffff;
+    padding: 4px;
+    border-radius: 6px
+}
+
+.footer-box h3 {
+  color: #158e39;
+  margin-bottom: 15px;
+}
+
+.footer-box p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-box ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-box ul li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.footer-box ul li:hover {
+  color:#158e39;
+}
+
+.social-icons {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;     
+}
+
+.social-icons a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 38px;
+  height: 38px;
+  background: #222;
+  color: #fff;
+  border-radius: 50%;
+  margin: 0 5px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  background: #158e39;
+  color: #000;
+}
+
+.social-icons .whatsapp {
+  background: #25D366;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid #333;
+  padding-top: 15px;
+  font-size: 13px;
+  color: #aaa;
+}
+/* Main Wrapper with the same background color for all */
+        .main-wrapper { 
+            display: flex; 
+            flex-direction: row; 
+            width: 100%; 
+            min-height: 100vh;
+            background-color: #ffffff; /* Mint Green from your image */
+        }
+
+        /* Each section takes up equal width */
+        .section { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: flex-start; 
+            padding: 40px 20px; 
+            text-align: center;
+        }
+
+        /* Image Styling */
+        .lang-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        .hero-text h1 { font-size: 60px; margin: 10px 0; color: black; }
+        .hero-text p { font-size: 16px; color: black; }
+        
+        .btn { display: block; width: 200px; padding: 12px; margin: 8px auto; border-radius: 25px; border: none; font-weight: bold; font-size: 15px; cursor: pointer; text-decoration: none; }
+        .btn-green { background-color: #04AA6D; color: white; }
+        .btn-dark { background-color: #282A35; color: white; }
+        .btn-pink { background-color: #FFC0C7; color: black; }
+        .btn-white { background-color: white; color: black; border: 1px solid #ccc; }
+
+        .example-container { 
+            background-color: #E7E9EB; 
+            padding: 15px; 
+            border-radius: 10px; 
+            width: 90%; 
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+        }
+
+        .code-box { 
+            background-color: white; 
+            padding: 15px; 
+            border-left: 4px solid #04AA6D; 
+            font-family: 'Consolas', monospace; 
+            white-space: pre-wrap; 
+            margin-bottom: 15px; 
+            font-size: 12px; 
+            text-align: left;
+            height: 250px; 
+            overflow-y: auto;
+            color: black;
+        }
+
+        .try-btn { background-color: #04AA6D; color: white; padding: 10px 20px; border: none; border-radius: 25px; font-size: 16px; cursor: pointer; font-weight: bold; }
+ 
+
+
+    
+
+    </style>
+</head>
+<body>
+            <header class="main-header">
+  <div class="header-container">
+
+   
+    <div class="logo">
+      <img src="./images/LOGO.jpeg" alt="Oppty Academy Logo">
+    </div>
+    
+     <nav class="nav-menu"> 
+        <a href="./structure.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+         <a href="./introduction.html">JavaScript</a>
+          </nav>
+    
+    <div class="nav-right">
+      <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+
+  </div>
+</header>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Master Web <br> Development</h1>
+            <p>
+                Learn HTML, CSS, and JavaScript from scratch to advanced concepts 
+                with our comprehensive tutorial series. Build real-world projects 
+                and launch your career as a professional developer.
+            </p>
+
+            <div class="cta-area">
+                <a href="./index.html#cs" class="btn-explore">Explore Course</a>
+                <a href="./index.html#as" class="btn-link">Learn More</a>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-box">
+                    <h2>90+</h2>
+                    <span>Total Course</span>
+                </div>
+                
+                <div class="stat-divider"></div>
+
+                <div class="stat-box">
+                    <h2>650+</h2>
+                    <span>Hours of Tutorial</span>
+                </div>
+
+                <div class="stat-divider"></div>
+
+                <div class="stat-box">
+                    <h2>99%</h2>
+                    <span>Satisfaction Rate</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-image-container">
+            <img src="./images/group_1000004313.png" alt="Master Web Development Student" class="main-student-img">
+        </div>
+    </section>
+    <section class="about-section" id="as">
+        <div class="about-images">
+            <div class="main-img-box">
+                <img src="./images/group_1618874047 (1).webp" alt="Instructor">
+            </div>
+            
+            <p class="stats-text">New Students Increase by <span>45%</span></p>
+        </div>
+
+        <div class="about-content">
+            <span class="about-label">About Us</span>
+            <h2 class="heading">
+                Education Your Path Success Shape the Future
+            </h2>
+
+            <p class="desc">
+                Education is the key to unlocking potential and shaping encompasses a wide range of subjects and skills, empowering learners.
+            </p>
+
+            <div class="solutions-grid">
+                <div class="sol-item">
+                    <div class="sol-icon"><i class="fa-regular fa-lightbulb"></i></div>
+                    <div class="sol-info">
+                        <h4>Expert Coaching</h4>
+                        <p>Education is the key to unlocking potential and shaping encompasses.</p>
+                    </div>
+                </div>
+                <div class="sol-item">
+                    <div class="sol-icon"><i class="fa-solid fa-microchip"></i></div>
+                    <div class="sol-info">
+                        <h4>Tech Solutions</h4>
+                        <p>Education is the key to unlocking potential and shaping encompasses.</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="./structure.html" class="btn-purple">
+                Get Started Now 
+                <span class="btn-circle"><i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            </a>
+        </div>
+    </section>
+    <section class="advantage-wrapper">
+        <div class="advantage-visual">
+            <div class="primary-image-holder">
+                <img src="./images/image_container.webp" alt="Educational Advantage">
+            </div>
+        </div>
+
+        <div class="advantage-content">
+            <h2 class="advantage-title">Core Features for Your Career Success</h2>
+
+            <div class="cards-layout">
+                <div class="advantage-card">
+                    <div class="card-icon"><i class="fa-solid fa-file-contract"></i></div>
+                    <h3>Certificate awarded</h3>
+                    <p>All our courses will be available to you anytime to watch offline.</p>
+                </div>
+
+                <div class="advantage-card">
+                    <div class="card-icon"><i class="fa-solid fa-users"></i></div>
+                    <h3>Trusted by millions</h3>
+                    <p>All our courses will be available to you anytime to watch offline.</p>
+                </div>
+
+                <div class="advantage-card">
+                    <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h3>600+ hours of classes</h3>
+                    <p>All our courses will be available to you anytime to watch offline.</p>
+                </div>
+
+                <div class="advantage-card">
+                    <div class="card-icon"><i class="fa-solid fa-user-tie"></i></div>
+                    <h3>Made by professionals</h3>
+                    <p>All our courses will be available to you anytime to watch offline.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="main-wrapper" id="cs">
+    <div class="section">
+        <div class="hero-text">
+            <h1>HTML</h1>
+            <img src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582748_1280.png" alt="HTML Logo" class="lang-logo">
+            <p>The language for building web pages</p>
+            <button class="btn btn-green">Learn HTML</button>
+            
+        </div>
+        <div class="example-container">
+            <h3>HTML Example:</h3>
+            <div class="code-box" id="html-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;HTML Tutorial&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;This is a heading&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <button class="try-btn" onclick="openEditor('html-code')">Try it Yourself</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="hero-text">
+            <h1>CSS</h1>
+            <img src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png" alt="CSS Logo" class="lang-logo">
+            <p>The language for styling web pages</p>
+            <button class="btn btn-green">Learn CSS</button>
+            
+        </div>
+        <div class="example-container">
+            <h3>CSS Example:</h3>
+            <div class="code-box" id="css-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+body {
+  background-color: lightblue;
+}
+h1 {
+  color: white;
+  text-align: center;
+}
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;My First CSS Example&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <button class="try-btn" onclick="openEditor('css-code')">Try it Yourself</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="hero-text">
+            <h1>JavaScript</h1>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JS Logo" class="lang-logo">
+            <p>The language for programming web pages</p>
+            <button class="btn btn-green">Learn JavaScript</button>
+            
+        </div>
+        <div class="example-container">
+            <h3>JavaScript Example:</h3>
+            <div class="code-box" id="js-code">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+&lt;h1&gt;JavaScript&lt;/h1&gt;
+&lt;h2&gt;The onclick Event&lt;/h2&gt;
+&lt;p id="demo"&gt;Click to change the layout&lt;/p&gt;
+&lt;button onclick="myFunction()"&gt;Click Me!&lt;/button&gt;
+&lt;script&gt;
+function myFunction() {
+  let x = document.getElementById("demo");
+  x.style.fontSize = "25px";
+  x.style.color = "red";
+}
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <button class="try-btn" onclick="openEditor('js-code')">Try it Yourself</button>
+        </div>
+    </div>
+</div>
+<section class="projects-section" id="projects">
+    <div class="projects-container">
+        <div class="projects-header">
+            <span class="about-label">Curriculum Highlights</span>
+            <h2 class="heading">Master 6 Real-World Projects</h2>
+            <p class="projects-intro">From basic forms to complex e-commerce systems, build a professional portfolio as you progress through the course.</p>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card beginner">
+                <div class="project-img-wrapper">
+                    <img src="./images/student.jfif" alt="Student Registration">
+                    <div class="project-tag tag-beginner">Beginner</div>
+                </div>
+                <div class="project-info">
+                    <h3>Student Registration</h3>
+                    <p>Build a professional signup portal with real-time HTML/JS form validations and data handling.</p>
+                    <div class="tech-stack">
+                        <span>#Validation</span> <span>#Forms</span> <span>#CSS</span>
+                    </div>
+                    <a href="https://github.com/Vijaya1babu/Oppty-tasks/tree/main/STUDENT%20REGISTARTION" class="project-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card beginner">
+                <div class="project-img-wrapper">
+                    <img src="./images/to-do-list-online.png" alt="To-Do List">
+                    <div class="project-tag tag-beginner">Beginner</div>
+                </div>
+                <div class="project-info">
+                    <h3>To-Do List App</h3>
+                    <p>Master the basics of DOM manipulation and LocalStorage by creating a persistent task manager.</p>
+                    <div class="tech-stack">
+                        <span>#JS-DOM</span> <span>#Storage</span> <span>#UI</span>
+                    </div>
+                    <a href="https://github.com/Vijaya1babu/Oppty-tasks/tree/main/TO%20DO%20LIST" class="project-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card intermediate">
+                <div class="project-img-wrapper">
+                    <img src="./images/typing.jfif" alt="Typing Test">
+                    <div class="project-tag tag-intermediate">Intermediate</div>
+                </div>
+                <div class="project-info">
+                    <h3>Speed Typing Test</h3>
+                    <p>Develop a tool to track WPM (Words Per Minute) and accuracy using timers and string comparisons.</p>
+                    <div class="tech-stack">
+                        <span>#Timers</span> <span>#Logic</span> <span>#Events</span>
+                    </div>
+                    <a href="https://github.com/Vijaya1babu/Oppty-tasks/tree/main/Typing%20test" class="project-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card intermediate">
+                <div class="project-img-wrapper">
+                    <img src="./images/cal.png" alt="Calculator">
+                    <div class="project-tag tag-intermediate">Intermediate</div>
+                </div>
+                <div class="project-info">
+                    <h3>Advanced Calculator</h3>
+                    <p>Create a fully functional math engine with dark mode toggle and complex operation handling.</p>
+                    <div class="tech-stack">
+                        <span>#Math-Logic</span> <span>#Grid</span> <span>#Themes</span>
+                    </div>
+                    <a href="https://github.com/Vijaya1babu/Oppty-tasks/tree/main/Calculator" class="project-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+           <div class="project-card advanced">
+                <div class="project-img-wrapper">
+                    <img src="./images/furniture.jpg" alt="Furniture E-commerce">
+                    <div class="project-tag tag-advanced">Advanced</div>
+                </div>
+                <div class="project-info">
+                    <h3>Modern Furniture Store</h3>
+                    <p>A complete store with category filters, a dynamic shopping cart, and premium interior design UI.</p>
+                    <div class="tech-stack">
+                        <span>#Full-UI</span> <span>#Cart-Logic</span> <span>#Arrays</span>
+                    </div>
+                    <a href="https://github.com/lokeshbatta6281/company-tasks-/tree/main/TeamB%20Furniture" class="project-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="project-card advanced">
+                <div class="project-img-wrapper">
+                    <img src="./images/break.png" alt="Break Management System">
+                    <div class="project-tag tag-advanced">Advanced</div>
+                </div>
+                <div class="project-info">
+                    <h3>Break Management</h3>
+                    <p>A corporate-style dashboard for tracking employee break times, logs, and real-time status updates.</p>
+                    <div class="tech-stack">
+                        <span>#Dashboards</span> <span>#State</span> <span>#Systems</span>
+                    </div>
+                    <a href="https://github.com/Vijaya1babu/Oppty-tasks/tree/main/Break%20Management%20system" class="project-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        /* --- Projects Styling --- */
+.projects-section {
+    padding: 100px 5%;
+    max-width: 1300px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.projects-header { text-align: center; margin-bottom: 60px; }
+.projects-intro { color: #666; max-width: 600px; margin: 15px auto; line-height: 1.6; }
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+}
+
+.project-card {
+    background: #fff;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.02);
+}
+
+.project-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+}
+
+.project-img-wrapper {
+    height: 230px;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.project-card:hover .project-img-wrapper img { transform: scale(1.08); }
+
+/* Difficulty Tags */
+.project-tag {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+.tag-beginner { background: #3498db; }    /* Blue */
+.tag-intermediate { background: #f39c12; } /* Orange */
+.tag-advanced { background: #e74c3c; }     /* Red/Coral */
+
+.project-info { padding: 30px; }
+.project-info h3 { font-size: 22px; margin-bottom: 12px; color: #1a1a1a; }
+.project-info p { font-size: 14.5px; color: #777; line-height: 1.6; margin-bottom: 20px; height: 70px; }
+
+.tech-stack { display: flex; gap: 8px; margin-bottom: 25px; }
+.tech-stack span { 
+    font-size: 11px; 
+    font-weight: 700; 
+    color: #6a3de8; 
+    background: #f0ebff; 
+    padding: 5px 12px; 
+    border-radius: 8px; 
+}
+
+.project-link {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.project-link:hover { color: #16a085; padding-left: 5px; }
+
+@media (max-width: 768px) {
+    .projects-grid { grid-template-columns: 1fr; }
+}
+    </style>
+</section>
+
+    <section class="tmn">
+    <div class="testimonial-section">
+    <div class="testimonial-container">
+        <div class="testimonial-card" id="sliderCard">
+            
+            <div class="testimonial-content">
+                <i class="fa-solid fa-quote-left quote-icon" style="font-size: 60px; color: rgba(106, 61, 232, 0.1); position: absolute; top: 40px; left: 60px;"></i>
+                
+                <div class="rating-stars" style="color: #ffcc4d; font-size: 18px; margin-bottom: 25px;">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+
+                <p class="testimonial-text" id="testimonialText" style="font-size: 26px; font-weight: 700; line-height: 1.4; color: #1a1a1a; margin-bottom: 40px; min-height: 120px;">
+                    "Love the simplicity of the service and the prompt customer support. I've unlocked skills I never thought possible with their innovative path."
+                </p>
+
+                <div class="student-info">
+                    <h4 id="studentName" style="font-size: 22px; font-weight: 800; color: #1a1a1a;">Renee Wells</h4>
+                    <p id="studentRole" style="font-size: 14px; color: #6a3de8; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px;">Product Designer, Quotient</p>
+                </div>
+            </div>
+
+            <div class="testimonial-image-area" style="flex: 0.8; position: relative; min-height: 500px;">
+                <img src="image_2692fa.jpg" alt="Student Success" class="student-photo" id="studentImg" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                
+                <div class="floating-badge" style="position: absolute; bottom: 40px; left: -60px; background: #fff; padding: 20px 25px; border-radius: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 15px; z-index: 3;">
+                    <div class="badge-icon" style="width: 50px; height: 50px; background: #6a3de8; color: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div class="badge-text">
+                        <h5 id="statValue" style="font-size: 18px; font-weight: 800;">12+ Courses</h5>
+                        <p style="font-size: 12px; color: #888;">Skills Unlocked</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slider-nav" style="display: flex; justify-content: center; gap: 15px; margin-top: 40px;">
+            <span class="dot active" onclick="setSlide(0)" style="width: 35px; height: 12px; background: #6a3de8; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;"></span>
+            <span class="dot" onclick="setSlide(1)" style="width: 12px; height: 12px; background: #d1d1d1; border-radius: 50%; cursor: pointer; transition: all 0.3s ease;"></span>
+            <span class="dot" onclick="setSlide(2)" style="width: 12px; height: 12px; background: #d1d1d1; border-radius: 50%; cursor: pointer; transition: all 0.3s ease;"></span>
+        </div>
+    </div>
+    </section>
+    <section class="oppty-contact-section" id="cto">
+    <div class="oppty-contact-container">
+        
+        <div class="oppty-contact-content">
+            <h2 class="oppty-contact-title">Ready to Launch Your Development Career?</h2>
+            <p class="oppty-contact-desc">
+                Still have questions about our Master Web Development path? 
+                Enter your email below, and our career mentors will reach out 
+                to help you find the perfect class for your goals.
+            </p>
+            
+            <form class="oppty-contact-form" onsubmit="event.preventDefault();">
+                <input type="email" placeholder="Enter your email for expert guidance" class="oppty-email-input" required>
+                <button type="submit" class="oppty-send-btn">Get in Touch</button>
+            </form>
+        </div>
+
+        <div class="oppty-contact-visual">
+            <img src="./images/istockphoto-1399565382-612x612.jpg" alt="Oppty Mentor Support" class="oppty-instructor-img">
+        </div>
+        
+    </div>
+</section>
+
+</div>
+
+
+<footer class="footer">
+      <div class="footer-container">
+
+    
+    <div class="footer-box">
+      <img src="./images/LOGO.jpeg" alt="Oppty Logo" class="logo">
+      <p>
+        Learn Web Development with practical courses in
+        HTML, CSS & JavaScript. Beginner-friendly training
+        with real-time projects.
+      </p>
+
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li>HTML for Beginners</li>
+        <li>CSS & Responsive Design</li>
+        <li>JavaScript Basics</li>
+        <li>Mini Projects</li>
+      </ul>
+    </div>
+
+    
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p>Email: support@opptyacademy.com</p>
+      <p>Phone: +91 99999 99999</p>
+      <p>WhatsApp Support Available</p>
+    </div>
+
+    
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li>Home</li>
+        <li>Courses</li>
+        <li>About Us</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Oppty Academy. All Rights Reserved.
+  </div>
+</footer>
+      
+
+
+<script>
+    const reviews = [
+        { name: "Renee Wells", role: "Product Designer, Quotient", text: '"Love the simplicity of the service and the prompt customer support. I\'ve unlocked skills I never thought possible with their innovative path."', image: "./images/download1.png", stats: "12+ Courses" },
+        { name: "Justin Mason", role: "Full Stack Developer", text: '"The Master Web Development course was a game changer. The 24/7 support helped me solve bugs in minutes rather than hours."', image: "./images/download2.png", stats: "15+ Projects" },
+        { name: "Sarah Chen", role: "UI/UX Designer", text: '"Integrating tech tools into my workflow has never been easier. The personalized coaching provided real value to my career prospects."', image: "./images/download3.png", stats: "99% Success" }
+    ];
+
+    let currentIndex = 0;
+
+    function setSlide(index) {
+        const card = document.getElementById('sliderCard');
+        const text = document.getElementById('testimonialText');
+        const name = document.getElementById('studentName');
+        const role = document.getElementById('studentRole');
+        const img = document.getElementById('studentImg');
+        const stat = document.getElementById('statValue');
+        const dots = document.querySelectorAll('.dot');
+
+        card.style.opacity = 0;
+        setTimeout(() => {
+            const data = reviews[index];
+            text.textContent = data.text;
+            name.textContent = data.name;
+            role.textContent = data.role;
+            img.src = data.image;
+            stat.textContent = data.stats;
+            dots.forEach((d, i) => {
+                d.style.width = i === index ? '35px' : '12px';
+                d.style.borderRadius = i === index ? '10px' : '50%';
+                d.style.background = i === index ? '#6a3de8' : '#d1d1d1';
+            });
+            card.style.opacity = 1;
+        }, 400);
+        currentIndex = index;
+    }
+
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % reviews.length;
+        setSlide(currentIndex);
+    }, 6000);
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+    
+
+
+
+</body>
+</html>

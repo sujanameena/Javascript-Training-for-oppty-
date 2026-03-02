@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Selectors - Tutorial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh;
+        }
+
+        /* --- Original Header CSS --- */
+        .main-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;        
+            justify-content: space-between;
+        }
+        .logo img {
+            width: 150px;
+            display: block;
+        }
+        .nav-menu {
+            display: flex;
+            font-size: 30px;
+            align-items: center;
+            text-align: center;        
+            gap: 30px;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            color: #000;
+            position: relative;
+            transition: 0.3s;
+        }
+        .nav-menu a:hover {
+            color: #158e39;
+        }
+        .nav-menu a::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            left: 0;
+            bottom: -6px;
+            background: #158e39;
+            transition: 0.3s;
+        }
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;        
+            gap: 18px;
+        }
+        .signin {
+            text-decoration: none;
+            font-size: 15px;
+            color: #000;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .signin:hover {
+            color: #158e39;
+        }
+        .explore-btn {
+            background: #158e39;
+            border-bottom: none;
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .explore-btn:hover {
+            background: #ee730f;
+        }
+        @media (max-width: 768px) {
+            .header-container { flex-wrap: wrap; gap: 12px; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; gap: 20px; }
+            .nav-right { order: 2; }
+        }
+
+        /* --- Content Wrapper for Sidebar & Main --- */
+        .content-wrapper {
+            display: flex;
+            flex: 1;
+        }
+
+        /* --- Original Sidebar CSS --- */
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 65px); /* Adjusted for sticky header */
+            position: sticky; 
+            top: 65px; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; 
+        }
+        .sidebar::-webkit-scrollbar { width: 8px; }
+        .sidebar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+        .sidebar::-webkit-scrollbar-thumb:hover { background: #aaa; }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+        
+        /* --- Original Main Content CSS --- */
+        .main { flex: 1; padding: 40px; max-width: 900px; }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        .note { background-color: #ffffcc; border-left: 5px solid #ffeb3b; padding: 15px; margin: 20px 0; }
+
+        /* --- Original Footer CSS --- */
+        .footer {
+            background: #0f0f0f;
+            color: #ccc;
+            padding: 50px 20px 20px;
+            font-family: Arial, sans-serif;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: auto;                 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;              
+        }
+        .footer-box img {
+            background: #ffffff;
+            padding: 4px;
+            border-radius: 6px
+        }
+        .footer-box h3 {
+            color: #158e39;
+            margin-bottom: 15px;
+        }
+        .footer-box p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .footer-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-box ul li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .footer-box ul li:hover {
+            color:#158e39;
+        }
+        .social-icons {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;      
+        }
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 38px;
+            height: 38px;
+            background: #222;
+            color: #fff;
+            border-radius: 50%;
+            margin: 0 5px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            background: #158e39;
+            color: #000;
+        }
+        .social-icons .whatsapp {
+            background: #25D366;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            border-top: 1px solid #333;
+            padding-top: 15px;
+            font-size: 13px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo">
+      <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+        </div>
+        <nav class="nav-menu"> 
+            <a href="./structure.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+        <a href="./introduction.html">JavaScript</a>
+        </nav>
+        <div class="nav-right">
+            <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+        </div>
+    </div>
+</header>
+
+<div class="content-wrapper">
+    <div class="sidebar">
+        <h2 style="padding:10px; font-size:18px;">JS Basics</h2>
+        <a href="introduction.html">Introduction to JS</a>
+        <a href="variables.html">Variables (var, let, const)</a>
+        <a href="data-types.html">Data Types</a>
+        <a href="operators.html">Operators</a>
+        <a href="conditionals.html">Conditionals (if, switch)</a>
+        <a href="loops.html">Loops (for, while, forEach)</a>
+        <a href="scope.html">Scope</a>
+
+        <h2 style="padding:10px; font-size:18px;">Functions & Logic</h2>
+        <a href="functions-basic.html">Standard Functions</a>
+        <a href="arrow-functions.html">Arrow Functions</a>
+        <a href="arrays-methods.html">Array Methods (map, filter, reduce)</a>
+        <a href="objects.html">Objects & JSON</a>
+
+        <h2 style="padding:10px; font-size:18px;">DOM Manipulation</h2>
+        <a href="jsselectors.html" style="background:#ccc;">Selectors (ID, querySelector)</a>
+        <a href="content-manipulation.html">innerText vs innerHTML</a>
+        <a href="classlist.html">classList Manipulation</a>
+        <a href="style-manipulation.html">Style Manipulation</a>
+        <a href="dynamic-elements.html">Creating Elements Dynamically</a>
+
+        <h2 style="padding:10px; font-size:18px;">Events</h2>
+        <a href="event-listeners.html">addEventListener</a>
+        <a href="mouse-keyboard.html">Mouse & Keyboard Events</a>
+        <a href="form-events.html">Form Events</a>
+        <a href="custom-events.html">Custom Events</a>
+
+        <h2 style="padding:10px; font-size:18px;">Timers & Async ⭐⭐</h2>
+        <a href="timers.html">setTimeout & setInterval</a>
+        <a href="callbacks.html">Callbacks</a>
+        <a href="promises.html">Promises</a>
+        <a href="async-await.html">Async / Await</a>
+        <h2 style="padding:10px; font-size:18px;">API & Networking</h2>
+<a href="apibasics.html">Intro to REST APIs</a>
+<a href="fetch-api.html">Fetch API (GET/POST)</a>
+<a href="http-methods.html">HTTP Methods & Status Codes</a>
+<a href="json-methods.html">JSON (parse & stringify)</a>
+<a href="url-params.html">URL Params & Query Strings</a>
+<a href="error-handling.html">Handling Network Errors</a>
+<a href="cors.html">CORS & Security</a>
+
+
+        <h2 style="padding:10px; font-size:18px;">Browser & Storage ⭐</h2>
+        <a href="web-storage.html">Local & Session Storage</a>
+        <a href="cookies.html">Cookies</a>
+    </div>
+
+    <div class="main">
+        <h1>JavaScript HTML DOM Elements (Nodes)</h1>
+        <p>Finding and selecting HTML elements is the first step in DOM manipulation. JavaScript provides several methods to locate elements so you can change their content, styles, or add event listeners.</p>
+
+        <h2>1. Finding HTML Elements by Id</h2>
+        <p>The easiest way to find an HTML element in the DOM is by using the element's id. The <code>getElementById()</code> method returns a single element matching the given ID.</p>
+        
+        <div class="example-container">
+            <div class="code-box" id="sel1">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Finding HTML Elements by Id&lt;/h2&gt;
+&lt;p id="intro"&gt;Hello World!&lt;/p&gt;
+&lt;p&gt;This example demonstrates the &lt;b&gt;getElementById&lt;/b&gt; method.&lt;/p&gt;
+&lt;p id="demo"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const element = document.getElementById("intro");
+document.getElementById("demo").innerHTML = 
+"The text from the intro paragraph is: " + element.innerHTML;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <button class="try-btn" onclick="openEditor('sel1')">Try it Yourself</button>
+        </div>
+
+        <h2>2. Finding HTML Elements by Tag Name</h2>
+        <p>The <code>getElementsByTagName()</code> method returns an HTMLCollection containing all elements with the specified tag name.</p>
+        
+        <div class="example-container">
+            <div class="code-box" id="sel2">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Finding HTML Elements by Tag Name&lt;/h2&gt;
+&lt;p&gt;Hello World!&lt;/p&gt;
+&lt;div id="main"&gt;
+  &lt;p&gt;The DOM is very useful.&lt;/p&gt;
+  &lt;p&gt;This example demonstrates the &lt;b&gt;getElementsByTagName&lt;/b&gt; method.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p id="demo"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const x = document.getElementById("main");
+const y = x.getElementsByTagName("p");
+document.getElementById("demo").innerHTML = 
+'The first paragraph (index 0) inside "main" is: ' + y[0].innerHTML;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <button class="try-btn" onclick="openEditor('sel2')">Try it Yourself</button>
+        </div>
+
+        <h2>3. Finding HTML Elements by Class Name</h2>
+        <p>If you want to find all HTML elements with the same class name, use <code>getElementsByClassName()</code>. This also returns an HTMLCollection.</p>
+
+        <div class="example-container">
+            <div class="code-box" id="sel3">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Finding HTML Elements by Class Name&lt;/h2&gt;
+&lt;p class="intro"&gt;Hello World!&lt;/p&gt;
+&lt;p class="intro"&gt;This example demonstrates the &lt;b&gt;getElementsByClassName&lt;/b&gt; method.&lt;/p&gt;
+&lt;p id="demo"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const x = document.getElementsByClassName("intro");
+document.getElementById("demo").innerHTML = 
+'The first paragraph (index 0) with class="intro" is: ' + x[0].innerHTML;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <button class="try-btn" onclick="openEditor('sel3')">Try it Yourself</button>
+        </div>
+
+        <h2>4. Finding HTML Elements by CSS Selectors</h2>
+        <p>If you want to find all HTML elements that match a specified CSS selector (id, class names, types, attributes, values of attributes, etc), use the <code>querySelectorAll()</code> method.</p>
+
+        <div class="example-container">
+            <div class="code-box" id="sel4">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Finding HTML Elements by CSS Selectors&lt;/h2&gt;
+&lt;p&gt;Hello World!&lt;/p&gt;
+&lt;p class="intro"&gt;The DOM is very useful.&lt;/p&gt;
+&lt;p class="intro"&gt;This example demonstrates the &lt;b&gt;querySelectorAll&lt;/b&gt; method.&lt;/p&gt;
+&lt;p id="demo"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+const x = document.querySelectorAll("p.intro");
+document.getElementById("demo").innerHTML = 
+'The first paragraph (index 0) with class="intro" is: ' + x[0].innerHTML;
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <button class="try-btn" onclick="openEditor('sel4')">Try it Yourself</button>
+        </div>
+
+        <h2>5. Finding HTML Elements by HTML Object Collections</h2>
+        <p>The HTML DOM defines several properties that return collections of HTML objects, such as <code>document.forms</code>, <code>document.images</code>, and <code>document.links</code>.</p>
+
+        <div class="example-container">
+            <div class="code-box" id="sel5">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h2&gt;Finding HTML Elements by Object Collections&lt;/h2&gt;
+&lt;form id="frm1" action="/action_page.php"&gt;
+  First name: &lt;input type="text" name="fname" value="Donald"&gt;&lt;br&gt;
+  Last name: &lt;input type="text" name="lname" value="Duck"&gt;&lt;br&gt;&lt;br&gt;
+  &lt;input type="button" onclick="myFunction()" value="Submit"&gt;
+&lt;/form&gt; 
+
+&lt;p&gt;Click "Submit" to display the value of each element in the form.&lt;/p&gt;
+&lt;p id="demo"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function myFunction() {
+  const x = document.forms["frm1"];
+  let text = "";
+  for (let i = 0; i < x.length; i++) {
+    text += x.elements[i].value + "&lt;br&gt;";
+  }
+  document.getElementById("demo").innerHTML = text;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <button class="try-btn" onclick="openEditor('sel5')">Try it Yourself</button>
+        </div>
+
+        <div class="note">
+            <strong>GeeksforGeeks Pro Tip:</strong> If an element with the specified ID is not found, <code>getElementById()</code> will return <code>null</code>. Always check if your selected element exists before trying to manipulate it!
+        </div>
+        <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+       const quizData = [
+  {
+    q: "Which JavaScript method is used to select a single, unique element by its 'id' attribute?",
+    options: ["getElementsByClassName()", "getElementById()", "querySelectorAll()", "getElementsByTagName()"],
+    correct: 1,
+    explanations: [
+      "<b>Incorrect:</b> This method finds elements by their class name and returns a collection.",
+      "<b>Correct!</b> <code>getElementById()</code> is the most common way to select a unique element using its ID.",
+      "<b>Incorrect:</b> This method uses CSS selectors and returns a static NodeList of all matches.",
+      "<b>Incorrect:</b> This method selects elements by their HTML tag (like &lt;p&gt;)."
+    ]
+  },
+  {
+    q: "What does the 'getElementById()' method return if the specified ID does not exist in the document?",
+    options: ["An empty string", "undefined", "null", "0"],
+    correct: 2,
+    explanations: [
+      "<b>Incorrect:</b> It returns a special value indicating the absence of an object, not a string.",
+      "<b>Incorrect:</b> While it might seem similar, JS explicitly returns <code>null</code> for missing DOM elements.",
+      "<b>Correct!</b> As noted in the Pro Tip, it returns <code>null</code> if no match is found. Always check for this before manipulating the element!",
+      "<b>Incorrect:</b> It returns an object reference or null, not a number."
+    ]
+  },
+  {
+    q: "Which of these methods returns an 'HTMLCollection' of all elements with a specific class name?",
+    options: ["querySelector()", "getElementById()", "getElementsByClassName()", "querySelectorAll()"],
+    correct: 2,
+    explanations: [
+      "<b>Incorrect:</b> This returns only the first element that matches a CSS selector.",
+      "<b>Incorrect:</b> This only returns a single element by its ID.",
+      "<b>Correct!</b> <code>getElementsByClassName()</code> returns a live collection of all elements that have the searched class.",
+      "<b>Incorrect:</b> This returns a <code>NodeList</code>, which is different from an <code>HTMLCollection</code>."
+    ]
+  },
+  {
+    q: "If you want to find elements using a CSS-style selector (e.g., 'p.intro'), which method should you use?",
+    options: ["querySelectorAll()", "getElementsByTagName()", "document.forms", "getElementById()"],
+    correct: 0,
+    explanations: [
+      "<b>Correct!</b> <code>querySelectorAll()</code> allows you to use complex CSS selectors to find all matching elements.",
+      "<b>Incorrect:</b> This only looks for raw tag names like 'p', not CSS classes joined with tags.",
+      "<b>Incorrect:</b> This is an object collection for forms, not a selector method.",
+      "<b>Incorrect:</b> This only searches for IDs."
+    ]
+  },
+  {
+    q: "How do you access the first element in a collection returned by 'getElementsByTagName'?",
+    options: ["collection[0]", "collection.first()", "collection.1", "collection{0}"],
+    correct: 0,
+    explanations: [
+      "<b>Correct!</b> HTMLCollections are zero-indexed, so <code>[0]</code> retrieves the first item.",
+      "<b>Incorrect:</b> <code>.first()</code> is not a standard built-in method for HTMLCollections.",
+      "<b>Incorrect:</b> JS uses bracket notation for index access, and it starts at 0, not 1.",
+      "<b>Incorrect:</b> Curly braces are for objects/blocks; arrays and collections use square brackets."
+    ]
+  },
+  {
+    q: "Which property can be used to select all form elements within a document without using a method?",
+    options: ["document.images", "document.links", "document.forms", "document.selectors"],
+    correct: 2,
+    explanations: [
+      "<b>Incorrect:</b> This property returns a collection of all &lt;img&gt; elements.",
+      "<b>Incorrect:</b> This property returns all &lt;a&gt; elements with an href attribute.",
+      "<b>Correct!</b> <code>document.forms</code> is a built-in property that gives you access to all forms in the HTML document.",
+      "<b>Incorrect:</b> There is no 'document.selectors' property in standard JavaScript."
+    ]
+  },
+  {
+    q: "In the Tag Name example, how was the paragraph selected within the 'main' div?",
+    options: [
+      "By searching the whole document again",
+      "By calling getElementsByTagName on the 'main' element variable",
+      "By using an ID on the paragraph",
+      "By using querySelector"
+    ],
+    correct: 1,
+    explanations: [
+      "<b>Incorrect:</b> While possible, the example showed a more efficient 'scoped' search.",
+      "<b>Correct!</b> You can call selection methods on specific elements (like <code>x.getElementsByTagName</code>) to only search inside that specific container.",
+      "<b>Incorrect:</b> The paragraph did not have an ID in that specific code box example.",
+      "<b>Incorrect:</b> The method <code>getElementsByTagName</code> was explicitly used in that example."
+    ]
+  }
+];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-box">
+            <img src="./logo.jpeg" alt="Oppty Logo" class="logo">
+            <p>
+                Learn Web Development with practical courses in
+                HTML, CSS & JavaScript. Beginner-friendly training
+                with real-time projects.
+            </p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/919999999999" target="_blank" class="whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h3>Courses</h3>
+            <ul>
+                <li>HTML for Beginners</li>
+                <li>CSS & Responsive Design</li>
+                <li>JavaScript Basics</li>
+                <li>Mini Projects</li>
+            </ul>
+        </div>
+        <div class="footer-box">
+            <h3>Contact Us</h3>
+            <p>Email: support@opptyacademy.com</p>
+            <p>Phone: +91 99999 99999</p>
+            <p>WhatsApp Support Available</p>
+        </div>
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li>About Us</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2026 Oppty Academy. All Rights Reserved.
+    </div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

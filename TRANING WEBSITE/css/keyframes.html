@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Fundamentals - Tutorial</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            background-color: #fff;
+        }
+         .explore-btn:hover { background: #ee730f; }
+
+
+        /* Sidebar with Scrolling */
+        .sidebar { 
+            width: 300px; 
+            background: #f1f1f1; 
+            height: 100vh; 
+            position: sticky; 
+            top: 0; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; /* Enables scrolling for long lists */
+               min-width: 300px;         /* Ensures it never gets smaller */
+    flex-shrink: 0
+        }
+
+        /* Custom Scrollbar for Sidebar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        .sidebar h2 {
+            padding: 15px 20px 5px 20px;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a { 
+            display: block; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            color: #444; 
+            border-bottom: 1px solid #e7e7e7; 
+            font-size: 14px;
+        }
+        
+        .sidebar a:hover { 
+            background-color: #bbb; 
+            color: white;
+        }
+
+        /* Main Content Area */
+        .main { 
+            flex: 1; 
+            padding: 40px; 
+           
+        }
+
+        /* GeeksforGeeks Style UI Components */
+        .example-container { 
+            background-color: #E7E9EB; 
+            padding: 20px; 
+            border-radius: 5px; 
+            margin: 25px 0; 
+            border: 1px solid #ccc; 
+        }
+
+        .code-box { 
+            background-color: white; 
+            padding: 15px; 
+            border-left: 4px solid #04AA6D; 
+            font-family: 'Courier New', monospace; 
+            white-space: pre; 
+            margin-bottom: 15px; 
+            overflow-x: auto; 
+            font-size: 14px; 
+            line-height: 1.5;
+        }
+
+        .try-btn { 
+            background-color: #04AA6D; 
+            color: white; 
+            padding: 12px 25px; 
+            border: none; 
+            border-radius: 25px; 
+            font-weight: bold; 
+            cursor: pointer; 
+        }
+
+        h1 { color: #2c3e50; font-size: 32px; font-weight: bold;}
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; color: #2c3e50; }
+        p { line-height: 1.6; color: #444; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+
+        .note-box {
+            background-color: #ffffcc;
+            border-left: 5px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+        }
+          /* --- Header Integration --- */
+.main-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 1001; /* Higher than sidebar */
+  width: 100%;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;        
+  justify-content: space-between;
+}
+
+.logo img { width: 140px; display: block; }
+
+.nav-menu { display: flex; align-items: center; gap: 30px; }
+
+.nav-menu a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-menu a:hover { color: #158e39; }
+
+.explore-btn {
+  background: #158e39;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* --- Layout Correction --- */
+body { display: block; } /* Change body from flex to block */
+
+.content-container {
+  display: flex; /* Move flex here to keep sidebar and main side-by-side */
+}
+
+.sidebar {
+  top: 70px; /* Adjust this so sidebar sticks BELOW the header */
+  height: calc(100vh - 70px);
+}
+/* --- Final Sidebar & Layout Fix --- */
+
+/* 1. Ensure the body doesn't interfere with flex children */
+body { 
+    display: block !important; 
+}
+
+/* 2. Fix the container to force Sidebar and Main to stay side-by-side */
+.content-container {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    width: 100% !important;
+}
+
+/* 3. Force Sidebar width and visibility */
+.sidebar {
+    display: block !important;
+    width: 300px !important;
+    min-width: 300px !important; /* Prevents it from shrinking to 0 */
+    background: #f1f1f1 !important;
+    height: calc(100vh - 70px) !important;
+    position: sticky !important;
+    top: 70px !important;
+    z-index: 100 !important;
+    overflow-y: auto !important;
+}
+
+/* 4. Ensure Main content fills the rest of the space */
+.main {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+/* 5. Clean up any potential quiz layout breaks */
+.quiz-section {
+    clear: both !important;
+    max-width: 100% !important;
+}
+    
+    </style>
+</head>
+<body>
+    <header class="main-header">
+  <div class="header-container">
+
+   
+    <div class="logo">
+      <a href="../index.html"><img src="../images/LOGO.jpeg" alt="Oppty Academy Logo"></a>
+    </div>
+    
+     <nav class="nav-menu"> 
+       <a href="../structure.html">Html</a> 
+        <a href="../css/cssintro.html">Css</a>
+         <a href="../introduction.html">JavaScript</a>
+          </nav>
+    
+    <div class="nav-right">
+      <a href="../index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+
+  </div>
+</header>  
+<div class="content-container">
+<div class="sidebar">
+    <h2>CSS Fundamentals</h2>
+    <a href="../css/cssintro.html">CSS Introduction</a>    <a href="../css/selectors.html">Selectors (class, id, element)</a>
+    <a href="../css/colors.html">Colors, Units (px, %, em, rem)</a>
+    <a href="../css/boxmodel.html">Box Model (margin, border, padding, content)</a>
+
+    <h2>Layout Systems</h2>
+    <a href="../css/flexbox.html">Flexbox (very important)</a>
+    <a href="../css/grid.html">Grid (important)</a>
+    <a href="../css/positioning.html">Positioning (static, relative, absolute, fixed, sticky)</a>
+    <a href="../css/z-index.html">z-index</a>
+
+    <h2>Styling & UI</h2>
+    <a href="../css/backgrounds.html">Backgrounds & Gradients</a>
+    <a href="../css/borders.html">Borders & Border-radius</a>
+        <a href="../css/margins.html">Margin& Padding </a>
+        <a href="../css/fonts.html">fonts & Text formatting </a>
+    <a href="../css/display.html">Display and Visibility Properties </a>
+
+
+    <a href="../css/shadows.html">Shadows (box-shadow, text-shadow)</a>
+    <a href="../css/buttons.html">Buttons & Forms styling</a>
+
+    <h2>Responsive Design</h2>
+    <a href="../css/mediaquiries.html">Media Queries</a>
+    <a href="../css/mobilefirst.html">Mobile-first design</a>
+    <a href="../css/responsive.html">Responsive images</a>
+
+    <h2>Animations</h2>
+    <a href="../css/transitions.html">Transitions</a>
+    <a href="../css/keyframes.html">Keyframe Animations</a>
+    <a href="../css/hovers.html">Hover effects</a>
+</div>
+<div class="main">
+    <h1>CSS Animations & @keyframes: Ultimate Master Class</h1>
+    <p>CSS Animations allow you to create complex sequences of changes. Unlike transitions, which only move from state A to state B, animations use <strong>keyframes</strong> to control every stage of a movement cycle.</p>
+
+    <hr>
+
+    <h2>1. The Basic Syntax of @keyframes</h2>
+    <p>The <code>@keyframes</code> rule is where you define the animation sequence. It acts as a "script" for the browser to follow.</p>
+    
+    <div style="background-color: #f4f4f4; padding: 15px; border-radius: 5px; font-family: monospace; margin: 20px 0; border: 1px solid #ddd;">
+        <strong>@keyframes animationName</strong> { <br>
+        &nbsp;&nbsp;0% { transform: scale(1); opacity: 0; } <br>
+        &nbsp;&nbsp;50% { transform: scale(1.2); opacity: 0.5; } <br>
+        &nbsp;&nbsp;100% { transform: scale(1); opacity: 1; } <br>
+        }
+    </div>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ddd; font-size: 0.9em; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <thead>
+            <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left; color: #333;">Syntax Part</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left; color: #333;">Explanation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>@keyframes</strong></td><td style="border: 1px solid #ddd; padding: 10px;">The keyword that starts the animation definition.</td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;"><strong>animationName</strong></td><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;">The custom name you give your animation (e.g., <code>bounce</code>).</td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>Percentage (0%-100%)</strong></td><td style="border: 1px solid #ddd; padding: 10px;">Points in time. 0% is the start, 100% is the completion.</td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;"><strong>from / to</strong></td><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;">Aliases for 0% (from) and 100% (to).</td></tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>2. The Animation Property Matrix</h2>
+    <p>Once the keyframe is defined, you apply it to an element using these sub-properties or the <strong>shorthand</strong>.</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ddd; font-size: 0.9em; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <thead>
+            <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left; color: #333;">Property</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left; color: #333;">Purpose</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left; color: #333;">Common Values</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>animation-name</strong></td><td style="border: 1px solid #ddd; padding: 10px;">Links the element to the @keyframes name.</td><td style="border: 1px solid #ddd; padding: 10px;"><code>slideIn</code>, <code>bounce</code></td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;"><strong>animation-duration</strong></td><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;">How long the animation cycle lasts.</td><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;"><code>0.5s</code>, <code>2s</code>, <code>5s</code></td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>animation-timing-function</strong></td><td style="border: 1px solid #ddd; padding: 10px;">The speed curve (acceleration).</td><td style="border: 1px solid #ddd; padding: 10px;"><code>ease</code>, <code>linear</code>, <code>ease-in</code></td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;"><strong>animation-iteration-count</strong></td><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;">How many times to repeat.</td><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;"><code>1</code>, <code>infinite</code>, <code>5</code></td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>animation-direction</strong></td><td style="border: 1px solid #ddd; padding: 10px;">The playback path.</td><td style="border: 1px solid #ddd; padding: 10px;"><code>normal</code>, <code>reverse</code>, <code>alternate</code></td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;"><strong>animation-fill-mode</strong></td><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;">Style of element after finishing.</td><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;"><code>forwards</code>, <code>backwards</code>, <code>both</code></td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>animation-play-state</strong></td><td style="border: 1px solid #ddd; padding: 10px;">Toggle between active/stopped.</td><td style="border: 1px solid #ddd; padding: 10px;"><code>running</code>, <code>paused</code></td></tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>3. The Transform Matrix</h2>
+    <p>The <code>transform</code> property is most commonly used inside animations because it is highly performant.</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ddd; font-size: 0.9em; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <thead>
+            <tr style="background-color: #f8f9fa; border-bottom: 2px solid #dee2e6;">
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left; color: #333;">Transform Type</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left; color: #333;">Example Syntax</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left; color: #333;">Result</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>Translate</strong></td><td style="border: 1px solid #ddd; padding: 10px;"><code>transform: translate(50px, 30px);</code></td><td style="border: 1px solid #ddd; padding: 10px;">Moves element on X/Y axis.</td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;"><strong>Rotate</strong></td><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;"><code>transform: rotate(45deg);</code></td><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;">Turns element clockwise.</td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px;"><strong>Scale</strong></td><td style="border: 1px solid #ddd; padding: 10px;"><code>transform: scale(1.5);</code></td><td style="border: 1px solid #ddd; padding: 10px;">Resizes element (larger/smaller).</td></tr>
+            <tr><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;"><strong>Skew</strong></td><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;"><code>transform: skew(20deg, 10deg);</code></td><td style="border: 1px solid #ddd; padding: 10px; background-color: #fdfdfd;">Distorts element angles.</td></tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>4. Interactive Animation Examples</h2>
+
+    <div class="example-container">
+        <h3>Example 1: Complex Bounce & Slide</h3>
+        <p>Combining movement and opacity in a multi-step sequence. <strong>Explanation:</strong> Uses percentages (0%, 20%, 50%...) to define different heights during the bounce to mimic gravity.</p>
+        <div class="code-box" id="animExFull1">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  @keyframes slideIn { 0% { transform: translateX(-100%); opacity: 0; } 100% { transform: translateX(0); opacity: 1; } }
+  @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-30px); } 60% { transform: translateY(-15px); } }
+  .box { width: 100px; height: 100px; background: #ff6b6b; color: white; display: flex; align-items: center; justify-content: center; border-radius: 8px; margin: 20px; }
+  .slide-animation { animation: slideIn 1s ease forwards; }
+  .bounce-animation { animation: bounce 2s infinite; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="box slide-animation"&gt;Slide In&lt;/div&gt;
+  &lt;div class="box bounce-animation"&gt;Bounce&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('animExFull1')">Try it Yourself</button>
+    </div>
+
+    <div class="example-container">
+        <h3>Example 2: Pulse Effect (Keyframe Scale)</h3>
+        <p>A soft scaling effect used for buttons or alerts. <strong>Explanation:</strong> The <code>50%</code> keyframe increases the scale to 1.1, while <code>0%</code> and <code>100%</code> keep it at 1, creating a heartbeat effect.</p>
+        <div class="code-box" id="animExPulse">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+  .pulse-box { width: 150px; height: 100px; background: #4ecdc4; color: white; display: flex; align-items: center; justify-content: center; border-radius: 5px; animation: pulse 1.5s infinite ease-in-out; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="pulse-box"&gt;Pulse Animation&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('animExPulse')">Try it Yourself</button>
+    </div>
+
+    <div class="example-container">
+        <h3>Example 3: Animation Shorthand (Spinning Loader)</h3>
+        <p>Uses the 1-line shorthand for a rotating spinner. <strong>Explanation:</strong> <code>linear</code> timing ensures the speed never changes, making the rotation perfectly smooth.</p>
+        <div class="code-box" id="animExFull3">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  @keyframes spin { 100% { transform: rotate(360deg); } }
+  .shorthand-box { width: 80px; height: 80px; border: 5px solid #f3f3f3; border-top: 5px solid #ff6b6b; border-radius: 50%; animation: spin 1s linear 0s infinite normal none running; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="shorthand-box"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('animExFull3')">Try it Yourself</button>
+    </div>
+
+    <div class="example-container">
+        <h3>Example 4: Color Morphing</h3>
+        <p>Changing background colors across multiple steps. <strong>Explanation:</strong> Keyframes at 0, 25, 50, 75, and 100% allow the box to cycle through 4 distinct colors smoothly.</p>
+        <div class="code-box" id="animExColor">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  @keyframes morph { 0% { background: red; } 33% { background: blue; } 66% { background: green; } 100% { background: red; } }
+  .morph-box { width: 100px; height: 100px; animation: morph 4s infinite; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="morph-box"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('animExColor')">Try it Yourself</button>
+    </div>
+
+    <div class="example-container">
+        <h3>Example 5: Shaking Error Alert</h3>
+        <p>A high-speed animation used to indicate a wrong input. <strong>Explanation:</strong> Small <code>translateX</code> movements (5px) repeated quickly (0.1s) create the "vibration" effect.</p>
+        <div class="code-box" id="animExShake">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+  .shake-box { padding: 20px; background: #eee; border: 2px solid red; display: inline-block; animation: shake 0.1s 5; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="shake-box"&gt;Invalid Login!&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('animExShake')">Try it Yourself</button>
+    </div>
+
+    <div class="example-container">
+        <h3>Example 6: Floating Effect (Alternate)</h3>
+        <p>Using <code>alternate</code> to move back and forth. <strong>Explanation:</strong> The <code>direction: alternate</code> property automatically reverses the animation after it hits 100%, making it return to 0% smoothly.</p>
+        <div class="code-box" id="animExFloat">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  @keyframes float { from { transform: translateY(0px); } to { transform: translateY(-20px); } }
+  .float-box { width: 100px; height: 100px; background: orange; border-radius: 50%; animation: float 2s infinite alternate ease-in-out; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="float-box"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('animExFloat')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>5. Pro-Tips & Summary</h2>
+    <div style="background-color: #e7f3fe; padding: 20px; border-radius: 8px; border-left: 6px solid #2196F3;">
+        <ul>
+            <li><strong>The "Forwards" rule:</strong> Use <code>animation-fill-mode: forwards;</code> so elements don't snap back to their original position after an animation ends.</li>
+            <li><strong>Performance:</strong> Animating <code>transform</code> and <code>opacity</code> is much smoother than animating <code>width</code> or <code>height</code>.</li>
+            <li><strong>Accessibility:</strong> Be careful with <code>infinite</code> loops. They can be distracting or cause nausea for some users.</li>
+        </ul>
+    </div>
+    <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+        const quizData = [
+    {
+        q: "What is the primary difference between CSS Animations and CSS Transitions according to the tutorial?",
+        options: [
+            "Animations are faster than transitions.",
+            "Transitions can only move from state A to state B, while animations use keyframes for complex sequences.",
+            "Animations only work on mobile devices.",
+            "Transitions require a separate .css file."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Speed is determined by the duration property, not the type of movement system used.",
+            "<b>Correct!</b> As mentioned in the introduction, animations allow for multi-stage movement cycles using keyframes, whereas transitions are simple point-to-point changes.",
+            "<b>Incorrect:</b> Both animations and transitions are standard CSS features that work on all modern browsers and devices.",
+            "<b>Incorrect:</b> Both can be written in Internal, Inline, or External CSS."
+        ]
+    },
+    {
+        q: "In the @keyframes rule, what do the percentage values (0% to 100%) represent?",
+        options: [
+            "The opacity level of the element.",
+            "The size of the element relative to the screen.",
+            "Specific points in time during the animation cycle.",
+            "The speed of the animation."
+        ],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Opacity is a property styled *inside* the keyframe, not the percentage itself.",
+            "<b>Incorrect:</b> Size is handled by the <code>transform: scale()</code> property.",
+            "<b>Correct!</b> Percentages define stages of the animation. 0% is the start (from) and 100% is the completion (to).",
+            "<b>Incorrect:</b> Speed is controlled by the <code>animation-duration</code> and <code>timing-function</code>."
+        ]
+    },
+    {
+        q: "Which 'animation-fill-mode' value ensures an element stays at its final animated state instead of snapping back to the start?",
+        options: ["backwards", "infinite", "forwards", "running"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> 'backwards' applies the start-frame styles before the animation begins.",
+            "<b>Incorrect:</b> 'infinite' makes the animation repeat forever, it doesn't handle the end-state styling.",
+            "<b>Correct!</b> Using <code>forwards</code> tells the browser to keep the styles defined in the last keyframe after the animation finishes.",
+            "<b>Incorrect:</b> 'running' is a value for <code>animation-play-state</code>, not fill-mode."
+        ]
+    },
+    {
+        q: "Which property is used to determine how many times an animation should repeat?",
+        options: ["animation-duration", "animation-iteration-count", "animation-direction", "transform"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> <code>animation-duration</code> sets the length of one single cycle.",
+            "<b>Correct!</b> <code>animation-iteration-count</code> accepts numbers (like 5) or the keyword <code>infinite</code> to set the number of repeats.",
+            "<b>Incorrect:</b> <code>animation-direction</code> determines if it plays forward, backward, or alternates.",
+            "<b>Incorrect:</b> <code>transform</code> is used for visual changes (movement, scale), not timing or repetition."
+        ]
+    },
+    {
+        q: "In the 'Spinning Loader' example (Example 3), why is 'linear' used as the timing function?",
+        options: [
+            "To make the loader turn into a line.",
+            "To ensure the rotation speed remains constant and smooth.",
+            "To make the animation stop after one turn.",
+            "To hide the border of the loader."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> 'linear' refers to speed curve, not the geometric shape.",
+            "<b>Correct!</b> A <code>linear</code> timing function has no acceleration or deceleration, which is essential for a continuous spinning effect.",
+            "<b>Incorrect:</b> The number of turns is controlled by the iteration count.",
+            "<b>Incorrect:</b> Border visibility is handled by the <code>border</code> property."
+        ]
+    },
+    {
+        q: "Which 'transform' type is used in Example 5 to create the 'Shaking Error' vibration effect?",
+        options: ["rotate", "scale", "translateX", "skew"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> <code>rotate</code> would make the error box spin.",
+            "<b>Incorrect:</b> <code>scale</code> would make the error box grow and shrink.",
+            "<b>Correct!</b> Rapidly changing <code>translateX</code> values (moving the box slightly left and right) creates the visual effect of shaking.",
+            "<b>Incorrect:</b> <code>skew</code> would distort the angles of the box."
+        ]
+    },
+    {
+        q: "According to the Pro-Tips, why is animating 'transform' and 'opacity' preferred over 'width' or 'height'?",
+        options: [
+            "They are the only properties that can be animated.",
+            "They are much smoother and offer better browser performance.",
+            "They change the HTML content automatically.",
+            "They require less code to write."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Many properties can be animated, but not all are efficient.",
+            "<b>Correct!</b> <code>transform</code> and <code>opacity</code> are handled by the browser's GPU, making them highly performant and avoiding 'janky' or lagging animations.",
+            "<b>Incorrect:</b> CSS cannot change HTML content.",
+            "<b>Incorrect:</b> The amount of code is roughly the same; the benefit is strictly technical performance."
+        ]
+    }
+];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+   <div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling with space-between layout */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between; 
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+            margin-bottom: 40px;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button styling */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button styling */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Highlight style for the current page in the sidebar */
+        .sidebar a.active-link {
+            background-color: #04AA6D !important;
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Get all links from your sidebar
+            const sidebarLinks = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // 2. Identify the current page path
+            const currentPath = window.location.pathname;
+            
+            // 3. Find the index and highlight the active link
+            let currentIndex = -1;
+            
+            sidebarLinks.forEach((link, index) => {
+                const linkHref = link.getAttribute('href').replace('..', '');
+                if (currentPath.endsWith(linkHref)) {
+                    currentIndex = index;
+                    link.classList.add('active-link');
+                    
+                    // Auto-scroll sidebar to the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 4. Configure Previous Button
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 5. Configure Next Button
+            if (currentIndex !== -1 && currentIndex < sidebarLinks.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+</div>
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = '../editor.html';
+    }
+</script>
+
+<footer class="footer">
+  <div class="footer-container">
+    
+    <div class="footer-box">
+      <img src="../images/LOGO.jpeg" alt="Oppty Logo">
+      <p style="color: white;">
+        Learn Web Development with practical courses in
+        HTML, CSS & JavaScript. Beginner-friendly training
+        with real-time projects.
+      </p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li><a href="#">HTML for Beginners</a></li>
+        <li><a href="../css/cssintro.html">CSS & Responsive Design</a></li>
+        <li><a href="#">JavaScript Basics</a></li>
+        <li><a href="#">Mini Projects</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p style="color: white;">Email: <a href="mailto:support@opptyacademy.com" style="color:white; text-decoration:none;">support@opptyacademy.com</a></p>
+      <p style="color: white;">Phone: +91 99999 99999</p>
+      <p style="color: white;">WhatsApp Support Available</p>
+    </div>
+
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#cs">Courses</a></li>
+        <li><a href="../index.html#as">About Us</a></li>
+        <li><a href="../index.html#cto">Contact</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Oppty Academy. All Rights Reserved.
+  </div>
+</footer>
+<style>
+    /* --- Footer Styles --- */
+.footer {
+    background: #0f0f0f;
+    color: white;
+    padding: 50px 20px 20px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;                  
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    text-align: center;             
+}
+
+.footer-box img {
+    background: #ffffff;
+    padding: 4px;
+    border-radius: 6px;
+    width: 160px;
+    margin: 0 auto 15px;
+    display: block;
+}
+
+.footer-box h3 {
+    color: #158e39;
+    margin-bottom: 15px;
+}
+
+.footer-box p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-box ul li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Link styling within list */
+.footer-box ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-box ul li a:hover {
+    color: #158e39;
+}
+
+.social-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;     
+}
+
+.social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background: #222;
+    color: #fff;
+    border-radius: 50%;
+    margin: 0 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #158e39;
+    color: #000;
+}
+
+.social-icons .whatsapp { background: #25D366; }
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+    font-size: 13px;
+    color: #aaa;
+}
+</style>
+</body>
+</html>

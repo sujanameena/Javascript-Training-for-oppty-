@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Array Methods - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* --- HEADER STYLES --- */
+        .main-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;        
+            justify-content: space-between;
+        }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; font-size: 30px; align-items: center; text-align: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; transition: 0.3s; }
+        .signin:hover { color: #158e39; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .explore-btn:hover { background: #ee730f; }
+
+        /* --- TUTORIAL LAYOUT STYLES --- */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; }
+        .wrapper { display: flex; }
+        
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 70px); /* Adjust for sticky header */
+            position: sticky; 
+            top: 70px; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; 
+            flex-shrink: 0;
+        }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+        
+        .main { flex: 1; padding: 40px;  }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        .note { background-color: #ffffcc; border-left: 5px solid #ffeb3b; padding: 15px; margin: 20px 0; }
+
+        /* --- FOOTER STYLES --- */
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; font-family: Arial, sans-serif; clear: both; }
+        .footer-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: center; }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 150px; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; line-height: 1.6; }
+        .footer-box ul { list-style: none; padding: 0; }
+        .footer-box ul li { margin-bottom: 8px; font-size: 14px; cursor: pointer; }
+        .footer-box ul li:hover { color:#158e39; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; margin: 0 5px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: #158e39; color: #000; }
+        .social-icons .whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .header-container { flex-wrap: wrap; gap: 12px; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; gap: 20px; }
+            .nav-right { order: 2; }
+            .wrapper { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+        </div>
+        <nav class="nav-menu"> 
+            <a href="./structure.html">Html</a> 
+            <a href="./css/cssintro.html">Css</a>
+            <a href="./introduction.html">JavaScript</a>
+        </nav>
+        <div class="nav-right">
+            <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+        </div>
+    </div>
+</header>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <h2 style="padding:10px; font-size:18px;">JS Basics</h2>
+        <a href="introduction.html">Introduction to JS</a>
+        <a href="variables.html">Variables (var, let, const)</a>
+        <a href="data-types.html">Data Types</a>
+        <a href="operators.html">Operators</a>
+        <a href="conditionals.html">Conditionals (if, switch)</a>
+        <a href="loops.html">Loops (for, while, forEach)</a>
+        <a href="scope.html">Scope</a>
+
+        <h2 style="padding:10px; font-size:18px;">Functions & Logic</h2>
+        <a href="functions-basic.html">Standard Functions</a>
+        <a href="arrow-functions.html">Arrow Functions</a>
+        <a href="arrays-methods.html" style="background:#ccc;">Array Methods (map, filter, reduce)</a>
+        <a href="objects.html">Objects & JSON</a>
+
+        <h2 style="padding:10px; font-size:18px;">DOM Manipulation</h2>
+        <a href="jsselectors.html">Selectors (ID, querySelector)</a>
+        <a href="content-manipulation.html">innerText vs innerHTML</a>
+        <a href="classlist.html">classList Manipulation</a>
+        <a href="style-manipulation.html">Style Manipulation</a>
+        <a href="dynamic-elements.html">Creating Elements Dynamically</a>
+
+        <h2 style="padding:10px; font-size:18px;">Events</h2>
+        <a href="event-listeners.html">addEventListener</a>
+        <a href="mouse-keyboard.html">Mouse & Keyboard Events</a>
+        <a href="form-events.html">Form Events</a>
+        <a href="custom-events.html">Custom Events</a>
+
+        <h2 style="padding:10px; font-size:18px;">Timers & Async ⭐⭐</h2>
+        <a href="timers.html">setTimeout & setInterval</a>
+        <a href="callbacks.html">Callbacks</a>
+        <a href="promises.html">Promises</a>
+        <a href="async-await.html">Async / Await</a>
+        <h2 style="padding:10px; font-size:18px;">API & Networking</h2>
+<a href="apibasics.html">Intro to REST APIs</a>
+<a href="fetch-api.html">Fetch API (GET/POST)</a>
+<a href="http-methods.html">HTTP Methods & Status Codes</a>
+<a href="json-methods.html">JSON (parse & stringify)</a>
+<a href="url-params.html">URL Params & Query Strings</a>
+<a href="error-handling.html">Handling Network Errors</a>
+<a href="cors.html">CORS & Security</a>
+
+        <h2 style="padding:10px; font-size:18px;">Browser & Storage ⭐</h2>
+        <a href="web-storage.html">Local & Session Storage</a>
+        <a href="cookies.html">Cookies</a>
+
+
+    </div>
+    <div class="main">
+    <h1>CORS & API Security</h1>
+    <p><strong>CORS (Cross-Origin Resource Sharing)</strong> is a browser security feature that restricts web pages from making requests to a different domain than the one that served the web page. It prevents malicious sites from reading sensitive data from another site.</p>
+
+    <div class="note">
+        <strong>The "Origin" Rule:</strong> An origin is defined by the <b>Protocol</b> (http/https), <b>Domain</b> (example.com), and <b>Port</b> (80/443). If any of these three differ, it is a "Cross-Origin" request.
+    </div>
+
+    <h2>1. How CORS Works (The Preflight Handshake)</h2>
+    <p>When you make a "complex" request (like sending JSON data or using a DELETE method), the browser first sends a "Preflight" request using the <code>OPTIONS</code> method to see if the server allows it.</p>
+    
+    <table style="width:100%; border-collapse: collapse; margin-bottom: 25px; background: white;">
+        <thead>
+            <tr style="background-color: #333; color: white;">
+                <th style="padding: 12px; border: 1px solid #ddd;">Step</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Action</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Header Used</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>1. Request</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Browser asks: "Can I send this data?"</td>
+                <td style="padding: 10px; border: 1px solid #ddd;"><code>Origin</code></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>2. Response</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Server says: "Yes, I trust this domain."</td>
+                <td style="padding: 10px; border: 1px solid #ddd;"><code>Access-Control-Allow-Origin</code></td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;"><strong>3. Final</strong></td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Browser sends the actual data.</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">-</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2. Simple vs. Preflight Requests</h2>
+    <p>Not all requests trigger a handshake. Understanding the difference helps in optimizing API performance.</p>
+    <ul>
+        <li><strong>Simple Requests:</strong> Basic GET, POST, or HEAD requests with standard headers (like <code>text/plain</code>). These go straight to the server.</li>
+        <li><strong>Preflight Requests:</strong> Any request with custom headers (like <code>Authorization</code>) or complex data types (like <code>application/json</code>). The browser sends an <code>OPTIONS</code> request first.</li>
+    </ul>
+
+    <h2>3. Common CORS Scenarios</h2>
+    <table style="width:100%; border-collapse: collapse; margin-bottom: 25px; background: white;">
+        <thead>
+            <tr style="background-color: #158e39; color: white;">
+                <th style="padding: 12px; border: 1px solid #ddd;">Scenario</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Outcome</th>
+                <th style="padding: 12px; border: 1px solid #ddd;">Reason</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">Same Domain</td>
+                <td style="padding: 10px; border: 1px solid #ddd; color: green;">Allowed</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Requesting <code>api.com/data</code> from <code>api.com</code>.</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">Different Domain</td>
+                <td style="padding: 10px; border: 1px solid #ddd; color: red;">Blocked</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Requesting <code>google.com</code> from <code>mysite.com</code>.</td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">Public API</td>
+                <td style="padding: 10px; border: 1px solid #ddd; color: green;">Allowed</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">Server uses <code>Access-Control-Allow-Origin: *</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>4. Runnable Examples</h2>
+
+    <h3>Example 1: Success with a Public API</h3>
+    <p>JSONPlaceholder is a public API that allows <b>all origins</b>. This request will always work.</p>
+    <div class="example-container">
+        <div class="code-box" id="cors_win">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;p id="res1"&gt;Testing CORS...&lt;/p&gt;
+  &lt;script&gt;
+    fetch('https://jsonplaceholder.typicode.com/posts/1')
+      .then(res =&gt; res.json())
+      .then(() =&gt; {
+          document.getElementById("res1").innerText = "Success! This API allows CORS.";
+          document.getElementById("res1").style.color = "green";
+      })
+      .catch(err =&gt; {
+          document.getElementById("res1").innerText = "CORS Error Detected!";
+      });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('cors_win')">Try it Yourself</button>
+    </div>
+
+    <h3>Example 2: Visualizing a CORS Block</h3>
+    <p>Try to fetch a private website (like Google) from your script. The browser will block it for security.</p>
+    <div class="example-container">
+        <div class="code-box" id="cors_fail">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;p id="res2"&gt;Attempting unauthorized fetch...&lt;/p&gt;
+  &lt;script&gt;
+    fetch('https://www.google.com')
+      .then(res =&gt; {
+          document.getElementById("res2").innerText = "Success (Unlikely)";
+      })
+      .catch(err =&gt; {
+          document.getElementById("res2").innerHTML = 
+          "&lt;b style='color:red'&gt;CORS Error:&lt;/b&gt; Access to google.com is blocked by security policy.";
+      });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('cors_fail')">Try it Yourself</button>
+    </div>
+
+    <h3>Example 3: Checking Origin Identity</h3>
+    <p>See what your current "Origin" looks like according to the browser.</p>
+    <div class="example-container">
+        <div class="code-box" id="cors_origin">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;div id="origin-display"&gt;&lt;/div&gt;
+  &lt;script&gt;
+    const myOrigin = window.location.origin;
+    document.getElementById("origin-display").innerHTML = 
+    "Your current Origin is: &lt;b&gt;" + myOrigin + "&lt;/b&gt;&lt;br&gt;Servers use this value to decide if you are allowed access.";
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('cors_origin')">Try it Yourself</button>
+    </div>
+
+    <h3>Example 4: Using "no-cors" Mode</h3>
+    <p>You can tell fetch to ignore CORS, but <b>be careful</b>: you won't be able to read the response content!</p>
+    <div class="example-container">
+        <div class="code-box" id="cors_mode">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;p id="mode-res"&gt;Sending opaque request...&lt;/p&gt;
+  &lt;script&gt;
+    fetch('https://www.google.com', { mode: 'no-cors' })
+      .then(res =&gt; {
+          document.getElementById("mode-res").innerHTML = 
+          "Request sent! Response type: &lt;b&gt;" + res.type + "&lt;/b&gt; (Opaque means content is hidden).";
+      });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('cors_mode')">Try it Yourself</button>
+    </div>
+
+    <h3>Example 5: Secure API Key Storage (Logic)</h3>
+    <p>Even if CORS is allowed, never expose secret keys in your frontend code!</p>
+    <div class="example-container">
+        <div class="code-box" id="cors_sec">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+  &lt;div id="sec-tip" style="padding:10px; border:1px solid #ee730f;"&gt;
+    &lt;h4&gt;API Security Logic&lt;/h4&gt;
+    &lt;p id="msg-sec"&gt;&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;script&gt;
+    // ❌ BAD: Visible in View Source
+    const API_KEY = "12345-SECRET"; 
+
+    // ✅ GOOD: Requesting through your own server
+    const PROXY_URL = "/api/get-weather"; 
+    
+    document.getElementById("msg-sec").innerText = 
+    "Logic: Always use a backend Proxy Server to hide sensitive keys from the browser's 'View Source'.";
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('cors_sec')">Try it Yourself</button>
+    </div>
+
+    <h2>5. Important CORS Headers</h2>
+    <p>These are the headers the <b>Server</b> must send back to the <b>Browser</b>:</p>
+    <ul>
+        <li><code>Access-Control-Allow-Origin</code>: Specifies which domain can access the resource (e.g., <code>*</code> or <code>https://mysite.com</code>).</li>
+        <li><code>Access-Control-Allow-Methods</code>: Specifies the allowed HTTP methods (GET, POST, etc.).</li>
+        <li><code>Access-Control-Allow-Headers</code>: Indicates which custom HTTP headers can be used during the actual request.</li>
+        <li><code>Access-Control-Max-Age</code>: Tells the browser how long to cache the Preflight result (so it doesn't have to ask every time).</li>
+    </ul>
+
+    <div class="note">
+        <strong>Oppty Academy Tip:</strong> If you see <code>"No 'Access-Control-Allow-Origin' header is present"</code> in your console, it's not a JavaScript bug. It means the <b>Server</b> hasn't given your website permission to access its data!
+    </div>
+ <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+     const quizData = [
+    {
+        q: "What does the 'Origin' consist of in the browser's Same-Origin Policy?",
+        options: ["Protocol, Domain, and Port", "URL Path and Query String", "IP Address and MAC Address", "Username and Password"],
+        correct: 0,
+        explanations: [
+            "<b>Correct!</b> An origin is defined by the Protocol (http/https), Domain (example.com), and Port (80/443). All three must match.",
+            "<b>Incorrect:</b> The specific path and query strings are ignored when determining the security origin.",
+            "<b>Incorrect:</b> MAC addresses are related to hardware, not web security origins.",
+            "<b>Incorrect:</b> Credentials like usernames are part of authentication, not the origin identity."
+        ]
+    },
+    {
+        q: "Which HTTP method is used by the browser to perform a 'Preflight' handshake to check server permissions?",
+        options: ["GET", "POST", "OPTIONS", "HEAD"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> GET is for retrieving data and often bypasses the preflight check.",
+            "<b>Incorrect:</b> POST is the actual data submission that happens after the preflight succeeds.",
+            "<b>Correct!</b> The browser automatically sends an <code>OPTIONS</code> request before complex requests to see if the server allows the call.",
+            "<b>Incorrect:</b> HEAD only requests the headers of a resource, it is not the handshake method."
+        ]
+    },
+    {
+        q: "What does the '*' (wildcard) value in the 'Access-Control-Allow-Origin' header mean?",
+        options: ["No origins are allowed", "Only the same origin is allowed", "Any website in the world can access the data", "The data is private"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> If no origins were allowed, the header would be missing or restricted.",
+            "<b>Incorrect:</b> Restricting to the same origin is the default behavior when no CORS headers are present.",
+            "<b>Correct!</b> The wildcard <code>*</code> tells the browser that any origin is permitted to read the resource, making it a Public API.",
+            "<b>Incorrect:</b> Using a wildcard makes the data public to any requesting domain, the opposite of private."
+        ]
+    },
+    {
+        q: "If you use fetch mode 'no-cors' on a cross-origin resource that doesn't allow your domain, what happens?",
+        options: ["The browser fixes the headers automatically", "The response type becomes 'opaque' and you cannot read the data", "The request is upgraded to HTTPS", "The JSON data is returned normally"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Browsers enforce security policies; they cannot modify or 'fix' server-side headers.",
+            "<b>Correct!</b> In 'no-cors' mode, the request is sent but the response is 'opaque', meaning JavaScript is restricted from reading the content.",
+            "<b>Incorrect:</b> Protocol upgrades are handled by HSTS, not fetch modes.",
+            "<b>Incorrect:</b> The JSON data will be received by the browser but blocked from being read by your script."
+        ]
+    },
+    {
+        q: "Why is it dangerous to store a secret API Key directly in your frontend JavaScript code?",
+        options: ["It makes the file size too large", "It is visible to anyone who uses 'View Source' or DevTools", "The browser will delete it after 10 minutes", "It only works on local computers"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> A secret key is just a small string and has no noticeable impact on file size.",
+            "<b>Correct!</b> Frontend code is public; anyone visiting your site can find and steal secret keys stored in your script files.",
+            "<b>Incorrect:</b> Browsers do not monitor or delete variables based on their content or names.",
+            "<b>Incorrect:</b> Publicly hosted JavaScript works the same way regardless of the computer accessing it."
+        ]
+    },
+    {
+        q: "Which of these is a 'Simple Request' that usually bypasses the CORS Preflight check?",
+        options: ["A POST request with JSON data", "A DELETE request", "A GET request with standard headers", "A PUT request"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Sending JSON data requires the <code>application/json</code> content-type, which triggers a preflight.",
+            "<b>Incorrect:</b> DELETE is considered a non-simple method and always requires a preflight check.",
+            "<b>Correct!</b> Basic GET, POST, or HEAD requests with simple headers like <code>text/plain</code> are processed without an OPTIONS check.",
+            "<b>Incorrect:</b> PUT is not a 'simple' method and will always trigger a preflight handshake."
+        ]
+    },
+    {
+        q: "If you see 'No Access-Control-Allow-Origin header is present' in your console, where is the configuration missing?",
+        options: ["On your JavaScript file", "On the Server you are trying to reach", "In your browser settings", "In your HTML structure"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> This is a server-side permission issue, not a bug in your client-side JavaScript logic.",
+            "<b>Correct!</b> CORS is a server-side permission. The Server must send back the correct headers to grant your website access.",
+            "<b>Incorrect:</b> While browsers enforce the rule, the 'fix' must happen on the server, not in the user's settings.",
+            "<b>Incorrect:</b> HTML structure (like Meta tags) cannot override the browser's CORS security requirements."
+        ]
+    }
+];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+</div>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-box">
+            <img src="./images/LOGO.jpeg" alt=Oppty Logo>
+            <p>Learn Web Development with practical courses in HTML, CSS & JavaScript. Beginner-friendly training with real-time projects.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/919999999999" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h3>Courses</h3>
+            <ul>
+                <li>HTML for Beginners</li>
+                <li>CSS & Responsive Design</li>
+                <li>JavaScript Basics</li>
+                <li>Mini Projects</li>
+            </ul>
+        </div>
+        <div class="footer-box">
+            <h3>Contact Us</h3>
+            <p>Email: support@opptyacademy.com</p>
+            <p>Phone: +91 99999 99999</p>
+            <p>WhatsApp Support Available</p>
+        </div>
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li>About Us</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2026 Oppty Academy. All Rights Reserved.
+    </div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

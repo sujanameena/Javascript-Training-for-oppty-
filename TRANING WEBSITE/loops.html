@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Loops - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* --- Tutorial Layout Styles --- */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; }
+        
+        .content-wrapper { display: flex; flex-direction: row; flex: 1; }
+
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 70px); 
+            position: sticky; 
+            top: 70px; /* Sits below header */
+            border-right: 1px solid #ddd; 
+            overflow-y: auto;
+        }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+        
+        .main { flex: 1; padding: 40px; }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        .note { background-color: #ffffcc; border-left: 5px solid #ffeb3b; padding: 15px; margin: 20px 0; }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 16px; }
+        table, th, td { border: 1px solid #ddd; }
+        th, td { padding: 12px; text-align: left; }
+        th { background-color: #04AA6D; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+
+        /* --- Header Styles (Provided) --- */
+        .main-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;        
+            justify-content: space-between;
+        }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; transition: 0.3s; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .explore-btn:hover { background: #ee730f; }
+
+        /* --- Footer Styles (Provided) --- */
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; font-family: Arial, sans-serif; }
+        .footer-container {
+            max-width: 1200px;
+            margin: auto;                  
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;             
+        }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 140px; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; line-height: 1.6; }
+        .footer-box ul { list-style: none; padding: 0; }
+        .footer-box ul li { margin-bottom: 8px; font-size: 14px; cursor: pointer; transition: 0.3s; }
+        .footer-box ul li:hover { color: #158e39; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; margin: 0 5px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: #158e39; color: #000; }
+        .social-icons .whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .content-wrapper { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+            .header-container { flex-wrap: wrap; gap: 12px; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; gap: 20px; }
+        }
+        /* --- Sidebar Scrollbar Styling --- */
+.sidebar {
+    /* Ensures the sidebar takes up the full remaining height and scrolls internally */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar for a cleaner look (Chrome, Safari, and Edge) */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #158e39; /* Changes to your brand green on hover */
+}
+
+/* For Firefox */
+.sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f1f1f1;
+}
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo">
+      <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+        </div>
+        <nav class="nav-menu"> 
+            <a href="./structure.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+        <a href="./introduction.html">JavaScript</a>
+        </nav>
+        <div class="nav-right">
+            
+            <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+        </div>
+    </div>
+</header>
+
+<div class="content-wrapper">
+     <aside class="sidebar">
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">JS Basics</h2>
+            <a href="introduction.html">Introduction to JS</a>
+            <a href="variables.html">Variables (var, let, const)</a>
+            <a href="data-types.html">Data Types</a>
+            <a href="operators.html">Operators</a>
+            <a href="conditionals.html">Conditionals (if, switch)</a>
+            <a href="loops.html">Loops (for, while, forEach)</a>
+            <a href="scope.html">Scope</a>
+
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">Functions & Logic</h2>
+            <a href="functions-basic.html">Standard Functions</a>
+            <a href="arrow-functions.html">Arrow Functions</a>
+            <a href="arrays-methods.html">Array Methods (map, filter, reduce)</a>
+            <a href="objects.html">Objects & JSON</a>
+
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">DOM Manipulation</h2>
+            <a href="jsselectors.html">Selectors (ID, querySelector)</a>
+            <a href="content-manipulation.html">innerText vs innerHTML</a>
+            <a href="classlist.html" style="background:#ccc;">classList Manipulation</a>
+            <a href="style-manipulation.html">Style Manipulation</a>
+            <a href="dynamic-elements.html">Creating Elements Dynamically</a>
+
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">Events</h2>
+            <a href="event-listeners.html">addEventListener</a>
+            <a href="mouse-keyboard.html">Mouse & Keyboard Events</a>
+            <a href="form-events.html">Form Events</a>
+            <a href="custom-events.html">Custom Events</a>
+
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">Timers & Async ⭐⭐</h2>
+            <a href="timers.html">setTimeout & setInterval</a>
+            <a href="callbacks.html">Callbacks</a>
+            <a href="promises.html">Promises</a>
+            <a href="async-await.html">Async / Await</a>
+            <h2 style="padding:10px; font-size:18px;">API & Networking</h2>
+<a href="apibasics.html">Intro to REST APIs</a>
+<a href="fetch-api.html">Fetch API (GET/POST)</a>
+<a href="http-methods.html">HTTP Methods & Status Codes</a>
+<a href="json-methods.html">JSON (parse & stringify)</a>
+<a href="url-params.html">URL Params & Query Strings</a>
+<a href="error-handling.html">Handling Network Errors</a>
+<a href="cors.html">CORS & Security</a>
+
+
+            <h2 style="padding:10px; font-size:18px; margin-top: 20px; border-bottom: none;">Browser & Storage ⭐</h2>
+            <a href="web-storage.html">Local & Session Storage</a>
+            <a href="cookies.html">Cookies</a>
+        </aside>
+
+
+    <div class="main">
+        <h1>JavaScript Loops</h1>
+        <p>Loops are used in JavaScript to perform repeated tasks based on a condition. They typically execute a block of code as long as a specified condition remains true.</p>
+
+        
+
+        <h2>Loops Overview</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Loop Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>for</code></td>
+                    <td>Repeats code a specific number of times using an initializer, condition, and increment.</td>
+                </tr>
+                <tr>
+                    <td><code>while</code></td>
+                    <td>Repeats code as long as a specified condition evaluates to true.</td>
+                </tr>
+                <tr>
+                    <td><code>do-while</code></td>
+                    <td>Executes at least once before checking the condition.</td>
+                </tr>
+                <tr>
+                    <td><code>forEach</code></td>
+                    <td>Iterates through each element in an array.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr>
+
+        <h2>1. The <code>for</code> Loop</h2>
+        <p>The <code>for</code> loop is ideal when you know exactly how many times you want to run a block of code.</p>
+        
+        <div class="example-container">
+            <h3>Example A: Basic Counting</h3>
+            <div class="code-box" id="loop1">&lt;script&gt;
+  for (let i = 1; i <= 5; i++) {
+    document.write("Number: " + i + "&lt;br&gt;");
+  }
+&lt;/script&gt;</div>
+            <button class="try-btn" onclick="openEditor('loop1')">Try it Yourself</button>
+        </div>
+
+        <h2>2. The <code>while</code> Loop</h2>
+        <p>The <code>while</code> loop checks the condition before executing the code block.</p>
+
+        <div class="example-container">
+            <h3>Example A: Basic while</h3>
+            <div class="code-box" id="loop4">&lt;script&gt;
+  let i = 1;
+  while (i <= 3) {
+    document.write("Loop " + i + "&lt;br&gt;");
+    i++;
+  }
+&lt;/script&gt;</div>
+            <button class="try-btn" onclick="openEditor('loop4')">Try it Yourself</button>
+        </div>
+
+        <h2>3. The <code>do-while</code> Loop</h2>
+        <p>This loop will always be executed at least once, even if the condition is false.</p>
+
+        <div class="example-container">
+            <h3>Example A: Guaranteed execution</h3>
+            <div class="code-box" id="loop7">&lt;script&gt;
+  let i = 10;
+  do {
+    document.write("Value: " + i);
+    i++;
+  } while (i < 5);
+&lt;/script&gt;</div>
+            <button class="try-btn" onclick="openEditor('loop7')">Try it Yourself</button>
+        </div>
+
+        <h2>4. The <code>forEach</code> Method</h2>
+        <p><code>forEach</code> is specifically used to iterate through array elements.</p>
+
+        <div class="example-container">
+            <h3>Example A: Printing items</h3>
+            <div class="code-box" id="loop10">&lt;script&gt;
+  const colors = ["Red", "Green", "Blue"];
+  colors.forEach(function(color) {
+    document.write("Color: " + color + "&lt;br&gt;");
+  });
+&lt;/script&gt;</div>
+            <button class="try-btn" onclick="openEditor('loop10')">Try it Yourself</button>
+        </div>
+
+        <div class="note">
+            <strong>Pro Tip:</strong> Use <code>for</code> when the number of iterations is known, and <code>while</code> when it depends on a dynamic condition.
+        </div>
+        <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+        const quizData = [
+  {
+    q: "Which loop is best used when you know exactly how many times a block of code should run?",
+    options: ["while loop", "do-while loop", "for loop", "forEach loop"],
+    correct: 2,
+    explanations: [
+      "<b>Incorrect:</b> while loops are better when the number of iterations depends on a dynamic condition.",
+      "<b>Incorrect:</b> do-while is used when you need the code to run at least once regardless of the count.",
+      "<b>Correct!</b> The for loop is ideal for a specific number of iterations because it includes an initializer, condition, and increment in one line.",
+      "<b>Incorrect:</b> forEach is specifically for iterating over array elements."
+    ]
+  },
+  {
+    q: "What is a unique characteristic of the 'do-while' loop?",
+    options: [
+      "It never checks a condition.",
+      "It always executes the code block at least once.",
+      "It is only used for counting numbers.",
+      "It is faster than a for loop."
+    ],
+    correct: 1,
+    explanations: [
+      "<b>Incorrect:</b> It does check a condition, but it does so after the first execution.",
+      "<b>Correct!</b> Because the condition is checked after the code block, a do-while loop guarantees at least one execution.",
+      "<b>Incorrect:</b> It can be used for any logic, not just counting.",
+      "<b>Incorrect:</b> Loop speed depends on the logic inside, not just the loop type."
+    ]
+  },
+  {
+    q: "Which loop is specifically designed to iterate through each element in an array?",
+    options: ["for loop", "while loop", "forEach loop", "if-else statement"],
+    correct: 2,
+    explanations: [
+      "<b>Incorrect:</b> A for loop can be used for arrays, but it isn't specifically an array method.",
+      "<b>Incorrect:</b> while loops are general-purpose and require manual indexing for arrays.",
+      "<b>Correct!</b> forEach is a specialized array method used to execute a function for every element in an array.",
+      "<b>Incorrect:</b> if-else is a conditional statement, not a loop."
+    ]
+  },
+  {
+    q: "In a 'while' loop, when is the condition checked?",
+    options: [
+      "After the code block executes.",
+      "Before the code block executes.",
+      "Only at the very end of the script.",
+      "Simultaneously with the code block."
+    ],
+    correct: 1,
+    explanations: [
+      "<b>Incorrect:</b> That describes a do-while loop.",
+      "<b>Correct!</b> A while loop checks the condition first. If the condition is false initially, the code block never runs.",
+      "<b>Incorrect:</b> It is checked at the start of every iteration.",
+      "<b>Incorrect:</b> Logic in JavaScript is executed sequentially."
+    ]
+  },
+  {
+    q: "What are the three parts required in the syntax of a standard 'for' loop?",
+    options: [
+      "If, Else, Then",
+      "Initializer, Condition, Increment/Decrement",
+      "Start, Stop, Wait",
+      "Function, Object, Array"
+    ],
+    correct: 1,
+    explanations: [
+      "<b>Incorrect:</b> These are parts of conditional logic.",
+      "<b>Correct!</b> A for loop requires an initializer (let i = 0), a condition (i < 5), and an increment (i++).",
+      "<b>Incorrect:</b> These are not standard JavaScript loop terms.",
+      "<b>Incorrect:</b> These are data structures and definitions, not loop controls."
+    ]
+  },
+  {
+    q: "If you have a loop where the condition is 'i < 5' and 'i' starts at 10, which loop will still run once?",
+    options: ["for loop", "while loop", "do-while loop", "forEach loop"],
+    correct: 2,
+    explanations: [
+      "<b>Incorrect:</b> The for loop checks the condition immediately and will not run.",
+      "<b>Incorrect:</b> The while loop checks '10 < 5' (false) and will not run.",
+      "<b>Correct!</b> The do-while loop executes the 'do' block first before checking the 'while' condition.",
+      "<b>Incorrect:</b> forEach depends on the length of an array."
+    ]
+  },
+  {
+    q: "According to the 'Pro Tip', when should you use a 'while' loop?",
+    options: [
+      "When the number of iterations is known.",
+      "Only when working with arrays.",
+      "When the number of iterations depends on a dynamic condition.",
+      "To replace all for loops."
+    ],
+    correct: 2,
+    explanations: [
+      "<b>Incorrect:</b> A for loop is recommended when the number of iterations is known.",
+      "<b>Incorrect:</b> forEach is recommended for arrays.",
+      "<b>Correct!</b> The Pro Tip states that while loops are best when the loop depends on a dynamic condition rather than a fixed count.",
+      "<b>Incorrect:</b> Both have their specific use cases."
+    ]
+  }
+];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-box">
+            <img src="./images/LOGO.jpeg" alt="Oppty Logo">
+            <p>Learn Web Development with practical courses in HTML, CSS & JavaScript. Beginner-friendly training with real-time projects.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/919999999999" target="_blank" class="whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h3>Courses</h3>
+            <ul>
+                <li>HTML for Beginners</li>
+                <li>CSS & Responsive Design</li>
+                <li>JavaScript Basics</li>
+                <li>Mini Projects</li>
+            </ul>
+        </div>
+        <div class="footer-box">
+            <h3>Contact Us</h3>
+            <p>Email: support@opptyacademy.com</p>
+            <p>Phone: +91 99999 99999</p>
+        </div>
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li>About Us</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2026 Oppty Academy. All Rights Reserved.
+    </div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

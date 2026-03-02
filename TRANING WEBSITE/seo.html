@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Meta Tags & SEO - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        /* --- Layout Reset --- */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        .wrapper { display: flex; flex: 1;  }
+
+        /* --- Header Styles --- */
+        .main-header { background: #ffffff; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 1000; }
+        .header-container { max-width: 1200px; margin: auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .explore-btn:hover { background: #ee730f; }
+
+        /* --- Sidebar Styles --- */
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 75px); 
+            position: sticky; 
+            top: 75px; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; 
+        }
+        .sidebar::-webkit-scrollbar { width: 6px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+
+        /* --- Main Content --- */
+        .main { flex: 1; padding: 40px;  }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        .summary-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .summary-table th, .summary-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .summary-table th { background-color: #f1f1f1; }
+
+        /* --- Footer Styles --- */
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; font-family: Arial, sans-serif; }
+        .footer-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: center; }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 150px; display: block; margin: 0 auto 15px; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; line-height: 1.6; }
+        .footer-box ul { list-style: none; padding: 0; }
+        .footer-box ul li { margin-bottom: 8px; font-size: 14px; cursor: pointer; }
+        .footer-box ul li:hover { color:#158e39; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; margin: 0 5px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: #158e39; color: #000; }
+        .social-icons .whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .wrapper { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+            .header-container { flex-wrap: wrap; }
+            .nav-menu { width: 100%; order: 3; justify-content: center; margin-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo">
+      <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+    </div>
+    <nav class="nav-menu"> 
+        <a href="./structure.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+        <a href="./introduction.html">JavaScript</a>
+    </nav>
+    <div class="nav-right">
+      
+      <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrapper">
+    
+<div class="sidebar">
+
+    <h2 style="padding:10px; font-size:18px;">HTML Basics</h2>
+
+    <a href="structure.html">Structure</a>
+
+    <a href="tags.html">Common Tags</a>
+
+    <a href="headings.html">Headings</a>
+
+    <a href="lists.html">Lists</a>
+
+    <a href="tables.html">Tables</a>
+
+    <h2 style="padding:10px; font-size:18px; ">Forms & Inputs</h2>
+
+    <a href="forms.html">Form Elements</a>
+
+    <a href="inputs.html">Input Types</a>
+
+    <a href="validation.html">Form Validation</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Semantic HTML</h2>
+
+    <a href="semantic.html">Semantic Tags</a>
+
+    <a href="Non-semantic.html">Non-Semantic Tags</a>
+
+    <a href="structure-benefits.html">SEO Benefits</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Media & SEO</h2>
+
+    <a href="media.html">Images, Audio, Video</a>
+
+    <a href="seo.html" style="background:#ccc;">Meta Tags & SEO</a>
+
+    <a href="accessibility.html">Accessibility (ARIA)</a>
+
+</div>
+
+
+
+<div class="main">
+
+    <h1>HTML Meta Tags & SEO</h1>
+
+    <p>Meta tags provide metadata about the HTML document. They are not displayed on the page but are used by browsers and search engines.</p>
+
+
+
+    <h2>1. Character Encoding Tag (&lt;meta charset="UTF-8"&gt;)</h2>
+
+    <p>This tag tells the web browser how to display the characters and symbols on your webpage.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="meta1">&lt;head&gt;
+
+  &lt;meta charset="UTF-8"&gt;
+
+&lt;/head&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('meta1')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Purpose:</strong> Ensures all text, including special characters and emojis, renders correctly.</li>
+
+        <li><strong>Benefit:</strong> Prevents "broken" symbols, ensuring a professional user experience.</li>
+
+    </ul>
+
+
+
+    <h2>2. Description Meta Tag</h2>
+
+    <p>The Description tag provides a short summary (snippet) of what the webpage is about.</p>
+
+
+
+   
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="meta2">&lt;meta name="description" content="Free Web tutorials for HTML, CSS, and JavaScript."&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('meta2')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>SEO Benefit:</strong> A compelling description improves your Click-Through Rate (CTR) in search results.</li>
+
+        <li><strong>Best Practice:</strong> Keep length between 150–160 characters.</li>
+
+    </ul>
+
+
+
+    <h2>3. Viewport Meta Tag</h2>
+
+    <p>This tag is the foundation of Responsive Web Design, crucial for mobile devices.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="meta3">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('meta3')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Purpose:</strong> Controls page scaling on different device widths.</li>
+
+        <li><strong>SEO Benefit:</strong> Essential for Google’s mobile-first indexing ranking.</li>
+
+    </ul>
+
+
+
+    <h2>4. Robots Meta Tag</h2>
+
+    <p>The Robots tag acts as a "signpost" for search engine crawlers (bots) visiting your site.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="meta4">&lt;meta name="robots" content="index, follow"&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('meta4')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>index/noindex:</strong> Tells the bot whether to include the page in search results.</li>
+
+        <li><strong>follow/nofollow:</strong> Instructs the bot to follow (or ignore) links on the page.</li>
+
+    </ul>
+
+
+
+    <h2>5. Author and Keywords Tags</h2>
+
+    <p>These tags provide additional context, though they have less direct impact on modern SEO rankings.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="meta5">&lt;meta name="author" content="John Doe"&gt;
+
+&lt;meta name="keywords" content="HTML, SEO, Meta Tags"&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('meta5')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <h2>Summary Table: Meta Tag Roles</h2>
+
+    <table class="summary-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Meta Tag</th>
+
+                <th>Primary Function</th>
+
+                <th>SEO Impact</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr><td>Charset</td><td>Displays text correctly</td><td>Indirect (UX)</td></tr>
+
+            <tr><td>Description</td><td>Summarizes page content</td><td>High (CTR)</td></tr>
+
+            <tr><td>Viewport</td><td>Mobile optimization</td><td>Very High</td></tr>
+
+            <tr><td>Robots</td><td>Controls indexing</td><td>Critical</td></tr>
+
+            <tr><td>Author</td><td>Content attribution</td><td>Low (Credibility)</td></tr>
+
+        </tbody>
+
+    </table>
+<section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+        const quizData = [
+    {
+        q: "What is the primary purpose of the <meta charset='UTF-8'> tag?",
+        options: ["To set the page background color", "To tell the browser how to display characters and symbols", "To improve the page loading speed", "To link an external CSS file"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Background colors are handled by CSS, not the charset tag.",
+            "<b>Correct!</b> It ensures that text, special characters, and emojis are rendered correctly by the browser.",
+            "<b>Incorrect:</b> Charset is for encoding, not for optimization of loading speed.",
+            "<b>Incorrect:</b> External CSS is linked using the <link> tag."
+        ]
+    },
+    {
+        q: "Which meta tag is considered the foundation of Responsive Web Design?",
+        options: ["Description Meta Tag", "Author Meta Tag", "Viewport Meta Tag", "Robots Meta Tag"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> The description tag is used for search engine snippets.",
+            "<b>Incorrect:</b> The author tag provides credit to the creator.",
+            "<b>Correct!</b> The Viewport tag controls page scaling and is essential for mobile-first indexing.",
+            "<b>Incorrect:</b> The robots tag controls how search engines crawl the site."
+        ]
+    },
+    {
+        q: "What is the recommended length for the 'description' meta tag content to optimize SEO?",
+        options: ["Between 50–100 characters", "Exactly 200 characters", "Between 150–160 characters", "Over 300 characters"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> 50–100 characters is often too short to provide a compelling summary.",
+            "<b>Incorrect:</b> Exactly 200 characters is not the standard recommendation.",
+            "<b>Correct!</b> Keeping it between 150–160 characters ensures the snippet isn't cut off in search results.",
+            "<b>Incorrect:</b> Snippets longer than 160 characters are usually truncated by search engines."
+        ]
+    },
+    {
+        q: "In the tag <meta name='robots' content='index, follow'>, what does 'follow' instruct the bot to do?",
+        options: ["Follow the website owner on social media", "Include the page in search results", "Ignore all links on the page", "Follow the links found on the page"],
+        correct: 3,
+        explanations: [
+            "<b>Incorrect:</b> Robots tags are for search engine crawlers, not social media followers.",
+            "<b>Incorrect:</b> 'Index' is the command used to include a page in search results.",
+            "<b>Incorrect:</b> 'Nofollow' would be used to ignore links.",
+            "<b>Correct!</b> It instructs search engine bots to crawl the links present on that specific page."
+        ]
+    },
+    {
+        q: "Which meta tag roles has a 'Very High' SEO impact specifically for mobile optimization?",
+        options: ["Author", "Viewport", "Keywords", "Charset"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Author attribution has a very low impact on modern SEO rankings.",
+            "<b>Correct!</b> Viewport optimization is critical because Google uses mobile-first indexing to rank sites.",
+            "<b>Incorrect:</b> Keywords have a low direct impact on modern search engine rankings.",
+            "<b>Incorrect:</b> Charset affects user experience (UX) but is considered an indirect SEO factor."
+        ]
+    },
+    {
+        q: "Which meta tag acts as a 'signpost' to tell search engines whether to include a page in search results?",
+        options: ["Robots Meta Tag", "Description Meta Tag", "Viewport Meta Tag", "Keywords Meta Tag"],
+        correct: 0,
+        explanations: [
+            "<b>Correct!</b> The Robots tag uses 'index' or 'noindex' to control whether a page appears in search results.",
+            "<b>Incorrect:</b> Description provides a snippet but doesn't control indexing.",
+            "<b>Incorrect:</b> Viewport is for layout scaling.",
+            "<b>Incorrect:</b> Keywords provide context but do not control search visibility."
+        ]
+    },
+    {
+        q: "How does a compelling 'Description' meta tag benefit a website?",
+        options: ["It makes images load faster", "It improves the Click-Through Rate (CTR)", "It changes the font style of the page", "It prevents hackers from accessing the site"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Descriptions do not affect image processing.",
+            "<b>Correct!</b> A good description acts as an advertisement in search results, encouraging users to click your link.",
+            "<b>Incorrect:</b> Font styles are controlled by CSS.",
+            "<b>Incorrect:</b> Meta tags are not security features."
+        ]
+    }
+];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+</div>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-box">
+      <img src="./images/LOGO.jpeg" alt="Oppty Logo" class="logo">
+      <p>Learn Web Development with practical courses in HTML, CSS & JavaScript. Beginner-friendly training with real-time projects.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li>HTML for Beginners</li>
+        <li>CSS & Responsive Design</li>
+        <li>JavaScript Basics</li>
+      </ul>
+    </div>
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p>Email: support@opptyacademy.com</p>
+      <p>Phone: +91 99999 99999</p>
+    </div>
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li>Home</li>
+        <li>Courses</li>
+        <li>About Us</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Oppty Academy. All Rights Reserved.</div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

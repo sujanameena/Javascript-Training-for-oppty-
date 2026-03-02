@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Headings - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Base Reset & Layout */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        .content-wrapper { display: flex; flex: 1; }
+
+        /* --- Oppty Header Styles --- */
+        .main-header { background: #ffffff; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 1000; }
+        .header-container { max-width: 1200px; margin: auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; transition: 0.3s; }
+        .signin:hover { color: #158e39; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .explore-btn:hover { background: #ee730f; }
+
+        /* --- Sidebar Styles --- */
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 75px); /* Full height minus header height */
+            position: sticky; 
+            top: 75px; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; 
+        }
+        .sidebar::-webkit-scrollbar { width: 6px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+
+        /* --- Main Content --- */
+        .main { flex: 1; padding: 40px; }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        
+        .summary-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        .summary-table th, .summary-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .summary-table th { background-color: #f1f1f1; }
+
+        /* --- Oppty Footer Styles --- */
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; font-family: Arial, sans-serif; }
+        .footer-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: center; }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 150px; margin: 0 auto 15px; display: block; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; line-height: 1.6; }
+        .footer-box ul { list-style: none; padding: 0; }
+        .footer-box ul li { margin-bottom: 8px; font-size: 14px; cursor: pointer; }
+        .footer-box ul li:hover { color:#158e39; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; margin: 0 5px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: #158e39; color: #000; }
+        .social-icons .whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .content-wrapper { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+            .header-container { flex-wrap: wrap; justify-content: center; gap: 10px; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo">
+      <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+    </div>
+    <nav class="nav-menu"> 
+       <a href="./structure.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+        <a href="./introduction.html">JavaScript</a>
+    </nav>
+    <div class="nav-right">
+      
+      <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+  </div>
+</header>
+
+<div class="content-wrapper">
+    
+<div class="sidebar">
+
+    <h2 style="padding:10px; font-size:18px;">HTML Basics</h2>
+
+    <a href="structure.html">Structure</a>
+
+    <a href="tags.html">Common Tags</a>
+
+    <a href="headings.html" style="background:#ccc;">Headings</a>
+
+    <a href="lists.html">Lists</a>
+
+    <a href="tables.html">Tables</a>
+
+    <h2 style="padding:10px; font-size:18px; ">Forms & Inputs</h2>
+
+    <a href="forms.html">Form Elements</a>
+
+    <a href="inputs.html">Input Types</a>
+
+    <a href="validation.html">Form Validation</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Semantic HTML</h2>
+
+    <a href="semantic.html">Semantic Tags</a>
+
+    <a href="Non-semantic.html">Non-Semantic Tags</a>
+
+    <a href="structure-benefits.html">SEO Benefits</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Media & SEO</h2>
+
+    <a href="media.html">Images, Audio, Video</a>
+
+    <a href="seo.html">Meta Tags & SEO</a>
+
+    <a href="accessibility.html">Accessibility (ARIA)</a>
+
+</div>
+
+
+
+<div class="main">
+
+    <h1>HTML Headings</h1>
+
+    <p>Headings are used to define the hierarchy and structure of your webpage content.</p>
+
+
+
+    <h2>1. The Heading Hierarchy (H1 to H6)</h2>
+
+    <p>HTML provides six levels of headings, which represent the importance and structure of the content.</p>
+
+   
+
+   
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="head1">&lt;h1&gt;Main Heading (H1)&lt;/h1&gt;
+
+&lt;h2&gt;Sub-heading (H2)&lt;/h2&gt;
+
+&lt;h3&gt;Section Heading (H3)&lt;/h3&gt;
+
+&lt;h4&gt;Minor Heading (H4)&lt;/h4&gt;
+
+&lt;h5&gt;Small Heading (H5)&lt;/h5&gt;
+
+&lt;h6&gt;Least Important (H6)&lt;/h6&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('head1')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>&lt;h1&gt;:</strong> This is the most important heading. It is typically the main title of the page and has the largest font size (default: 32px or 2em).</li>
+
+        <li><strong>&lt;h2&gt; to &lt;h5&gt;:</strong> These are sub-headings used to break down the content into smaller, readable sections.</li>
+
+        <li><strong>&lt;h6&gt;:</strong> This is the least important heading, used for the smallest sub-sections.</li>
+
+        <li><strong>GeeksforGeeks Tip:</strong> Always start with <code>&lt;h1&gt;</code> and work your way down. Never skip levels (e.g., don't go from h1 straight to h3).</li>
+
+    </ul>
+
+
+
+    <h2>2. Importance of Headings (SEO & Structure)</h2>
+
+    <p>Headings are not just for making text big; they serve two critical functions:</p>
+
+   
+
+    <div class="example-container">
+
+        <div class="code-box" id="head2">&lt;article&gt;
+
+  &lt;h1&gt;The Future of AI&lt;/h1&gt;
+
+  &lt;p&gt;Introduction text here...&lt;/p&gt;
+
+  &lt;h2&gt;Machine Learning Basics&lt;/h2&gt;
+
+  &lt;p&gt;Content about ML...&lt;/p&gt;
+
+&lt;/article&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('head2')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Search Engines (SEO):</strong> Search engines like Google use headings to index the structure and content of your web pages. A proper heading structure helps your site rank better.</li>
+
+        <li><strong>User Experience:</strong> Headings allow users to "scan" a page quickly to find information. Without headings, a page would just be a wall of text.</li>
+
+    </ul>
+
+
+
+    <h2>3. Default Browser Styling</h2>
+
+    <p>By default, browsers add specific styles to headings to distinguish them from regular text.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="head3">&lt;h2&gt;Default Styled Heading&lt;/h2&gt;
+
+&lt;p&gt;Notice the bold font and the space (margin) above and below this paragraph.&lt;/p&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('head3')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Boldness:</strong> All heading tags are rendered in a bold font weight.</li>
+
+        <li><strong>Spacing:</strong> Browsers automatically add a margin (white space) before and after every heading to separate it from other elements.</li>
+
+        <li><strong>Block Level:</strong> Headings are "block-level" elements; they always start on a new line and take up the full width available.</li>
+
+    </ul>
+
+
+
+    <h2>4. Changing Heading Size (CSS)</h2>
+
+    <p>While each heading has a default size, GeeksforGeeks emphasizes that you should never use a heading tag just to make text large.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="head4">&lt;!-- Use CSS for custom sizing --&gt;
+
+&lt;h1 style="font-size:60px;"&gt;Custom Large Heading&lt;/h1&gt;
+
+&lt;h2 style="font-size:12px;"&gt;Small heading with H2 semantics&lt;/h2&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('head4')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Font Size:</strong> If you want a specific size, use the CSS <code>font-size</code> property rather than choosing a heading level based on its appearance.</li>
+
+    </ul>
+
+
+
+    <h2>5. Best Practices</h2>
+
+    <p>To write clean, professional HTML, follow these rules from the tutorial:</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="head5">&lt;h1&gt;Main Topic&lt;/h1&gt;
+
+&lt;hr&gt;
+
+&lt;h2&gt;Section One&lt;/h2&gt;
+
+&lt;p&gt;Details...&lt;/p&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('head5')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>One H1 Per Page:</strong> It is standard practice to use only one <code>&lt;h1&gt;</code> tag per webpage to represent the main topic.</li>
+
+        <li><strong>Accessibility:</strong> Screen readers use headings to help visually impaired users navigate. Using headings in the correct order (h1 → h2 → h3) is essential.</li>
+
+        <li><strong>The Horizontal Rule (&lt;hr&gt;):</strong> Often used alongside headings to create a thematic break or a horizontal line to separate sections visually.</li>
+
+    </ul>
+
+
+
+    <h2>Visual Comparison of Headings</h2>
+
+    <table class="summary-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Tag</th>
+
+                <th>Importance</th>
+
+                <th>Default Size</th>
+
+                <th>Usage</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr><td><code>&lt;h1&gt;</code></td><td>Highest</td><td>2.00em</td><td>Main Page Title</td></tr>
+
+            <tr><td><code>&lt;h2&gt;</code></td><td>High</td><td>1.50em</td><td>Main Sections</td></tr>
+
+            <tr><td><code>&lt;h3&gt;</code></td><td>Medium</td><td>1.17em</td><td>Sub-sections</td></tr>
+
+            <tr><td><code>&lt;h4&gt;</code></td><td>Low</td><td>1.00em</td><td>Minor sections</td></tr>
+
+            <tr><td><code>&lt;h5&gt;</code></td><td>Very Low</td><td>0.83em</td><td>Specific details</td></tr>
+
+            <tr><td><code>&lt;h6&gt;</code></td><td>Lowest</td><td>0.67em</td><td>Least significant info</td></tr>
+
+        </tbody>
+
+    </table>
+<section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+        const quizData = [
+    {
+        q: "Which HTML heading tag represents the highest level of importance and is typically the main title?",
+        options: ["<h6>", "<h1>", "<h3>", "<head>"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> <h6> is the lowest level of importance.",
+            "<b>Correct!</b> <h1> is the most important heading and is usually the main title of the page.",
+            "<b>Incorrect:</b> <h3> is a medium-level sub-heading.",
+            "<b>Incorrect:</b> <head> is a metadata container, not a visible heading tag."
+        ]
+    },
+    {
+        q: "What is the standard browser default font size for an <h1> tag?",
+        options: ["1.00em", "1.50em", "2.00em", "0.67em"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> 1.00em is the default for <h4>.",
+            "<b>Incorrect:</b> 1.50em is the default for <h2>.",
+            "<b>Correct!</b> <h1> defaults to 2.00em (approx. 32px) in most browsers.",
+            "<b>Incorrect:</b> 0.67em is the default for <h6>."
+        ]
+    },
+    {
+        q: "According to best practices, how many <h1> tags should you typically use per page?",
+        options: ["Only one", "Exactly six", "As many as possible", "None"],
+        correct: 0,
+        explanations: [
+            "<b>Correct!</b> It is standard practice to use only one <h1> per page to represent the main topic.",
+            "<b>Incorrect:</b> Using six would likely confuse the hierarchy and SEO.",
+            "<b>Incorrect:</b> Using too many <h1> tags makes the page structure unclear.",
+            "<b>Incorrect:</b> You should always have one <h1> for the main title."
+        ]
+    },
+    {
+        q: "Why are headings important for SEO (Search Engine Optimization)?",
+        options: ["They make images load faster", "They help search engines index page structure", "They hide keywords from users", "They prevent site crashes"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Headings do not affect image loading speeds.",
+            "<b>Correct!</b> Search engines use headings to understand the content structure and importance.",
+            "<b>Incorrect:</b> Headings are visible and meant to be read by users.",
+            "<b>Incorrect:</b> Headings are for structure, not technical stability."
+        ]
+    },
+    {
+        q: "Which property should you use if you want to change the size of a heading without changing its tag?",
+        options: ["font-weight", "text-align", "font-size", "margin-top"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Font-weight changes thickness, not size.",
+            "<b>Incorrect:</b> Text-align changes horizontal placement.",
+            "<b>Correct!</b> Use the CSS 'font-size' property to change how large a heading appears.",
+            "<b>Incorrect:</b> Margin-top changes the spacing above the element."
+        ]
+    },
+    {
+        q: "What does it mean that headings are 'block-level' elements?",
+        options: ["They sit on the same line as other text", "They are invisible by default", "They start on a new line and take full width", "They can only contain code"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Inline elements sit on the same line; headings do not.",
+            "<b>Incorrect:</b> Headings are clearly visible block elements.",
+            "<b>Correct!</b> They always start on a new line and occupy the full width available.",
+            "<b>Incorrect:</b> Headings contain text, titles, and sometimes other inline tags."
+        ]
+    },
+    {
+        q: "What is the GeeksforGeeks tip regarding heading levels?",
+        options: ["Always skip levels to save space", "Never skip levels (e.g., h1 to h3)", "Only use <h1> and <h6>", "Only use headings for bold text"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Skipping levels breaks the logical document outline.",
+            "<b>Correct!</b> You should always work your way down logically (h1 → h2 → h3) without skipping.",
+            "<b>Incorrect:</b> You should use the levels appropriate for your content structure.",
+            "<b>Incorrect:</b> Use headings for structure; use <b> or <strong> for bold text."
+        ]
+    },
+    {
+        q: "Which tag is often used with headings to create a visual thematic break?",
+        options: ["<br>", "<hr>", "<div>", "<span>"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> <br> is just a line break.",
+            "<b>Correct!</b> The <hr> (Horizontal Rule) tag is used for thematic breaks between sections.",
+            "<b>Incorrect:</b> <div> is a generic container.",
+            "<b>Incorrect:</b> <span> is an inline container for small parts of text."
+        ]
+    },
+    {
+        q: "How do headings help users with visual impairments?",
+        options: ["They play audio automatically", "They allow screen readers to navigate structure", "They turn the screen black", "They zoom in on the text"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Headings do not trigger audio automatically.",
+            "<b>Correct!</b> Screen readers allow users to jump between headings to understand the page layout.",
+            "<b>Incorrect:</b> Headings do not affect screen brightness.",
+            "<b>Incorrect:</b> Users control zoom themselves, but headings help them find sections."
+        ]
+    },
+    {
+        q: "Which heading represents the 'Least Important' information?",
+        options: ["<h1>", "<h3>", "<h5>", "<h6>"],
+        correct: 3,
+        explanations: [
+            "<b>Incorrect:</b> <h1> is the most important.",
+            "<b>Incorrect:</b> <h3> is medium importance.",
+            "<b>Incorrect:</b> <h5> is very low, but not the lowest.",
+            "<b>Correct!</b> <h6> is the least important heading level in the HTML hierarchy."
+        ]
+    }
+];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-box">
+      <img src="./images/LOGO.jpeg" alt="Oppty Logo">
+      <p>Learn Web Development with practical courses in HTML, CSS & JavaScript. Beginner-friendly training with real-time projects.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li>HTML for Beginners</li>
+        <li>CSS & Responsive Design</li>
+        <li>JavaScript Basics</li>
+      </ul>
+    </div>
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p>Email: support@opptyacademy.com</p>
+      <p>Phone: +91 99999 99999</p>
+    </div>
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li>Home</li>
+        <li>Courses</li>
+        <li>About Us</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Oppty Academy. All Rights Reserved.</div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Variables - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* --- Base Layout --- */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; }
+        
+        .content-wrapper { display: flex; flex-direction: row; flex: 1; }
+
+        /* --- Sidebar Adjusted for Sticky Header --- */
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 70px); 
+            position: sticky; 
+            top: 70px; /* Aligns below the 70px header */
+            border-right: 1px solid #ddd; 
+            overflow-y: auto;
+        }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+        
+        /* --- Main Content --- */
+        .main { flex: 1; padding: 40px;  }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        .note { background-color: #ffffcc; border-left: 5px solid #ffeb3b; padding: 15px; margin: 20px 0; }
+
+        /* --- Header CSS (Provided) --- */
+        .main-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: 70px;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;        
+            justify-content: space-between;
+        }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; transition: 0.3s; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .explore-btn:hover { background: #ee730f; }
+
+        /* --- Footer CSS (Provided) --- */
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; font-family: Arial, sans-serif; }
+        .footer-container {
+            max-width: 1200px;
+            margin: auto;                  
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;             
+        }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 140px; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; line-height: 1.6; }
+        .footer-box ul { list-style: none; padding: 0; }
+        .footer-box ul li { margin-bottom: 8px; font-size: 14px; cursor: pointer; transition: 0.3s; }
+        .footer-box ul li:hover { color: #158e39; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; margin: 0 5px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: #158e39; color: #000; }
+        .social-icons .whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .content-wrapper { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+            .header-container { flex-wrap: wrap; gap: 12px; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; gap: 20px; }
+        }
+        /* --- Sidebar Scrollbar Styling --- */
+.sidebar {
+    /* Ensures the sidebar takes up the full remaining height and scrolls internally */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar for a cleaner look (Chrome, Safari, and Edge) */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #158e39; /* Changes to your brand green on hover */
+}
+
+/* For Firefox */
+.sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #ccc #f1f1f1;
+}
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo">
+      <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+    </div>
+    <nav class="nav-menu"> 
+        <a href="./structure.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+        <a href="./introduction.html">JavaScript</a>
+    </nav>
+    <div class="nav-right">
+   
+      <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+  </div>
+</header>
+
+<div class="content-wrapper">
+ <div class="sidebar">
+        <h2 style="padding:10px; font-size:18px;">JS Basics</h2>
+        <a href="introduction.html">Introduction to JS</a>
+        <a href="variables.html">Variables</a>
+        <a href="data-types.html">Data Types</a>
+        <a href="operators.html">Operators</a>
+        <a href="conditionals.html">Conditionals</a>
+        <a href="loops.html">Loops</a>
+        <a href="scope.html">Scope</a>
+
+        <h2 style="padding:10px; font-size:18px;">Functions & Logic</h2>
+        <a href="functions-basic.html">Standard Functions</a>
+        <a href="arrow-functions.html">Arrow Functions</a>
+        <a href="arrays-methods.html">Array Methods</a>
+        <a href="objects.html">Objects & JSON</a>
+
+        <h2 style="padding:10px; font-size:18px;">DOM Manipulation</h2>
+        <a href="jsselectors.html">Selectors</a>
+        <a href="content-manipulation.html">innerText vs innerHTML</a>
+        <a href="classlist.html">classList Manipulation</a>
+        <a href="style-manipulation.html">Style Manipulation</a>
+        <a href="dynamic-elements.html">Creating Elements Dynamically</a>
+
+        <h2 style="padding:10px; font-size:18px;">Events</h2>
+        <a href="event-listeners.html">addEventListener</a>
+        <a href="mouse-keyboard.html">Mouse & Keyboard Events</a>
+        <a href="form-events.html">Form Events</a>
+        <a href="custom-events.html">Custom Events</a>
+
+        <h2 style="padding:10px; font-size:18px;">Timers & Async ⭐⭐</h2>
+        <a href="timers.html" style="background:#ccc;">setTimeout & setInterval</a>
+        <a href="callbacks.html">Callbacks</a>
+        <a href="promises.html">Promises</a>
+        <a href="async-await.html">Async / Await</a>
+        <h2 style="padding:10px; font-size:18px;">API & Networking</h2>
+<a href="apibasics.html">Intro to REST APIs</a>
+<a href="fetch-api.html">Fetch API (GET/POST)</a>
+<a href="http-methods.html">HTTP Methods & Status Codes</a>
+<a href="json-methods.html">JSON (parse & stringify)</a>
+<a href="url-params.html">URL Params & Query Strings</a>
+<a href="error-handling.html">Handling Network Errors</a>
+<a href="cors.html">CORS & Security</a>
+
+
+        <h2 style="padding:10px; font-size:18px;">Browser & Storage ⭐</h2>
+        <a href="web-storage.html">Local & Session Storage</a>
+        <a href="cookies.html">Cookies</a>
+    </div>
+
+
+    <div class="main">
+        <h1>JavaScript Variables</h1>
+        <p>In JavaScript, a <strong>variable</strong> is a container for storing data values. JavaScript variables can be declared in four ways: using <code>let</code>, <code>const</code>, <code>var</code>, or by nothing at all.</p>
+
+        
+
+        <h2>Understanding Declaration Keywords</h2>
+        <ul>
+            <li><strong>var:</strong> The oldest keyword, used from 1995 to 2015. It has function scope.</li>
+            <li><strong>let:</strong> Introduced in ES6 (2015). It has block scope and is the preferred way for changeable variables.</li>
+            <li><strong>const:</strong> Also ES6. Used for variables that should not be reassigned.</li>
+        </ul>
+
+        <h2>1. Using <code>let</code> for Changeable Values</h2>
+        <div class="example-container">
+            <div class="code-box" id="varEx1">&lt;script&gt;
+  let score = 10;
+  score = 20; // Reassigning value
+  document.write("Current Score: " + score);
+&lt;/script&gt;</div>
+            <button class="try-btn" onclick="openEditor('varEx1')">Try it Yourself</button>
+        </div>
+
+        <h2>2. Using <code>const</code> for Fixed Values</h2>
+        <div class="example-container">
+            <div class="code-box" id="varEx2">&lt;script&gt;
+  const PI = 3.14159;
+  // PI = 3.14; // This would cause an error
+  document.write("Value of PI: " + PI);
+&lt;/script&gt;</div>
+            <button class="try-btn" onclick="openEditor('varEx2')">Try it Yourself</button>
+        </div>
+
+        <h2>3. Dynamic Typing in JavaScript</h2>
+        <p>JavaScript is a loosely typed language, meaning the same variable can hold different data types.</p>
+        <div class="example-container">
+            <div class="code-box" id="varEx3">&lt;script&gt;
+  let data = "Hello"; // String
+  data = 100;         // Now it's a Number
+  document.write("Value: " + data);
+&lt;/script&gt;</div>
+            <button class="try-btn" onclick="openEditor('varEx3')">Try it Yourself</button>
+        </div>
+
+        <div class="note">
+            <strong>Pro Tip:</strong> Always use <code>const</code> if the value should not be changed. Use <code>let</code> if the value will change. Avoid <code>var</code> in modern projects to prevent scoping issues.
+        </div>
+        <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+       const quizData = [
+  {
+    q: "Which keyword is used to declare a variable that should NOT be reassigned?",
+    options: ["let", "var", "const", "static"],
+    correct: 2,
+    explanations: [
+      "<b>Incorrect:</b> 'let' is specifically for variables that WILL change.",
+      "<b>Incorrect:</b> 'var' allows reassignment, though it is outdated.",
+      "<b>Correct!</b> 'const' stands for constant; attempting to reassign it will cause an error.",
+      "<b>Incorrect:</b> 'static' is used in classes, not for standard variable declaration."
+    ]
+  },
+  {
+    q: "Which variable declaration keyword was introduced in ES6 (2015) and has block scope?",
+    options: ["var", "let", "define", "global"],
+    correct: 1,
+    explanations: [
+      "<b>Incorrect:</b> 'var' was the standard before 2015 and has function scope.",
+      "<b>Correct!</b> 'let' was introduced in ES6 to provide block scope for changeable variables.",
+      "<b>Incorrect:</b> 'define' is not a standard variable declaration keyword in JS.",
+      "<b>Incorrect:</b> 'global' is a scope type, not a declaration keyword."
+    ]
+  },
+  {
+    q: "What does 'Dynamic Typing' mean in JavaScript?",
+    options: [
+      "You must declare the data type before using a variable",
+      "Variables can only hold numbers",
+      "The same variable can hold different data types over time",
+      "Variables can never change their value"
+    ],
+    correct: 2,
+    explanations: [
+      "<b>Incorrect:</b> That describes static typing (like in C++ or Java).",
+      "<b>Incorrect:</b> JavaScript supports strings, booleans, objects, and more.",
+      "<b>Correct!</b> A variable can start as a String and later be reassigned as a Number.",
+      "<b>Incorrect:</b> That describes the 'const' keyword, not dynamic typing."
+    ]
+  },
+  {
+    q: "According to the lesson, which keyword should be avoided in modern projects?",
+    options: ["let", "const", "var", "none of these"],
+    correct: 2,
+    explanations: [
+      "<b>Incorrect:</b> 'let' is the preferred way for changeable variables.",
+      "<b>Incorrect:</b> 'const' is the preferred way for fixed variables.",
+      "<b>Correct!</b> 'var' is the oldest keyword and can cause scoping issues in modern code.",
+      "<b>Incorrect:</b> The lesson explicitly suggests avoiding 'var'."
+    ]
+  },
+  {
+    q: "If you declare 'const PI = 3.14;' and then try 'PI = 3.14159;', what happens?",
+    options: [
+      "The value of PI updates successfully",
+      "JavaScript will ignore the second line",
+      "It will cause an error",
+      "The variable PI becomes undefined"
+    ],
+    correct: 2,
+    explanations: [
+      "<b>Incorrect:</b> Constants cannot be reassigned after declaration.",
+      "<b>Incorrect:</b> JavaScript doesn't ignore it; it stops execution with an error.",
+      "<b>Correct!</b> Attempting to reassign a 'const' variable results in a TypeError.",
+      "<b>Incorrect:</b> The variable keeps its original value until the error stops the script."
+    ]
+  },
+  {
+    q: "In how many ways can JavaScript variables be declared according to this tutorial?",
+    options: ["Two", "Three", "Four", "Five"],
+    correct: 2,
+    explanations: [
+      "<b>Incorrect:</b> The lesson mentions more than just let and const.",
+      "<b>Incorrect:</b> It lists the three keywords plus one more method.",
+      "<b>Correct!</b> Using let, const, var, or 'nothing at all'.",
+      "<b>Incorrect:</b> Only four methods are listed in the introduction."
+    ]
+  },
+  {
+    q: "Which keyword has 'Function Scope' instead of 'Block Scope'?",
+    options: ["let", "const", "var", "all of them"],
+    correct: 2,
+    explanations: [
+      "<b>Incorrect:</b> 'let' is block-scoped.",
+      "<b>Incorrect:</b> 'const' is block-scoped.",
+      "<b>Correct!</b> 'var' is the oldest keyword and uses function scope.",
+      "<b>Incorrect:</b> Scoping rules differ between the older 'var' and modern ES6 keywords."
+    ]
+  }
+];       let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+    </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-box">
+      <img src="./images/LOGO.jpeg" alt="Oppty Logo" class="logo">
+      <p>
+        Learn Web Development with practical courses in
+        HTML, CSS & JavaScript. Beginner-friendly training
+        with real-time projects.
+      </p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li>HTML for Beginners</li>
+        <li>CSS & Responsive Design</li>
+        <li>JavaScript Basics</li>
+        <li>Mini Projects</li>
+      </ul>
+    </div>
+
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p>Email: support@opptyacademy.com</p>
+      <p>Phone: +91 99999 99999</p>
+    </div>
+
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li>Home</li>
+        <li>Courses</li>
+        <li>About Us</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Oppty Academy. All Rights Reserved.
+  </div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        const codeElement = document.getElementById(id);
+        const code = codeElement.textContent; 
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

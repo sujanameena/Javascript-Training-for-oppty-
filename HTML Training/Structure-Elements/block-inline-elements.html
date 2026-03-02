@@ -27,20 +27,170 @@ Block-level elements:
 
 <blockquote>
 
-    
-<dd>
-<Div>
-<dl> 
-<dt>
-<canvas>
-<form>
-<Heading>
-<hr>
-<li>
-<main>
-<nav>
+    The <blockquote> tag should be used for longer quotations that require separation from the main text
+
+    Cite the Source: Use the cite attribute to provide the URL of the source for the quote, if available.
+
+    <!-- <blockquote cite="www.geeksforgeeks.org">
+        GeeksforGeeks:`<blockquote>` computer science portal for geeks
+        </blockquote>
+
+
+        <style>
+            blockquote {
+                border-left: 4px solid #ccc;
+                padding-left: 10px;
+                margin-left: 20px;
+                color: #555;
+                font-style: italic;
+            }
+        </style>
+        <blockquote cite="https://bridge269.qodeinteractive.com/">
+            <u><strong>Our story: </u></strong><blockquote>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do ni eiusmod tempor incididunt ut labore
+                et dolore magna aliqua. Ut enim ad minim an veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip ex ea nie commodo consequat. Duis aute irure in nulla pariatur Excepteur sint occaecat cupidatat
+                non proiden sunt in culpa qui officia
+            </blockquote> -->
+
+<dd>(Tag)-- The <dd> tag in HTML is used to define a description or value in a description list, which is created using the <dl> (description list) tag. Each <dd> element is typically preceded by a <dt> (definition term) element, which specifies the term being described.
+
+    Example 1:
+     
+<!-- <dl>
+  <dt>HTML</dt>
+  <dd>HyperText Markup Language, used to structure web pages.</dd>
+
+  <dt>CSS</dt>
+  <dd>Cascading Style Sheets, used to style web pages.</dd>
+</dl> -->
+
+Example:2 
+
+<!-- <dl>
+        <dt>Geeks Classes</dt>
+        <dd>It is an extensive classroom programme
+            for enhancing DS and Algo concepts.</dd>
+        <br>
+        <dt>Fork Python</dt>
+        <dd>It is a course designed for beginners
+            in python.</dd>
+        <br>
+        <dt>Interview Preparation</dt>
+        <dd>It is a course designed for preparation
+            of interviews in top product based companies.</dd>
+</dl> -->
+
+<dl> (description list)
+<dt> (definition term)
+
+<Div></Div>:The <div> tag is a generic block-level container used to group other elements so you can style or layout them together.
+
+    Example: 
+
+<!-- <div>
+  <h2>OPPTY Training</h2>
+  <p>Welcome to the HTML block and inline elements session.</p>
+</div> -->
+
+
+<canvas>:The <canvas> tag in HTML is used to draw graphics on a web page using JavaScript. It can be used to draw paths, boxes, texts, gradients, and adding images. By default, it does not contain borders and text. 
+
+    Example: 
+
+    <!-- <canvas id="myCanvas" width="300" height="150" style="border:1px solid #000;">
+    </canvas>
+
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');   // 2D drawing context
+
+        ctx.fillStyle = 'green';
+        ctx.fillRect(50, 40, 200, 80); // x, y, width, height
+    </script> -->
+
+<form>:The <form> element is used to collect user input and send it to a server (or handle it with JavaScript).
+
+    Use case: login forms, contact forms, registration forms, search boxes, etc.
+
+    Example:
+
+    <!-- <form action="/submit-form" method="post">
+        <p>
+            <label>
+                Name:
+                <input type="text" name="name" required>
+            </label>
+        </p>
+        <p>
+            <label>
+                Email:
+                <input type="email" name="email" required>
+            </label>
+        </p>
+        <p>
+            <label>
+                Message:
+                <textarea name="message" rows="4"></textarea>
+            </label>
+        </p>
+        <button type="submit">Send</button>
+    </form> -->
+
+    action → where the form data is sent.
+method="post" → how it’s sent.
+
+<Heading>:h1 to h6
+<hr>: horizontal line
+<li>:list iems
+    <li> defines a list item. It must be inside <ul> (unordered list) or <ol> (ordered list).
+
+        Use case: To show items in menus, steps, features, etc.
+
+        Example:
+
+<!-- <ul>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JavaScript</li>
+</ul> -->
+
+<main>:The <main> element defines the main content area of a page — the part that is unique and directly related to the page’s main purpose (not header, footer, sidebar, nav, etc.).
+<footer>
+<header>
+    <nav></nav>
+
+    Example:
+
+    <!-- <header>
+    <h1>OPPTY Training</h1>
+    <nav>
+      <a href="#">Home</a> |
+      <a href="#">Courses</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>HTML Block and Inline Elements</h2>
+    <p>This is the main content of the page about HTML elements.</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 OPPTY Training</p>
+  </footer> -->
+
+
 <noscript>
-<ol>
+<ol>:ordered list
+
+    Example: 
+
+     <!-- <ol>
+  <li>Register</li>
+  <li>Verify email</li>
+  <li>Login</li>
+</ol> -->
+
 <pre>
 <section>
 <tfoot>
@@ -53,8 +203,7 @@ Block-level elements:
 <figcaption>
 <fieldset>
 <figure>
-<footer>
-<header> 
+
     
 
 Inline elements:

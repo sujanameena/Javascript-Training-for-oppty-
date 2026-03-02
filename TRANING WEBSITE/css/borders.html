@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Fundamentals - Tutorial</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            background-color: #fff;
+        }
+
+        /* Sidebar with Scrolling */
+        .sidebar { 
+            width: 300px; 
+            background: #f1f1f1; 
+            height: 100vh; 
+            position: sticky; 
+            top: 0; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; /* Enables scrolling for long lists */
+        }
+
+        /* Custom Scrollbar for Sidebar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        .sidebar h2 {
+            padding: 15px 20px 5px 20px;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a { 
+            display: block; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            color: #444; 
+            border-bottom: 1px solid #e7e7e7; 
+            font-size: 14px;
+        }
+        
+        .sidebar a:hover { 
+            background-color: #bbb; 
+            color: white;
+        }
+
+        /* Main Content Area */
+        .main { 
+            flex: 1; 
+            padding: 40px; 
+           
+        }
+
+        /* GeeksforGeeks Style UI Components */
+        .example-container { 
+            background-color: #E7E9EB; 
+            padding: 20px; 
+            border-radius: 5px; 
+            margin: 25px 0; 
+            border: 1px solid #ccc; 
+        }
+
+        .code-box { 
+            background-color: white; 
+            padding: 15px; 
+            border-left: 4px solid #04AA6D; 
+            font-family: 'Courier New', monospace; 
+            white-space: pre; 
+            margin-bottom: 15px; 
+            overflow-x: auto; 
+            font-size: 14px; 
+            line-height: 1.5;
+        }
+
+        .try-btn { 
+            background-color: #04AA6D; 
+            color: white; 
+            padding: 12px 25px; 
+            border: none; 
+            border-radius: 25px; 
+            font-weight: bold; 
+            cursor: pointer; 
+        }
+
+        h1 { color: #2c3e50; font-size: 32px; font-weight: bold;}
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; color: #2c3e50; }
+        p { line-height: 1.6; color: #444; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+
+        .note-box {
+            background-color: #ffffcc;
+            border-left: 5px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+        }
+          /* --- Header Integration --- */
+.main-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 1001; /* Higher than sidebar */
+  width: 100%;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;        
+  justify-content: space-between;
+}
+
+.logo img { width: 140px; display: block; }
+
+.nav-menu { display: flex; align-items: center; gap: 30px; }
+
+.nav-menu a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-menu a:hover { color: #158e39; }
+
+.explore-btn {
+  background: #158e39;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+ .explore-btn:hover { background: #ee730f; }
+
+/* --- Layout Correction --- */
+body { display: block; } /* Change body from flex to block */
+
+.content-container {
+  display: flex; /* Move flex here to keep sidebar and main side-by-side */
+}
+
+.sidebar {
+  top: 70px; /* Adjust this so sidebar sticks BELOW the header */
+  height: calc(100vh - 70px);
+     min-width: 300px;         /* Ensures it never gets smaller */
+    flex-shrink: 0
+}
+    
+    </style>
+</head>
+<body>
+    <header class="main-header">
+  <div class="header-container">
+
+   
+    <div class="logo">
+      <a href="../index.html"><img src="../images/LOGO.jpeg" alt="Oppty Academy Logo"></a>
+    </div>
+    
+     <nav class="nav-menu"> 
+       <a href="../structure.html">Html</a> 
+        <a href="../css/cssintro.html">Css</a>
+         <a href="../introduction.html">JavaScript</a>
+          </nav>
+    
+    <div class="nav-right">
+      <a href="../index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+
+  </div>
+</header>  
+<div class="content-container">
+<div class="sidebar">
+    <h2>CSS Fundamentals</h2>
+    <a href="../css/cssintro.html">CSS Introduction</a>    <a href="../css/selectors.html">Selectors (class, id, element)</a>
+    <a href="../css/colors.html">Colors, Units (px, %, em, rem)</a>
+    <a href="../css/boxmodel.html">Box Model (margin, border, padding, content)</a>
+
+    <h2>Layout Systems</h2>
+    <a href="../css/flexbox.html">Flexbox (very important)</a>
+    <a href="../css/grid.html">Grid (important)</a>
+    <a href="../css/positioning.html">Positioning (static, relative, absolute, fixed, sticky)</a>
+    <a href="../css/z-index.html">z-index</a>
+
+    <h2>Styling & UI</h2>
+    <a href="../css/backgrounds.html">Backgrounds & Gradients</a>
+    <a href="../css/borders.html">Borders & Border-radius</a>
+    <a href="../css/margins.html">Margin& Padding </a>
+    <a href="../css/fonts.html">fonts & Text formatting </a>
+    <a href="../css/display.html">Display and Visibility Properties </a>
+
+    <a href="../css/shadows.html">Shadows (box-shadow, text-shadow)</a>
+    <a href="../css/buttons.html">Buttons & Forms styling</a>
+
+    <h2>Responsive Design</h2>
+    <a href="../css/mediaquiries.html">Media Queries</a>
+    <a href="../css/mobilefirst.html">Mobile-first design</a>
+    <a href="../css/responsive.html">Responsive images</a>
+
+    <h2>Animations</h2>
+    <a href="../css/transitions.html">Transitions</a>
+    <a href="../css/keyframes.html">Keyframe Animations</a>
+    <a href="../css/hovers.html">Hover effects</a>
+</div>
+<div class="main">
+    <h1>CSS Borders & Border-radius</h1>
+    <p>The CSS <code>border</code> properties allow you to specify the style, width, and color of an element's border. Additionally, the <code>border-radius</code> property is used to add rounded corners to an element, enabling the creation of circles, ovals, and modern card designs.</p>
+
+    <h2>1. The Border Property Matrix</h2>
+    <p>Borders can be defined using shorthand or individual properties for maximum control over each side of an element.</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ddd; font-size: 0.9em;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Property</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Purpose</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Common Values</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>border-style</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Sets the line type (required for border to show).</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>solid</code>, <code>dotted</code>, <code>dashed</code>, <code>double</code>, <code>groove</code>, <code>ridge</code>, <code>inset</code>, <code>outset</code>.</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>border-width</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Sets the thickness of the border.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>px</code>, <code>thin</code>, <code>medium</code>, <code>thick</code>.</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>border-color</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Sets the color of the border.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Hex, RGB, RGBA, Transparent.</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>border-radius</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Defines the radius of the element's corners.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>px</code>, <code>%</code>, <code>em</code>.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>2. Deep Dive: Border Style Visual Gallery</h2>
+    <p>The <code>border-style</code> property specifies what kind of border to display. You can apply these styles to all sides or individual ones.</p>
+
+    <div class="example-container">
+        <h3>Example 1: All Border Style Variations</h3>
+        <p>This interactive block contains all standard and 3D border styles including groove, ridge, inset, and outset.</p>
+        <div class="code-box" id="brExStyles">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .dotted-border { border: 3px dotted #ff6b6b; padding: 20px; margin: 10px 0; border-radius: 5px; }
+  .dashed-border { border: 3px dashed #ee5a24; padding: 20px; margin: 10px 0; border-radius: 5px; }
+  .solid-border  { border: 3px solid #667eea; padding: 20px; margin: 10px 0; border-radius: 5px; }
+  .double-border { border: 6px double #764ba2; padding: 20px; margin: 10px 0; border-radius: 5px; }
+  .groove-border { border: 5px groove #ff6b6b; padding: 20px; margin: 10px 0; border-radius: 5px; }
+  .ridge-border  { border: 5px ridge #ee5a24; padding: 20px; margin: 10px 0; border-radius: 5px; }
+  .inset-border  { border: 5px inset #667eea; padding: 20px; margin: 10px 0; border-radius: 5px; }
+  .outset-border { border: 5px outset #764ba2; padding: 20px; margin: 10px 0; border-radius: 5px; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="dotted-border"&gt;Dotted Border&lt;/div&gt;
+  &lt;div class="dashed-border"&gt;Dashed Border&lt;/div&gt;
+  &lt;div class="solid-border"&gt;Solid Border&lt;/div&gt;
+  &lt;div class="double-border"&gt;Double Border&lt;/div&gt;
+  &lt;div class="groove-border"&gt;Groove Border (3D)&lt;/div&gt;
+  &lt;div class="ridge-border"&gt;Ridge Border (3D)&lt;/div&gt;
+  &lt;div class="inset-border"&gt;Inset Border (3D)&lt;/div&gt;
+  &lt;div class="outset-border"&gt;Outset Border (3D)&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('brExStyles')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>3. Border Widths and Specific Sides</h2>
+    <p>Widths can be set using specific pixels or keywords. Side-specific properties allow you to target only one part of the element.</p>
+
+    <div class="example-container">
+        <h3>Example 2: Thickness and Individual Sides</h3>
+        <p>Using keyword widths (thin, medium, thick) and individual side properties (top, bottom, etc).</p>
+        <div class="code-box" id="brExSides">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .thin-border   { border: thin solid #333; padding: 20px; margin: 10px 0; border-radius: 5px; }
+  .medium-border { border: medium solid #333; padding: 20px; margin: 10px 0; border-radius: 5px; }
+  .thick-border  { border: thick solid #333; padding: 20px; margin: 10px 0; border-radius: 5px; }
+  .specific-width { border: 8px solid #ff6b6b; padding: 20px; margin: 10px 0; border-radius: 5px; }
+  
+  .top-only    { border-top: 5px solid #ff6b6b; padding: 20px; margin: 10px 0; }
+  .right-only  { border-right: 5px solid #ee5a24; padding: 20px; margin: 10px 0; }
+  .bottom-only { border-bottom: 5px solid #667eea; padding: 20px; margin: 10px 0; }
+  .left-only   { border-left: 5px solid #764ba2; padding: 20px; margin: 10px 0; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="thin-border"&gt;Thin Border&lt;/div&gt;
+  &lt;div class="thick-border"&gt;Thick Border&lt;/div&gt;
+  &lt;div class="specific-width"&gt;8px Specific Width&lt;/div&gt;
+  &lt;div class="top-only"&gt;Top Side Only&lt;/div&gt;
+  &lt;div class="left-only"&gt;Left Side Only&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('brExSides')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>4. Border Radius & Geometric Shapes</h2>
+    <p>The <code>border-radius</code> property defines the radius of the element's corners. It is used to create everything from soft cards to perfect circles.</p>
+
+    <div class="example-container">
+        <h3>Example 3: Circles, Ovals, and Irregular Corners</h3>
+        <p>Creating geometric shapes by manipulating the radius values.</p>
+        <div class="code-box" id="brExRadius">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .rounded-box { border: 3px solid #ff6b6b; border-radius: 15px; padding: 20px; margin: 10px 0; }
+  .circle-box  { 
+    border: 3px solid #ee5a24; border-radius: 50%; 
+    width: 100px; height: 100px; 
+    display: flex; align-items: center; justify-content: center; margin: 10px 0; 
+  }
+  .oval-box    { 
+    border: 3px solid #667eea; border-radius: 50px/25px; 
+    width: 200px; height: 100px; 
+    display: flex; align-items: center; justify-content: center; margin: 10px 0; 
+  }
+  .irregular-rounded { border: 3px solid #764ba2; border-radius: 10px 30px 5px 40px; padding: 20px; margin: 10px 0; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="rounded-box"&gt;Standard Rounded Box&lt;/div&gt;
+  &lt;div class="circle-box"&gt;Circle&lt;/div&gt;
+  &lt;div class="oval-box"&gt;Oval&lt;/div&gt;
+  &lt;div class="irregular-rounded"&gt;Irregular Rounded&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('brExRadius')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>5. Advanced Border Effects</h2>
+    <div class="example-container">
+        <h3>Example 4: Gradient Border Images</h3>
+        <p>Using <code>border-image</code> to create high-end design borders.</p>
+        <div class="code-box" id="brExAdvanced">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .complex-border {
+    border: 5px solid;
+    border-image: linear-gradient(135deg, #ff6b6b, #ee5a24) 1;
+    padding: 20px;
+    margin: 10px 0;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="complex-border"&gt;Modern Gradient Border&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('brExAdvanced')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>6. Pro-Tips & Best Practices</h2>
+    <div style="background-color: #e7f3fe; padding: 20px; border-radius: 8px; border-left: 6px solid #2196F3;">
+        <p><strong>1. The "Ghost" Border:</strong> A border will never appear if you forget the <code>border-style</code>. It is the only required property.</p>
+        <p><strong>2. Box Sizing:</strong> Borders add to the dimensions of an element. Use <code>box-sizing: border-box;</code> to include the border within the width/height calculation.</p>
+        <p><strong>3. Transparent Borders:</strong> Useful when you want an element to have a border "pre-calculated" so the layout doesn't jump when you change the color on <code>:hover</code>.</p>
+    </div>
+    <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+       const quizData = [
+    {
+        q: "Which property is the ONLY required property for a border to actually appear on the screen?",
+        options: ["border-width", "border-color", "border-style", "border-radius"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Without a style, the width defaults to medium but the border remains invisible.",
+            "<b>Incorrect:</b> Color defaults to the text color (currentColor), but it won't show without a style.",
+            "<b>Correct!</b> The 'Ghost Border' rule: if <code>border-style</code> is not defined, the border has a default style of 'none'.",
+            "<b>Incorrect:</b> Border-radius only rounds corners; it doesn't create the border line itself."
+        ]
+    },
+    {
+        q: "Which 'border-style' value creates a 3D effect where the border looks like it is pushed into the page?",
+        options: ["solid", "double", "inset", "dashed"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Solid is a flat, single continuous line.",
+            "<b>Incorrect:</b> Double creates two flat parallel lines.",
+            "<b>Correct!</b> The <code>inset</code> style uses shading to make the element appear embedded or pushed into the page.",
+            "<b>Incorrect:</b> Dashed creates a flat series of short line segments."
+        ]
+    },
+    {
+        q: "What value should you apply to 'border-radius' to turn a perfect square into a perfect circle?",
+        options: ["10px", "25px", "50%", "100px"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> This will only slightly round the corners.",
+            "<b>Incorrect:</b> This creates rounded corners but won't form a circle unless the square is 50px wide.",
+            "<b>Correct!</b> Setting <code>border-radius: 50%</code> ensures the curve starts exactly at the midpoint of each side, forming a circle.",
+            "<b>Incorrect:</b> While this might work for a small square, 50% is the universal value for all sizes."
+        ]
+    },
+    {
+        q: "Which property would you use if you only wanted to add a border to the left side of an element?",
+        options: ["border-left", "border-style", "border-width-left", "border-side-left"],
+        correct: 0,
+        explanations: [
+            "<b>Correct!</b> <code>border-left</code> is the shorthand property to set the width, style, and color for just the left side.",
+            "<b>Incorrect:</b> This applies the style to all four sides simultaneously.",
+            "<b>Incorrect:</b> The correct property name is <code>border-left-width</code>, but <code>border-left</code> is the preferred shorthand.",
+            "<b>Incorrect:</b> <code>border-side-left</code> is not a valid CSS property."
+        ]
+    },
+    {
+        q: "How do you create an 'Oval' shape using border-radius as shown in the tutorial?",
+        options: ["border-radius: 100%", "border-radius: 50px/25px", "border-radius: 0", "border-radius: 15px"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> On a rectangle, 100% radius creates a pill shape, not necessarily a mathematical oval.",
+            "<b>Correct!</b> Using a slash <code>50px/25px</code> defines different horizontal and vertical radii, creating an oval shape.",
+            "<b>Incorrect:</b> A value of 0 results in perfectly sharp 90-degree corners.",
+            "<b>Incorrect:</b> This just creates a standard rounded-corner box."
+        ]
+    },
+    {
+        q: "What is the benefit of using 'box-sizing: border-box;' when working with borders?",
+        options: ["It makes the border transparent", "It changes the border to a gradient", "It includes the border thickness within the element's total width/height", "It increases the loading speed of the border"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Transparency is handled by the <code>border-color</code> property using RGBA.",
+            "<b>Incorrect:</b> Gradients require the <code>border-image</code> property.",
+            "<b>Correct!</b> It prevents the layout from breaking by ensuring the border width doesn't push the element beyond its defined size.",
+            "<b>Incorrect:</b> Box-sizing affects layout calculations, not browser rendering speed."
+        ]
+    },
+    {
+        q: "Which advanced property allows you to create a border with a 'linear-gradient'?",
+        options: ["border-style", "border-color", "border-image", "border-radius"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Style only handles patterns like solid or dashed.",
+            "<b>Incorrect:</b> Standard border-color does not support gradients directly.",
+            "<b>Correct!</b> <code>border-image</code> used with <code>linear-gradient()</code> allows for modern, multi-color gradient borders.",
+            "<b>Incorrect:</b> Border-radius only controls the shape of the corners."
+        ]
+    }
+];
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+    <div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling with space-between layout */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between; 
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+            margin-bottom: 40px;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button styling */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button styling */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Highlight style for the current page in the sidebar */
+        .sidebar a.active-link {
+            background-color: #04AA6D !important;
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Get all links from your sidebar
+            const sidebarLinks = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // 2. Identify the current page path
+            const currentPath = window.location.pathname;
+            
+            // 3. Find the index and highlight the active link
+            let currentIndex = -1;
+            
+            sidebarLinks.forEach((link, index) => {
+                const linkHref = link.getAttribute('href').replace('..', '');
+                if (currentPath.endsWith(linkHref)) {
+                    currentIndex = index;
+                    link.classList.add('active-link');
+                    
+                    // Auto-scroll sidebar to the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 4. Configure Previous Button
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 5. Configure Next Button
+            if (currentIndex !== -1 && currentIndex < sidebarLinks.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+</div>
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = '../editor.html';
+    }
+</script>
+
+<footer class="footer">
+  <div class="footer-container">
+    
+    <div class="footer-box">
+      <img src="../images/LOGO.jpeg" alt="Oppty Logo">
+      <p style="color: white;">
+        Learn Web Development with practical courses in
+        HTML, CSS & JavaScript. Beginner-friendly training
+        with real-time projects.
+      </p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li><a href="#">HTML for Beginners</a></li>
+        <li><a href="../css/cssintro.html">CSS & Responsive Design</a></li>
+        <li><a href="#">JavaScript Basics</a></li>
+        <li><a href="#">Mini Projects</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p style="color: white;">Email: <a href="mailto:support@opptyacademy.com" style="color:white; text-decoration:none;">support@opptyacademy.com</a></p>
+      <p style="color: white;">Phone: +91 99999 99999</p>
+      <p style="color: white;">WhatsApp Support Available</p>
+    </div>
+
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#cs">Courses</a></li>
+        <li><a href="../index.html#as">About Us</a></li>
+        <li><a href="../index.html#cto">Contact</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Oppty Academy. All Rights Reserved.
+  </div>
+</footer>
+<style>
+    /* --- Footer Styles --- */
+.footer {
+    background: #0f0f0f;
+    color: white;
+    padding: 50px 20px 20px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;                  
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    text-align: center;             
+}
+
+.footer-box img {
+    background: #ffffff;
+    padding: 4px;
+    border-radius: 6px;
+    width: 160px;
+    margin: 0 auto 15px;
+    display: block;
+}
+
+.footer-box h3 {
+    color: #158e39;
+    margin-bottom: 15px;
+}
+
+.footer-box p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-box ul li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Link styling within list */
+.footer-box ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-box ul li a:hover {
+    color: #158e39;
+}
+
+.social-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;     
+}
+
+.social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background: #222;
+    color: #fff;
+    border-radius: 50%;
+    margin: 0 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #158e39;
+    color: #000;
+}
+
+.social-icons .whatsapp { background: #25D366; }
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+    font-size: 13px;
+    color: #aaa;
+}
+</style>
+</body>
+</html>

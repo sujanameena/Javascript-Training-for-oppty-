@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Events - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* [INCLUDE THE EXACT SAME STYLE BLOCK FROM THE MOUSE/KEYBOARD PAGE ABOVE] */
+        .main-header { background: #ffffff; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 1000; }
+        .header-container { max-width: 1200px; margin: auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; transition: 0.3s; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; }
+        .content-wrapper { display: flex; flex: 1; }
+        .sidebar { width: 220px; background: #f1f1f1; height: calc(100vh - 75px); position: sticky; top: 75px; border-right: 1px solid #ddd; overflow-y: auto; }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+        .main { flex: 1; padding: 40px; max-width: 900px; }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; }
+        .footer-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: center; }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 150px; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; margin: 0 5px; text-decoration: none; transition: 0.3s; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+        /* --- Sidebar Scrolling & Custom Scrollbar --- */
+.sidebar {
+    /* Ensures the sidebar is exactly the height of the viewport minus the header */
+    height: calc(100vh - 65px); 
+    overflow-y: auto; 
+    overflow-x: hidden;
+    position: sticky;
+    top: 65px;
+}
+
+/* Custom Scrollbar Styling for Sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 6px; /* Slimmer scrollbar for a modern look */
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #158e39; /* Changes to your brand green on hover */
+}
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo">      <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+</div>
+    <nav class="nav-menu"> 
+<a href="./structure.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+        <a href="./introduction.html">JavaScript</a>    </nav>
+    <div class="nav-right">
+      <a href="#" class="signin">Sign In</a>
+      <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+  </div>
+</header>
+
+<div class="content-wrapper">
+   <div class="sidebar">
+        <h2 style="padding:10px; font-size:18px;">JS Basics</h2>
+        <a href="introduction.html">Introduction to JS</a>
+        <a href="variables.html">Variables (var, let, const)</a>
+        <a href="data-types.html">Data Types</a>
+        <a href="operators.html">Operators</a>
+        <a href="conditionals.html">Conditionals (if, switch)</a>
+        <a href="loops.html">Loops (for, while, forEach)</a>
+        <a href="scope.html">Scope</a>
+
+        <h2 style="padding:10px; font-size:18px;">Functions & Logic</h2>
+        <a href="functions-basic.html">Standard Functions</a>
+        <a href="arrow-functions.html">Arrow Functions</a>
+        <a href="arrays-methods.html">Array Methods (map, filter, reduce)</a>
+        <a href="objects.html">Objects & JSON</a>
+
+        <h2 style="padding:10px; font-size:18px;">DOM Manipulation</h2>
+        <a href="jsselectors.html">Selectors (ID, querySelector)</a>
+        <a href="content-manipulation.html">innerText vs innerHTML</a>
+        <a href="classlist.html">classList Manipulation</a>
+        <a href="style-manipulation.html">Style Manipulation</a>
+        <a href="dynamic-elements.html">Creating Elements Dynamically</a>
+
+        <h2 style="padding:10px; font-size:18px;">Events</h2>
+        <a href="event-listeners.html">addEventListener</a>
+        <a href="mouse-keyboard.html">Mouse & Keyboard Events</a>
+        <a href="form-events.html">Form Events</a>
+        <a href="custom-events.html">Custom Events</a>
+
+        <h2 style="padding:10px; font-size:18px;">Timers & Async ⭐⭐</h2>
+        <a href="timers.html">setTimeout & setInterval</a>
+        <a href="callbacks.html" style="background:#ccc;">Callbacks</a>
+        <a href="promises.html">Promises</a>
+        <a href="async-await.html">Async / Await</a>
+        <h2 style="padding:10px; font-size:18px;">API & Networking</h2>
+<a href="apibasics.html">Intro to REST APIs</a>
+<a href="fetch-api.html">Fetch API (GET/POST)</a>
+<a href="http-methods.html">HTTP Methods & Status Codes</a>
+<a href="json-methods.html">JSON (parse & stringify)</a>
+<a href="url-params.html">URL Params & Query Strings</a>
+<a href="error-handling.html">Handling Network Errors</a>
+<a href="cors.html">CORS & Security</a>
+
+
+        <h2 style="padding:10px; font-size:18px;">Browser & Storage ⭐</h2>
+        <a href="web-storage.html">Local & Session Storage</a>
+        <a href="cookies.html">Cookies</a>
+    </div>
+    
+
+    <div class="main">
+        <h1>Form Events</h1>
+        <p>Forms are the most common way to get user input. Understanding how to handle validation and submission is key.</p>
+
+        
+
+        <h2>1. The Submit Event</h2>
+        <div class="example-container">
+            <div class="code-box" id="f1">&lt;form id="myForm"&gt;
+  &lt;input type="text" placeholder="Enter Name" required&gt;
+  &lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;
+&lt;script&gt;
+  document.getElementById("myForm").addEventListener("submit", (e) => {
+    e.preventDefault(); // Stop the page from refreshing
+    alert("Form submitted!");
+  });
+&lt;/script&gt;</div>
+            <button class="try-btn" onclick="openEditor('f1')">Try it Yourself</button>
+        </div>
+
+        <h2>2. Change vs Input</h2>
+        <div class="example-container">
+            <div class="code-box" id="f2">&lt;input type="text" id="userInput" placeholder="Type here..."&gt;
+&lt;p id="status"&gt;Waiting for input...&lt;/p&gt;
+&lt;script&gt;
+  const input = document.getElementById("userInput");
+  input.addEventListener("input", () => {
+    document.getElementById("status").innerText = "You are typing: " + input.value;
+  });
+&lt;/script&gt;</div>
+            <button class="try-btn" onclick="openEditor('f2')">Try it Yourself</button>
+        </div>
+        <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+      const quizData = [
+    {
+        q: "Which event is specifically triggered when a user attempts to send form data by clicking a submit button or pressing Enter?",
+        options: ["click", "submit", "send", "change"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> While a click occurs, the 'submit' event is the standard way to handle form submission logic.",
+            "<b>Correct!</b> The 'submit' event fires on the form element itself when it is sent.",
+            "<b>Incorrect:</b> 'send' is not a standard DOM event for HTML forms.",
+            "<b>Incorrect:</b> 'change' triggers when an input loses focus after being modified, not when the form is sent."
+        ]
+    },
+    {
+        q: "What is the primary purpose of calling e.preventDefault() inside a 'submit' event listener?",
+        options: ["To clear the input fields", "To validate the email format", "To stop the page from refreshing", "To submit the data twice"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Clearing fields is usually done manually or via the reset() method.",
+            "<b>Incorrect:</b> Validation is a separate logic step, though often placed before preventDefault.",
+            "<b>Correct!</b> By default, forms refresh the page on submission. <code>preventDefault()</code> stops this so JavaScript can handle the data.",
+            "<b>Incorrect:</b> It actually stops the default submission entirely."
+        ]
+    },
+    {
+        q: "Which event fires immediately every time a user types a single character into a text input?",
+        options: ["change", "blur", "input", "focus"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> The 'change' event usually only fires after the user clicks away from the input.",
+            "<b>Incorrect:</b> 'blur' fires when an element loses focus.",
+            "<b>Correct!</b> The 'input' event is real-time and triggers on every single keystroke or value change.",
+            "<b>Incorrect:</b> 'focus' fires when the user clicks into the field, before they start typing."
+        ]
+    },
+    {
+        q: "How do you access the current text entered by a user in an input field with the variable name 'myInput'?",
+        options: ["myInput.innerText", "myInput.innerHTML", "myInput.value", "myInput.getText()"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> innerText is for reading text inside tags like <div>, not form inputs.",
+            "<b>Incorrect:</b> innerHTML is for reading the HTML structure inside an element.",
+            "<b>Correct!</b> The <code>.value</code> property holds the current data typed into an input or textarea.",
+            "<b>Incorrect:</b> <code>getText()</code> is not a standard JavaScript DOM method."
+        ]
+    },
+    {
+        q: "To which element should you attach the 'submit' event listener for the best results?",
+        options: ["The <form> element", "The <button type='submit'>", "The first <input> field", "The <body> tag"],
+        correct: 0,
+        explanations: [
+            "<b>Correct!</b> You should always listen for 'submit' on the form itself, as it catches both button clicks and Enter key presses.",
+            "<b>Incorrect:</b> Listening to the button only catches clicks and may miss Enter key submissions.",
+            "<b>Incorrect:</b> Input fields do not trigger the submit event.",
+            "<b>Incorrect:</b> While possible via delegation, it is standard practice to target the specific form."
+        ]
+    },
+    {
+        q: "Which attribute ensures that a form cannot be submitted if a specific input field is empty?",
+        options: ["validate", "required", "placeholder", "needed"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> 'validate' is not a standard HTML boolean attribute.",
+            "<b>Correct!</b> The <code>required</code> attribute provides built-in browser validation to prevent empty submissions.",
+            "<b>Incorrect:</b> 'placeholder' only shows hint text inside the field.",
+            "<b>Incorrect:</b> 'needed' is not a recognized HTML attribute."
+        ]
+    },
+    {
+        q: "In a form event listener, what does the 'e' (event object) allow you to control?",
+        options: ["The user's password", "The default browser behavior (like refreshing)", "The server's database", "The user's internet speed"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> You cannot directly access secure system info via the event object.",
+            "<b>Correct!</b> The event object allows you to use <code>e.preventDefault()</code> to control how the browser handles the event.",
+            "<b>Incorrect:</b> The event object is client-side only.",
+            "<b>Incorrect:</b> JavaScript cannot control hardware or network speeds."
+        ]
+    }
+];
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+    </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-box"><img src="./images/LOGO.jpeg" alt="Oppty Logo"><p>Expert-led tutorials for aspiring developers.</p></div>
+    <div class="footer-box"><h3>Contact</h3><p>support@opptyacademy.com</p></div>
+  </div>
+  <div class="footer-bottom">© 2026 Oppty Academy. All Rights Reserved.</div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>innerText vs innerHTML - Tutorial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh;
+        }
+
+        /* --- Header CSS --- */
+        .main-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e5e5;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;        
+            justify-content: space-between;
+        }
+        .logo img {
+            width: 150px;
+            display: block;
+        }
+        .nav-menu {
+            display: flex;
+            font-size: 30px;
+            align-items: center;
+            text-align: center;        
+            gap: 30px;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            color: #000;
+            position: relative;
+            transition: 0.3s;
+        }
+        .nav-menu a:hover {
+            color: #158e39;
+        }
+        .nav-menu a::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 2px;
+            left: 0;
+            bottom: -6px;
+            background: #158e39;
+            transition: 0.3s;
+        }
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        .nav-right {
+            display: flex;
+            align-items: center;        
+            gap: 18px;
+        }
+        .signin {
+            text-decoration: none;
+            font-size: 15px;
+            color: #000;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        .signin:hover {
+            color: #158e39;
+        }
+        .explore-btn {
+            background: #158e39;
+            border-bottom: none;
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .explore-btn:hover {
+            background: #ee730f;
+        }
+        @media (max-width: 768px) {
+            .header-container { flex-wrap: wrap; gap: 12px; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; gap: 20px; }
+            .nav-right { order: 2; }
+        }
+
+        /* --- Content Layout Wrapper --- */
+        .content-wrapper {
+            display: flex;
+            flex: 1;
+        }
+
+        /* --- Sidebar CSS --- */
+        /* Adjusted height and top so it doesn't overlap with the sticky header */
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 65px); 
+            position: sticky; 
+            top: 65px; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; 
+        }
+        .sidebar::-webkit-scrollbar { width: 8px; }
+        .sidebar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+        .sidebar::-webkit-scrollbar-thumb:hover { background: #aaa; }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+        
+        /* --- Main Content CSS --- */
+        .main { flex: 1; padding: 40px; max-width: 900px; }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        .note { background-color: #ffffcc; border-left: 5px solid #ffeb3b; padding: 15px; margin: 20px 0; }
+
+        /* --- Footer CSS --- */
+        .footer {
+            background: #0f0f0f;
+            color: #ccc;
+            padding: 50px 20px 20px;
+            font-family: Arial, sans-serif;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: auto;                 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            text-align: center;              
+        }
+        .footer-logo {
+            width: 160px;
+            margin: 0 auto 15px;            
+            display: block;
+        }
+        .footer-box img {
+            background: #ffffff;
+            padding: 4px;
+            border-radius: 6px
+        }
+        .footer-box h3 {
+            color: #158e39;
+            margin-bottom: 15px;
+        }
+        .footer-box p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .footer-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-box ul li {
+            margin-bottom: 8px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .footer-box ul li:hover {
+            color:#158e39;
+        }
+        .social-icons {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;      
+        }
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 38px;
+            height: 38px;
+            background: #222;
+            color: #fff;
+            border-radius: 50%;
+            margin: 0 5px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            background: #158e39;
+            color: #000;
+        }
+        .social-icons .whatsapp {
+            background: #25D366;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            border-top: 1px solid #333;
+            padding-top: 15px;
+            font-size: 13px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo">
+      <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+    </div>
+    
+     <nav class="nav-menu"> 
+        <a href="./structure-benefits.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+         <a href="./introduction.html">JavaScript</a>
+    </nav>
+    
+    <div class="nav-right">
+      <a href="#" class="signin">Sign In</a>
+      <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+  </div>
+</header>
+
+<div class="content-wrapper">
+    <div class="sidebar">
+        <h2 style="padding:10px; font-size:18px;">JS Basics</h2>
+        <a href="introduction.html">Introduction to JS</a>
+        <a href="variables.html">Variables (var, let, const)</a>
+        <a href="data-types.html">Data Types</a>
+        <a href="operators.html">Operators</a>
+        <a href="conditionals.html">Conditionals (if, switch)</a>
+        <a href="loops.html">Loops (for, while, forEach)</a>
+        <a href="scope.html">Scope</a>
+
+        <h2 style="padding:10px; font-size:18px;">Functions & Logic</h2>
+        <a href="functions-basic.html">Standard Functions</a>
+        <a href="arrow-functions.html">Arrow Functions</a>
+        <a href="arrays-methods.html">Array Methods (map, filter, reduce)</a>
+        <a href="objects.html">Objects & JSON</a>
+
+        <h2 style="padding:10px; font-size:18px;">DOM Manipulation</h2>
+        <a href="jsselectors.html">Selectors (ID, querySelector)</a>
+        <a href="content-manipulation.html" style="background:#ccc;">innerText vs innerHTML</a>
+        <a href="classlist.html">classList Manipulation</a>
+        <a href="style-manipulation.html">Style Manipulation</a>
+        <a href="dynamic-elements.html">Creating Elements Dynamically</a>
+
+        <h2 style="padding:10px; font-size:18px;">Events</h2>
+        <a href="event-listeners.html">addEventListener</a>
+        <a href="mouse-keyboard.html">Mouse & Keyboard Events</a>
+        <a href="form-events.html">Form Events</a>
+        <a href="custom-events.html">Custom Events</a>
+
+        <h2 style="padding:10px; font-size:18px;">Timers & Async ⭐⭐</h2>
+        <a href="timers.html">setTimeout & setInterval</a>
+        <a href="callbacks.html">Callbacks</a>
+        <a href="promises.html">Promises</a>
+        <a href="async-await.html">Async / Await</a>
+        <h2 style="padding:10px; font-size:18px;">API & Networking</h2>
+<a href="apibasics.html">Intro to REST APIs</a>
+<a href="fetch-api.html">Fetch API (GET/POST)</a>
+<a href="http-methods.html">HTTP Methods & Status Codes</a>
+<a href="json-methods.html">JSON (parse & stringify)</a>
+<a href="url-params.html">URL Params & Query Strings</a>
+<a href="error-handling.html">Handling Network Errors</a>
+<a href="cors.html">CORS & Security</a>
+
+
+        <h2 style="padding:10px; font-size:18px;">Browser & Storage ⭐</h2>
+        <a href="web-storage.html">Local & Session Storage</a>
+        <a href="cookies.html">Cookies</a>
+    </div>
+
+    <div class="main">
+        <h1 style="color: black;">Difference between innerText and innerHTML</h1>
+        <p><strong>innerText</strong> and <strong>innerHTML</strong> are both properties of JavaScript. However, there are significant differences in how the text and HTML tags are handled when retrieving or setting content.</p>
+
+        <h2 style="color: #5c64f2;">1. Getting Content: The Main Difference</h2>
+        <p>The <code>innerText</code> property sets or returns the text content as plain text of the specified node and all its descendants, whereas the <code>innerHTML</code> property gets and sets the plain text or HTML contents in the elements.</p>
+        
+        <div class="example-container">
+            <div class="code-box" id="dom1">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body style="text-align:center;"&gt;
+
+&lt;div id="test"&gt;
+  The following element contains some &lt;code&gt;code&lt;/code&gt; and &lt;i&gt;some text&lt;/i&gt;.
+&lt;/div&gt;
+
+&lt;br&gt;
+&lt;button onclick="innerTextFn()"&gt;Get innerText&lt;/button&gt;
+&lt;button onclick="innerHTMLFn()"&gt;Get innerHTML&lt;/button&gt;
+
+&lt;script&gt;
+function innerTextFn() {
+  let x = document.getElementById('test');
+  alert("innerText output: " + x.innerText);
+}
+
+function innerHTMLFn() {
+  let x = document.getElementById('test');
+  alert("innerHTML output: " + x.innerHTML);
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <button class="try-btn" onclick="openEditor('dom1')">Try it Yourself</button>
+        </div>
+
+        <h2 style="color: #5c64f2;">2. Setting Content with innerText</h2>
+        <p>When assigning a string that contains HTML tags to the <code>innerText</code> property, it will automatically treat the tags as raw text, displaying them on the screen instead of rendering them.</p>
+        
+        <div class="example-container">
+            <div class="code-box" id="dom2">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h3&gt;Using innerText to Update Content&lt;/h3&gt;
+&lt;p id="demo2"&gt;Original text.&lt;/p&gt;
+
+&lt;button onclick="changeText()"&gt;Change innerText&lt;/button&gt;
+
+&lt;script&gt;
+function changeText() {
+  // Tags will be printed visibly on the screen
+  document.getElementById("demo2").innerText = "&lt;b&gt;This is bold text&lt;/b&gt;";
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <button class="try-btn" onclick="openEditor('dom2')">Try it Yourself</button>
+        </div>
+
+        <h2 style="color: #5c64f2;">3. Setting Content with innerHTML</h2>
+        <p>Unlike <code>innerText</code>, <code>innerHTML</code> lets you work with HTML rich text. It does not automatically encode and decode text, meaning any valid HTML passed to it will be parsed and styled by the browser.</p>
+
+        <div class="example-container">
+            <div class="code-box" id="dom3">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h3&gt;Using innerHTML to Update Content&lt;/h3&gt;
+&lt;p id="demo3"&gt;Original text.&lt;/p&gt;
+
+&lt;button onclick="changeHTML()"&gt;Change innerHTML&lt;/button&gt;
+
+&lt;script&gt;
+function changeHTML() {
+  // The browser will render the bold tag
+  document.getElementById("demo3").innerHTML = "&lt;b style='color:#ff7324'&gt;This text is bold and colorful!&lt;/b&gt;";
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <button class="try-btn" onclick="openEditor('dom3')">Try it Yourself</button>
+        </div>
+
+        <h2 style="color: #5c64f2;">4. Dynamic HTML Layout Generation</h2>
+        <p>Because <code>innerHTML</code> parses markup, it is incredibly useful for generating complex layouts, tables, or lists dynamically based on JavaScript arrays.</p>
+
+        <div class="example-container">
+            <div class="code-box" id="dom4">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h3&gt;Generating a List&lt;/h3&gt;
+&lt;ul id="listContainer"&gt;&lt;/ul&gt;
+
+&lt;button onclick="generateList()"&gt;Load List&lt;/button&gt;
+
+&lt;script&gt;
+function generateList() {
+  const items = ["JavaScript", "HTML", "CSS"];
+  let markup = "";
+  
+  for (let i = 0; i &lt; items.length; i++) {
+    markup += "&lt;li&gt;" + items[i] + "&lt;/li&gt;";
+  }
+  
+  document.getElementById("listContainer").innerHTML = markup;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <button class="try-btn" onclick="openEditor('dom4')">Try it Yourself</button>
+        </div>
+
+        <h2 style="color: #5c64f2;">5. Security Considerations (Cross-Site Scripting)</h2>
+        <p>Using <code>innerHTML</code> with external or user-provided data can lead to XSS (Cross-Site Scripting) attacks if malicious scripts are injected. Always use <code>innerText</code> when reflecting user input back onto the page.</p>
+
+        <div class="example-container">
+            <div class="code-box" id="dom5">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+
+&lt;h3&gt;Safe Data Rendering&lt;/h3&gt;
+&lt;input type="text" id="userInput" value="&lt;script&gt;alert('Hacked!');&lt;/script&gt;" size="40"&gt;
+
+&lt;br&gt;&lt;br&gt;
+&lt;button onclick="safeDisplay()"&gt;Safe Display (innerText)&lt;/button&gt;
+&lt;p id="output"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function safeDisplay() {
+  const input = document.getElementById("userInput").value;
+  // Using innerText ensures the script tag is just treated as text
+  document.getElementById("output").innerText = "User wrote: " + input;
+}
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</div>
+            <button class="try-btn" onclick="openEditor('dom5')">Try it Yourself</button>
+        </div>
+
+        <div class="note">
+            <strong>GeeksforGeeks Pro Tip:</strong> If you only need to read or change text content, using <code>innerText</code> is not only safer but often slightly faster than <code>innerHTML</code> because the browser doesn't have to parse the string for HTML tags.
+        </div>
+        <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+      const quizData = [
+    {
+        q: "What is the primary difference between innerText and innerHTML when retrieving content?",
+        options: [
+            "innerText returns text with HTML tags, innerHTML returns plain text",
+            "innerText returns plain text, innerHTML returns text including HTML tags",
+            "Both return the exact same output in all cases",
+            "innerText only works on buttons, while innerHTML works on divs"
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> This is the opposite of how they function.",
+            "<b>Correct!</b> <code>innerText</code> focuses on the visible text content, while <code>innerHTML</code> includes the actual HTML markup (like &lt;b&gt; or &lt;i&gt; tags).",
+            "<b>Incorrect:</b> They handle HTML tags very differently.",
+            "<b>Incorrect:</b> Both properties work on almost all HTML elements."
+        ]
+    },
+    {
+        q: "What happens if you assign a string like '&lt;b&gt;Hello&lt;/b&gt;' to an element's innerText property?",
+        options: [
+            "The browser renders the word 'Hello' in bold",
+            "The browser displays the raw string '&lt;b&gt;Hello&lt;/b&gt;' literally on the screen",
+            "The browser throws an error",
+            "The element is deleted from the page"
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> <code>innerText</code> does not parse HTML tags; it treats them as plain text.",
+            "<b>Correct!</b> <code>innerText</code> treats the input as raw text, so the tags themselves will be visible to the user instead of being rendered as bold.",
+            "<b>Incorrect:</b> This is valid JavaScript, so no error is thrown.",
+            "<b>Incorrect:</b> The content is updated, not deleted."
+        ]
+    },
+    {
+        q: "Which property allows you to dynamically generate complex HTML layouts (like lists or tables) using JavaScript strings?",
+        options: ["innerText", "value", "textContent", "innerHTML"],
+        correct: 3,
+        explanations: [
+            "<b>Incorrect:</b> <code>innerText</code> would display the layout tags as visible text.",
+            "<b>Incorrect:</b> <code>value</code> is used for form inputs, not for layout generation.",
+            "<b>Incorrect:</b> <code>textContent</code> is similar to innerText and doesn't parse HTML.",
+            "<b>Correct!</b> Because <code>innerHTML</code> parses HTML markup, it is the standard way to inject new elements like &lt;li&gt; or &lt;tr&gt; into the DOM."
+        ]
+    },
+    {
+        q: "From a security perspective, which property is safer to use when displaying user-provided data?",
+        options: ["innerHTML", "innerText", "className", "style"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> <code>innerHTML</code> can execute malicious scripts if they are included in the data (XSS).",
+            "<b>Correct!</b> <code>innerText</code> is safer because it automatically treats any script tags as plain text, preventing them from running in the browser.",
+            "<b>Incorrect:</b> <code>className</code> is for CSS classes, not for displaying text content.",
+            "<b>Incorrect:</b> <code>style</code> is for CSS properties."
+        ]
+    },
+    {
+        q: "What type of attack can occur if you use innerHTML to display unverified user input?",
+        options: [
+            "CSS Injection",
+            "Database Timeout",
+            "Cross-Site Scripting (XSS)",
+            "Browser Crash"
+        ],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> While CSS can be changed, the primary code-execution threat is XSS.",
+            "<b>Incorrect:</b> This is a server-side issue, not a DOM property issue.",
+            "<b>Correct!</b> Using <code>innerHTML</code> with raw user input allows hackers to inject <code>&lt;script&gt;</code> tags that run malicious code.",
+            "<b>Incorrect:</b> XSS is a security breach, not necessarily a performance crash."
+        ]
+    },
+    {
+        q: "Which of the following is true regarding the performance of these two properties?",
+        options: [
+            "innerHTML is always faster than innerText",
+            "innerText is generally faster because the browser doesn't have to parse HTML tags",
+            "Both take exactly the same amount of time to process",
+            "innerText is only fast on mobile devices"
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Parsing HTML markup makes <code>innerHTML</code> slightly more complex for the browser.",
+            "<b>Correct!</b> As mentioned in the Pro Tip, <code>innerText</code> is usually faster for simple text changes because no HTML parsing is required.",
+            "<b>Incorrect:</b> One requires a parser, the other doesn't.",
+            "<b>Incorrect:</b> Performance benefits apply to all browser environments."
+        ]
+    },
+    {
+        q: "In the 'Generating a List' example, why was innerHTML used inside the function?",
+        options: [
+            "To make the text colorful",
+            "To ensure the '&lt;li&gt;' tags were rendered as actual list items",
+            "To hide the list from the user",
+            "To change the font size of the items"
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Color is handled by CSS, though innerHTML can inject style tags.",
+            "<b>Correct!</b> Using <code>innerHTML</code> allowed the JavaScript to create actual bullet points by parsing the HTML list item tags.",
+            "<b>Incorrect:</b> The goal was to display the items.",
+            "<b>Incorrect:</b> Font size is a CSS property."
+        ]
+    }
+];
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+    </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-container">
+    
+    <div class="footer-box">
+      <img src="./logo.jpeg" alt="Oppty Logo" class="logo">
+      <p>
+        Learn Web Development with practical courses in
+        HTML, CSS & JavaScript. Beginner-friendly training
+        with real-time projects.
+      </p>
+
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li>HTML for Beginners</li>
+        <li>CSS & Responsive Design</li>
+        <li>JavaScript Basics</li>
+        <li>Mini Projects</li>
+      </ul>
+    </div>
+
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p>Email: support@opptyacademy.com</p>
+      <p>Phone: +91 99999 99999</p>
+      <p>WhatsApp Support Available</p>
+    </div>
+
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li>Home</li>
+        <li>Courses</li>
+        <li>About Us</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Oppty Academy. All Rights Reserved.
+  </div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Fundamentals - Tutorial</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            background-color: #fff;
+        }
+
+        /* Sidebar with Scrolling */
+        .sidebar { 
+            width: 300px; 
+            background: #f1f1f1; 
+            height: 100vh; 
+            position: sticky; 
+            top: 0; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; /* Enables scrolling for long lists */
+        }
+
+        /* Custom Scrollbar for Sidebar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        .sidebar h2 {
+            padding: 15px 20px 5px 20px;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a { 
+            display: block; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            color: #444; 
+            border-bottom: 1px solid #e7e7e7; 
+            font-size: 14px;
+        }
+        
+        .sidebar a:hover { 
+            background-color: #bbb; 
+            color: white;
+        }
+
+        /* Main Content Area */
+        .main { 
+            flex: 1; 
+            padding: 40px; 
+           
+        }
+
+        /* GeeksforGeeks Style UI Components */
+        .example-container { 
+            background-color: #E7E9EB; 
+            padding: 20px; 
+            border-radius: 5px; 
+            margin: 25px 0; 
+            border: 1px solid #ccc; 
+        }
+
+        .code-box { 
+            background-color: white; 
+            padding: 15px; 
+            border-left: 4px solid #04AA6D; 
+            font-family: 'Courier New', monospace; 
+            white-space: pre; 
+            margin-bottom: 15px; 
+            overflow-x: auto; 
+            font-size: 14px; 
+            line-height: 1.5;
+        }
+
+        .try-btn { 
+            background-color: #04AA6D; 
+            color: white; 
+            padding: 12px 25px; 
+            border: none; 
+            border-radius: 25px; 
+            font-weight: bold; 
+            cursor: pointer; 
+        }
+
+        h1 { color: #2c3e50; font-size: 32px; font-weight: bold;}
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; color: #2c3e50; }
+        p { line-height: 1.6; color: #444; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+
+        .note-box {
+            background-color: #ffffcc;
+            border-left: 5px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+        }
+          /* --- Header Integration --- */
+.main-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 1001; /* Higher than sidebar */
+  width: 100%;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;        
+  justify-content: space-between;
+}
+
+.logo img { width: 140px; display: block; }
+
+.nav-menu { display: flex; align-items: center; gap: 30px; }
+
+.nav-menu a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-menu a:hover { color: #158e39; }
+
+.explore-btn {
+  background: #158e39;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* --- Layout Correction --- */
+body { display: block; } /* Change body from flex to block */
+
+.content-container {
+  display: flex; /* Move flex here to keep sidebar and main side-by-side */
+}
+
+.sidebar {
+  top: 70px; /* Adjust this so sidebar sticks BELOW the header */
+  height: calc(100vh - 70px);
+     min-width: 300px;         /* Ensures it never gets smaller */
+    flex-shrink: 0
+}
+     .explore-btn:hover { background: #ee730f; }
+
+    </style>
+</head>
+<body>
+    <header class="main-header">
+  <div class="header-container">
+
+   
+    <div class="logo">
+      <a href="../index.html"><img src="../images/LOGO.jpeg" alt="Oppty Academy Logo"></a>
+    </div>
+    
+     <nav class="nav-menu"> 
+       <a href="../structure.html">Html</a> 
+        <a href="../css/cssintro.html">Css</a>
+         <a href="../introduction.html">JavaScript</a>
+          </nav>
+    
+    <div class="nav-right">
+      <a href="../index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+
+  </div>
+</header>  
+<div class="content-container">
+<div class="sidebar">
+    <h2>CSS Fundamentals</h2>
+    <a href="../css/cssintro.html">CSS Introduction</a>    <a href="../css/selectors.html">Selectors (class, id, element)</a>
+    <a href="../css/colors.html">Colors, Units (px, %, em, rem)</a>
+    <a href="../css/boxmodel.html">Box Model (margin, border, padding, content)</a>
+
+    <h2>Layout Systems</h2>
+    <a href="../css/flexbox.html">Flexbox (very important)</a>
+    <a href="../css/grid.html">Grid (important)</a>
+    <a href="../css/positioning.html">Positioning (static, relative, absolute, fixed, sticky)</a>
+    <a href="../css/z-index.html">z-index</a>
+
+    <h2>Styling & UI</h2>
+    <a href="../css/backgrounds.html">Backgrounds & Gradients</a>
+    <a href="../css/borders.html">Borders & Border-radius</a>
+        <a href="../css/margins.html">Margin& Padding </a>
+<a href="../css/fonts.html">fonts & Text formatting </a>
+    <a href="../css/display.html">Display and Visibility Properties </a>
+
+    <a href="../css/shadows.html">Shadows (box-shadow, text-shadow)</a>
+    <a href="../css/buttons.html">Buttons & Forms styling</a>
+
+    <h2>Responsive Design</h2>
+    <a href="../css/mediaquiries.html">Media Queries</a>
+    <a href="../css/mobilefirst.html">Mobile-first design</a>
+    <a href="../css/responsive.html">Responsive images</a>
+
+    <h2>Animations</h2>
+    <a href="../css/transitions.html">Transitions</a>
+    <a href="../css/keyframes.html">Keyframe Animations</a>
+    <a href="../css/hovers.html">Hover effects</a>
+</div>
+
+<div class="main">
+    <h1>CSS Grid Layout</h1>
+    <p>The CSS Grid Layout Module offers a powerful two-dimensional layout system, utilizing both rows and columns. It allows developers to create complex web structures easily without relying on floats or positioning.</p>
+
+    <h2>1. Grid Architecture</h2>
+    <p>A Grid layout consists of a <strong>Grid Container</strong> (parent) and <strong>Grid Items</strong> (children). This relationship creates a coordinate system for precise placement.</p>
+
+    <div style="text-align: center; margin: 30px 0; padding: 20px; background-color: #f8f9fa; border-radius: 10px; border: 1px solid #ddd;">
+        <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; font-family: sans-serif;">
+            <rect x="50" y="50" width="700" height="300" rx="10" fill="#e7f3fe" stroke="#2196F3" stroke-width="3" stroke-dasharray="8,4"/>
+            <text x="60" y="45" fill="#2196F3" font-weight="bold" font-size="16">Grid Container (Parent Element)</text>
+
+            <line x1="283" y1="50" x2="283" y2="350" stroke="#ccc" stroke-width="2" stroke-dasharray="4,2" />
+            <line x1="516" y1="50" x2="516" y2="350" stroke="#ccc" stroke-width="2" stroke-dasharray="4,2" />
+            <line x1="50" y1="200" x2="750" y2="200" stroke="#ccc" stroke-width="2" stroke-dasharray="4,2" />
+
+            <rect x="80" y="80" width="170" height="90" rx="5" fill="#04AA6D" />
+            <text x="135" y="130" fill="white" font-weight="bold">Item 1</text>
+            <rect x="313" y="80" width="170" height="90" rx="5" fill="#04AA6D" />
+            <text x="368" y="130" fill="white" font-weight="bold">Item 2</text>
+            <rect x="546" y="80" width="170" height="90" rx="5" fill="#04AA6D" />
+            <text x="601" y="130" fill="white" font-weight="bold">Item 3</text>
+
+            <text x="350" y="380" fill="#666" font-style="italic" font-size="14">Grid Tracks create a 2D coordinate system of rows and columns</text>
+        </svg>
+        <p><em>The relationship between the Grid Container and Grid Items.</em></p>
+    </div>
+
+    <hr>
+
+    <h2>2. Grid Sizing Units</h2>
+    <p>Grid tracks are the spaces between grid lines. You define them using specific units and functions to control flexibility.</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ddd; font-size: 0.9em;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Sizing Unit</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Behavior & Use Case</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>fr (Fractional)</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Allocates a fraction of the available free space in the container.</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>auto</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Sizes the track based on the content length of items.</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>repeat()</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Shorthand for defining multiple tracks of the same size.</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>minmax()</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Defines a size range with a minimum and maximum limit.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>3. Important Grid Properties</h2>
+    <div style="display: flex; flex-direction: column; gap: 20px; margin-top: 20px;">
+        <div>
+            <h3>A. Container Properties (Parent)</h3>
+            <p>Properties like <code>grid-template-columns</code> and <code>grid-template-rows</code> define the structure of the grid.</p>
+            <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; font-size: 0.9em;">
+                <tr style="background-color: #f9f9f9;">
+                    <td style="border: 1px solid #ddd; padding: 10px;"><strong>gap</strong></td>
+                    <td style="border: 1px solid #ddd; padding: 10px;">Specifies the spacing (gutters) between grid cells.</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 10px;"><strong>place-items</strong></td>
+                    <td style="border: 1px solid #ddd; padding: 10px;">Aligns items along both axes (horizontal and vertical) simultaneously.</td>
+                </tr>
+            </table>
+        </div>
+
+        <div>
+            <h3>B. Item Properties (Children)</h3>
+            <p>Properties used to control the position and spanning of individual elements within the grid.</p>
+            <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd; font-size: 0.9em;">
+                <tr style="background-color: #f9f9f9;">
+                    <td style="border: 1px solid #ddd; padding: 10px;"><strong>grid-column / grid-row</strong></td>
+                    <td style="border: 1px solid #ddd; padding: 10px;">Determines an item's start and end position and span.</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid #ddd; padding: 10px;"><strong>grid-area</strong></td>
+                    <td style="border: 1px solid #ddd; padding: 10px;">Assigns a specific name to an element for template-based placement.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>4. CSS Grid Layout Examples</h2>
+
+    <div class="example-container">
+        <h3>Example 1: Basic Three-Column Layout</h3>
+        <p>This creates a simple 3-column grid with equal widths using <code>1fr</code>.</p>
+        <div class="code-box" id="gridEx1">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+    background-color: #2196F3;
+    padding: 15px;
+  }
+  .grid-item {
+    background-color: #f1f1f1;
+    border: 1px solid black;
+    padding: 20px;
+    font-size: 24px;
+    text-align: center;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="grid-item"&gt;1&lt;/div&gt;
+    &lt;div class="grid-item"&gt;2&lt;/div&gt;
+    &lt;div class="grid-item"&gt;3&lt;/div&gt;
+    &lt;div class="grid-item"&gt;4&lt;/div&gt;
+    &lt;div class="grid-item"&gt;5&lt;/div&gt;
+    &lt;div class="grid-item"&gt;6&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('gridEx1')">Try it Yourself</button>
+    </div>
+
+    <div class="example-container">
+        <h3>Example 2: Spanning Columns and Rows</h3>
+        <p>The first item spans across two columns and two rows to create a featured block.</p>
+        <div class="code-box" id="gridEx2">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 10px;
+    background-color: #e7e9eb;
+    padding: 10px;
+  }
+  .item1 {
+    grid-column: span 2;
+    grid-row: span 2;
+    background-color: #04AA6D !important;
+    color: white;
+  }
+  .grid-item { background-color: white; padding: 20px; text-align: center; border: 1px solid #ccc; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="grid-item item1"&gt;Large Item&lt;/div&gt;
+    &lt;div class="grid-item"&gt;2&lt;/div&gt;
+    &lt;div class="grid-item"&gt;3&lt;/div&gt;
+    &lt;div class="grid-item"&gt;4&lt;/div&gt;
+    &lt;div class="grid-item"&gt;5&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('gridEx2')">Try it Yourself</button>
+    </div>
+
+    <div class="example-container">
+        <h3>Example 3: Dashboard Grid Areas</h3>
+        <p>Structuring a full page layout using semantic named grid areas.</p>
+        <div class="code-box" id="gridEx3">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .container {
+    display: grid;
+    grid-template-areas:
+      'header header header'
+      'sidebar main main'
+      'footer footer footer';
+    gap: 10px;
+  }
+  .header { grid-area: header; background: coral; }
+  .sidebar { grid-area: sidebar; background: lightblue; }
+  .main { grid-area: main; background: #ddd; min-height: 150px; }
+  .footer { grid-area: footer; background: lightgreen; }
+  .container > div { padding: 20px; text-align: center; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="header"&gt;Header&lt;/div&gt;
+    &lt;div class="sidebar"&gt;Sidebar&lt;/div&gt;
+    &lt;div class="main"&gt;Main Content&lt;/div&gt;
+    &lt;div class="footer"&gt;Footer&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('gridEx3')">Try it Yourself</button>
+    </div>
+
+    <div class="example-container">
+        <h3>Example 4: minmax() for Responsiveness</h3>
+        <p>The column will never be smaller than 100px or larger than 1fr.</p>
+        <div class="code-box" id="gridEx4">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .container {
+    display: grid;
+    grid-template-columns: minmax(100px, 1fr) 2fr;
+    gap: 10px;
+  }
+  .grid-item { background: #04AA6D; color: white; padding: 20px; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="grid-item"&gt;Min 100px / Max 1fr&lt;/div&gt;
+    &lt;div class="grid-item"&gt;Flexible 2fr&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('gridEx4')">Try it Yourself</button>
+    </div>
+
+    <div class="example-container">
+        <h3>Example 5: Precise Content Alignment</h3>
+        <p>Centering the entire grid block inside a container using <code>place-content</code>.</p>
+        <div class="code-box" id="gridEx5">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .container {
+    display: grid;
+    grid-template-columns: repeat(2, 100px);
+    height: 300px;
+    place-content: center;
+    background-color: #f1f1f1;
+    gap: 10px;
+  }
+  .grid-item { background: tomato; color: white; padding: 20px; text-align: center; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="grid-item"&gt;Cell A&lt;/div&gt;
+    &lt;div class="grid-item"&gt;Cell B&lt;/div&gt;
+    &lt;div class="grid-item"&gt;Cell C&lt;/div&gt;
+    &lt;div class="grid-item"&gt;Cell D&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('gridEx5')">Try it Yourself</button>
+    </div>
+
+    <h2>5. Layout Logic</h2>
+    <div style="background-color: #e7f3fe; padding: 15px; border-left: 5px solid #2196F3; margin: 15px 0;">
+        <strong>Grid Tip:</strong> Unlike Flexbox, which is primarily one-dimensional (row OR column), Grid allows you to align items against two axes simultaneously, making it the ideal choice for layout-heavy designs.
+    </div>
+    <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+       const quizData = [
+    {
+        q: "What is the primary difference between CSS Grid and Flexbox as mentioned in the lesson?",
+        options: ["Grid is for colors, Flexbox is for layout.", "Grid is two-dimensional (rows and columns), while Flexbox is primarily one-dimensional.", "Flexbox is newer and better than Grid.", "Grid only works on mobile devices."],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Both are layout systems; neither is specifically for 'colors'.",
+            "<b>Correct!</b> As noted in the Layout Logic section, Flexbox is 1D (rows OR columns), while Grid is 2D (rows AND columns).",
+            "<b>Incorrect:</b> Both are modern standards used for different purposes; one is not 'better' than the other.",
+            "<b>Incorrect:</b> CSS Grid is a standard web technology that works on all modern browser displays."
+        ]
+    },
+    {
+        q: "Which sizing unit is used to allocate a 'fraction' of the available free space in a grid container?",
+        options: ["px", "em", "fr", "%"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Pixels are an absolute unit and do not represent fractions of remaining space.",
+            "<b>Incorrect:</b> 'em' is relative to font size, not container space.",
+            "<b>Correct!</b> The <code>fr</code> (fractional) unit is unique to CSS Grid and distributes available space proportionally.",
+            "<b>Incorrect:</b> Percentages are relative to the whole container width, not necessarily the 'available free space'."
+        ]
+    },
+    {
+        q: "Which property is used on the parent container to define the gutters (spacing) between grid cells?",
+        options: ["padding", "margin", "gap", "place-items"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Padding adds space inside the items or the container edges.",
+            "<b>Incorrect:</b> Margin adds space outside the container.",
+            "<b>Correct!</b> The <code>gap</code> property (formerly grid-gap) specifically defines the space between the rows and columns.",
+            "<b>Incorrect:</b> <code>place-items</code> is used for aligning content, not for defining spacing."
+        ]
+    },
+    {
+        q: "In Example 2, what does 'grid-column: span 2' do to 'Large Item'?",
+        options: ["Makes the text twice as large.", "Forces the item to move to the second row.", "Makes the item stretch across two column tracks.", "Hides the item behind other cells."],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Column properties do not affect font size.",
+            "<b>Incorrect:</b> Moving to a row is handled by <code>grid-row</code>.",
+            "<b>Correct!</b> <code>span 2</code> tells the grid item to occupy two adjacent column tracks instead of one.",
+            "<b>Incorrect:</b> This property is for positioning and sizing, not visibility."
+        ]
+    },
+    {
+        q: "Which function allows you to define a size range for a grid track (e.g., minimum 100px, maximum 1fr)?",
+        options: ["repeat()", "minmax()", "auto()", "range()"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> <code>repeat()</code> is used to duplicate track patterns.",
+            "<b>Correct!</b> <code>minmax()</code> defines a size range that allows the track to be flexible while respecting a minimum bound.",
+            "<b>Incorrect:</b> <code>auto</code> is a keyword, not a function like <code>auto()</code>.",
+            "<b>Incorrect:</b> <code>range()</code> is not a valid CSS Grid function."
+        ]
+    },
+    {
+        q: "What is the purpose of the 'grid-template-areas' property seen in Example 3?",
+        options: ["To create a 3D effect.", "To name specific sections of the grid for easy, semantic placement.", "To set the background image of the grid.", "To calculate the math for fractional units."],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Grid areas are for layout structure, not 3D visual styles.",
+            "<b>Correct!</b> <code>grid-template-areas</code> allows you to create a visual map of your layout using names like 'header' or 'main'.",
+            "<b>Incorrect:</b> Backgrounds are handled by standard <code>background</code> properties.",
+            "<b>Incorrect:</b> It does not perform mathematical calculations."
+        ]
+    },
+    {
+        q: "If you want to center all items vertically and horizontally at once in a grid container, which property is used in Example 5?",
+        options: ["align-items", "justify-content", "place-content", "grid-template"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> <code>align-items</code> only handles one axis (the cross axis).",
+            "<b>Incorrect:</b> <code>justify-content</code> only handles one axis (the main axis).",
+            "<b>Correct!</b> <code>place-content: center</code> is a shorthand that centers the entire grid block both vertically and horizontally.",
+            "<b>Incorrect:</b> <code>grid-template</code> is a shorthand for defining rows, columns, and areas."
+        ]
+    }
+];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+    <div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling with space-between layout */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between; 
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+            margin-bottom: 40px;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button styling */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button styling */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Highlight style for the current page in the sidebar */
+        .sidebar a.active-link {
+            background-color: #04AA6D !important;
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Get all links from your sidebar
+            const sidebarLinks = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // 2. Identify the current page path
+            const currentPath = window.location.pathname;
+            
+            // 3. Find the index and highlight the active link
+            let currentIndex = -1;
+            
+            sidebarLinks.forEach((link, index) => {
+                const linkHref = link.getAttribute('href').replace('..', '');
+                if (currentPath.endsWith(linkHref)) {
+                    currentIndex = index;
+                    link.classList.add('active-link');
+                    
+                    // Auto-scroll sidebar to the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 4. Configure Previous Button
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 5. Configure Next Button
+            if (currentIndex !== -1 && currentIndex < sidebarLinks.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+</div>
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = '../editor.html';
+    }
+</script>
+
+<footer class="footer">
+  <div class="footer-container">
+    
+    <div class="footer-box">
+      <img src="../images/LOGO.jpeg" alt="Oppty Logo">
+      <p style="color: white;">
+        Learn Web Development with practical courses in
+        HTML, CSS & JavaScript. Beginner-friendly training
+        with real-time projects.
+      </p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li><a href="#">HTML for Beginners</a></li>
+        <li><a href="../css/cssintro.html">CSS & Responsive Design</a></li>
+        <li><a href="#">JavaScript Basics</a></li>
+        <li><a href="#">Mini Projects</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p style="color: white;">Email: <a href="mailto:support@opptyacademy.com" style="color:white; text-decoration:none;">support@opptyacademy.com</a></p>
+      <p style="color: white;">Phone: +91 99999 99999</p>
+      <p style="color: white;">WhatsApp Support Available</p>
+    </div>
+
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#cs">Courses</a></li>
+        <li><a href="../index.html#as">About Us</a></li>
+        <li><a href="../index.html#cto">Contact</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Oppty Academy. All Rights Reserved.
+  </div>
+</footer>
+<style>
+    /* --- Footer Styles --- */
+.footer {
+    background: #0f0f0f;
+    color: white;
+    padding: 50px 20px 20px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;                  
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    text-align: center;             
+}
+
+.footer-box img {
+    background: #ffffff;
+    padding: 4px;
+    border-radius: 6px;
+    width: 160px;
+    margin: 0 auto 15px;
+    display: block;
+}
+
+.footer-box h3 {
+    color: #158e39;
+    margin-bottom: 15px;
+}
+
+.footer-box p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-box ul li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Link styling within list */
+.footer-box ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-box ul li a:hover {
+    color: #158e39;
+}
+
+.social-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;     
+}
+
+.social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background: #222;
+    color: #fff;
+    border-radius: 50%;
+    margin: 0 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #158e39;
+    color: #000;
+}
+
+.social-icons .whatsapp { background: #25D366; }
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+    font-size: 13px;
+    color: #aaa;
+}
+</style>
+</body>
+</html>

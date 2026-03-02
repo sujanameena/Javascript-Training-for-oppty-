@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Fundamentals - Tutorial</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styles */
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            display: flex; 
+            background-color: #fff;
+        }
+ .explore-btn:hover { background: #ee730f; }
+
+        /* Sidebar with Scrolling */
+        .sidebar { 
+            width: 300px; 
+            background: #f1f1f1; 
+            height: 100vh; 
+            position: sticky; 
+            top: 0; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; /* Enables scrolling for long lists */
+               min-width: 300px;         /* Ensures it never gets smaller */
+    flex-shrink: 0
+        }
+
+        /* Custom Scrollbar for Sidebar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        .sidebar h2 {
+            padding: 15px 20px 5px 20px;
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a { 
+            display: block; 
+            padding: 10px 20px; 
+            text-decoration: none; 
+            color: #444; 
+            border-bottom: 1px solid #e7e7e7; 
+            font-size: 14px;
+        }
+        
+        .sidebar a:hover { 
+            background-color: #bbb; 
+            color: white;
+        }
+
+        /* Main Content Area */
+        .main { 
+            flex: 1; 
+            padding: 40px; 
+           
+        }
+
+        /* GeeksforGeeks Style UI Components */
+        .example-container { 
+            background-color: #E7E9EB; 
+            padding: 20px; 
+            border-radius: 5px; 
+            margin: 25px 0; 
+            border: 1px solid #ccc; 
+        }
+
+        .code-box { 
+            background-color: white; 
+            padding: 15px; 
+            border-left: 4px solid #04AA6D; 
+            font-family: 'Courier New', monospace; 
+            white-space: pre; 
+            margin-bottom: 15px; 
+            overflow-x: auto; 
+            font-size: 14px; 
+            line-height: 1.5;
+        }
+
+        .try-btn { 
+            background-color: #04AA6D; 
+            color: white; 
+            padding: 12px 25px; 
+            border: none; 
+            border-radius: 25px; 
+            font-weight: bold; 
+            cursor: pointer; 
+        }
+
+        h1 { color: #2c3e50; font-size: 32px; font-weight: bold;}
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; color: #2c3e50; }
+        p { line-height: 1.6; color: #444; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+
+        .note-box {
+            background-color: #ffffcc;
+            border-left: 5px solid #ffeb3b;
+            padding: 15px;
+            margin: 20px 0;
+        }
+          /* --- Header Integration --- */
+.main-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  position: sticky;
+  top: 0;
+  z-index: 1001; /* Higher than sidebar */
+  width: 100%;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;        
+  justify-content: space-between;
+}
+
+.logo img { width: 140px; display: block; }
+
+.nav-menu { display: flex; align-items: center; gap: 30px; }
+
+.nav-menu a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-menu a:hover { color: #158e39; }
+
+.explore-btn {
+  background: #158e39;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* --- Layout Correction --- */
+body { display: block; } /* Change body from flex to block */
+
+.content-container {
+  display: flex; /* Move flex here to keep sidebar and main side-by-side */
+}
+
+.sidebar {
+  top: 70px; /* Adjust this so sidebar sticks BELOW the header */
+  height: calc(100vh - 70px);
+}
+    
+    </style>
+</head>
+<body>
+    <header class="main-header">
+  <div class="header-container">
+
+   
+    <div class="logo">
+      <a href="../index.html"><img src="../images/LOGO.jpeg" alt="Oppty Academy Logo"></a>
+    </div>
+    
+     <nav class="nav-menu"> 
+       <a href="../structure.html">Html</a> 
+        <a href="../css/cssintro.html">Css</a>
+         <a href="../introduction.html">JavaScript</a>
+          </nav>
+    
+    <div class="nav-right">
+      <a href="../index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+
+  </div>
+</header>  
+<div class="content-container">
+<div class="sidebar">
+    <h2>CSS Fundamentals</h2>
+    <a href="../css/cssintro.html">CSS Introduction</a>    <a href="./selectors.html">Selectors (class, id, element)</a>
+    <a href="./colors.html">Colors, Units (px, %, em, rem)</a>
+    <a href="./boxmodel.html">Box Model (margin, border, padding, content)</a>
+
+    <h2>Layout Systems</h2>
+    <a href="./flexbox.html">Flexbox (very important)</a>
+    <a href="./grid.html">Grid (important)</a>
+    <a href="./positioning.html">Positioning (static, relative, absolute, fixed, sticky)</a>
+    <a href="./z-index.html">z-index</a>
+
+    <h2>Styling & UI</h2>
+    <a href="./backgrounds.html">Backgrounds & Gradients</a>
+    <a href="./borders.html">Borders & Border-radius</a>
+    <a href="./margins.html">Margin& Padding </a>
+    <a href="./fonts.html">fonts & Text formatting </a>
+    <a href="./display.html">Display and Visibility Properties </a>
+    <a href="./shadows.html">Shadows (box-shadow, text-shadow)</a>
+    <a href="./buttons.html">Buttons & Forms styling</a>
+
+    <h2>Responsive Design</h2>
+    <a href="./mediaquiries.html">Media Queries</a>
+    <a href="./mobilefirst.html">Mobile-first design</a>
+    <a href="./responsive.html">Responsive images</a>
+
+    <h2>Animations</h2>
+    <a href="./transitions.html">Transitions</a>
+    <a href="./keyframes.html">Keyframe Animations</a>
+    <a href="./hovers.html">Hover effects</a>
+</div>
+<div class="main">
+    <h1>CSS Margins & Padding: Ultimate Master Class</h1>
+    <p>In the CSS Box Model, <code>margin</code> and <code>padding</code> are the two most essential properties for controlling space. While <strong>Margin</strong> creates space <em>around</em> elements (outside the border), <strong>Padding</strong> creates space <em>inside</em> an element (between the content and the border).</p>
+
+    <div style="text-align: center; margin: 30px 0;">
+        <img src="../images/padding.webp" alt="CSS Box Model Padding Diagram" style="max-width: 100%; border: 1px solid #ddd; border-radius: 8px;">
+        <p><em>Visual representation of Content, Padding, Border, and Margin.</em></p>
+    </div>
+
+    <hr>
+
+    <h2>1. The Spacing Property Matrix</h2>
+    <p>Both margins and padding can be set for all sides at once or individually for the top, right, bottom, and left sides.</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ddd; font-size: 0.9em;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Property</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Description</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Side Specific</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>margin</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Clears an area outside the border. It is completely transparent.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>margin-top</code>, <code>-right</code>, <code>-bottom</code>, <code>-left</code></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>padding</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Clears an area around the content inside the border. Affected by background color.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>padding-top</code>, <code>-right</code>, <code>-bottom</code>, <code>-left</code></td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;"><strong>auto</strong></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">Used with margin to horizontally center an element within its container.</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>margin: auto;</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>2. Deep Dive: Padding & Box Sizing</h2>
+    <p>The <code>padding</code> property adds space inside an element. By default, padding adds to the total width of the element unless <code>box-sizing: border-box</code> is used.</p>
+
+    <div class="example-container">
+        <h3>Example 1: Padding Variations and Box-Sizing</h3>
+        <p>This example shows how padding affects the internal space and how <code>border-box</code> keeps the width consistent.</p>
+        <div class="code-box" id="padEx1">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .box { width: 300px; border: 5px solid navy; background-color: lightblue; margin-bottom: 10px; }
+  .pad-all { padding: 25px; }
+  .pad-sides { padding: 10px 50px; }
+  .with-border-box { 
+     padding: 30px; 
+     box-sizing: border-box; /* Width stays 300px */
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="box pad-all"&gt;25px Padding all sides&lt;/div&gt;
+  &lt;div class="box pad-sides"&gt;10px Top/Bottom, 50px Left/Right&lt;/div&gt;
+  &lt;div class="box with-border-box"&gt;Fixed Width with Box-Sizing&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('padEx1')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>3. Margin Collapse & Auto Centering</h2>
+    <p>Margins are used to create distance between elements. A unique behavior in CSS is <strong>Margin Collapse</strong>, where top and bottom margins of adjacent elements sometimes overlap into a single margin.</p>
+
+    <div class="example-container">
+        <h3>Example 2: Centering with Margin Auto</h3>
+        <p>Using <code>margin: auto</code> to center a block element within its parent container.</p>
+        <div class="code-box" id="margEx2">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;style&gt;
+  .container { border: 2px solid black; width: 100%; height: 150px; }
+  .center-box {
+    width: 50%;
+    margin: 20px auto; /* 20px top/bottom, centered left/right */
+    background-color: #ff6b6b;
+    color: white;
+    text-align: center;
+    padding: 20px;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="center-box"&gt;I am centered using margin: auto!&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <button class="try-btn" onclick="openEditor('margEx2')">Try it Yourself</button>
+    </div>
+
+    <hr>
+
+    <h2>4. Shorthand Values Table</h2>
+    <p>Understanding the order of shorthand values is crucial for writing efficient CSS.</p>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; border: 1px solid #ddd; font-size: 0.9em;">
+        <thead>
+            <tr style="background-color: #f2f2f2;">
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Values</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Example</th>
+                <th style="border: 1px solid #ddd; padding: 12px; text-align: left;">Application</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;">4 values</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>25px 50px 75px 100px</code></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">top, right, bottom, left (clockwise)</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;">3 values</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>25px 50px 75px</code></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">top, right/left, bottom</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;">2 values</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>25px 50px</code></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">top/bottom, right/left</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px;">1 value</td>
+                <td style="border: 1px solid #ddd; padding: 10px;"><code>25px</code></td>
+                <td style="border: 1px solid #ddd; padding: 10px;">all four sides</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>5. Pro-Tips & Best Practices</h2>
+    <div style="background-color: #e7f3fe; padding: 20px; border-radius: 8px; border-left: 6px solid #2196F3;">
+        <p><strong>1. Margin Collapse:</strong> Be aware that top/bottom margins of block elements sometimes "collapse" into a single margin equal to the largest of the two. This does not happen to left/right margins.</p>
+        <p><strong>2. Negative Margins:</strong> Unlike padding, margins can have <strong>negative values</strong> to pull elements closer together or overlap them.</p>
+        <p><strong>3. Backgrounds and Padding:</strong> Padding is part of the element's clickable area and shows the background color/image. Margin is always outside the background.</p>
+        <p><strong>4. Box-Sizing:</strong> Always use <code>* { box-sizing: border-box; }</code> in your CSS resets to prevent padding from breaking your layout widths.</p>
+    </div>
+    <section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+       const quizData = [
+    {
+        q: "What is the primary difference between Margin and Padding in the CSS Box Model?",
+        options: [
+            "Margin is inside the border, Padding is outside.",
+            "Margin is affected by background color, Padding is always transparent.",
+            "Margin creates space outside the border, Padding creates space inside the border.",
+            "There is no functional difference between them."
+        ],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> It is actually the other way around.",
+            "<b>Incorrect:</b> Padding is affected by background color, while Margin is always transparent.",
+            "<b>Correct!</b> Margin is the outermost layer used for spacing between elements, while Padding is the internal space between content and the border.",
+            "<b>Incorrect:</b> They serve very different roles in layout and spacing."
+        ]
+    },
+    {
+        q: "If you use the shorthand 'margin: 20px auto;', what does 'auto' achieve?",
+        options: [
+            "It automatically makes the font larger.",
+            "It horizontally centers a block element within its container.",
+            "It automatically adds a border around the element.",
+            "It makes the top and bottom margins equal."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Margin properties do not affect typography.",
+            "<b>Correct!</b> <code>margin: auto</code> (specifically for left/right) is the standard method to center a block-level element that has a defined width.",
+            "<b>Incorrect:</b> Borders are handled by the <code>border</code> property.",
+            "<b>Incorrect:</b> In this shorthand, 20px handles the top/bottom, while auto handles the sides."
+        ]
+    },
+    {
+        q: "In the CSS shorthand 'padding: 25px 50px 75px 100px;', which side has a padding of 100px?",
+        options: ["Top", "Right", "Bottom", "Left"],
+        correct: 3,
+        explanations: [
+            "<b>Incorrect:</b> The first value (25px) represents the Top.",
+            "<b>Incorrect:</b> The second value (50px) represents the Right.",
+            "<b>Incorrect:</b> The third value (75px) represents the Bottom.",
+            "<b>Correct!</b> CSS shorthand follows a clockwise order: Top, Right, Bottom, Left. Therefore, the 4th value (100px) is the Left side."
+        ]
+    },
+    {
+        q: "What is 'Margin Collapse' according to the tutorial?",
+        options: [
+            "When margins disappear on mobile devices.",
+            "When left and right margins overlap.",
+            "When top and bottom margins of adjacent elements overlap into a single margin.",
+            "When the border of an element breaks."
+        ],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Margins behave consistently across devices unless overridden.",
+            "<b>Incorrect:</b> Margin collapse specifically does not happen to left/right margins.",
+            "<b>Correct!</b> Margin collapse is a unique CSS behavior where the top/bottom margins of two elements combine into one, equal to the largest individual margin.",
+            "<b>Incorrect:</b> Margin collapse relates only to spacing, not the border property."
+        ]
+    },
+    {
+        q: "Why is 'box-sizing: border-box' recommended in the Pro-Tips section?",
+        options: [
+            "To make the element's background transparent.",
+            "To prevent padding from increasing the total width of an element.",
+            "To remove the border from the element.",
+            "To speed up the page loading time."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Transparency is handled by RGBA or the <code>opacity</code> property.",
+            "<b>Correct!</b> With <code>border-box</code>, the padding and border are included in the specified width, preventing the element from growing larger than intended.",
+            "<b>Incorrect:</b> It changes how size is calculated, it doesn't remove the border.",
+            "<b>Incorrect:</b> While it makes layout math easier, it doesn't significantly impact network loading speed."
+        ]
+    },
+    {
+        q: "Can margins have negative values? If so, what is the effect?",
+        options: [
+            "No, CSS does not allow negative numbers.",
+            "Yes, they make the padding larger.",
+            "Yes, they can pull elements closer together or overlap them.",
+            "Yes, but they only work in External CSS files."
+        ],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> CSS allows negative values for several properties, including margins.",
+            "<b>Incorrect:</b> Margins and padding are independent layers of the box model.",
+            "<b>Correct!</b> Negative margins are a powerful layout tool used to overlap elements or decrease the natural gap between them.",
+            "<b>Incorrect:</b> Negative margins work in Inline, Internal, and External CSS."
+        ]
+    },
+    {
+        q: "If an element has a background color, which area will show that color?",
+        options: [
+            "Only the Content area.",
+            "The Content and Padding areas.",
+            "The Content, Padding, and Margin areas.",
+            "Only the Border area."
+        ],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Padding also displays the background color.",
+            "<b>Correct!</b> Background colors and images extend under the content and padding up to the edge of the border. Margins always remain transparent.",
+            "<b>Incorrect:</b> Margins are outside the element's background and are always transparent.",
+            "<b>Incorrect:</b> While backgrounds can sometimes show through borders, they primarily cover content and padding."
+        ]
+    }
+];
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling with space-between layout */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between; 
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+            margin-bottom: 40px;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button styling */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button styling */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Highlight style for the current page in the sidebar */
+        .sidebar a.active-link {
+            background-color: #04AA6D !important;
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. Get all links from your sidebar
+            const sidebarLinks = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // 2. Identify the current page path
+            const currentPath = window.location.pathname;
+            
+            // 3. Find the index and highlight the active link
+            let currentIndex = -1;
+            
+            sidebarLinks.forEach((link, index) => {
+                const linkHref = link.getAttribute('href').replace('..', '');
+                if (currentPath.endsWith(linkHref)) {
+                    currentIndex = index;
+                    link.classList.add('active-link');
+                    
+                    // Auto-scroll sidebar to the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 4. Configure Previous Button
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 5. Configure Next Button
+            if (currentIndex !== -1 && currentIndex < sidebarLinks.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = sidebarLinks[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+</div>
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = '../editor.html';
+    }
+</script>
+
+<footer class="footer">
+  <div class="footer-container">
+    
+    <div class="footer-box">
+      <img src="../images/LOGO.jpeg" alt="Oppty Logo">
+      <p style="color: white;">
+        Learn Web Development with practical courses in
+        HTML, CSS & JavaScript. Beginner-friendly training
+        with real-time projects.
+      </p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li><a href="#">HTML for Beginners</a></li>
+        <li><a href="../css/cssintro.html">CSS & Responsive Design</a></li>
+        <li><a href="#">JavaScript Basics</a></li>
+        <li><a href="#">Mini Projects</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p style="color: white;">Email: <a href="mailto:support@opptyacademy.com" style="color:white; text-decoration:none;">support@opptyacademy.com</a></p>
+      <p style="color: white;">Phone: +91 99999 99999</p>
+      <p style="color: white;">WhatsApp Support Available</p>
+    </div>
+
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../index.html#cs">Courses</a></li>
+        <li><a href="../index.html#as">About Us</a></li>
+        <li><a href="../index.html#cto">Contact</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Oppty Academy. All Rights Reserved.
+  </div>
+</footer>
+<style>
+    /* --- Footer Styles --- */
+.footer {
+    background: #0f0f0f;
+    color: white;
+    padding: 50px 20px 20px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;                  
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    text-align: center;             
+}
+
+.footer-box img {
+    background: #ffffff;
+    padding: 4px;
+    border-radius: 6px;
+    width: 160px;
+    margin: 0 auto 15px;
+    display: block;
+}
+
+.footer-box h3 {
+    color: #158e39;
+    margin-bottom: 15px;
+}
+
+.footer-box p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-box ul li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+/* Link styling within list */
+.footer-box ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-box ul li a:hover {
+    color: #158e39;
+}
+
+.social-icons {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;     
+}
+
+.social-icons a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    background: #222;
+    color: #fff;
+    border-radius: 50%;
+    margin: 0 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #158e39;
+    color: #000;
+}
+
+.social-icons .whatsapp { background: #25D366; }
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+    font-size: 13px;
+    color: #aaa;
+}
+</style>
+</body>
+</html>

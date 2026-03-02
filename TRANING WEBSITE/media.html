@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Media Elements - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        /* --- Base Layout --- */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        .content-wrapper { display: flex; flex: 1; }
+
+        /* --- Oppty Header Styles --- */
+        .main-header { background: #ffffff; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 1000; }
+        .header-container { max-width: 1200px; margin: auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; transition: 0.3s; }
+        .signin:hover { color: #158e39; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .explore-btn:hover { background: #ee730f; }
+
+        /* --- Sidebar Styles (Maintained) --- */
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 75px); /* Adjusted for header height */
+            position: sticky; 
+            top: 75px; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; 
+        }
+        .sidebar::-webkit-scrollbar { width: 6px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+        
+        /* --- Main Content --- */
+        .main { flex: 1; padding: 40px; }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        .summary-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .summary-table th, .summary-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .summary-table th { background-color: #f1f1f1; }
+
+        /* --- Oppty Footer Styles --- */
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; font-family: Arial, sans-serif; }
+        .footer-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: center; }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 150px; display: block; margin: 0 auto 15px; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; line-height: 1.6; }
+        .footer-box ul { list-style: none; padding: 0; }
+        .footer-box ul li { margin-bottom: 8px; font-size: 14px; cursor: pointer; }
+        .footer-box ul li:hover { color:#158e39; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; margin: 0 5px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: #158e39; color: #000; }
+        .social-icons .whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .content-wrapper { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+            .header-container { flex-wrap: wrap; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; margin-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo">
+      <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+    </div>
+    <nav class="nav-menu"> 
+        <a href="./structure.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+        <a href="./introduction.html">JavaScript</a>
+    </nav>
+    <div class="nav-right">
+      
+      <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+  </div>
+</header>
+
+<div class="content-wrapper">
+    
+
+
+
+<div class="sidebar">
+
+    <h2 style="padding:10px; font-size:18px;">HTML Basics</h2>
+
+    <a href="structure.html">Structure</a>
+
+    <a href="tags.html">Common Tags</a>
+
+    <a href="headings.html">Headings</a>
+
+    <a href="lists.html">Lists</a>
+
+    <a href="tables.html">Tables</a>
+
+    <h2 style="padding:10px; font-size:18px; ">Forms & Inputs</h2>
+
+    <a href="forms.html">Form Elements</a>
+
+    <a href="inputs.html">Input Types</a>
+
+    <a href="validation.html">Form Validation</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Semantic HTML</h2>
+
+    <a href="semantic.html">Semantic Tags</a>
+
+    <a href="Non-semantic.html">Non-Semantic Tags</a>
+
+    <a href="structure-benefits.html">SEO Benefits</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Media & SEO</h2>
+
+    <a href="media.html" style="background:#ccc;">Images, Audio, Video</a>
+
+    <a href="seo.html">Meta Tags & SEO</a>
+
+    <a href="accessibility.html">Accessibility (ARIA)</a>
+
+</div>
+
+
+
+<div class="main">
+
+    <h1>HTML Media Elements</h1>
+
+    <p>HTML5 allows you to embed images, audio, and video directly into your web pages to create a rich multimedia experience.</p>
+
+
+
+    <h2>1. The HTML &lt;img&gt; Tag</h2>
+
+    <p>The <code>&lt;img&gt;</code> tag is used to embed images. It is an empty tag, meaning it contains attributes only and does not have a closing tag.</p>
+
+   
+
+   
+
+
+
+    <div class="example-container">
+    <div class="code-box" id="media1">&lt;img src="https://picsum.photos/500/300" alt="A beautiful mountain landscape" width="500" height="300"&gt;</div>
+    <button class="try-btn" onclick="openEditor('media1')">Try it Yourself</button>
+</div>
+
+
+
+    <ul>
+
+        <li><strong>src (source):</strong> Specifies the path (URL) to the image.</li>
+
+        <li><strong>alt (alternate text):</strong> Critical for SEO and Accessibility. It shows if the image fails to load.</li>
+
+        <li><strong>Sizing:</strong> Use <code>width</code> and <code>height</code> to control dimensions directly.</li>
+
+    </ul>
+
+
+
+    <h2>2. The &lt;audio&gt; Element</h2>
+
+    <p>This element allows you to play audio files directly in the browser without external plugins.</p>
+
+
+
+    <div class="example-container">
+    <div class="code-box" id="media2">&lt;audio controls&gt;
+  &lt;source src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Example.ogg" type="audio/ogg"&gt;
+  &lt;source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg"&gt;
+  Your browser does not support the audio element.
+&lt;/audio&gt;</div>
+    <button class="try-btn" onclick="openEditor('media2')">Try it Yourself</button>
+</div>
+
+
+
+    <ul>
+
+        <li><strong>The controls Attribute:</strong> Essential to make play/pause/volume buttons visible.</li>
+
+        <li><strong>The &lt;source&gt; Tag:</strong> Used to provide multiple formats for cross-browser compatibility.</li>
+
+    </ul>
+
+
+
+    <h2>3. The &lt;video&gt; Element</h2>
+
+    <p>Similar to audio, the <code>&lt;video&gt;</code> tag is used to embed video clips.</p>
+
+
+
+   
+
+
+
+    <div class="example-container">
+    <div class="code-box" id="media3">&lt;video width="400" height="240" controls poster="https://peach.blender.org/wp-content/uploads/title_an_01.jpg"&gt;
+  &lt;source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"&gt;
+  Your browser does not support the video tag.
+&lt;/video&gt;</div>
+    <button class="try-btn" onclick="openEditor('media3')">Try it Yourself</button>
+</div>
+
+
+
+    <ul>
+
+        <li><strong>autoplay:</strong> Starts the video immediately (usually requires <code>muted</code>).</li>
+
+        <li><strong>poster:</strong> Displays an image until the video is played.</li>
+
+    </ul>
+
+
+
+    <h2>4. Supporting Multiple Formats</h2>
+
+    <p>To ensure media plays for everyone, provide alternatives within the tags:</p>
+
+    <ul>
+
+        <li><strong>Video:</strong> MP4 (widest support), WebM, and Ogg.</li>
+
+        <li><strong>Audio:</strong> MP3 (standard), WAV, and Ogg.</li>
+
+        <li><strong>Fallback Text:</strong> Text placed inside the tags appears if the browser is too old to support HTML5 media.</li>
+
+    </ul>
+
+
+
+    <h2>5. Using Images as Links</h2>
+
+    <p>Turn an image into a clickable link by wrapping the <code>&lt;img&gt;</code> tag inside an <code>&lt;a&gt;</code> (anchor) tag.</p>
+
+
+
+    <div class="example-container">
+    <div class="code-box" id="media1">&lt;img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=
+      crop&w=500&h=300" 
+      alt="Mountain Landscape" width="500" height="300"&gt;</div>
+    <button class="try-btn" onclick="openEditor('media1')">Try it Yourself</button>
+</div>
+
+
+
+    <h2>Summary Table of Media Tags</h2>
+
+    <table class="summary-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Tag</th>
+
+                <th>Purpose</th>
+
+                <th>Key Attributes</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr><td><code>&lt;img&gt;</code></td><td>Displays static pictures</td><td>src, alt</td></tr>
+
+            <tr><td><code>&lt;audio&gt;</code></td><td>Plays sound files</td><td>controls</td></tr>
+
+            <tr><td><code>&lt;video&gt;</code></td><td>Plays movie/clip files</td><td>controls, poster</td></tr>
+
+            <tr><td><code>&lt;source&gt;</code></td><td>Defines media files</td><td>src, type</td></tr>
+
+            <tr><td><code>&lt;track&gt;</code></td><td>Adds subtitles to video</td><td>kind, srclang</td></tr>
+
+        </tbody>
+
+    </table>
+<section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+        const quizData = [
+    {
+        q: "What is the primary function of the 'alt' attribute in an <img> tag?",
+        options: ["To set the image's border style", "To provide alternate text for accessibility and SEO", "To specify the path to the image file", "To make the image automatically resize"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Borders are handled by CSS, not the alt attribute.",
+            "<b>Correct!</b> The alt attribute is critical for screen readers and search engines, and it displays if the image fails to load.",
+            "<b>Incorrect:</b> The 'src' attribute is used to specify the image path.",
+            "<b>Incorrect:</b> Resizing is handled by the width and height attributes or CSS."
+        ]
+    },
+    {
+        q: "Which attribute is essential to make play, pause, and volume buttons visible on an <audio> or <video> element?",
+        options: ["autoplay", "poster", "controls", "loop"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Autoplay starts the media automatically but doesn't necessarily show the UI buttons.",
+            "<b>Incorrect:</b> Poster is an image shown before a video plays.",
+            "<b>Correct!</b> Without the 'controls' attribute, the browser will not display the default user interface for media playback.",
+            "<b>Incorrect:</b> Loop makes the media restart automatically but doesn't provide UI controls."
+        ]
+    },
+    {
+        q: "What is the purpose of the 'poster' attribute in a <video> tag?",
+        options: ["It lists the actors in the video", "It defines the video's resolution", "It displays a placeholder image until the video is played", "It allows the video to play in slow motion"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Metadata like cast lists is not handled by the poster attribute.",
+            "<b>Incorrect:</b> Video resolution is determined by the source file itself.",
+            "<b>Correct!</b> The poster attribute specifies an image to be shown while the video is downloading or until the user hits play.",
+            "<b>Incorrect:</b> Speed controls are not related to the poster attribute."
+        ]
+    },
+    {
+        q: "Why should you provide multiple <source> tags inside <audio> or <video> elements?",
+        options: ["To play multiple songs at the same time", "To ensure cross-browser compatibility with different formats", "To increase the volume of the playback", "To create a playlist of different videos"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Media elements generally play one source at a time.",
+            "<b>Correct!</b> Different browsers support different formats (like MP4 vs WebM); multiple sources ensure the media plays for everyone.",
+            "<b>Incorrect:</b> Volume is controlled by the user or the volume attribute.",
+            "<b>Incorrect:</b> Playlists usually require JavaScript; the source tag is for format alternatives."
+        ]
+    },
+    {
+        q: "Which of the following is an 'empty tag' (meaning it has no closing tag)?",
+        options: ["<video>", "<audio>", "<img>", "<source>"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Video requires a closing tag to wrap source tags and fallback text.",
+            "<b>Incorrect:</b> Audio requires a closing tag.",
+            "<b>Correct!</b> The <img> tag is a self-closing or empty tag that only contains attributes.",
+            "<b>Incorrect:</b> While source is also empty, <img> is the primary media tag mentioned as an empty tag in the text."
+        ]
+    },
+    {
+        q: "How do you make an image act as a clickable link in HTML?",
+        options: ["Use the 'link' attribute inside the <img> tag", "Wrap the <img> tag inside an <a> tag", "Add a 'href' attribute to the <img> tag", "Use the <imglink> tag"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> There is no 'link' attribute for the <img> tag.",
+            "<b>Correct!</b> By nesting the <img> inside the anchor (<a>) tag, the entire image becomes a trigger for the hyperlink.",
+            "<b>Incorrect:</b> The <img> tag does not support the 'href' attribute directly.",
+            "<b>Incorrect:</b> <imglink> is not a valid HTML element."
+        ]
+    },
+    {
+        q: "Which HTML5 tag is used specifically to add subtitles or captions to a video?",
+        options: ["<caption>", "<code>", "<track>", "<label>"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> <caption> is used for tables.",
+            "<b>Incorrect:</b> <code> is used for displaying computer code.",
+            "<b>Correct!</b> The <track> tag is used inside <video> or <audio> to specify timed text tracks like subtitles.",
+            "<b>Incorrect:</b> <label> is used for form inputs."
+        ]
+    }
+];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-box">
+      <img src="./images/LOGO.jpeg" alt="Oppty Logo">
+      <p>Learn Web Development with practical courses in HTML, CSS & JavaScript. Beginner-friendly training with real-time projects.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li>HTML for Beginners</li>
+        <li>CSS & Responsive Design</li>
+        <li>JavaScript Basics</li>
+        <li>Mini Projects</li>
+      </ul>
+    </div>
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p>Email: support@opptyacademy.com</p>
+      <p>Phone: +91 99999 99999</p>
+    </div>
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li>Home</li>
+        <li>Courses</li>
+        <li>About Us</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Oppty Academy. All Rights Reserved.</div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Input Types - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* Base Layout */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        .content-wrapper { display: flex; flex: 1; }
+
+        /* --- Oppty Header Styles --- */
+        .main-header { background: #ffffff; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 1000; }
+        .header-container { max-width: 1200px; margin: auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; transition: 0.3s; }
+        .signin:hover { color: #158e39; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .explore-btn:hover { background: #ee730f; }
+
+        /* --- Sidebar Styles (Maintained) --- */
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 75px); /* Header height adjustment */
+            position: sticky; 
+            top: 75px; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; 
+        }
+        .sidebar::-webkit-scrollbar { width: 6px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+
+        /* --- Main Content --- */
+        .main { flex: 1; padding: 40px;  }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        
+        .summary-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .summary-table th, .summary-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .summary-table th { background-color: #f1f1f1; }
+
+        /* --- Oppty Footer Styles --- */
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; font-family: Arial, sans-serif; }
+        .footer-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: center; }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 150px; margin: 0 auto 15px; display: block; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; line-height: 1.6; }
+        .footer-box ul { list-style: none; padding: 0; }
+        .footer-box ul li { margin-bottom: 8px; font-size: 14px; cursor: pointer; }
+        .footer-box ul li:hover { color:#158e39; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; margin: 0 5px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: #158e39; color: #000; }
+        .social-icons .whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .content-wrapper { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+            .header-container { flex-wrap: wrap; gap: 12px; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo">
+      <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+    </div>
+    <nav class="nav-menu"> 
+       <a href="./structure.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+        <a href="./introduction.html">JavaScript</a>
+    </nav>
+    <div class="nav-right">
+      
+      <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+    </div>
+  </div>
+</header>
+
+<div class="content-wrapper">
+    
+
+
+<div class="sidebar">
+
+    <h2 style="padding:10px; font-size:18px;">HTML Basics</h2>
+
+    <a href="structure.html">Structure</a>
+
+    <a href="tags.html">Common Tags</a>
+
+    <a href="headings.html">Headings</a>
+
+    <a href="lists.html">Lists</a>
+
+    <a href="tables.html">Tables</a>
+
+    <h2 style="padding:10px; font-size:18px; ">Forms & Inputs</h2>
+
+    <a href="forms.html">Form Elements</a>
+
+    <a href="inputs.html" style="background:#ccc;">Input Types</a>
+
+    <a href="validation.html">Form Validation</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Semantic HTML</h2>
+
+    <a href="semantic.html">Semantic Tags</a>
+
+    <a href="Non-semantic.html">Non-Semantic Tags</a>
+
+    <a href="structure-benefits.html">SEO Benefits</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Media & SEO</h2>
+
+    <a href="media.html">Images, Audio, Video</a>
+
+    <a href="seo.html">Meta Tags & SEO</a>
+
+    <a href="accessibility.html">Accessibility (ARIA)</a>
+
+</div>
+
+
+
+<div class="main">
+
+    <h1>HTML Input Types</h1>
+
+    <p>The <code>&lt;input&gt;</code> element is the most important form element. The <code>type</code> attribute defines what kind of data the input field will accept.</p>
+
+
+
+    <h2>1. Text Input (type="text")</h2>
+
+    <p>This is the default type for an <code>&lt;input&gt;</code> element. It is used to create a single-line text field.</p>
+
+   
+
+    <div class="example-container">
+
+        <div class="code-box" id="in1">&lt;label&gt;Username:&lt;/label&gt;
+
+&lt;input type="text" placeholder="Enter your name" maxlength="20"&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('in1')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Purpose:</strong> Capturing basic information like names, usernames, or search queries.</li>
+
+        <li><strong>placeholder:</strong> Displays a hint inside the box before the user types.</li>
+
+        <li><strong>maxlength:</strong> Limits the number of characters allowed.</li>
+
+    </ul>
+
+
+
+    <h2>2. Password Input (type="password")</h2>
+
+    <p>This type is specifically designed for sensitive data entry.</p>
+
+   
+
+   
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="in2">&lt;label&gt;Password:&lt;/label&gt;
+
+&lt;input type="password" id="pwd" name="password"&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('in2')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Purpose:</strong> It masks the characters (replacing them with dots or asterisks) so that bystanders cannot read the password.</li>
+
+        <li><strong>Security Note:</strong> The data is still sent as plain text unless the website uses an encrypted connection (HTTPS).</li>
+
+    </ul>
+
+
+
+    <h2>3. Email Input (type="email")</h2>
+
+    <p>This is a specialized text field introduced in HTML5 that includes built-in validation.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="in3">&lt;label&gt;Email Address:&lt;/label&gt;
+
+&lt;input type="email" name="user_email" required&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('in3')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Purpose:</strong> Ensures the user enters a properly formatted email address (containing an "@" and a domain).</li>
+
+        <li><strong>Mobile Benefit:</strong> Triggers a specialized keyboard on smartphones with <code>@</code> and <code>.com</code> shortcuts.</li>
+
+    </ul>
+
+
+
+    <h2>4. Radio Button (type="radio")</h2>
+
+    <p>Radio buttons allow a user to select exactly one option from a predefined set of choices.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="in4">&lt;p&gt;Select Gender:&lt;/p&gt;
+
+&lt;input type="radio" name="gender" value="male"&gt; Male
+
+&lt;input type="radio" name="gender" value="female"&gt; Female</div>
+
+        <button class="try-btn" onclick="openEditor('in4')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Grouping:</strong> To ensure only one can be picked, they must all share the same <code>name</code> attribute.</li>
+
+        <li><strong>Purpose:</strong> Best for mutually exclusive answers like "Yes/No" or plan selections.</li>
+
+    </ul>
+
+
+
+    <h2>5. Number Input (type="number")</h2>
+
+    <p>This type is used for fields that should only contain numeric values.</p>
+
+
+
+   
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="in5">&lt;label&gt;Quantity (1-10):&lt;/label&gt;
+
+&lt;input type="number" min="1" max="10" step="1"&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('in5')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Attributes:</strong> <code>min</code> and <code>max</code> set the range; <code>step</code> sets the allowed intervals.</li>
+
+        <li><strong>Benefit:</strong> Provides "spinners" (up/down arrows) to change values and prevents letter entry.</li>
+
+    </ul>
+
+
+
+    <h2>Summary Table</h2>
+
+    <table class="summary-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Type</th>
+
+                <th>Display</th>
+
+                <th>Main Usage</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr><td><code>text</code></td><td>Single line box</td><td>General text (Name, City)</td></tr>
+
+            <tr><td><code>password</code></td><td>Masked (••••)</td><td>Sensitive data (Passwords)</td></tr>
+
+            <tr><td><code>email</code></td><td>Single line box</td><td>Email address (with validation)</td></tr>
+
+            <tr><td><code>radio</code></td><td>Small circle</td><td>Single choice from a group</td></tr>
+
+            <tr><td><code>number</code></td><td>Box with arrows</td><td>Quantitative data (Age, Quantity)</td></tr>
+
+        </tbody>
+
+    </table>
+<section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+        const quizData = [
+    {
+        q: "What is the default 'type' for an <input> element if the attribute is not specified?",
+        options: ["password", "number", "text", "email"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> 'password' must be explicitly defined to mask characters.",
+            "<b>Incorrect:</b> 'number' is a specialized HTML5 type.",
+            "<b>Correct!</b> If no type is provided, the browser defaults to a single-line text field.",
+            "<b>Incorrect:</b> 'email' is a specialized type for address validation."
+        ]
+    },
+    {
+        q: "Which attribute is used to display a hint inside an input field before the user starts typing?",
+        options: ["value", "hint", "placeholder", "maxlength"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> 'value' sets the actual text content of the field.",
+            "<b>Incorrect:</b> 'hint' is not a valid HTML attribute for inputs.",
+            "<b>Correct!</b> The 'placeholder' attribute provides a short hint that disappears upon typing.",
+            "<b>Incorrect:</b> 'maxlength' restricts the number of characters allowed."
+        ]
+    },
+    {
+        q: "What is the primary visual difference of a 'password' input type?",
+        options: ["It is always bold", "It masks characters with dots or asterisks", "It highlights the text in red", "It disables the keyboard"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> The font weight remains standard.",
+            "<b>Correct!</b> The 'password' type obscures the input so bystanders cannot read sensitive data.",
+            "<b>Incorrect:</b> Red highlighting is usually reserved for validation errors.",
+            "<b>Incorrect:</b> The user can still type; the characters are just hidden."
+        ]
+    },
+    {
+        q: "How does 'type=\"email\"' benefit users on mobile devices?",
+        options: ["It automatically fills in their name", "It triggers a keyboard with @ and .com shortcuts", "It sends an email automatically", "It increases the font size"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Autocomplete is a separate attribute functionality.",
+            "<b>Correct!</b> Modern mobile browsers optimize the keyboard layout for faster email entry.",
+            "<b>Incorrect:</b> It only validates the format; it does not send emails.",
+            "<b>Incorrect:</b> Font size is controlled via CSS."
+        ]
+    },
+    {
+        q: "To make a group of radio buttons mutually exclusive (only one can be picked), they must share the same:",
+        options: ["id", "class", "value", "name"],
+        correct: 3,
+        explanations: [
+            "<b>Incorrect:</b> 'id' must always be unique for every element on a page.",
+            "<b>Incorrect:</b> 'class' is used for styling and does not affect grouping behavior.",
+            "<b>Incorrect:</b> 'value' is the data sent to the server for that specific choice.",
+            "<b>Correct!</b> The 'name' attribute groups radio buttons together so only one can be selected at a time."
+        ]
+    },
+    {
+        q: "Which input type provides 'spinners' (up/down arrows) for the user to change values?",
+        options: ["text", "number", "radio", "password"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Text fields do not have built-in increment/decrement controls.",
+            "<b>Correct!</b> The 'number' type includes UI controls to adjust quantitative data.",
+            "<b>Incorrect:</b> Radio buttons are selection circles, not numeric fields.",
+            "<b>Incorrect:</b> Password fields are for masked text entry."
+        ]
+    },
+    {
+        q: "What do the 'min' and 'max' attributes do for a number input?",
+        options: ["Set the height and width of the box", "Define the minimum and maximum character length", "Set the range of allowed numeric values", "Determine the font size"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Size is controlled by CSS or the 'size' attribute.",
+            "<b>Incorrect:</b> Character length is controlled by 'maxlength'.",
+            "<b>Correct!</b> They establish the lower and upper boundaries for the numeric value allowed.",
+            "<b>Incorrect:</b> These attributes have no effect on font styling."
+        ]
+    },
+    {
+        q: "Which attribute would you use to limit a text input to only 20 characters?",
+        options: ["size=\"20\"", "maxlength=\"20\"", "limit=\"20\"", "min=\"20\""],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> 'size' defines the visible width of the input, not the character limit.",
+            "<b>Correct!</b> 'maxlength' prevents the user from typing more than the specified number of characters.",
+            "<b>Incorrect:</b> 'limit' is not a valid HTML attribute.",
+            "<b>Incorrect:</b> 'min' is used for numeric ranges, not text length."
+        ]
+    },
+    {
+        q: "Is data sent via 'type=\"password\"' automatically encrypted?",
+        options: ["Yes, always", "No, it requires an HTTPS connection for security", "Only in Chrome and Firefox", "Yes, but only if it's a long password"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> The 'type' only affects the visual display on the screen.",
+            "<b>Correct!</b> Security during transmission depends on the protocol (HTTPS), not the input type.",
+            "<b>Incorrect:</b> Encryption is a server/protocol level feature, not browser-specific.",
+            "<b>Incorrect:</b> Length does not affect whether the data is encrypted."
+        ]
+    },
+    {
+        q: "When creating a 'Gender' selection with two options where only one can be picked, which type is most appropriate?",
+        options: ["text", "email", "radio", "number"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Text allows the user to type anything, which is hard to process.",
+            "<b>Incorrect:</b> Email is for validating address formats.",
+            "<b>Correct!</b> Radio buttons are designed for selecting one choice from a predefined set.",
+            "<b>Incorrect:</b> Number is for quantitative data entry."
+        ]
+    }
+];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-box">
+      <img src="./images/LOGO.jpeg" alt="Oppty Logo">
+      <p>Learn Web Development with practical courses in HTML, CSS & JavaScript. Beginner-friendly training with real-time projects.</p>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/919999999999" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="footer-box">
+      <h3>Courses</h3>
+      <ul>
+        <li>HTML for Beginners</li>
+        <li>CSS & Responsive Design</li>
+        <li>JavaScript Basics</li>
+      </ul>
+    </div>
+    <div class="footer-box">
+      <h3>Contact Us</h3>
+      <p>Email: support@opptyacademy.com</p>
+      <p>Phone: +91 99999 99999</p>
+    </div>
+    <div class="footer-box">
+      <h3>Quick Links</h3>
+      <ul>
+        <li>Home</li>
+        <li>Courses</li>
+        <li>About Us</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Oppty Academy. All Rights Reserved.</div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Common Tags - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        /* --- LAYOUT & RESET --- */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        .content-wrapper { display: flex; flex: 1; }
+
+        /* --- HEADER STYLES --- */
+        .main-header { background: #ffffff; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 1000; }
+        .header-container { max-width: 1200px; margin: auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; transition: 0.3s; }
+        .signin:hover { color: #158e39; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .explore-btn:hover { background: #ee730f; }
+
+        /* --- SIDEBAR STYLES --- */
+        .sidebar { width: 220px; background: #f1f1f1; height: calc(100vh - 75px); position: sticky; top: 75px; border-right: 1px solid #ddd; overflow-y: auto; }
+        .sidebar::-webkit-scrollbar { width: 6px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        .sidebar h2 { padding: 10px; font-size: 18px; margin: 0; background: #eee; }
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+
+        /* --- MAIN CONTENT STYLES --- */
+        .main { flex: 1; padding: 40px; }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+
+        /* --- FOOTER STYLES --- */
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; font-family: Arial, sans-serif; }
+        .footer-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: center; }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 150px; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; line-height: 1.6; }
+        .footer-box ul { list-style: none; padding: 0; }
+        .footer-box ul li { margin-bottom: 8px; font-size: 14px; cursor: pointer; }
+        .footer-box ul li:hover { color:#158e39; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; margin: 0 5px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: #158e39; color: #000; }
+        .social-icons .whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .header-container { flex-wrap: wrap; gap: 12px; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; gap: 20px; }
+            .content-wrapper { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+        </div>
+        <nav class="nav-menu"> 
+            <a href="./structure.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+        <a href="./introduction.html">JavaScript</a>
+        </nav>
+        <div class="nav-right">
+            
+            <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+        </div>
+    </div>
+</header>
+
+<div class="content-wrapper">
+    
+
+
+<div class="sidebar">
+
+    <h2 style="padding:10px; font-size:18px;">HTML Basics</h2>
+
+    <a href="structure.html">Structure</a>
+
+    <a href="tags.html" style="background:#ccc;">Common Tags</a>
+
+    <a href="headings.html">Headings</a>
+
+    <a href="lists.html">Lists</a>
+
+    <a href="tables.html">Tables</a>
+
+   
+
+    <h2 style="padding:10px; font-size:18px; ">Forms & Inputs</h2>
+
+    <a href="forms.html">Form Elements</a>
+
+    <a href="inputs.html">Input Types</a>
+
+    <a href="validation.html">Form Validation</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Semantic HTML</h2>
+
+    <a href="semantic.html">Semantic Tags</a>
+
+    <a href="Non-semantic.html">Non-Semantic Tags</a>
+
+    <a href="structure-benefits.html">SEO Benefits</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Media & SEO</h2>
+
+    <a href="media.html">Images, Audio, Video</a>
+
+    <a href="seo.html">Meta Tags & SEO</a>
+
+    <a href="accessibility.html">Accessibility (ARIA)</a>
+
+</div>
+
+
+
+<div class="main">
+
+    <h1>Common HTML Tags</h1>
+
+    <p>HTML tags are the building blocks of web pages. They tell the browser how to display content.</p>
+
+
+
+    <h2>1. Root & Structural Tags</h2>
+
+    <p>These tags form the essential skeleton of every HTML document. They define the document's boundaries and basic layout.</p>
+
+   
+
+   
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="tag1">&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+  &lt;head&gt;
+
+    &lt;title&gt;Page Title&lt;/title&gt;
+
+  &lt;/head&gt;
+
+  &lt;body&gt;
+
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+
+  &lt;/body&gt;
+
+&lt;/html&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('tag1')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><code>&lt;html&gt;</code>: The root element that wraps all other tags on the page.</li>
+
+        <li><code>&lt;head&gt;</code>: A container for metadata (data about data), such as the title and links to CSS.</li>
+
+        <li><code>&lt;body&gt;</code>: Contains all visible content like text and images.</li>
+
+        <li><code>&lt;!DOCTYPE html&gt;</code>: Informs the browser that the document is HTML5.</li>
+
+    </ul>
+
+
+
+    <h2>2. Metadata & Scripting Tags</h2>
+
+    <p>These tags provide "behind the scenes" info or add interactivity. They usually live inside the <code>&lt;head&gt;</code>.</p>
+
+   
+
+    <div class="example-container">
+
+        <div class="code-box" id="tag2">&lt;head&gt;
+
+  &lt;title&gt;My Website&lt;/title&gt;
+
+  &lt;meta name="description" content="Tutorial page"&gt;
+
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+
+&lt;/head&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('tag2')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><code>&lt;title&gt;</code>: Sets the name of the page in the browser tab.</li>
+
+        <li><code>&lt;meta&gt;</code>: Provides keywords, descriptions, and author info.</li>
+
+        <li><code>&lt;link&gt;</code>: Connects external resources like CSS stylesheets.</li>
+
+        <li><code>&lt;script&gt;</code>: Links JavaScript to make the page interactive.</li>
+
+    </ul>
+
+
+
+    <h2>3. Text Formatting Tags</h2>
+
+    <p>Use these to control text appearance and give specific meanings (Logical vs. Physical).</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="tag3">&lt;p&gt;This is &lt;strong&gt;important&lt;/strong&gt; text.&lt;/p&gt;
+
+&lt;p&gt;This is &lt;em&gt;emphasized&lt;/em&gt; text.&lt;/p&gt;
+
+&lt;span style="color:red"&gt;Specific styled text&lt;/span&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('tag3')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><code>&lt;strong&gt;</code> and <code>&lt;b&gt;</code>: Bold text. Strong implies importance; B is just for style.</li>
+
+        <li><code>&lt;em&gt;</code> and <code>&lt;i&gt;</code>: Italics. Em adds emphasis; I is just for style.</li>
+
+        <li><code>&lt;span&gt;</code>: An inline container used to style a specific part of text.</li>
+
+    </ul>
+
+
+
+    <h2>4. Layout & Semantic Tags (Sectioning)</h2>
+
+    <p>Semantic tags describe the content's meaning for search engines and screen readers.</p>
+
+
+
+   
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="tag4">&lt;header&gt;Header Content&lt;/header&gt;
+
+&lt;nav&gt;Menu Links&lt;/nav&gt;
+
+&lt;section&gt;Main Chapter&lt;/section&gt;
+
+&lt;footer&gt;Copyright 2026&lt;/footer&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('tag4')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><code>&lt;div&gt;</code>: A generic block-level container for grouping.</li>
+
+        <li><code>&lt;header&gt;</code>: Introductory content at the top of a page or section.</li>
+
+        <li><code>&lt;nav&gt;</code>: Specifically for navigation blocks (menus).</li>
+
+        <li><code>&lt;footer&gt;</code>: The bottom of a page, containing contact or copyright info.</li>
+
+    </ul>
+
+
+
+    <h2>5. Media & Interactive Tags</h2>
+
+    <p>These tags embed multimedia or collect data from users.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="tag5">&lt;a href="https://google.com"&gt;Visit Google&lt;/a&gt;
+
+&lt;img src="logo.png" alt="Company Logo"&gt;
+
+&lt;video controls&gt;
+
+  &lt;source src="movie.mp4" type="video/mp4"&gt;
+
+&lt;/video&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('tag5')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><code>&lt;a&gt;</code> (Anchor): Creates hyperlinks to other pages.</li>
+
+        <li><code>&lt;img&gt;</code>: Embeds images (this is an "empty" tag).</li>
+
+        <li><code>&lt;form&gt;</code>: A container for input elements to collect user data.</li>
+
+        <li><code>&lt;video&gt;</code> and <code>&lt;audio&gt;</code>: Play media files directly in the browser.</li>
+
+    </ul>
+<section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+        const quizData = [
+        {
+            q: "What is the purpose of the <!DOCTYPE html> declaration?",
+            options: ["To create a visible header", "To tell the browser the document is HTML5", "To link a CSS stylesheet", "To set the page title"],
+            correct: 1,
+            explanations: [
+                "<b>Incorrect:</b> Headers are created with &lt;header&gt; tags.",
+                "<b>Correct!</b> It ensures the browser renders the page using modern HTML5 standards.",
+                "<b>Incorrect:</b> CSS is linked using the &lt;link&gt; tag.",
+                "<b>Incorrect:</b> Titles are set using the &lt;title&gt; tag."
+            ]
+        },
+        {
+            q: "Which tag is the 'root' element that wraps all other tags?",
+            options: ["<body>", "<head>", "<html>", "<div>"],
+            correct: 2,
+            explanations: [
+                "<b>Incorrect:</b> The body is a child of the root element.",
+                "<b>Incorrect:</b> The head is a child of the root element.",
+                "<b>Correct!</b> The &lt;html&gt; tag is the top-level container for the entire page.",
+                "<b>Incorrect:</b> &lt;div&gt; is a generic container, not the root."
+            ]
+        },
+        {
+            q: "Where should <meta> and <link> tags typically be placed?",
+            options: ["Inside the <body>", "Inside the <head>", "After the </html> tag", "Inside a <div>"],
+            correct: 1,
+            explanations: [
+                "<b>Incorrect:</b> Visible content goes in the body, not metadata.",
+                "<b>Correct!</b> The &lt;head&gt; section is for 'behind the scenes' information.",
+                "<b>Incorrect:</b> Nothing should follow the closing &lt;/html&gt; tag.",
+                "<b>Incorrect:</b> <div> tags are for visible layout."
+            ]
+        },
+        {
+            q: "Which tag is used to bold text and imply 'strong importance'?",
+            options: ["<b>", "<i>", "<strong>", "<em>"],
+            correct: 2,
+            explanations: [
+                "<b>Incorrect:</b> &lt;b&gt; is just for style, not importance.",
+                "<b>Incorrect:</b> &lt;i&gt; is for italics.",
+                "<b>Correct!</b> &lt;strong&gt; is a semantic tag indicating the text is important.",
+                "<b>Incorrect:</b> &lt;em&gt; is for emphasis (italics)."
+            ]
+        },
+        {
+            q: "Which tag connects an external CSS stylesheet?",
+            options: ["<script>", "<link>", "<a>", "<meta>"],
+            correct: 1,
+            explanations: [
+                "<b>Incorrect:</b> &lt;script&gt; is for JavaScript.",
+                "<b>Correct!</b> The &lt;link&gt; tag defines the relationship to an external style file.",
+                "<b>Incorrect:</b> &lt;a&gt; is for hyperlinks.",
+                "<b>Incorrect:</b> &lt;meta&gt; is for descriptions and keywords."
+            ]
+        },
+        {
+            q: "What is the purpose of semantic tags like <nav> and <footer>?",
+            options: ["To speed up image loading", "To provide meaning to search engines", "To translate the page", "To play videos"],
+            correct: 1,
+            explanations: [
+                "<b>Incorrect:</b> They don't affect image speed.",
+                "<b>Correct!</b> They help browsers and search engines understand the document structure.",
+                "<b>Incorrect:</b> Translation is handled by attributes like 'lang'.",
+                "<b>Incorrect:</b> Media tags like &lt;video&gt; play files."
+            ]
+        },
+        {
+            q: "Which of these is an 'empty' (self-closing) tag?",
+            options: ["<div>", "<img>", "<p>", "<a>"],
+            correct: 1,
+            explanations: [
+                "<b>Incorrect:</b> &lt;div&gt; requires a closing tag.",
+                "<b>Correct!</b> &lt;img&gt; does not wrap text and does not need a closing tag.",
+                "<b>Incorrect:</b> &lt;p&gt; wraps text and needs a closing tag.",
+                "<b>Incorrect:</b> &lt;a&gt; wraps the link text."
+            ]
+        },
+        {
+            q: "Where does the visible content (images, text) of a webpage go?",
+            options: ["In the <head>", "In the <body>", "In the <title>", "In the <meta>"],
+            correct: 1,
+            explanations: [
+                "<b>Incorrect:</b> The head content is mostly invisible.",
+                "<b>Correct!</b> Everything the user sees must be inside the &lt;body&gt;.",
+                "<b>Incorrect:</b> The title only appears on the browser tab.",
+                "<b>Incorrect:</b> Meta tags are for data, not content."
+            ]
+        },
+        {
+            q: "Which tag is used to create a hyperlink?",
+            options: ["<link>", "<a>", "<href>", "<nav>"],
+            correct: 1,
+            explanations: [
+                "<b>Incorrect:</b> &lt;link&gt; is for CSS or icons.",
+                "<b>Correct!</b> The &lt;a&gt; (anchor) tag creates clickable links.",
+                "<b>Incorrect:</b> 'href' is an attribute, not a tag.",
+                "<b>Incorrect:</b> &lt;nav&gt; is a container for links."
+            ]
+        },
+        {
+            q: "Which element is a generic block-level container for grouping?",
+            options: ["<span>", "<div>", "<header>", "<body>"],
+            correct: 1,
+            explanations: [
+                "<b>Incorrect:</b> &lt;span&gt; is an inline container.",
+                "<b>Correct!</b> &lt;div&gt; is the standard block-level container for layout.",
+                "<b>Incorrect:</b> &lt;header&gt; has specific semantic meaning.",
+                "<b>Incorrect:</b> &lt;body&gt; is the main container for everything."
+            ]
+        }
+    ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-box">
+            <img src="./images/LOGO.jpeg" alt="Oppty Logo" class="logo">
+            <p>Learn Web Development with practical courses in HTML, CSS & JavaScript.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h3>Courses</h3>
+            <ul>
+                <li>HTML for Beginners</li>
+                <li>CSS & Responsive Design</li>
+                <li>JavaScript Basics</li>
+            </ul>
+        </div>
+        <div class="footer-box">
+            <h3>Contact Us</h3>
+            <p>Email: support@opptyacademy.com</p>
+            <p>Phone: +91 99999 99999</p>
+        </div>
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <ul>
+                <li>Home</li>
+                <li>About Us</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">© 2026 Oppty Academy. All Rights Reserved.</div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>

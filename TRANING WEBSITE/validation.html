@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Form Validation - Oppty Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        /* --- ORIGINAL TUTORIAL STYLES --- */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; }
+        
+        .page-wrapper { display: flex; flex: 1; }
+
+        .sidebar { 
+            width: 220px; 
+            background: #f1f1f1; 
+            height: calc(100vh - 70px); /* Adjust based on header height */
+            position: sticky; 
+            top: 70px; 
+            border-right: 1px solid #ddd; 
+            overflow-y: auto; 
+        }
+
+        .sidebar::-webkit-scrollbar { width: 6px; }
+        .sidebar::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+        .sidebar::-webkit-scrollbar-thumb:hover { background: #888; }
+
+        .sidebar a { display: block; padding: 10px 20px; text-decoration: none; color: black; border-bottom: 1px solid #ddd; }
+        .sidebar a:hover { background-color: #bbb; }
+        
+        .main { flex: 1; padding: 40px;  }
+        .example-container { background-color: #E7E9EB; padding: 20px; border-radius: 5px; margin: 25px 0; border: 1px solid #ccc; }
+        .code-box { background-color: white; padding: 15px; border-left: 4px solid #04AA6D; font-family: monospace; white-space: pre; margin-bottom: 15px; overflow-x: auto; font-size: 14px; }
+        .try-btn { background-color: #04AA6D; color: white; padding: 12px 25px; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; }
+        h2 { border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 50px; }
+        code { background-color: #f1f1f1; padding: 2px 4px; border-radius: 4px; color: #d1105a; }
+        
+        .summary-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .summary-table th, .summary-table td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        .summary-table th { background-color: #04AA6D; color: white; }
+
+        /* --- HEADER STYLES --- */
+        .main-header { background: #ffffff; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 1000; height: 70px; }
+        .header-container { max-width: 1200px; margin: auto; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .logo img { width: 150px; display: block; }
+        .nav-menu { display: flex; align-items: center; gap: 30px; }
+        .nav-menu a { text-decoration: none; font-size: 15px; font-weight: 500; color: #000; position: relative; transition: 0.3s; }
+        .nav-menu a:hover { color: #158e39; }
+        .nav-menu a::after { content: ""; position: absolute; width: 0; height: 2px; left: 0; bottom: -6px; background: #158e39; transition: 0.3s; }
+        .nav-menu a:hover::after { width: 100%; }
+        .nav-right { display: flex; align-items: center; gap: 18px; }
+        .signin { text-decoration: none; font-size: 15px; color: #000; font-weight: 500; }
+        .explore-btn { background: #158e39; color: #fff; padding: 10px 22px; border-radius: 25px; font-size: 14px; font-weight: bold; text-decoration: none; transition: 0.3s; }
+        .explore-btn:hover { background: #ee730f; }
+
+        /* --- FOOTER STYLES --- */
+        .footer { background: #0f0f0f; color: #ccc; padding: 50px 20px 20px; font-family: Arial, sans-serif; }
+        .footer-container { max-width: 1200px; margin: auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; text-align: center; }
+        .footer-box img { background: #ffffff; padding: 4px; border-radius: 6px; width: 150px; }
+        .footer-box h3 { color: #158e39; margin-bottom: 15px; }
+        .footer-box p { font-size: 14px; line-height: 1.6; }
+        .footer-box ul { list-style: none; padding: 0; }
+        .footer-box ul li { margin-bottom: 8px; font-size: 14px; cursor: pointer; }
+        .footer-box ul li:hover { color:#158e39; }
+        .social-icons { margin-top: 15px; display: flex; justify-content: center; }
+        .social-icons a { display: inline-flex; justify-content: center; align-items: center; width: 38px; height: 38px; background: #222; color: #fff; border-radius: 50%; margin: 0 5px; text-decoration: none; transition: 0.3s; }
+        .social-icons a:hover { background: #158e39; color: #000; }
+        .social-icons .whatsapp { background: #25D366; }
+        .footer-bottom { text-align: center; margin-top: 40px; border-top: 1px solid #333; padding-top: 15px; font-size: 13px; color: #aaa; }
+
+        @media (max-width: 768px) {
+            .header-container { flex-wrap: wrap; }
+            .nav-menu { order: 3; width: 100%; justify-content: center; gap: 20px; margin-top: 10px;}
+            .page-wrapper { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="index.html"><img src="./images/LOGO.jpeg"  alt="Oppty Academy Logo"></a>
+        </div>
+        <nav class="nav-menu"> 
+            <a href="./structure.html">Html</a> 
+        <a href="./css/cssintro.html">Css</a>
+        <a href="./introduction.html">JavaScript</a>
+        </nav>
+        <div class="nav-right">
+            
+            <a href="./index.html#projects" class="explore-btn">Explore Now</a>
+        </div>
+    </div>
+</header>
+
+<div class="page-wrapper">
+    
+
+
+<div class="sidebar">
+
+    <h2 style="padding:10px; font-size:18px;">HTML Basics</h2>
+
+    <a href="structure.html">Structure</a>
+
+    <a href="tags.html">Common Tags</a>
+
+    <a href="headings.html">Headings</a>
+
+    <a href="lists.html">Lists</a>
+
+    <a href="tables.html">Tables</a>
+
+    <h2 style="padding:10px; font-size:18px; ">Forms & Inputs</h2>
+
+    <a href="forms.html">Form Elements</a>
+
+    <a href="inputs.html">Input Types</a>
+
+    <a href="validation.html" style="background:#ccc;">Form Validation</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Semantic HTML</h2>
+
+    <a href="semantic.html">Semantic Tags</a>
+
+    <a href="Non-semantic.html">Non-Semantic Tags</a>
+
+    <a href="structure-benefits.html">SEO Benefits</a>
+
+
+
+    <h2 style="padding:10px; font-size:18px; ">Media & SEO</h2>
+
+    <a href="media.html">Images, Audio, Video</a>
+
+    <a href="seo.html">Meta Tags & SEO</a>
+
+    <a href="accessibility.html">Accessibility (ARIA)</a>
+
+</div>
+
+
+
+<div class="main">
+
+    <h1>HTML Form Validation</h1>
+
+    <p>Client-side validation ensures that data submitted by the user matches the required format before it is sent to the server.</p>
+
+
+
+    <h2>1. The required Attribute</h2>
+
+    <p>This is the simplest form of validation. It ensures that an input field is not left empty when the user clicks the submit button.</p>
+
+   
+
+   
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="val1">&lt;form&gt;
+
+  &lt;label&gt;Username:&lt;/label&gt;
+
+  &lt;input type="text" name="username" required&gt;
+
+  &lt;input type="submit"&gt;
+
+&lt;/form&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('val1')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>How it works:</strong> The browser blocks submission and displays a warning if the field is empty.</li>
+
+    </ul>
+
+
+
+    <h2>2. Length Validation (minlength & maxlength)</h2>
+
+    <p>These attributes control the number of characters a user can enter into a text-based input.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="val2">&lt;label&gt;Password (8-20 chars):&lt;/label&gt;
+
+&lt;input type="password" minlength="8" maxlength="20" required&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('val2')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>minlength:</strong> Specifies the minimum characters required.</li>
+
+        <li><strong>maxlength:</strong> Sets a hard limit on the maximum characters allowed.</li>
+
+    </ul>
+
+
+
+    <h2>3. Type-Based Validation</h2>
+
+    <p>By choosing a specific type, you trigger the browser's automatic internal validation rules for that data format.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="val3">&lt;input type="email" placeholder="Enter Email"&gt;
+
+&lt;input type="url" placeholder="Enter Website URL"&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('val3')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Email:</strong> Checks for a valid structure (includes an @ and a domain).</li>
+
+        <li><strong>URL:</strong> Ensures the entry starts with a protocol like <code>http://</code> or <code>https://</code>.</li>
+
+    </ul>
+
+
+
+    <h2>4. Range Validation (min & max)</h2>
+
+    <p>Used specifically for numeric or date inputs to ensure the value falls within a certain range.</p>
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="val4">&lt;label&gt;Age (18-99):&lt;/label&gt;
+
+&lt;input type="number" name="age" min="18" max="99"&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('val4')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>min:</strong> Sets the lowest possible value.</li>
+
+        <li><strong>max:</strong> Sets the highest possible value.</li>
+
+    </ul>
+
+
+
+    <h2>5. Pattern Validation (pattern)</h2>
+
+    <p>The <code>pattern</code> attribute allows you to create custom validation rules using Regular Expressions (Regex).</p>
+
+
+
+   
+
+
+
+    <div class="example-container">
+
+        <div class="code-box" id="val5">&lt;label&gt;Phone (123-456-7890):&lt;/label&gt;
+
+&lt;input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+
+       title="Format: 123-456-7890" required&gt;</div>
+
+        <button class="try-btn" onclick="openEditor('val5')">Try it Yourself</button>
+
+    </div>
+
+
+
+    <ul>
+
+        <li><strong>Pro Tip:</strong> Use the <code>title</code> attribute to provide a "tooltip" explanation if the user enters the format incorrectly.</li>
+
+    </ul>
+
+
+
+    <h2>Summary of Validation Attributes</h2>
+
+    <table class="summary-table">
+
+        <thead>
+
+            <tr>
+
+                <th>Attribute</th>
+
+                <th>Purpose</th>
+
+                <th>Used For</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr><td><code>required</code></td><td>Ensures field is not empty</td><td>Any input</td></tr>
+
+            <tr><td><code>minlength / maxlength</code></td><td>Validates character count</td><td>Text, Password, Tel</td></tr>
+
+            <tr><td><code>min / max</code></td><td>Validates numeric/date range</td><td>Number, Date, Range</td></tr>
+
+            <tr><td><code>type</code></td><td>Validates format</td><td>Email, URL, Date</td></tr>
+
+            <tr><td><code>pattern</code></td><td>Validates custom Regex</td><td>Text, Tel, Email</td></tr>
+
+        </tbody>
+
+    </table>
+<section class="quiz-section">
+    <style>
+        .quiz-section {
+            background: #fdfdfd;
+            padding: 30px;
+            border: 2px solid #158e39;
+            border-radius: 12px;
+            margin-top: 50px;
+            font-family: 'Inter', sans-serif;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .quiz-header { text-align: center; margin-bottom: 20px; }
+        .progress-bar { height: 8px; background: #eee; border-radius: 4px; margin-bottom: 20px; overflow: hidden; }
+        #progress-fill { height: 100%; background: #158e39; width: 0%; transition: width 0.3s ease; }
+        
+        .question-block {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: none;
+        }
+        .question-block.active { display: block; animation: fadeIn 0.4s; }
+        .question-text { font-size: 1.25em; font-weight: 700; margin-bottom: 20px; color: #2c3e50; }
+        
+        .option-label {
+            display: block;
+            padding: 14px 20px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .option-label:hover { background: #f1f3f5; border-color: #158e39; }
+        .option-label.disabled { pointer-events: none; }
+        
+        /* Correct/Incorrect UI */
+        .option-label.correct { background: #d4edda !important; border-color: #28a745 !important; color: #155724; font-weight: 600; }
+        .option-label.incorrect { background: #f8d7da !important; border-color: #dc3545 !important; color: #721c24; }
+
+        .explanation-box {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            line-height: 1.6;
+        }
+        .explanation-box.show { display: block; animation: slideDown 0.3s; }
+        .explanation-box.correct-bg { background: #e6ffed; border-left: 6px solid #28a745; color: #155724; }
+        .explanation-box.incorrect-bg { background: #fff5f5; border-left: 6px solid #dc3545; color: #721c24; }
+
+        .next-btn {
+            display: none;
+            margin-top: 20px;
+            background: #158e39;
+            color: white;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            float: right;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { transform: translateY(-10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .clearfix::after { content: ""; clear: both; display: table; }
+    </style>
+
+    <div class="quiz-header">
+        <h2><i class="fas fa-lightbulb"></i> Mastery Quiz</h2>
+      
+    </div>
+
+    <div class="progress-bar"><div id="progress-fill"></div></div>
+    
+    <div id="quiz-container"></div>
+
+    <div id="final-screen" style="display:none; text-align:center; padding: 40px;">
+        <i class="fas fa-award" style="font-size: 60px; color: #158e39; margin-bottom: 20px;"></i>
+        <h2 id="final-score-text"></h2>
+        <button onclick="location.reload()" class="try-btn" style="background: #158e39;">Try Again</button>
+    </div>
+
+    <script>
+        const quizData = [
+    {
+        q: "What is the primary purpose of client-side form validation?",
+        options: ["To store user data on the server", "To ensure data matches the required format before submission", "To encrypt the user's password", "To change the visual style of the input fields"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Validation happens before the data ever reaches the server.",
+            "<b>Correct!</b> It checks the data against rules to catch errors before the form is sent to the server.",
+            "<b>Incorrect:</b> Encryption is a security process, not a validation process.",
+            "<b>Incorrect:</b> While validation can trigger CSS changes, its primary purpose is data integrity."
+        ]
+    },
+    {
+        q: "Which attribute ensures that an input field cannot be left blank?",
+        options: ["placeholder", "pattern", "required", "minlength"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Placeholder only shows temporary text; it does not force the user to type anything.",
+            "<b>Incorrect:</b> Pattern checks the format of the text but doesn't necessarily make it mandatory.",
+            "<b>Correct!</b> The 'required' attribute blocks submission if the field is empty.",
+            "<b>Incorrect:</b> Minlength sets a character limit, but 'required' is needed to prevent an empty submission."
+        ]
+    },
+    {
+        q: "How does 'type=\"email\"' validate user input?",
+        options: ["It checks for a valid structure including an @ and a domain", "It checks if the email exists in a database", "It requires at least 20 characters", "It forces the text to be uppercase"],
+        correct: 0,
+        explanations: [
+            "<b>Correct!</b> Browsers automatically check for the presence of an '@' and a domain suffix for this type.",
+            "<b>Incorrect:</b> HTML cannot check if an email is real or exists; that requires server-side logic.",
+            "<b>Incorrect:</b> Type=\"email\" does not have a default length requirement.",
+            "<b>Incorrect:</b> Input types do not affect the casing (uppercase/lowercase) of the text."
+        ]
+    },
+    {
+        q: "Which pair of attributes is used to limit the number of characters in a password field?",
+        options: ["min and max", "low and high", "start and end", "minlength and maxlength"],
+        correct: 3,
+        explanations: [
+            "<b>Incorrect:</b> Min and max are used for numeric and date ranges, not character counts.",
+            "<b>Incorrect:</b> Low and high are attributes used for the <meter> element.",
+            "<b>Incorrect:</b> Start and end are not standard HTML validation attributes.",
+            "<b>Correct!</b> Minlength sets the minimum characters, and maxlength sets the absolute limit."
+        ]
+    },
+    {
+        q: "What is required for 'type=\"url\"' validation to pass?",
+        options: ["The entry must include '.com'", "The entry must start with a protocol like http:// or https://", "The entry must be at least 10 characters long", "The entry must contain a specific keyword"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> URLs can have many different suffixes like .org, .net, or .edu.",
+            "<b>Correct!</b> Standard browser validation for URLs requires a valid protocol prefix.",
+            "<b>Incorrect:</b> There is no minimum length requirement for the URL type by default.",
+            "<b>Incorrect:</b> URL validation checks structure, not specific keywords."
+        ]
+    },
+    {
+        q: "Which attribute allows for custom validation using Regular Expressions (Regex)?",
+        options: ["title", "required", "pattern", "type"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Title is used for tooltips, not the actual validation logic.",
+            "<b>Incorrect:</b> Required only checks if the field is empty.",
+            "<b>Correct!</b> The pattern attribute allows developers to define specific, complex rules using Regex.",
+            "<b>Incorrect:</b> Type uses built-in browser rules, while pattern is for custom rules."
+        ]
+    },
+    {
+        q: "If you want to ensure a user's age is between 18 and 99, which attributes should you use?",
+        options: ["minlength=\"18\" and maxlength=\"99\"", "min=\"18\" and max=\"99\"", "pattern=\"18-99\"", "required=\"18-99\""],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Minlength/maxlength would check how many digits are typed, not the value of the number.",
+            "<b>Correct!</b> Min and max are used for numeric range validation.",
+            "<b>Incorrect:</b> While Regex could work, the 'min' and 'max' attributes are the standard way for numbers.",
+            "<b>Incorrect:</b> Required is a boolean attribute; it doesn't take a range of values."
+        ]
+    },
+    {
+        q: "What is the benefit of using the 'title' attribute alongside a 'pattern' attribute?",
+        options: ["It makes the input field larger", "It provides a tooltip explanation of the required format", "It automatically corrects the user's mistakes", "It changes the color of the text to red"],
+        correct: 1,
+        explanations: [
+            "<b>Incorrect:</b> Title does not affect the size of the element.",
+            "<b>Correct!</b> When validation fails, the browser often displays the title text to help the user.",
+            "<b>Incorrect:</b> HTML attributes cannot automatically correct user input.",
+            "<b>Incorrect:</b> Title does not control the styling or color of the text."
+        ]
+    },
+    {
+        q: "Which of the following attributes is specifically used for numeric/date range validation?",
+        options: ["type", "required", "min / max", "pattern"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Type defines the data format (e.g., number or date) but not the range.",
+            "<b>Incorrect:</b> Required only ensures the field isn't empty.",
+            "<b>Correct!</b> Min and max define the floor and ceiling for numbers and dates.",
+            "<b>Incorrect:</b> Pattern is for text strings, not numeric values."
+        ]
+    },
+    {
+        q: "According to the summary table, which attribute can be used for 'Any input'?",
+        options: ["pattern", "min / max", "required", "type"],
+        correct: 2,
+        explanations: [
+            "<b>Incorrect:</b> Pattern is mostly used for text-based inputs.",
+            "<b>Incorrect:</b> Min and max are reserved for numbers and dates.",
+            "<b>Correct!</b> Every input type (text, checkbox, radio, etc.) can be marked as 'required'.",
+            "<b>Incorrect:</b> Type is the attribute that defines the input itself, not a universal validator."
+        ]
+    }
+];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = '';
+            
+            const item = quizData[currentQuestion];
+            const progress = ((currentQuestion) / quizData.length) * 100;
+            document.getElementById('progress-fill').style.width = progress + "%";
+
+            const qDiv = document.createElement('div');
+            qDiv.className = 'question-block active clearfix';
+            qDiv.innerHTML = `
+                <div class="question-text">${currentQuestion + 1}. ${item.q}</div>
+                <div class="options-container">
+                    ${item.options.map((opt, i) => `
+                        <label class="option-label" onclick="handleChoice(this, ${i})">
+                            ${opt}
+                        </label>
+                    `).join('')}
+                </div>
+                <div id="explanation-area" class="explanation-box"></div>
+                <button id="next-btn" class="next-btn" onclick="nextQuestion()">Continue <i class="fas fa-chevron-right"></i></button>
+            `;
+            container.appendChild(qDiv);
+        }
+
+        function handleChoice(element, choiceIdx) {
+            const item = quizData[currentQuestion];
+            const expBox = document.getElementById('explanation-area');
+            const labels = element.parentElement.querySelectorAll('.option-label');
+            const nextBtn = document.getElementById('next-btn');
+
+            labels.forEach(l => l.classList.add('disabled'));
+
+            if (choiceIdx === item.correct) {
+                element.classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx];
+                expBox.className = 'explanation-box show correct-bg';
+                score++;
+            } else {
+                element.classList.add('incorrect');
+                labels[item.correct].classList.add('correct');
+                expBox.innerHTML = item.explanations[choiceIdx] + "<br><br><b>The correct choice was:</b> " + item.options[item.correct];
+                expBox.className = 'explanation-box show incorrect-bg';
+            }
+
+            nextBtn.style.display = 'block';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < quizData.length) {
+                loadQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('progress-fill').style.width = "100%";
+            const finalScreen = document.getElementById('final-screen');
+            finalScreen.style.display = 'block';
+            document.getElementById('final-score-text').innerText = `Lesson Complete! Final Score: ${score} / ${quizData.length}`;
+        }
+
+        // Initialize
+        loadQuestion();
+    </script>
+</section>
+<div class="nav-buttons">
+    <button id="prevBtn" class="btn-nav btn-prev">← Previous</button>
+    <button id="nextBtn" class="btn-nav btn-next">Next →</button>
+
+    <style>
+        /* Container styling */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        /* Shared button styling */
+        .btn-nav {
+            text-decoration: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* Gray "Previous" Button */
+        .btn-prev {
+            background-color: #f1f1f1;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-prev:hover {
+            background-color: #bbb;
+            color: white;
+        }
+
+        /* Green "Next" Button */
+        .btn-next {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+        }
+
+        .btn-next:hover {
+            background-color: #038a58;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Sidebar Active Page Highlight --- */
+        .sidebar a.active-page {
+            background-color: #04AA6D !important; /* Matches the "Next" button green */
+            color: white !important;
+            font-weight: bold;
+            border-left: 5px solid #038a58;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = Array.from(document.querySelectorAll('.sidebar a'));
+            
+            // Detect current page filename or path
+            const currentPath = window.location.pathname;
+            const currentFile = currentPath.split("/").pop() || "index.html";
+
+            // 1. Find the current link index and highlight it
+            let currentIndex = -1;
+            links.forEach((link, index) => {
+                const linkHref = link.getAttribute('href');
+                
+                // Flexible matching for both simple filenames and relative paths (../css/)
+                if (currentPath.endsWith(linkHref.replace('..', '')) || linkHref === currentFile) {
+                    currentIndex = index;
+                    link.classList.add('active-page');
+                    
+                    // Automatically scroll the sidebar to show the active link
+                    link.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // 2. Set up Previous Button logic
+            if (currentIndex > 0) {
+                prevBtn.onclick = () => {
+                    window.location.href = links[currentIndex - 1].getAttribute('href');
+                };
+            } else {
+                prevBtn.style.visibility = "hidden"; 
+            }
+
+            // 3. Set up Next Button logic
+            if (currentIndex !== -1 && currentIndex < links.length - 1) {
+                nextBtn.onclick = () => {
+                    window.location.href = links[currentIndex + 1].getAttribute('href');
+                };
+            } else {
+                nextBtn.style.visibility = "hidden";
+            }
+        });
+    </script>
+</div>
+</div>
+
+
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-box">
+            <img src="./images/LOGO.jpeg" alt="Oppty Logo" class="logo">
+            <p>Learn Web Development with practical courses in HTML, CSS & JavaScript. Beginner-friendly training with real-time projects.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://wa.me/919999999999" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-box">
+            <h3>Courses</h3>
+            <ul>
+                <li>HTML for Beginners</li>
+                <li>CSS & Responsive Design</li>
+                <li>JavaScript Basics</li>
+                <li>Mini Projects</li>
+            </ul>
+        </div>
+        <div class="footer-box">
+            <h3>Contact Us</h3>
+            <p>Email: support@opptyacademy.com</p>
+            <p>Phone: +91 99999 99999</p>
+        </div>
+        <div class="footer-box">
+            <h3>Quick Links</h3>
+            <ul>
+                <li>Home</li>
+                <li>Courses</li>
+                <li>About Us</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">© 2026 Oppty Academy. All Rights Reserved.</div>
+</footer>
+
+<script>
+    function openEditor(id) {
+        let code = document.getElementById(id).innerText;
+        localStorage.setItem('tempCode', code);
+        window.location.href = 'editor.html';
+    }
+</script>
+
+</body>
+</html>
