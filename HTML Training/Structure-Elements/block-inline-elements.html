@@ -566,28 +566,392 @@ Example:
 
 11. <code>
 12. <dfn>:<dfn>: “Definition element”. Wraps the term being defined at the point where its definition is given.
+
+  Example:
+
+  <!-- <p>
+  <dfn>HTML</dfn> stands for HyperText Markup Language, and it is used to
+  structure content on the web.
+</p>
+
+<p>
+  In this course, we will learn how to write <dfn>semantic HTML</dfn>,
+  which uses meaningful tags to describe content.
+</p> -->
+
+Use case:
+Use <dfn> when you introduce and define a new concept, technical term, or keyword, so browsers and assistive tools know “this is the term’s definition”.
   
-13.<em>
-14. <i>
-15. <output>
-16.<q>
-17. <samp>
-18. <script>
-19. <select>
-20. <small>
-21. <span>
-22. <strong>
-23. <sub>
-24. <sup>
-25. <textarea>
-26. <bdo>
-27. <big>
-28. <img>
-29.<input>
-30. <kbd>
-31. <label>
-32. <map>
-33. <Object>
+13.<em>:Definition:
+<em> (emphasis) marks text that should be stressed or emphasized. Browsers usually render it in italics and screen readers add vocal stress.
+
+  Use case:
+Use <em> when changing the stress of a word/phrase changes the meaning or you want to semantically mark emphasis (important notes, warnings, key words in a sentence).
+
+   Example:
+
+   <!-- <p>
+  You <em>must</em> submit the assignment before Friday.
+</p>
+
+<p>
+  This course focuses on <em>semantic HTML</em>, not just visual styling.
+</p> -->
+
+14. <i>:<i> (italic) represents text that is offset from normal prose, such as a term, foreign word, thought, or technical phrase. Browsers usually render it in italics. It is for styling without strong importance (unlike <em> which indicates emphasized meaning).
+
+  Use case:
+Use <i> for things like foreign words, technical terms, thoughts in a story, or names of products/UI elements when you just want a visual distinction, not semantic emphasis.
+
+  Example:
+
+  <!-- <p>
+  She said, <i>carpe diem</i>, before starting the session.
+</p>
+
+<p>
+  In this course, we will use the variable <i>n</i> to represent the
+  number of students.
+</p> -->
+
+15. <output>:Definition:
+<output> represents the result of a calculation or user action, usually produced by JavaScript or built‑in form calculations.
+
+Use case:
+Use <output> inside forms to display live results such as totals, computed values, or validation messages without needing a separate element like <span> or <div>.
+
+Example:
+
+<!-- <form oninput="total.value = Number(a.value) + Number(b.value)">
+  <label>
+    A:
+    <input type="number" name="a" value="5">
+  </label>
+
+  +
+  <label>
+    B:
+    <input type="number" name="b" value="3">
+  </label>
+
+  =
+  <output name="total">8</output>
+</form> -->
+
+Example:
+
+<!-- <form oninput="result.value = Number(x.value) * 2">
+  <label>
+    Enter a number:
+    <input type="number" name="x" value="5">
+  </label>
+  =
+  <output name="result">10</output>
+</form> -->
+
+
+16.<q>:Definition:
+<q> is used for short, inline quotations. Browsers usually render it with quotation marks around the text.
+
+Use case:
+When you need to quote a short sentence or phrase inside a paragraph. For longer quotes that should stand apart, use <blockquote> instead.
+
+  Example:
+
+  <!-- <p>
+  The instructor said, <q>Practice every day to master HTML.</q>
+</p>
+
+<p>
+  According to MDN, <q cite="https://developer.mozilla.org/">
+    HTML is the standard markup language for documents designed to be displayed in a web browser.
+  </q>
+</p> -->
+
+17. <samp>:<samp> (sample output) represents sample output from a program, script, or computer system (like console text, error messages, or terminal responses). Browsers usually render it in a monospace font.
+
+Use case:
+Use <samp> when you show what the computer prints back to the user: CLI output, logs, error messages, or example program results.
+
+  Example:
+
+  <!-- <p>
+  Run the command:
+  <code>HTML app.HTML</code><br>
+  Output:
+  <samp>Server started on https://www.geeksforgeeks.org/html/html-dfn-tag/</samp>
+</p> -->
+
+18. <script>: <script> is used to embed or reference executable code (usually JavaScript) inside an HTML document. It can be placed in the <head> or <body> and can load external .js files or contain inline code.
+
+Use case:
+
+Add interactivity (click handlers, form validation, dynamic content).
+Load external libraries (e.g., React, jQuery).
+Run analytics or tracking scripts.
+
+Example:
+
+ <h1>OPPTY Training</h1>
+  <p id="message">Click the button to see a message.</p>
+
+  <button type="button" onclick="showMessage()">
+    Show Message
+  </button>
+
+  <script>
+    function showMessage() {
+      document.getElementById('message').textContent =
+        'Hello from the <script> tag using JavaScript!';
+    }
+  </script> 
+  
+19. <select> :<select> creates a drop‑down (or list) form control that lets the user choose one (or multiple) options defined by <option> elements.
+
+Use case:
+Use <select> when the user must pick from a predefined list of values (e.g., country, gender, course, category), instead of typing free text.
+
+Example:
+
+  <form>
+  <label for="course">Choose a course:</label>
+  <select id="course" name="course">
+    <option value="">-- Select a course --</option>
+    <option value="html">HTML Basics</option>
+    <option value="css">CSS Fundamentals</option>
+    <option value="js">JavaScript Essentials</option>
+  </select>
+</form>
+
+20. <small>:The <small> HTML element is used to render text in a smaller font size than the surrounding text, typically for side comments, fine print, or less prominent information.
+
+  Common Use Cases
+
+Terms and conditions or disclaimers under a main statement.
+Copyright notices at the bottom of a page.
+Secondary notes or hints next to a main label.
+
+Example:
+
+<p>
+  Copyright notices at the bottom of a page.
+  <small>Common Use Cases</small>
+</p>
+
+21. <span>:Definition: An inline, generic container for phrasing content. It has no visual effect by itself and is mainly used to apply CSS styles or JavaScript behavior to a small part of text or inline content.
+
+  Typical use cases:
+Styling part of a sentence differently (color, font, weight).
+Adding an ID or class to a word/phrase to manipulate it with JavaScript.
+Wrapping inline text to show tooltips, counters, badges, etc.
+
+Example:
+<span> Oppty </span><br/>
+    <span> Code Makers </span><br/>
+    <span> Front End Fighters </span><br/>
+  
+  <!-- style for span tag  -->
+    <style>
+      span {
+        color: rgb(15, 95, 156);
+        text-decoration: underline;
+        font-style: italic;
+        font-weight: bold;
+        font-size: 26px;
+      }
+    </style>
+
+22. <strong>:The <strong> element represents text of strong importance, seriousness, or urgency. Browsers typically render it in bold by default, but its main purpose is semantic (meaning), not just visual styling.
+
+  Use case:
+Use <strong> when you want to emphasize that some text is more important than surrounding text—e.g., warnings, key terms, or critical instructions. Screen readers often give it extra emphasis, improving accessibility.
+
+  Example:
+
+  <p>
+  Please <strong>do not share</strong> your password with anyone.
+</p>
+
+23. <sub>:The <sub> HTML element represents subscript text — text that is displayed slightly below the normal baseline, usually in a smaller font.
+
+   Example:
+
+  <h1>Using the &lt;sub&gt; Tag in HTML</h1>
+
+  <p>Chemical formula example: H<sub>2</sub>O</p>
+  <p>Mathematical expression example: E = mc<sub>2</sub></p>
+  <p>Footnote example: Water molecule contains two hydrogen atoms<sub>1</sub></p>
+
+24. <sup>:The <sup> HTML element defines superscript text — text that is displayed slightly above the normal line of type, usually in a smaller font size.
+
+  Typical use cases
+
+Mathematical exponents (e.g. powers like 2², x²).
+Ordinal indicators (1ˢᵗ, 2ⁿᵈ, 3ʳᵈ).
+Footnote references in documents (like a small number after a word).
+Some scientific notations (e.g., units like m², cm³).
+
+Example:
+
+  <p> Examples to demonstrate superscript text </p> 
+        <p>2 <sup>4</sup>=16</p> 
+        <p>X <sup>4</sup>+ Y<sup>6</sup></p> 
+        <p>9<sup>th</sup> of september</p> 
+        <p> Change the default CSS settings to see the effect. </p> 
+
+25. <textarea>:<textarea> is an HTML form control used to let users enter multi‑line text (paragraphs, comments, descriptions, etc.). Unlike <input type="text">, which is for short, single-line input, <textarea> is designed for longer content and can be resized (depending on CSS/attributes).
+
+  Common use cases
+
+Comment or feedback boxes
+“About me” or profile descriptions
+Support messages / contact-us message fields
+Any place where users might type more than a single line
+
+Example:
+
+<form>
+  <label for="message">Your message:</label><br>
+  <textarea
+    id="message"
+    name="message"
+    rows="4"
+    cols="30"
+    placeholder="Type your message here..."
+  ></textarea>
+  <br>
+  <button type="submit">Send</button>
+</form>
+
+26. <bdo>:<bdo> (Bi-Directional Override) is an HTML element used to force the direction of text, overriding the browser’s normal bidirectional text handling (useful with languages like Arabic, Hebrew, or when you want reversed display).
+
+Definition
+
+<bdo> stands for Bi-Directional Override.
+It forces text direction using the required dir attribute: dir="ltr" (left-to-right) or dir="rtl" (right-to-left).
+Typical Use Case
+
+When you need to display text in a specific direction that is different from its natural or inherited direction.
+Common with mixed-language content (e.g., English inside Arabic text) or when creating visual reverse effects for demonstration or stylistic purposes.
+
+Example:
+
+<p>Normal text direction: Hello</p>
+
+<p>Forced right-to-left using &lt;bdo&gt;:</p>
+<bdo dir="rtl">Hello</bdo>
+
+27. <big>:Definition: An old, presentational inline tag that renders its contents one font-size larger than the surrounding text. It is obsolete in HTML5 and should not be used in modern pages.
+
+Use case (historical): To visually emphasize small pieces of text (like a word or phrase) by making them slightly bigger without changing headings or CSS. Today you should use CSS instead (e.g., span { font-size: 1.2em; }).
+
+Example:
+<p>
+  Normal text and <big>slightly bigger text</big> in one line.
+</p>
+
+28. <img>:Definition
+
+The <img> tag embeds an image in an HTML page.
+It is an inline element and has no closing tag (void element).
+Main use cases
+
+Displaying photos, icons, logos, illustrations, etc.
+Showing decorative images or content images inside text.
+Using images as part of UI (buttons, badges) when appropriate.
+Key attributes
+
+src – path/URL of the image file.
+alt – text shown if the image can’t load; also used by screen readers.
+Common extras: width, height, title.
+
+Example:
+
+<img src="assets/beach.jpg" alt="Company logo" width="150" height="150">
+
+29.<input>:Definition
+<input> is an inline HTML form element used to create interactive controls that let users enter or choose data (text, numbers, files, checkboxes, radio buttons, etc.).
+
+Typical use case
+Collecting user data inside a form, such as a login form, search box, or contact form.
+
+Example:
+<form>
+  <label for="username">Username:</label>
+  <input id="username" type="text" name="username" placeholder="Enter your name">
+  <button type="submit">Submit</button>
+</form>
+
+30. <kbd>: <kbd> in HTML is used to represent user input from a keyboard (or similar input, like key presses, shortcuts, or typed commands).
+
+Definition
+
+A semantic inline element that marks up text as keyboard input.
+Browsers typically style it with a monospace font and a small box-like appearance.
+Use cases
+
+Showing keyboard shortcuts in documentation or help pages.
+Displaying what the user should type into a terminal, input, or form.
+Indicating keys to press in tutorials (e.g., games, apps, IDEs).
+
+Example:
+
+<p>To save your work, press <kbd>Ctrl</kbd> + <kbd>S</kbd>.</p>
+<p>Reload the page with <kbd>Ctrl + R</kbd>.</p>
+
+31. <label>:Definition
+The <label> element in HTML represents a caption for a form control (like <input>, <textarea>, <select>). It helps users understand what data to enter and improves accessibility (screen readers, clickable area, etc.).
+
+Use case
+
+Clearly describing a form control’s purpose.
+Making the text clickable so it focuses/activates the associated input.
+Helping screen readers announce the right description for a control.
+
+Example:
+
+<form>
+  <label for="email">Email address:</label>
+  <input type="email" id="email" name="email">
+</form>
+
+32. <map>:Definition: <map> defines an image map – a set of clickable areas (hotspots) on an image. It works together with <area> elements and an <img> that references the map.
+
+Use Case: When you want different parts of a single image to link to different pages or actions (e.g., a country map where each country is clickable, or a product image where each part opens details).
+
+Example:
+
+  <p>
+    Click on Images where the
+    cursor clickable
+  </p>
+
+  <img src="https://media.geeksforgeeks.org/wp-content/uploads/20190808143838/logsm.png" alt="Geeks_logo" usemap="#gfg">
+
+  <map name="gfg">
+    <area href="https://www.geeksforgeeks.org/" coords="55,76,129,76,128,126,99,126,100,103,82,104,83,125,54,125,51,104"
+      shape="poly">
+  </map>
+
+
+  <img src="https://lh3.googleusercontent.com/p/AF1QipNIjQlwGq2g-tgTO-LdbT8x_lNo_3IDRp9hVX2f=w408-h544-k-no" alt="oppty-image" height="250" width="250" usemap="#oppty">
+
+  <map name="oppty">
+    <area href="https://www.google.com/maps/place/Oppty+TechHub+Private+Limited/@17.498127,78.3327217,636m/data=!3m1!1e3!4m14!1m7!3m6!1s0x3bcb93d5ccaa5227:0xde534d4e3362e42b!2sOppty+TechHub+Private+Limited!8m2!3d17.4981219!4d78.3352966!16s%2Fg%2F11xvm_rfgl!3m5!1s0x3bcb93d5ccaa5227:0xde534d4e3362e42b!8m2!3d17.4981219!4d78.3352966!16s%2Fg%2F11xvm_rfgl?entry=ttu&g_ep=EgoyMDI2MDMwMi4wIKXMDSoASAFQAw%3D%3D" coords="0,0,250,250" shape="rect" alt="Oppty-Location">
+  </map>
+
+33. <Object>:The HTML <object> element is used to embed external resources in a web page, such as images, PDFs, videos, or other HTML pages, and can also provide fallback content if the resource cannot be loaded.
+
+Common use case
+
+Embedding external documents (like PDFs) or other media where you may want:
+A specific data file (data attribute)
+A declared content type (type attribute)
+Fallback text or HTML inside the <object> if loading fails.
+
+  Example:
+
+  
 
 1.Do not start on a new line.
 2.Only take as much width as their content.
