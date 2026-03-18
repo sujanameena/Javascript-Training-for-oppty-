@@ -1,0 +1,339 @@
+JavaScript is a programming language of the web
+
+HTML-defines the content of the web pages.
+CSS-specifyes the layout of the web pages.
+JavaScript-To program the behaviour of web pages.
+JavaScript executes the code line by line.
+
+let's see simple program:
+
+ <!-- <h1>Check the console for the message!</h1>
+    <script>
+        console.log("Hello, World!");
+    </script> -->
+---------------------------------------------------------------------------------------------------------
+Variables:
+---------------------------------------------------------------------------------------------------------
+In JavaScript, a variable is a named container used to store data (like numbers, text, objects) so you can use and change it later in your program.
+
+You create (declare) variables with let, const, or var:
+
+* let → changeable value (block scoped).
+
+<!-- <script>
+    let n = 10;
+    n = 20; // Value can be updated
+    // let n = 15; //can not redeclare
+    console.log(n)
+  </script> -->
+
+* const → value that should not be reassigned (block scoped).
+
+<!-- <script>
+    const n = 100;
+    // n = 200; This will throw an error
+    console.log(n)
+  </script> -->
+
+* var → older way, function/global scoped (avoid in modern code).
+
+<!-- <script>
+    var n = 5;
+    console.log(n);
+
+    var n = 20; // reassigning is allowed
+    console.log(n);
+  </script> -->
+
+Variable names:
+* Must start with a letter, _, or $ (not a number).
+* Are case-sensitive (age and Age are different).
+
+
+---------------------------------------------------------------------------------------------------------
+Data Types:
+---------------------------------------------------------------------------------------------------------
+
+Primitive Data Types: Includes Number, String, Boolean, Null, Undefined, BigInt, and Symbol.
+---------------------
+
+Non-Primitive Data Types: Includes Object, Array, and Function used to store complex data.
+
+Primitive Datatypes:
+
+1. Number: Represents numeric values (integers and decimals).
+2. String: Represents text enclosed in single or double quotes.
+3. Boolean: Represents a logical value (true or false).
+4. Undefined: A variable that has been declared but not assigned a value.
+5. Null: Represents an intentional absence of any value.
+6. Symbol: Represents unique and immutable values, often used as object keys.
+7. BigInt: Represents integers larger than Number.MAX_SAFE_INTEGER.
+
+Example:
+
+<!-- <h1>Check the console for primitive data types</h1>
+
+<script>
+  // Number
+  let age = 25;
+  let pi = 3.14;
+
+  // String
+  let name = "Sujana";
+
+  // Boolean
+  let isStudent = true;
+
+  // Undefined
+  let x; // not given a value yet
+
+  // Null
+  let emptyValue = null;
+
+  // BigInt
+  let bigNumber = 123456789012345678901234567890n;
+
+  // Symbol
+  let uniqueId = Symbol("id");
+
+  console.log("Number:", age, pi);
+  console.log("String:", name);
+  console.log("Boolean:", isStudent);
+  console.log("Undefined:", x);
+  console.log("Null:", emptyValue);
+  console.log("BigInt:", bigNumber);
+  console.log("Symbol:", uniqueId);
+</script> -->
+
+1.Numbers Example:
+
+<!-- <h1>Check the console for Number examples</h1>
+
+<script>
+  let a = 10;        // integer
+  let b = 3.5;       // decimal (float)
+
+  let sum = a + b;   // addition
+  let product = a * b; // multiplication
+
+  console.log("a:", a);
+  console.log("b:", b);
+  console.log("Sum:", sum);
+  console.log("Product:", product);
+</script> -->
+
+2. String:
+
+<!-- <h1>Check the console for String examples</h1>
+
+<script>
+  // String examples
+  let firstName = "Sujana";
+  let lastName = "Sujju";
+
+  // Concatenation
+  let fullName = firstName + " " + lastName;
+
+  // String length
+  console.log("First name:", firstName);
+  console.log("Last name:", lastName);
+  console.log("Full name:", fullName);
+  console.log("Full name length:", fullName.length);
+
+  // Template literal (another way to join strings)
+  let message = `Hello, my name is ${fullName}.`;
+  console.log(message);
+</script> -->
+
+3. Boolean Example:
+
+Example:1
+
+<!-- <h1>Check the console for Boolean examples</h1>
+
+<script>
+  // Boolean examples
+  let isLoggedIn = true;
+  let isAdmin = false;
+
+  console.log("Is logged in:", isLoggedIn);
+  console.log("Is admin:", isAdmin);
+
+  // Using Booleans in a condition
+  if (isLoggedIn) {
+    console.log("Welcome, user!");
+  } else {
+    console.log("Please log in.");
+  }
+
+  // Comparison gives a Boolean result
+  let age = 20;
+  let isAdult = age >= 18;
+  console.log("Is adult:", isAdult);
+</script> -->
+
+Example:2
+
+<!-- <h1>Check the console for a simple Boolean</h1>
+
+<script>
+  let isRaining = true;   
+
+  console.log("Is it raining?", isRaining);
+
+  if (isRaining) {
+    console.log("Take an umbrella.");
+  } else {
+    console.log("No umbrella needed.");
+  }
+</script> -->
+
+4. Undefined Example:
+
+<!-- <h1>Check the console for Undefined example</h1>
+
+<script>
+  let x;
+
+  console.log("Value of x:", x);   
+
+    x = 10;
+  console.log("Value of x after assignment:", x); 
+</script> -->
+
+5. Null Example:
+
+<!-- <h1>Check the console for Null example</h1>
+
+<script>
+  let user = null;
+
+  console.log("User:", user); 
+
+  user = "Sujana";
+  console.log("User after assignment:", user); 
+</script> -->
+
+6. Symbol Example: A Symbol in JavaScript is a primitive data type that creates a unique and immutable value. Even if two symbols have the same description, they are always different. Symbols are often used as special, “hidden” keys on objects.
+
+Example 1:
+
+<!-- <h1>Check the console for Symbol example</h1>
+
+<script>
+  // Create two symbols with the same description
+  let a = Symbol("sujana");
+  let b = Symbol("sujana");
+
+  console.log("a:", a);
+  console.log("b:", b);
+
+  // Even though descriptions are same, symbols are different
+  console.log("Are they equal?", a === b); 
+</script> -->
+
+Example 2:
+
+<!-- <h1>Check the console for Symbol use case</h1>
+
+<script>
+  const userId = Symbol("userId"); // unique key
+
+  let user = {
+    name: "Sujana",
+    age: 25,
+    [userId]: 101      // Symbol property
+  };
+
+  console.log(user.name);        // "Sujana"
+  console.log(user[userId]);     // 101
+</script> -->
+
+7. BigInt Example: BigInt is a JavaScript primitive data type used to store very large integers that are bigger than Number.MAX_SAFE_INTEGER. It keeps the exact value without losing precision
+
+Example:
+
+<!-- <h1>Check the console for BigInt example</h1>
+
+<script>
+  let normalNumber = 9007199254740991; 
+
+  let bigNumber = 9007199254740991n + 10n;
+
+  console.log("Normal number:", normalNumber);
+  console.log("BigInt number:", bigNumber);
+</script> -->
+
+Use case (where we use BigInt)
+BigInt is useful when you work with very large whole numbers, for example:
+
+Big order IDs or user IDs
+Large counts (views, likes, money in smallest units, etc.)
+Any case where you must not lose even 1 unit due to rounding/precision issues.
+
+
+Non-Primitive Datatypes: 
+------------------------
+
+In JavaScript, non-primitive (reference) data types are used to store multiple values or complex structures. The main non-primitive types are:
+
+1. Object – collection of key–value pairs.
+
+<!-- let obj = {
+    name: "Amit",
+    age: 25
+}; -->
+
+2. Array – ordered list of values (special kind of object).
+
+<!-- let a = ["red", "green", "blue"]; -->
+
+3. Function – reusable block of code (also an object).
+
+<!-- function fun() {
+    console.log("oppty training session");
+} -->
+
+Example:
+
+ <!-- <h1>Check the console for Non-Primitive examples</h1>
+
+<script>
+  // Object
+  let person = {
+    name: "Sujana",
+    age: 25
+  };
+
+  // Array
+  let colors = ["red", "green", "blue"];
+
+  // Function
+  function trainer(name) {
+    console.log("Hello, " + name + "!");
+  }
+
+  console.log("Person object:", person);
+  console.log("Person name:", person.name);
+  console.log("Colors array:", colors);
+  console.log("First color:", colors[0]);
+
+  trainer("Sujana");
+</script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
