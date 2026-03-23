@@ -2,18 +2,79 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>18 march</title>
+  <meta charset="UTF-8">
+  <title>Padding Example</title>
 </head>
 
 <body>
-    <style>
-       
-    </style>
 
+<!-- Padding Syntax
+padding: 20px              All 4 sides = 20px
+padding: 10px 20px         top/bottom=10px, left/right=20px
+padding: 10px 20px 30px 40px   top, right, bottom, left
+-->
 
+  <div class="pad1">All sides: 20px</div>
+  <div class="pad2">top:10 right:20 bottom:30 left:40</div>
+  <div class="pad3">Individual sides</div>
 
 </body>
 
+margin:10px;  ---> four sides
+margin: 10px 20px; ---->  top/bottom  left/right
+margin: 10px 20px 30px ---> top, left/right, bottom
+margin: 10px 20px 30px 40px ----> top, right, bottom, left
+
+<style>
+  .pad1 {
+    background-color: lightblue;
+    width: 200px;
+
+    /* All sides equal */
+    padding: 20px;
+  }
+
+  .pad2 {
+    background-color: lightgreen;
+    width: 200px;
+
+    /* top | right | bottom | left */
+    padding: 10px 20px 30px 40px;
+  }
+
+  .pad3 {
+    background-color: lightsalmon;
+    width: 200px;
+
+    /* Individual sides */
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+  }
+</style>
+
+margin in CSS — all main concepts
+Margin is the space outside an element’s border.
+It separates one element from other elements.
+
+1. Box model order
+From inside to outside:
+
+content → padding → border → margin
+
+2. Individual margin properties
+margin-top
+margin-right
+margin-bottom
+margin-left
+Example:
+
+3. Shorthand forms
+margin: 20px; → all 4 sides
+margin: 10px 20px; → top/bottom, left/right
+margin: 10px 20px 30px; → top, left/right, bottom
+margin: 10px 20px 30px 40px; → top, right, bottom, left
+
 </html>
+

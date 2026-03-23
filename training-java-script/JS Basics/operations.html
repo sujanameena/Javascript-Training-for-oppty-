@@ -1,0 +1,742 @@
+
+JavaScript applications are made of statements and expressions
+
+In JavaScript, expressions and statements are related but different ideas.
+
+Expression:
+----------
+
+---/ Produces a value.
+---/ Can be used wherever a value is needed (right side of = , inside (), etc.).
+---/ Examples:
+* 5 + 3
+* "Hello" + " World"
+* age > 18
+* x = 10 (this is an expression whose value is 10)
+
+Statement:
+---------- 
+
+---/ Performs an action; it tells JavaScript to “do something”.
+---/ Usually ends with ; and may contain expressions inside.
+---/ Examples:
+* let x = 10; // declaration statement
+* console.log(x); // statement
+* if (age > 18) { ... } // if statement
+* for (let i = 0; i > 5; i++) { ... } // loop statement
+---------------------------------------------------------------
+
+JavaScript operators are symbols or keywords used to perform operations on values and variables
+
+1. JavaScript Arithmetic Operators: 
+----------------------------------- 
+
+Arithmetic: +, -, *, /, %
+
+Example:
+
+<!-- <h1>Check the console for Arithmetic examples</h1>
+
+<script>
+  let a = 10;
+  let b = 2;
+
+  // Addition (+)
+  let sum = a + b;          
+
+  // Subtraction (-)
+  let difference = a - b;   
+
+  // Multiplication (*)
+  let product = a * b;      
+
+  // Division (/)
+  let quotient = a / b;     
+
+  // Modulus (%): remainder after division
+  let remainder = a % b;    
+
+  console.log("a:", a, "b:", b);
+  console.log("Addition (+):", sum);
+  console.log("Subtraction (-):", difference);
+  console.log("Multiplication (*):", product);
+  console.log("Division (/):", quotient);
+  console.log("Modulus (%):", remainder);
+</script> -->
+
+2. JavaScript Assignment Operators
+
+Assignment: =, +=, -=, *=, /=
+
+<!-- <h1>Check the console for Assignment examples</h1>
+
+<script>
+  let x = 10;      // =  assigns 10 to x
+  console.log("Start x:", x);
+
+  x += 5;          // x = x + 5  → 15
+  console.log("After x += 5:", x);
+
+  x -= 3;          // x = x - 3  → 12
+  console.log("After x -= 3:", x);
+
+  x *= 2;          // x = x * 2  → 24
+  console.log("After x *= 2:", x);
+
+  x /= 4;          // x = x / 4  → 6
+  console.log("After x /= 4:", x);
+</script> -->
+
+3. JavaScript Comparison Operators 
+
+<!-- Comparison: ==, ===, !=, >, <, >=, <= -->
+
+<!-- <h1>Check the console for Comparison examples</h1>
+
+<script>
+  let a = 5;
+  let b = "5";
+  let c = 8;
+
+  console.log("a == b:", a == b);     // true  (only values compared)
+  console.log("a === b:", a === b);   // false (value and type compared)
+
+  console.log("a != c:", a != c);     // true  (5 is not 8)
+  console.log("a !== b:", a !== b);
+  console.log('\n');
+  console.log("a > c:", a > c);       // false
+  console.log("a < c:", a < c);       // true
+
+  console.log("a >= 5:", a >= 5);     // true
+  console.log("a <= 4:", a <= 4);     // false
+</script> -->
+
+4. JavaScript Logical Operators
+
+Logical: 
+ &&(logical AND),
+ ||(Logical OR),
+ !(Logical NOT),
+ !!(Double NOT),
+ ??(Nullish Coalescing)
+
+a. Logical AND (&&) Operator
+
+Condition----Result
+truthy && truthy----returns last value
+falsy && anything----returns first falsy
+
+Example:1
+
+<!-- <script>
+    let age = 20;
+    let hasID = true;
+
+    if (age >= 18 && hasID) {
+      console.log("Allowed");
+    } else {
+      console.log("Not allowed");
+    }
+  </script> -->
+
+
+Example:2
+
+  <!-- <script>
+    let x = 5;
+    let y = 10;
+
+    // Both truthy → returns last value
+    console.log("5 && 10:", x && y);    // 10
+
+    // 0 is falsy → returns 0 (stops at first falsy)
+    console.log("0 && 10:", 0 && y);    // 0
+
+    // 5 is truthy, 0 is falsy → returns 0
+    console.log("5 && 0:", x && 0);     // 0
+
+    // Both zero → returns first falsy
+    console.log("0 && 0:", 0 && 0);     // 0
+  </script> -->
+
+  b. Logical OR (||) Operator
+
+Condition----Result
+truthy || anything----returns first truthy
+falsy || truthy----returns first truthy
+falsy || falsy----returns last value
+
+  Example:1
+
+  <!-- <script>
+    let x = 5;
+    let y = 0;
+
+    // Both truthy → returns first truthy value
+    console.log("5 || 10:", x || 10);   // 5
+
+    // 0 is falsy → returns first truthy value
+    console.log("0 || 10:", y || 10);   // 10
+
+    // 5 is truthy → returns 5 (stops at first truthy)
+    console.log("5 || 0:", x || y);     // 5
+
+    // Both falsy → returns last value
+    console.log("0 || 0:", 0 || 0);     // 0
+  </script> -->
+
+  Example:2
+
+  <!-- <script>
+    // Check if at least one condition is true
+    let age = 16;
+    let hasGuardian = true;
+
+    // Logical OR checks if either condition is true
+    if (age >= 18 || hasGuardian) {
+      console.log("Allowed");
+    } else {
+      console.log("Not Allowed");
+    }
+  </script> -->
+
+  c. Logical NOT (!) Operator
+
+  Example:1 
+
+  <!-- <script>
+    let isAllowed = true;
+    console.log(!isAllowed);
+  </script> -->
+
+  Example:2
+
+  <!-- <script>
+    let isLoggedIn = false;
+
+    if (!isLoggedIn) {
+      console.log("Log in!");
+    } else {
+      console.log("Welcome back!");
+    }
+  </script> -->
+
+  d. !!(Double NOT)
+
+  Simple rule:
+
+!!value → true for truthy values
+!!value → false for falsy values (0, "", null, undefined, NaN, false)
+
+  Example:1 
+
+  <!-- <script>
+    let name = "Ravi";
+    let emptyText = "";
+    let score = 0;
+
+    console.log(!!name);      // true  (non-empty string)
+    console.log(!!emptyText); // false (empty string)
+    console.log(!!score);     // false (0 is falsy)
+
+    // Practical use:
+    let isNameEntered = !!name;
+    console.log("Name entered:", isNameEntered); // true
+  </script> -->
+
+  e. Nullish Coalescing (??) Operator
+
+  ?? uses the right value only when left value is null or undefined.
+
+  Example:1
+
+  <!-- <script>
+  let userName = null;
+  let city = undefined;
+  let score = 0;
+
+  console.log(userName ?? "Guest");   // "Guest" (because null)
+  console.log(city ?? "Hyderabad");   // "Hyderabad" (because undefined)
+  console.log(score ?? 100);          // 0 (not null/undefined, so keeps 0)
+</script> -->
+
+5. JavaScript Bitwise Operators
+
+Definition:
+Bitwise operators work on the binary (bits) form of numbers.
+In JavaScript, bitwise operations use 32-bit integers.
+
+<!-- Operators:
+&(AND), |(OR), ^(XOR), ~(NOT), <<(Left Shift), >>(Right Shift), >>>(Zero-fill Right Shift) -->
+
+Example:1 &(AND)
+
+<!-- <script>
+  let a = 6; // binary: 0110
+  let b = 3; // binary: 0011
+
+  // AND keeps 1 only when both bits are 1
+  //   0110
+  // & 0011
+  // = 0010  (2)
+  console.log("6 & 3 =", a & b); // 2
+</script> -->
+
+let a = 5; //0101
+let b = 3; //0011
+
+Table for bitwise AND operator (&)
+
+A B OUTPUT(A & B)
+0 0 0
+0 1 0
+1 0 0
+1 1 1
+
+Example:1.1 Check odd/even quickly
+
+<!-- <script>
+  let n = 6;
+  console.log((n & 1) ? "Odd" : "Even");
+</script> -->
+
+Example:2 |(OR)
+
+<!-- <script>
+  let a = 6; // binary: 0110
+  let b = 3; // binary: 0011
+
+  // OR keeps 1 if either bit is 1
+  //   0110
+  // | 0011
+  // = 0111 (7)
+  console.log("6 | 3 =", a | b); // 7
+</script> -->
+
+Table for bitwise AND operator (&)
+
+A B OUTPUT(A | B)
+0 0 0
+0 1 1
+1 0 1
+1 1 1
+
+Search in google as "0111" binary to decimal
+
+Example:3 ^(XOR)
+
+<!-- <script>
+    let a = 6; // binary: 0110
+    let b = 3; // binary: 0011
+
+    // XOR (^): returns 1 if bits are DIFFERENT
+    //   0110
+    // ^ 0011
+    // = 0101 (5)
+    console.log("6 ^ 3 =", a ^ b); // 5
+
+    // Another example
+    let x = 5; // 0101
+    let y = 5; // 0101
+
+    // Same values → returns 0
+    console.log("5 ^ 5 =", x ^ y); // 0
+  </script> -->
+
+A B OUTPUT(A ^ B)
+0 0 0
+0 1 1
+1 0 1
+1 1 0
+
+Example:4 ~(NOT)
+
+<!-- <script>
+    // Bitwise NOT (~) flips all bits
+    let a = 5;   // binary: 0101
+    // ~a = -(a+1)
+    // ~5 = -(5+1)=-6
+    console.log("~5 =", ~a);  // -6
+    
+    let b = 0;
+    console.log("~0 =", ~b);  // -1
+    
+    let c = -1;
+    console.log("~(-1) =", ~c);  // 0
+    
+    // Rule: ~x = -(x + 1)
+    console.log("~10 =", ~10);  // -11
+    console.log("~(-5) =", ~(-5));  // 4
+</script> -->
+
+System not supporting to show the output
+
+Supported Browsers:
+
+Chrome
+Edge
+Firefox
+Opera
+Safari
+
+EXample:5 
+<!-- <<(Left Shift), >>(Right Shift), >>>(Zero-fill Right Shift) -->
+Fast multiply/divide by 2 
+
+<!-- <script>
+  let val = 12;
+  console.log(val << 1); // 24
+  console.log(val << 2); //48
+  console.log(val >> 1); // 6
+  console.log(val >> 2); //3
+  console.log(val >>> 1);
+</script> -->
+
+EXample:6
+
+<!-- 3 Permissions/flags (store many true/false values in one number)
+<script>
+  const READ = 1;    // 0001
+  const WRITE = 2;   // 0010
+  const EXEC = 4;    // 0100
+
+  let permission = READ | WRITE; // 0011
+  console.log("Can write?", (permission & WRITE) !== 0); // true
+</script> -->
+
+6. JavaScript Ternary Operator 
+
+The ternary operator is a short way to write an if...else in one line.
+
+Syntax:
+
+condition ? valueIfTrue : valueIfFalse
+
+* If condition is true → whole expression becomes valueIfTrue
+* If condition is false → whole expression becomes valueIfFalse
+
+Example:1 
+
+let message;
+if (age >= 18) {
+  message = "Adult";
+} else {
+  message = "Minor";
+}
+
+<!-- <script>
+    let age = 20;
+
+    let message = age >= 18 ? "Adult" : "Minor";
+    console.log(message);  
+  </script> -->
+
+  ---* Nested Ternary Operators:
+
+ Nested ternary = a ternary inside another ternary. 
+
+ Nested ternary pattern:
+
+ condition1
+  ? valueIfTrue1
+  : condition2
+    ? valueIfTrue2
+    : valueIfFalse2;
+
+    Example:1 
+
+    <!-- <script>
+    let num = 0;
+
+    let result = num > 0
+      ? "Positive"
+      : num < 0
+        ? "Negative"
+        : "Zero";
+
+    console.log(result);
+  </script> -->
+
+  Example:2 
+
+  <!-- <script>
+    let score = 72;
+
+    let grade = score >= 90 ? "A"
+      : score >= 80 ? "B"
+        : score >= 70 ? "C"
+          : score >= 60 ? "D"
+            : "F";
+
+    console.log(grade); 
+  </script> -->
+
+  7. JavaScript Comma Operator
+
+  The comma operator , lets you evaluate multiple expressions from left to right and returns the value of the last expression.
+
+  Basic syntax
+
+  let result = (expr1, expr2, expr3);
+// expr1 runs, then expr2, then expr3
+// result gets the value of expr3
+
+Example:1 simple example
+<!-- <script>
+    let x = (1 + 2, 3 + 4);
+    console.log(x); 
+  </script> -->
+
+  Example:2 With side effects example
+
+<!-- <script>
+    let a = 1;
+    let b = (a += 2, a * 3);
+    console.log(a, b);
+  </script> -->
+
+  8. JavaScript Unary Operators
+
+  a.Unary Plus (+) Operator
+  b.Unary Minus (-) Operator
+  c.Unary Increment (++) Operator
+  d.Unary Decrement (--) Operator
+  e.Logical NOT (!) Operator
+  f.typeof Operator
+  g.delete Operator
+
+  a.Unary Plus (+) Operator:
+
+  Tries to convert the value to a number
+
+  Example:1 
+
+  <!-- <script>
+  let a = "10";
+  let b = true;
+  let c = "hello";
+  let d = 50;
+
+  console.log(+a); // 10  (string → number)
+  console.log(+b); // 1   (true → 1)
+  console.log(+c); // NaN (not a number)
+  console.log(+d); // 50  (Directly prints the number)
+</script> -->
+
+In JavaScript, true is coerced(forced) to 1 and false is coerced to 0.
+
+b.Unary Minus (-) Operator
+
+Converts to number (like +) and then makes it negative.
+
+Example:1 
+
+<!-- <script>
+  let x = "5";
+  let y = 3;
+  let z = -9;
+  let s = "hello";
+
+  console.log(-x); // -5
+  console.log(-y); // -3
+  console.log(-z); // 9
+  console.log(-s); // NaN
+</script> -->
+
+c.d. Increment (++) and Decrement (--)
+
+++ adds 1, -- subtracts 1.
+Prefix: ++x → change first, then use the value.
+Postfix: x++ → use the value, then change.
+
+Example:1 
+
+<!-- <script>
+    let n = 5;
+
+    console.log("n:", n);     // 5
+    console.log("++n:", ++n); // 6 (n becomes 6, then printed)
+    console.log("n++:", n++); // 6 (print 6, then n becomes 7)
+    console.log("n:", n);     // 7
+
+    let m = 10;
+    console.log("--m:", --m); // 9
+    console.log("m--:", m--); // 9 (then m becomes 8)
+    console.log("m:", m);     // 8
+  </script> -->
+
+e.Logical NOT (!) Operator
+
+Converts value to boolean and flips it.
+You already used this in Logical Operators.
+
+Example:1
+
+<!-- <script>
+  let isLoggedIn = false;
+
+  console.log(!isLoggedIn); // true
+  console.log(!0);          // true (0 is falsy)
+  console.log(!1);          // false (1 is truthy)
+</script> -->
+
+f.typeof Operator
+
+Returns the type of a value as a string.
+
+Example:1
+
+<!-- <script>
+    let x = 18;
+    let s = "OPPTY";
+    let isTrue = true;
+    let obj = { name: "Aman", age: 21 };
+    let undefinedVar;
+    let data = function () {
+      return "Sujana";
+    };
+    let array = [1, 2, 3, 4, 5];
+    let y = null;
+
+
+    console.log(typeof x);
+    console.log(typeof s);
+    console.log(typeof isTrue);
+    console.log(typeof obj);
+    console.log(typeof undefinedVar);
+    console.log(typeof data);
+    console.log(typeof array);
+    console.log(typeof y);
+  </script> -->
+
+g.delete Operator
+
+Removes a property from an object or element from an array (leaves an empty slot).
+
+Example:1
+
+<!-- <script>
+  let person = { name: "Ravi", age: 25 };
+
+  console.log(person);          // { name: "Ravi", age: 25 }
+  delete person.age;
+  console.log(person);          // { name: "Ravi" }
+
+  let arr = [10, 20, 30];
+  delete arr[1];
+  console.log(arr);             // [10, empty, 30]
+</script> -->
+
+other operators
+
+h.void Operator
+
+Evaluates an expression, but always returns undefined, ignoring the expression’s result.   
+
+Example:1
+
+<!-- <script>
+  let x = 10;
+
+  let result = void (x + 5);  // x + 5 is evaluated, but ignored
+
+  console.log("x:", x);         // 10  (unchanged)
+  console.log("result:", result); // undefined
+</script> -->
+
+Example:2
+
+<!-- <script>
+  function add(a, b) {
+    console.log("Adding:", a, b);
+    return a + b;
+  }
+
+  let value = void add(3, 4);
+
+  console.log("value:", value); // undefined
+</script> -->
+
+9. JavaScript Relational Operators 
+
+Relational operators compare two values and return a boolean (true or false).
+
+ <!-- Basic relational operators: <, >, <=, >=
+Other important relational operators in JavaScript: in, instanceof 
+
+a. <, >, <=, >= (already used in Comparison section)
+
+They compare values and return true or false. -->
+
+Example:1 
+
+<!-- <script>
+  let a = 10;
+  let b = 20;
+
+  console.log("a < b:", a < b);   // true
+  console.log("a > b:", a > b);   // false
+  console.log("a <= 10:", a <= 10); // true
+  console.log("b >= 15:", b >= 15); // true
+
+  // String comparison (lexicographical)
+  console.log("'apple' < 'banana':", "apple" < "banana"); // true
+</script> -->
+
+b. in Operator
+
+Checks if a property/key exists in an object or an index exists in an array.
+
+Syntax:
+propertyName in object
+index in array
+
+Example:1
+
+<!-- <script>
+  let user = { name: "Ravi", age: 25 };
+  let nums = [10, 20, 30];
+
+  console.log("'name' in user:", "name" in user); // true
+  console.log("'city' in user:", "city" in user); // false
+
+  console.log("0 in nums:", 0 in nums);   // true  (index 0 exists)
+  console.log("2 in nums:", 2 in nums);   // true  (index 2 exists)
+  console.log("3 in nums:", 3 in nums);   // false (no index 3)
+</script> -->
+
+c. instanceof Operator
+
+Checks if an object is created by a specific constructor / class.
+
+Syntax:
+object instanceof ConstructorFunction
+
+Example:1 
+
+<!-- <script>
+  function Person(name) {
+    this.name = name;
+  }
+
+  let p = new Person("Aman");
+  let arr = [1, 2, 3];
+  let date = new Date();
+
+  console.log("p instanceof Person:", p instanceof Person); // true
+  console.log("arr instanceof Array:", arr instanceof Array); // true
+  console.log("arr instanceof Object:", arr instanceof Object); // true
+  console.log("date instanceof Date:", date instanceof Date); // true
+  console.log("date instanceof Array:", date instanceof Array); // false
+  console.log("date instanceof number:", p instanceof Number);
+  console.log("date instanceof string:", arr instanceof String);
+</script> -->
+
+10. JavaScript BigInt Operators
+
+
+
+
+ 
+
+
