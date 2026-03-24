@@ -10,21 +10,18 @@
 <body>
 
  <script>
-  function Person(name) {
-    this.name = name;
-  }
+  let user = {
+    profile: {
+      nickname: "Sujju"
+    }
+  };
 
-  let p = new Person("Aman");
-  let arr = [1, 2, 3];
-  let date = new Date();
+  let displayName = user.profile?.nickname ?? "Guest";
+  console.log("Display Name:", displayName); // "Sujju"
 
-  console.log("p instanceof Person:", p instanceof Person); // true
-  console.log("arr instanceof Array:", arr instanceof Array); // true
-  console.log("arr instanceof Object:", arr instanceof Object); // true
-  console.log("date instanceof Date:", date instanceof Date); // true
-  console.log("date instanceof Array:", date instanceof Array); // false
-  console.log("date instanceof number:", p instanceof Number);
-  console.log("date instanceof string:", arr instanceof String);
+  let user2 = {};
+  let displayName2 = user2.profile?.nickname ?? "Guest";
+  console.log("Display Name 2:", displayName2); // "Guest"
 </script>
 
 </body>

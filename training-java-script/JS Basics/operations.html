@@ -28,6 +28,8 @@ Statement:
 
 JavaScript operators are symbols or keywords used to perform operations on values and variables
 
+There are 12 types of operators 
+
 1. JavaScript Arithmetic Operators: 
 ----------------------------------- 
 
@@ -730,9 +732,167 @@ Example:1
   console.log("date instanceof Array:", date instanceof Array); // false
   console.log("date instanceof number:", p instanceof Number);
   console.log("date instanceof string:", arr instanceof String);
+  console.log("typeof 10n:", typeof 10n);
 </script> -->
 
 10. JavaScript BigInt Operators
+
+Example:1 
+
+<!-- <script>
+    const big1 = 123456789012345678901234567890n;
+    const big2 = 987654321098765432109876543210n;
+    console.log(big1 + big2);
+  </script> -->
+
+  11. JavaScript String Operators
+  a. Concatenate Operator
+  b. Concatenate Assignment Operator
+  c. Comparison Operators
+
+  a. Concatenate Operator
+
+* Joins (concatenates) two strings into one.
+If one side is a string and the other is a number, JavaScript converts the number to a string.
+* Joins (concatenates) two strings into one.
+If one side is a string and the other is a number, JavaScript converts the number to a string.
+
+Example:1 
+
+<!-- <script>
+  let firstName = "Sujana";
+  let lastName = " Sujju";
+
+  let fullName = firstName + lastName;
+  console.log("Full Name:", fullName); // "Sujana Sujju"
+
+  let age = 21;
+  let message = "Age: " + age;   // number → string
+  console.log(message);          // "Age: 21"
+</script> -->
+
+b. Concatenate Assignment Operator
+
+Example:1 
+
+<!-- <script>
+  let text = "Welcome";
+  console.log(text);        // "Welcome"
+
+  text += " to";
+  console.log(text);        // "Welcome to"
+
+  text += " oppty";
+  console.log(text);        // "Welcome to oppty"
+</script> -->
+
+c. Comparison Operators 
+
+<!-- == / === compare two strings.
+<, >, <=, >= compare strings lexicographically (dictionary order), case‑sensitive.
+Uppercase letters come before lowercase ("Z" < "a" is true). -->
+
+Example:1 
+
+<!-- <script>
+  let a = "apple";
+  let b = "banana";
+  let c = "Apple";
+
+  console.log("a == b:", a == b);       // false
+  console.log("a === 'apple':", a === "apple"); // true
+
+  console.log("'apple' < 'banana':", a < b);  // true
+  console.log("'banana' > 'apple':", b > a);  // true
+
+  console.log("'Apple' < 'apple':", c < a);   // true (uppercase vs lowercase)
+</script> -->
+
+12. JavaScript Chaining Operator (?.)
+
+The optional chaining operator ?. lets you safely access deeply nested properties, array elements, or methods without throwing an error if something is null or undefined.
+If the left side is null or undefined, the whole expression becomes undefined instead of crashing.
+
+Basic patterns:
+
+obj?.prop
+obj?.[expr]
+obj.method?.()
+array?.[index]
+
+Note: It only short‑circuits for null or undefined. Other falsy values (0, "", false, NaN) still allow access.
+
+obj?.prop: 
+
+Example:1 Nested object properties
+
+<!-- <script>
+  let user1 = {
+    name: "Ravi",
+    address: {
+      city: "Hyderabad",
+      pin: 500001
+    }
+  };
+
+  let user2 = {
+    name: "Aman",
+    // no address property
+  };
+
+  console.log("user1 city:", user1.address?.city); // "Hyderabad"
+  console.log("user2 city:", user2.address?.city); // undefined (no error)
+
+  // Without optional chaining, user2.address.city would throw an error
+</script> -->
+
+obj?.[expr]: 
+
+Example:2  Optional chaining with method calls
+
+<!-- <script>
+  let obj1 = {
+    sayHello() {
+      console.log("Hello from obj1");
+    }
+  };
+
+  let obj2 = {
+    // no sayHello method
+  };
+
+  obj1.sayHello?.(); // "Hello from obj1"
+  obj2.sayHello?.(); // nothing happens, no error
+</script> -->
+
+Example:3 – Optional chaining with arrays 
+
+<!-- <script>
+  let numbers = [10, 20, 30];
+  let emptyArray = null;
+
+  console.log("numbers[1]:", numbers?.[1]);       // 20
+  console.log("emptyArray[0]:", emptyArray?.[0]); // undefined (no error)
+</script> -->
+
+Example:4 – Optional chaining with nullish coalescing
+
+<!-- <script>
+  let user = {
+    profile: {
+      nickname: "Sujju"
+    }
+  };
+
+  let displayName = user.profile?.nickname ?? "Guest";
+  console.log("Display Name:", displayName); // "Sujju"
+
+  let user2 = {};
+  let displayName2 = user2.profile?.nickname ?? "Guest";
+  console.log("Display Name 2:", displayName2); // "Guest"
+</script> -->
+
+
 
 
 
