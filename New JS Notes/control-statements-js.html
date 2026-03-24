@@ -1,0 +1,346 @@
+Control Statements in JavaScript
+
+1. Types of Control Statements
+
+* Conditional / Decision making: if, if...else, else if, switch
+* Looping / Iteration: for, while, do...while, for...of, for...in
+* Jump / Branching: break, continue
+
+---$ Conditional / Decision making: if, if...else, else if, switch
+
+if Statement: 
+
+Runs a block only when a condition is true.
+
+Syntax:
+
+<!-- if (condition) {
+  // code runs when condition is true
+} -->
+
+Example:1 
+
+<!-- <script>
+  let age = 20;
+
+  if (age >= 18) {
+    console.log("You are an adult");
+  }
+</script> -->
+
+
+if...else Statement: Chooses between two blocks.
+
+Syntax:
+
+<!-- if (condition) {
+  // true block
+} else {
+  // false block
+} -->
+
+Example:1 
+
+<!-- <script>
+  let age = 160;
+
+  if (age >= 18) {
+    console.log("Allowed to vote");
+  } else {
+    console.log("Not allowed to vote");
+  }
+</script> -->
+
+else if Ladder: Checks multiple conditions one by one.
+
+Syntax:
+
+<!-- if (cond1) {
+  ...
+} else if (cond2) {
+  ...
+} else if (cond3) {
+  ...
+} else {
+  ...
+} -->
+
+Example:1 
+
+<!-- <script>
+  let marks = 70;
+
+  if (marks >= 90) {
+    console.log("Grade A");
+  } else if (marks >= 80) {
+    console.log("Grade B");
+  } else if (marks >= 70) {
+    console.log("Grade C");
+  } else if (marks >= 60) {
+    console.log("Grade D");
+  } else {
+    console.log("Grade F");
+  }
+</script> -->
+
+switch Statement: Good when you compare one value with many options.
+
+Syntax:
+
+<!-- switch (expression) {
+  case value1:
+    // ...
+    break;
+  case value2:
+    // ...
+    break;
+  default:
+    // ...
+} -->
+
+Example:1 
+
+<!-- <script>
+    let day = 3;
+    let dayName;
+
+    switch (day) {
+      case 1:
+        dayName = "Monday";
+        break;
+      case 2:
+        dayName = "Tuesday";
+        break;
+      case 3:
+        dayName = "Wednesday";
+        break;
+      case 4:
+        dayName = "Thursday";
+        break;
+      case 5:
+        dayName = "Friday";
+        break;
+      case 6:
+        dayName = "Saturday";
+        break;
+      case 7:
+        dayName = "Sunday";
+        break;
+      default:
+        dayName = "Invalid day";
+    }
+
+    console.log(dayName);
+  </script> -->
+
+  ---$ Looping / Iteration: for, while, do...while, for...of, for...in
+
+  for Loop: Use when you know how many times to repeat.
+
+  Syntax: 
+
+  <!-- for (init; condition; update) {
+  // body
+} -->
+
+Example:1 
+
+<!-- <script>
+    for (let i = 1; i <= 5; i++) {
+      console.log("i = " + i);
+    }
+  </script> -->
+
+  Example:2 for loop with Array
+
+<!-- <script>
+    const fruits = ["Apple", "Banana", "Cherry"];
+    for (let i = 0; i < fruits.length; i++) {
+      console.log("I want to eat a " + fruits[i]);
+    }
+  </script> -->
+
+  Example:3 for loop with in The Modern Way
+
+  <!-- <script>
+    const colors = ["Red", "Green", "Blue"];
+    for (const color of colors) {
+      console.log("Current color: " + color);
+    }
+  </script> -->
+
+  Example:4 for loop with the Objects
+
+  <!-- <script>
+        const car = { car: "Tesla", model: "Model 3", year: 2024 };
+        for (let key in car) {
+            console.log(key + ": " + car[key]);
+        }
+  </script> -->
+
+  while Loop: Repeats while a condition is true. Condition checked first.
+
+  Syntax:
+  
+  <!-- while (condition) {
+  // body
+} -->
+
+  Example:1 
+
+  <!-- <script>
+    let n = 1;
+
+    while (n <= 3) {
+      console.log("n =", n);
+      n++;
+    }
+  </script> -->
+
+  Example: 2 using with Array
+
+  <!-- <script>
+        const snacks = ["Apple", "Banana", "Cookie"];
+        let index = 0;
+
+        while (index < snacks.length) {
+            console.log("Eating: " + snacks[index]);
+            index++;
+        }
+  </script> -->
+
+  do...while Loop: 
+  
+  Runs body at least once, then checks the condition.
+
+Syntax: 
+
+<!-- do {
+  // body
+} while (condition); -->
+
+Example:1 
+
+<!-- <script>
+  let count = 1;
+
+  do {
+    console.log("count =", count);
+    count++;
+  } while (count <= 3);
+</script> -->
+
+Example: 2 
+
+<!-- <script>
+    const tasks = ["Wake up", "Brush teeth", "Eat breakfast"];
+    let i = 0;
+
+    do {
+      console.log("Task:", tasks[i]);
+      i++;
+    } while (i < tasks.length);
+  </script> -->
+
+for...of :
+
+Used to iterate values of an iterable (arrays, strings, etc.).
+Gives each element directly.
+
+Syntax: 
+
+<!-- for (let value of iterable) {
+  // use value
+} -->
+
+Example:1 array values
+
+<!-- <script>
+  let numbers = [10, 20, 30];
+
+  for (let num of numbers) {
+    console.log("num =", num);
+  }
+  // Output: 10, 20, 30
+</script> -->
+
+Example:2 – string characters
+
+<!-- <script>
+  let word = "OPPTY";
+
+  for (let ch of word) {
+    console.log("ch =", ch);
+  }
+  // Output: O, P, P, T, Y
+</script> -->
+
+for...in Loop: 
+
+Used to iterate keys / property names.
+For arrays → indexes (0, 1, 2, …).
+For objects → property names.
+
+Syntax: 
+
+<!-- for (let key in objectOrArray) {
+  // use key
+} -->
+
+Example:1 – object properties
+
+<!-- <script>
+  let person = {
+    name: "Sujana",
+    age: 21,
+    city: "Hyderabad"
+  };
+
+  for (let key in person) {
+    console.log(key + ":", person[key]);
+  }
+  // Output: name: Sujana, age: 21, city: Hyderabad
+</script> -->
+
+Example:2 – array indexes 
+
+<!-- <script>
+  let colors = ["red", "green", "blue"];
+
+  for (let index in colors) {
+    console.log("index =", index, "value =", colors[index]);
+  }
+  // index = 0 value = red
+  // index = 1 value = green
+  // index = 2 value = blue
+</script> -->
+
+Quick summary
+
+for...of → use when you want values (good for arrays, strings).
+for...in → use when you want keys / indexes / property names (good for objects).
+
+---$ break and continue :
+
+break → exits the loop completely.
+continue → skips the current iteration and goes to the next one.
+
+Example:1 
+
+<!-- <script>
+  for (let i = 1; i <= 10; i++) {
+    if (i === 4) {
+      continue; // skip number 4
+    }
+    if (i === 8) {
+      break;    // stop when i reaches 8
+    }
+    console.log("i =", i);
+  }
+  // Output: 1, 2, 3, 5, 6, 7
+</script> -->
+
+
+
+
+
