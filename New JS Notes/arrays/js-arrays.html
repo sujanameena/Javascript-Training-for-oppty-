@@ -1,0 +1,222 @@
+A JavaScript array is an ordered list-like object used to store multiple values in a single variable, where each value has a numeric index starting from 0.
+
+It can hold any data types (numbers, strings, objects, even other arrays) together.
+Arrays are dynamic: you can add, remove, and change elements at any time.
+
+Example:1 
+
+<!-- <script>
+let fruits = ["Apple", "Banana", "Cherry"]; // array of strings
+console.log(fruits[0]); // "Apple"
+</script> -->
+
+1. Create Array using Literal
+
+* The array literal is the most common and simple way to create an array.
+* You use square brackets [] and list the elements separated by commas
+
+Syntax:
+
+let arrayName = [value1, value2, value3];
+
+Example:1 – simple string array
+
+<!-- <script>
+  let fruits = ["Apple", "Banana", "Cherry"];
+
+  console.log(fruits);      // ["Apple", "Banana", "Cherry"]
+  console.log(fruits[0]);   // "Apple"
+  console.log(fruits[2]);   // "Cherry"
+</script> -->
+
+Example:2 – mixed types in one array
+
+<!-- <script>
+  let student = ["Sujana", 21, true];
+
+  console.log(student[0]); // "Sujana"
+  console.log(student[1]); // 21
+  console.log(student[2]); // true
+</script> -->
+
+2. Create using new Keyword (Constructor)
+
+Another way to create an array is using the Array constructor with the new keyword.
+Less common than literals, but good to know.
+
+Syntax:
+
+<!-- let arrayName = new Array(value1, value2, value3); -->
+
+Example:1 – simple string array
+
+<!-- <script>
+  let fruits = new Array("Apple", "Banana", "Cherry");
+
+  console.log(fruits);     // ["Apple", "Banana", "Cherry"]
+  console.log(fruits[0]);  // "Apple"
+  console.log(fruits[2]);  // "Cherry"
+</script> -->
+
+Example:2 – be careful with single numeric argument
+
+Explain this later
+<!-- <script>
+ let arr1 = new Array(5);      // creates empty array with length 5
+  console.log(arr1.length);     // 5
+  console.log(arr1);            // [empty × 5]
+
+  let arr2 = new Array(5, 10);  // creates [5, 10]
+  console.log(arr2);            // [5, 10]
+</script> -->
+
+a. Single numeric argument → length, not element
+<!-- <script>
+  let arr1 = new Array(5);
+
+  console.log(arr1);        // [empty × 5]
+  console.log(arr1.length); // 5
+</script> -->
+
+This does not create [5].
+It creates an empty array with length 5 (indexes 0–4 are “empty”).
+
+b. Same number, but as an element (literal or string) → real value
+
+<!-- <script>
+  let arr2 = [5];              // array literal
+  let arr3 = new Array("5");   // string, not number
+
+  console.log(arr2);           // [5]
+  console.log(arr3);           // ["5"]
+  console.log(arr2.length);    // 1
+  console.log(arr3.length);    // 1
+</script> -->
+
+Basic Operations on JavaScript Arrays
+--------------------------------------
+
+1. Accessing Elements of an Array
+2. Accessing the First Element of an Array
+3. Accessing the Last Element of an Array
+4. Modifying the Array Elements
+5. Adding Elements to the Array
+* Elements can be added to the array using methods like push() and unshift().
+* The push() method add the element to the end of the array.
+* The unshift() method add the element to the starting of the array.
+6. Removing Elements from an Array
+7. Array Length
+8. Increase and Decrease the Array Length
+9. Iterating Through Array Elements
+10. Array Concatenation
+11. Conversion of an Array to String
+12. Check the Type of an Arrays
+
+Example:
+
+<!-- <script>
+        // Start with an array
+        let fruits = ["Apple", "Banana", "Cherry"];
+        console.log("Initial fruits:", fruits);
+
+        console.log("\n");
+
+        // 1. Accessing Elements of an Array
+        console.log("Element at index 1:", fruits[1]); // "Banana"
+
+        console.log("\n");
+
+        // 2. Accessing the First Element of an Array
+        let firstFruit = fruits[0];
+        console.log("First fruit:", firstFruit); // "Apple"
+
+        console.log("\n");
+
+        // 3. Accessing the Last Element of an Array
+        let lastFruit = fruits[fruits.length - 1];
+        console.log("Last fruit:", lastFruit); // "Cherry"
+
+        console.log("\n");
+
+        // 4. Modifying the Array Elements
+        fruits[1] = "Mango"; // change "Banana" to "Mango"
+        console.log("After modifying index 1:", fruits); // ["Apple", "Mango", "Cherry"]
+
+        console.log("\n");
+
+        // 5. Adding Elements to the Array
+        fruits.push("Orange");   // add at end
+        fruits.unshift("Kiwi");  // add at start
+        console.log("After adding elements:", fruits); // ["Kiwi","Apple","Mango","Cherry","Orange"]
+
+        console.log("\n");
+
+        // 6. Removing Elements from an Array
+        let removedEnd = fruits.pop();   // removes "Orange"
+        let removedStart = fruits.shift(); // removes "Kiwi"
+        console.log("After removing elements:", fruits);       // ["Apple","Mango","Cherry"]
+        console.log("Removed from end:", removedEnd);         // "Orange"
+        console.log("Removed from start:", removedStart);     // "Kiwi"
+
+        console.log("\n");
+
+        // 7. Array Length
+        console.log("Current length:", fruits.length); // 3
+
+        console.log("\n");
+
+        // 8. Increase and Decrease the Array Length
+        fruits.length = 2; // decrease length → last element removed
+        console.log("After decreasing length to 2:", fruits); // ["Apple","Mango"]
+
+        fruits.length = 4; // increase length → new empty slots
+        console.log("After increasing length to 4:", fruits); // ["Apple","Mango", empty × 2]
+
+        console.log("\n");
+
+        // 9. Iterating Through Array Elements
+        console.log("Iterating through fruits:");
+        for (let i = 0; i < fruits.length; i++) {
+            console.log("Index", i, "Value", fruits[i]);
+        }
+
+        console.log("\n");
+
+        // 10. Array Concatenation
+        let moreFruits = ["Grapes", "Papaya"];
+        let allFruits = fruits.concat(moreFruits);
+        console.log("After concatenation:", allFruits);
+
+        console.log("\n");
+
+        // 11. Conversion of an Array to String
+        console.log("toString():", allFruits.toString());
+
+        console.log("\n");
+
+        // 12. Check the Type of an Arrays
+        console.log("Array.isArray(allFruits):", Array.isArray(allFruits)); // true
+        console.log("typeof allFruits:", typeof allFruits);                 // "object"
+    </script> -->
+
+    JavaScript Array Methods
+    ------------------------
+    1. JavaScript Array length 
+    2. JavaScript Array toString() Method
+    3. JavaScript Array join() Method
+    4. JavaScript Array delete Operator
+    5. JavaScript Array concat() Method
+    6. JavaScript Array flat() Method
+    7. JavaScript Array.push() Method
+    8. JavaScript Array.unshift() Method
+    9. JavaScript Array.pop() Method
+    10. JavaScript Array.shift() Method
+    11. JavaScript Array.splice() Method
+    12. JavaScript Array.slice() Method
+    13. JavaScript Array some() Method
+    14. JavaScript Array map() Method
+    15. JavaScript Array filter() method
+    16. JavaScript Array reduce() Method
+    17. JavaScript Array reverse() method
+    18. JavaScript Array values() method
+    
