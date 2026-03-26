@@ -219,4 +219,285 @@ Example:
     16. JavaScript Array reduce() Method
     17. JavaScript Array reverse() method
     18. JavaScript Array values() method
-    
+
+    Example:
+
+     <script>
+        // // Start array
+        // let numbers = [10, 20, 30, 40];
+        // console.log("Initial numbers:", numbers);
+
+        // console.log("\n1. length");
+        // // 1. length – gives number of elements in array
+        // let numbers = [10, 20, 30, 40];
+        // console.log("length:", numbers.length); // 4
+
+        // console.log("\n2. toString()");
+        // // 2. toString() – converts array to comma-separated string
+        // let numbers = [10, 20, 30, 40];
+        // console.log("toString():", numbers.toString()); // "10,20,30,40"
+
+        // console.log("\n3. join()");
+        // // 3. join() – joins elements with custom separator and returns string
+        // let numbers = [10, 20, 30, 40];
+        // console.log("join(' - '):", numbers.join(" - ")); // "10 - 20 - 30 - 40"
+
+        // console.log("\n4. delete");
+        // // 4. delete – removes element at index but leaves empty slot
+        // let numbers = [10, 20, 30, 40];
+        // delete numbers[1]; // delete value at index 1
+        // console.log("after delete numbers[1]:", numbers); // [10, empty, 30, 40]
+        // console.log("length still:", numbers.length);    // 4
+
+        // console.log("\n5. concat()");
+        // // 5. concat() – combines arrays and returns new array
+        // let numbers = [10, 20, 30, 40];
+        // let moreNumbers = [50, 60];
+        // let combined = numbers.concat(moreNumbers);
+        // console.log("combined:", combined);
+
+        // console.log("\n6. flat()");
+        // // 6. flat() – flattens nested arrays into one level
+        // let nested = [1, [2, 3], [4, [5]]];
+        // console.log("nested:", nested);
+        // console.log("flat(1):", nested.flat(1)); // [1,2,3,4,[5]]
+        // console.log("flat(2):", nested.flat(2)); // [1,2,3,4,5]
+
+        // console.log("\n7. push()");
+        // // 7. push() – adds element(s) to END of array, returns new length
+        // let fruits = ["Apple", "Banana"];
+        // let newLengthPush = fruits.push("Cherry");
+        // console.log("after push:", fruits);        // ["Apple","Banana","Cherry"]
+        // console.log("new length:", newLengthPush); // 3
+
+        // console.log("\n8. unshift()");
+        // // 8. unshift() – adds element(s) to START of array, returns new length
+        // let fruits = ["Apple", "Banana"];
+        // let newLengthUnshift = fruits.unshift("Kiwi");
+        // console.log("after unshift:", fruits);        // ["Kiwi","Apple","Banana"]
+        // console.log("new length:", newLengthUnshift); // 3
+
+        // console.log("\n9. pop()");
+        // // 9. pop() – removes and returns LAST element
+        // let fruits = ["Apple", "Banana"];
+        // let popped = fruits.pop();
+        // console.log("after pop:", fruits); // ["Apple"]
+        // console.log("popped element:", popped); // "Banana"
+
+        // console.log("\n10. shift()");
+        // // 10. shift() – removes and returns FIRST element
+        // let fruits = ["Apple", "Banana"];
+        // let shifted = fruits.shift();
+        // console.log("after shift:", fruits); // ["Banana"]
+        // console.log("shifted element:", shifted); // "Apple"
+
+        // let a = [20, 30, 40, 50];
+        // a.splice(1, 3);
+        // a.splice(1, 0, 3, 4, 5);
+        // console.log(a);
+
+        // console.log("\n11. splice()");
+        // // 11. splice() – add/remove elements at specific index, changes original array
+        // // syntax: splice(startIndex, deleteCount, item1, item2, ...)..(1,0,20,30) starts from index 1 and 0 will be deletes 0 elements
+        // let nums = [1, 2, 3, 4, 5];
+        // let removed = nums.splice(1, 0, 20, 30); 
+        // console.log("after splice:", nums);      
+        // console.log("removed by splice:", removed); 
+
+        // console.log("\n12. slice()");
+        // // 12. slice() – copies part of array into new array (no change to original)
+        
+        // //         Calls slice(start, end) on nums.
+        // // start = 1 → start taking elements from index 1 (the value 2).
+        // // end = 4 → stop before index 4 (so it stops at index 3).
+        // // So it takes elements at indexes 1, 2, and 3 → values 2, 3, 4.
+        // // A new array [2, 3, 4] is created and stored in sliced.
+        // // The original nums array is not changed.
+        // let nums = [1, 2, 3, 4, 5];
+        // let sliced = nums.slice(1, 4); // from index 1 to 3
+        // console.log("original nums:", nums);
+        // console.log("sliced (1,4):", sliced); // [2,3,4]
+
+        // console.log("\n13. some()");
+        // // 13. some() – returns true if AT LEAST ONE element matches condition
+        // let nums = [1, 2, 3, 4, 5];
+        // let hasBig = nums.some((n) => n > 2);
+        // console.log("nums:", nums);
+        // console.log("some > 8:", hasBig); 
+
+        // console.log("\n14. map()");
+        // // 14. map() – creates new array by applying function to every element
+        // let nums = [1, 2, 3, 4, 5];
+        // let doubled = nums.map((n) => n * 2);
+        // console.log("nums:", nums);
+        // console.log("doubled:", doubled);
+
+        // console.log("\n15. filter()");
+        // // 15. filter() – creates new array with elements that pass a condition
+        // let nums = [1, 2, 3, 4, 5];
+        // let even = nums.filter((n) => n % 2 === 0);
+        // console.log("nums:", nums);
+        // console.log("even numbers:", even);
+
+        // console.log("\n16. reduce()");
+        // // 16. reduce() – reduces array to a single value (e.g., sum)
+        // // acc(accumulator) starts from 0(the second argument to reduce).
+        // // curr(current) is each element of the array in turn: 1, then 2, 3, 4, 5.
+        // // For each element, it returns acc + curr, so it calculates 0 + 1, then 1 + 2, then 3 + 3, 6+4, 10+5  ending with the total 15.
+        // // The final result(15) is stored in sum.
+        // // show a small dashboard like: others use case also checkout,total cart
+        // // Pending: 2
+        // // Completed: 1
+        // // Canceled: 1
+        // let nums = [1, 2, 3, 4, 5];
+        // let sum = nums.reduce((acc, curr) => acc + curr, 0);
+        // console.log("nums:", nums);
+        // console.log("sum using reduce:", sum);
+
+        // console.log("\n17. reverse()");
+        // // 17. reverse() – reverses array order (changes original array)
+        // let letters = ["A", "B", "C", "D"];
+        // console.log("letters before reverse:", letters);
+        // letters.reverse();
+        // console.log("letters after reverse:", letters); // ["D","C","B","A"]
+
+        // console.log("\n18. values()");
+        // // 18. values() – returns iterator of values, used with for...of
+        // let numbers2 = [100, 200, 300];
+        // let iterator = numbers2.values();
+
+        // console.log("Using values() with for...of:");
+        // for (let value of iterator) {
+        //     console.log("value:", value);
+        // }
+    </script>
+
+    splice:
+    ------ 
+
+    Example:1 
+
+    <!-- <script>
+        // Example 1: Remove elements (no insert)
+        let nums1 = [10, 20, 30, 40, 50];
+        // remove 2 elements starting from index 1 (20, 30)
+        let removed1 = nums1.splice(1, 2);
+        console.log("nums1 after splice:", nums1);  // [10, 40, 50]
+        console.log("removed1:", removed1);         // [20, 30]
+    </script> -->
+
+    Example:2 
+
+    <!-- <script>
+        // Example 2: Insert elements (deleteCount = 0)
+        let nums2 = [10, 40, 50];
+        // at index 1, delete 0, insert 20, 30
+        let removed2 = nums2.splice(1, 0, 20, 30);
+        console.log("nums2 after splice:", nums2); 
+         // [10, 20, 30, 40, 50]
+        console.log("removed2:", removed2);  
+               // []
+    </script> -->
+
+    Example:3
+
+    <!-- <script>
+        // Example 3: Replace elements (remove and insert)
+        let fruits = ["Apple", "Banana", "Cherry"];
+        // at index 1, delete 1 ("Banana"), insert "Mango"
+        let removed3 = fruits.splice(1, 1, "Mango");
+        console.log("fruits after splice:", fruits); // ["Apple", "Mango", "Cherry"]
+        console.log("removed3:", removed3);          // ["Banana"]
+    </script> -->
+
+    Example:4 
+
+    <!-- <script>
+        // Example 4: Remove everything from an index to end
+        let nums4 = [1, 2, 3, 4, 5];
+        // from index 2, remove all remaining elements
+        let removed4 = nums4.splice(2);
+        console.log("nums4 after splice:", nums4);  // [1, 2]
+        console.log("removed4:", removed4);         // [3, 4, 5]
+    </script> -->
+
+    Example:5 
+
+    <!-- <script>
+        // Example 5: Using negative start index (count from end)
+        let nums5 = [1, 2, 3, 4, 5];
+        // start at -2 (index from end → 3), remove 1 element
+        let removed5 = nums5.splice(-2, 1);
+        console.log("nums5 after splice:", nums5);  // [1, 2, 3, 5]
+        console.log("removed5:", removed5);         // [4]
+    </script> -->
+
+    slice:
+    ------ 
+
+    Example:1 – basic slice with start and end
+
+    <!-- <script>
+        let nums = [10, 20, 30, 40, 50];
+
+        // take elements from index 1 to 3 (end index 4 is not included) it counts element index(starts from o[10],1[20]...)
+        let part = nums.slice(1, 4);
+
+        console.log("original nums:", nums); // [10, 20, 30, 40, 50]
+        console.log("slice(1, 4):", part);   // [20, 30, 40]
+    </script> -->
+
+    Example:2 – slice with only start
+
+    <!-- <script>
+        let nums = [10, 20, 30, 40, 50];
+
+        // take elements from index 2 till end
+        let part = nums.slice(2);
+
+        console.log("original nums:", nums); // [10, 20, 30, 40, 50]
+        console.log("slice(2):", part);      // [30, 40, 50]
+    </script> -->
+
+    Example:3 – slice with negative start
+
+     <!-- <script>
+        let nums = [10, 20, 30, 40, 50];
+
+        // -2 means start 2 elements from the end → index 3(It works like 0,1,2 from 2 do -2 means removes from 2)
+        let part = nums.slice(-2);
+
+        console.log("original nums:", nums); // [10, 20, 30, 40, 50]
+        console.log("slice(-2):", part);     // [40, 50]
+    </script> -->
+
+    Example:4 – slice with negative start and end
+
+    <!-- <script>
+  let nums = [10, 20, 30, 40, 50];
+
+  // start = -4 (index 1), end = -1 (index 4, not included)
+  let part = nums.slice(-4, -1);
+
+  console.log("original nums:", nums);   // [10, 20, 30, 40, 50]
+  console.log("slice(-4, -1):", part);   // [20, 30, 40]
+</script> -->
+
+Example:5 – copy whole array 
+
+<!-- <script>
+  let nums = [1, 2, 3];
+
+  // slice() with no arguments → shallow copy of whole array
+  let copy = nums.slice();
+
+  console.log("original nums:", nums); // [1, 2, 3]
+  console.log("copy:", copy);          // [1, 2, 3]
+</script> -->
+
+
+
+
+
+
+
