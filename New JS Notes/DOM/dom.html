@@ -72,6 +72,9 @@ Example:2
 
 document.getElementsByClassName(classNames) returns a live HTMLCollection of elements whose classList contains all class names in the space‑separated string.
 
+elements[0] → the <h1> (first match)
+elements[1] → the <h2> (second match)
+
 Example:1
 
 <!-- <h1 class="selector">GeeksForGeeks</h1>
@@ -162,50 +165,45 @@ Example:1
 
     Example:2
 
-    <!-- <style>
-        ul {
-            padding-left: 18px;
-        }
-
-        li {
-            padding: 4px 0;
-        }
-
-        .blue {
-            color: #1976d2;
-        }
-    </style>
-    
-    <h2>Todo List</h2>
-    <ul id="todos">
-        <li>Learn DOM</li>
-        <li>Practice JavaScript</li>   
-        <li>Build a project</li>
-    </ul>
-
-    <button id="numberBtn">Number items</button>
-    <button id="blueBtn">Toggle blue on all &lt;li&gt;</button>
+    <!-- <h1 id="title">Hello World</h1>
+    <p class="message">Click the button to change me!</p>
+    <button id="changeBtn">Change</button>
 
     <script>
-        // document.querySelectorAll(selector) returns a static NodeList of all elements that match the given CSS selector.
-        const listItems = document.querySelectorAll('#todos li');
-        const numberBtn = document.getElementById('numberBtn');
-        const blueBtn = document.getElementById('blueBtn');
+        // querySelector returns the FIRST matching element
+        const title = document.querySelector('#title');       // by ID
+        const message = document.querySelector('.message');   // by class
+        const btn = document.querySelector('button');         // by tag
 
-        // Save original text once so numbering doesn't stack
-        listItems.forEach(item => {
-            item.dataset.original = item.textContent.trim();
+        btn.addEventListener('click', () => {
+            title.style.color = 'purple';
+            title.textContent = 'Text Changed!';
+            message.style.fontSize = '24px';
+            message.textContent = 'querySelector made this happen!';
         });
+    </script> -->
 
+    Example: 3
 
-        numberBtn.addEventListener('click', () => {
-            listItems.forEach((item, i) => {
-                item.textContent = `${i + 1}. ${item.dataset.original}`;
-            });
-        });
+    <!-- <h1>My Website</h1>
+    <p>This is a real-time dark mode toggle example.</p>
+    <button>🌙 Dark Mode</button>
 
-        blueBtn.addEventListener('click', () => {
-            listItems.forEach(item => item.classList.toggle('blue'));
+    <script>
+        const body = document.querySelector('body');
+        const btn = document.querySelector('button');
+        const heading = document.querySelector('h1');
+
+        btn.addEventListener('click', () => {
+            body.classList.toggle('dark');
+
+            if (body.classList.contains('dark')) {
+                btn.textContent = '☀️ Light Mode';
+                heading.textContent = 'Dark Mode is ON';
+            } else {
+                btn.textContent = '🌙 Dark Mode';
+                heading.textContent = 'My Website';
+            }
         });
     </script> -->
 
@@ -230,65 +228,126 @@ Example:1
         elements[0].style.marginTop = "60px";
     </script> -->
 
-5.createElement/6.appendChild():
+    Example:2 
+
+    <!-- <h1>querySelectorAll Demo</h1>
+
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+    <div class="card">Card 3</div>
+    <div class="card">Card 4</div>
+
+    <br>
+    <button>🎨 Change All Cards</button>
+
+    <script>
+        const cards = document.querySelectorAll('.card');
+        const btn = document.querySelector('button');
+
+        const colors = ['#e74c3c', '#3498db', '#2ecc71', '#f39c12'];
+        let colored = false;
+
+        btn.addEventListener('click', () => {
+            cards.forEach((card, index) => {
+                if (!colored) {
+                    card.style.backgroundColor = colors[index];
+                    card.style.color = 'white';
+                    card.style.transform = 'scale(1.1)';
+                } else {
+                    card.style.backgroundColor = '';
+                    card.style.color = '';
+                    card.style.transform = '';
+                }
+            });
+            colored = !colored;
+            btn.textContent = colored ? '🔄 Reset Cards' : '🎨 Change All Cards';
+        });
+    </script> -->
+
+    ternary operator ? and : 
+
+5.createElement :
+
+Example: 1 
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>createElement Example - Color Boxes</title>
+    <style>
+        body { font-family: Arial; padding: 40px; }
+        .box {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            margin: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Click to Create Boxes</h2>
+    <button id="createBtn">Create Box</button>
+    <div id="container"></div>
+
+    <script>
+        const container = document.getElementById('container');
+        const createBtn = document.getElementById('createBtn');
+
+        const colors = ['red', 'blue', 'green', 'orange', 'purple', 'pink'];
+        let count = 0;
+
+        createBtn.addEventListener('click', function () {
+            const box = document.createElement('div');
+
+            box.className = 'box';
+            box.style.backgroundColor = colors[count];
+
+            container.appendChild(box);
+
+            count++;
+            if (count >= colors.length) {
+                count = 0; // restart from red
+            }
+        });
+    </script>
+
+</body>
+</html> -->
+
+6.appendChild():
 
 document.createElement(tagName) returns a new Element of the given tag.
 
 Example: 1
 
-<!-- <style>
-        body {
-            font-family: system-ui, Arial, sans-serif;
-            margin: 24px;
-        }
+<!-- <h2>My Grocery List</h2>
+    <input type="text" id="itemInput" placeholder="Enter item..." />
+    <button id="addBtn">Add Item</button>
 
-        ul {
-            padding-left: 18px;
-        }
-
-        li {
-            padding: 4px 0;
-        }
-
-        button {
-            cursor: pointer;
-        }
-    </style>
-
-
-    <h1>appendChild() example</h1>
-
-    <input id="itemText" placeholder="New item…" />
-    <button id="addBtn">Add with appendChild</button>
-    <button id="moveBtn">Move last item to top</button>
-
-    <ul id="list">
-        <li>Learn DOM</li>
-        <li>Use appendChild</li>
-    </ul>
+    <ul id="list"></ul>
 
     <script>
         const list = document.getElementById('list');
-        const input = document.getElementById('itemText');
+        const itemInput = document.getElementById('itemInput');
+        const addBtn = document.getElementById('addBtn');
 
-        documen t.getElementById('addBtn').addEventListener('click', () => {
-            const txt  = input.value.trim();
-            if (!txt) return;
+        addBtn.addEventListener('click', function () {
+            const text = itemInput.value.trim();
+            if (!text) return;
 
+            // 1. Create a new <li> element
             const li = document.createElement('li');
-            // appendChild only accepts nodes; create a text node or set textContent
-            li.textContent = txt;
 
-            list.appendChild(li); 
-            input.value = '';
-        });
+            // 2. Put the text inside it
+            li.textContent = text;
 
-        // Demonstrate that appendChild moves existing nodes
-        document.getElementById('moveBtn').addEventListener('click', () => {
-            const last = list.lastElementChild;
-            if (!last) return;
-            // Move last to top via insertBefore, or:
-            list.insertBefore(last, list.firstElementChild);
+            // 3. Append it to the <ul> — this is where appendChild works
+            list.appendChild(li);
+
+            itemInput.value = '';
         });
     </script> -->
 
