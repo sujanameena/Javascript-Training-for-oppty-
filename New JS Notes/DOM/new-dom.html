@@ -1,0 +1,193 @@
+1. getElementById(id): getElementById(id) is a method that finds and returns one element from your HTML page by its id.
+
+document.getElementById('title')
+         ↑                  ↑
+     "go find"         "the element whose id is title"
+
+     Simple rule: One id = one element. So it always returns a single element, never a list.
+
+Example:1
+
+<!-- <h2>Simple Counter</h2>
+    <p>Count: <span id="count">0</span></p>
+    <button onclick="increase()">Add 1</button>
+    <button onclick="reset()">Reset</button>
+
+    <script>
+        let count = 0;
+
+        function increase() {
+            count++;
+            document.getElementById('count').textContent = count;
+        }
+
+        function reset() {
+            count = 0;
+            document.getElementById('count').textContent = count;
+        }
+    </script> -->
+
+    2. getElementByClassName(class): getElementsByClassName(class) finds all elements that have the given class name and returns them as an HTMLCollection (an array-like list).
+
+    document.getElementsByClassName('fruit')
+         ↑                         ↑
+    "go find ALL"         "elements with class fruit"
+
+Returns: [ <p>Apple</p>, <p>Banana</p>, <p>Orange</p> ]
+              [0]             [1]            [2]
+
+
+              Example: 
+
+               <!-- <h2>Student Marks</h2>
+    <p class="mark">1</p>
+    <p class="mark">2</p>
+    <p class="mark">3</p>
+    <p class="mark">4</p>
+
+    <button onclick="showTotal()">Show Total</button>
+    <button onclick="showHighest()">Show Highest</button>
+    <button onclick="resetAll()">Reset</button>
+
+    <p id="result"></p>
+
+    <script>
+        const marks = document.getElementsByClassName('mark');
+        const result = document.getElementById('result');
+
+        // Function 1: Get total of all marks
+        function showTotal() {
+            let total = 0;
+            for (let i = 0; i < marks.length; i++) {
+                total = total + Number(marks[i].textContent);
+            }
+            result.textContent = 'Total: ' + total;
+        }
+
+    
+
+        // Function 2: Get highest mark
+        function showHighest() {
+            let highest = 0;
+            for (let i = 0; i < marks.length; i++) {
+                let num = Number(marks[i].textContent);
+                if (num > highest) {
+                    highest = num;
+                }
+            }
+            result.textContent = 'Highest Mark: ' + highest;
+        }
+
+       
+        // Function 3: Reset everything
+        function resetAll() {
+            marks[0].textContent = '1';
+            marks[1].textContent = '2';
+            marks[2].textContent = '3';
+            marks[3].textContent = '4';
+            result.textContent = '';
+        }
+    </script> -->
+
+    querySelector(selector) is a method that finds and returns the first element that matches a CSS selector. If no match is found, it returns null.
+
+    Example: 
+
+     <!-- <h1 id="title">Welcome</h1>
+    <p class="info">This is a paragraph.</p>
+    <p class="info">This is another paragraph.</p>
+    <button onclick="changeAll()">Change</button>
+    <button onclick="resetAll()">Reset</button>
+
+    <script>
+        function changeAll() {
+            // by id — uses #
+            document.querySelector('#title').textContent = 'Hello World!';
+
+            // by class — uses .  (finds FIRST .info only)
+            document.querySelector('.info').textContent = 'First paragraph changed!';
+
+            // by tag — no symbol needed
+            document.querySelector('button').textContent = 'Changed!';
+        }
+
+        function resetAll() {
+            document.querySelector('#title').textContent = 'Welcome';
+            document.querySelector('.info').textContent = 'This is a paragraph.';
+            document.querySelector('button').textContent = 'Change';
+        }
+    </script> -->
+
+
+
+    querySelectorAll: querySelectorAll(selector) is a method that finds ALL elements matching a CSS selector and returns them as a NodeList (an array-like list).
+
+    document.querySelectorAll('.item')
+         ↑                   ↑
+    "go find ALL"     "elements matching this CSS selector"
+
+    Example: 
+
+      <!-- <p class="item">Apple</p>
+    <p class="item">Banana</p>
+    <p class="item">Mango</p>
+
+    <button onclick="changeAll()">Change All</button>
+
+    <script>
+        function changeAll() {
+            const items = document.querySelectorAll('.item');
+
+            items[0].textContent = 'Apple - Selected';
+            items[1].textContent = 'Banana - Selected';
+            items[2].textContent = 'Mango - Selected';
+        }
+    </script> -->
+
+    createElement:  document.createElement(tagName) creates a new HTML element in memory. It does not appear on the page until you add it using appendChild() or similar methods.
+
+      <!-- <h2>Pick a Color</h2>
+    <button onclick="addColor('red')">Red</button>
+    <button onclick="addColor('blue')">Blue</button>
+    <button onclick="addColor('green')">Green</button>
+    <button onclick="clearAll()">Clear All</button>
+
+    <div id="container"></div>
+
+    <script>
+        function addColor(color) {
+            // Step 1: Create a new <span> in memory
+            const circle = document.createElement('span');
+
+            // Step 2: Set its text
+            circle.textContent = ' $ ';
+
+            // Step 3: Set its color
+            circle.style.color = color;
+            circle.style.fontSize = '30px';
+
+            // Step 4: Add it to the page
+            document.getElementById('container').appendChild(circle);
+        }
+
+        function clearAll() {
+            document.getElementById('container').textContent = '';
+        }
+    </script> -->
+
+      
+remove():
+
+Example
+    <!-- <p id="msg">This message can be removed.</p>
+    <button onclick="removeMsg()">Remove Message</button>
+
+    <script>
+        function removeMsg() {
+            const para = document.getElementById('msg');
+            para.remove();   // removes the <p> from the page
+        }
+    </script> -->
+
+
+

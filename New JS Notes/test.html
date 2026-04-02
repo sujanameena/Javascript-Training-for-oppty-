@@ -1,22 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>createElement Example - Color Boxes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+   
     <style>
-        body { font-family: Arial; padding: 40px; }
-        .box {
-            width: 100px;
-            height: 100px;
-            display: inline-block;
-            margin: 10px;
-            border-radius: 10px;
+        :root {
+            font-family: system-ui, Arial, sans-serif;
+        }
+
+        body {
+            margin: 24px;
+            line-height: 1.5;
+        }
+
+        .card {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        ul {
+            padding-left: 18px;
+        }
+
+        li {
+            padding: 4px 0;
+        }
+
+        button {
+            cursor: pointer;
+            margin-right: 8px;
         }
     </style>
-</head>
-<body>
 
-   
 
+    <h1>DOM remove() example</h1>
+
+    <div id="card" class="card">
+        This card can be removed from the DOM.
+        <button id="removeCardBtn">Remove this card</button>
+    </div>
+
+    <ul id="tasks">
+        <li>Learn DOM</li>
+        <li>Practice JavaScript</li>
+        <li>Build a project</li>
+    </ul>
+    <button id="removeFirstBtn">Remove first task</button>
+    <button id="clearAllBtn">Clear all tasks</button>
+
+    <script>
+        // Remove a specific element by id
+        document.getElementById('removeCardBtn').addEventListener('click', () => {
+            document.getElementById('card')?.remove();
+        });
+
+        // Remove the first <li> under #tasks
+        document.getElementById('removeFirstBtn').addEventListener('click', () => {
+            document.querySelector('#tasks li')?.remove();
+        });
+
+        // Remove all <li> items under #tasks
+        document.getElementById('clearAllBtn').addEventListener('click', () => {
+            document.querySelectorAll('#tasks li').forEach(li => li.remove());
+        });
+    </script>
 </body>
+
 </html>
