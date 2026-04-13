@@ -1,0 +1,156 @@
+1. Math constants (e.g., Math.PI, Math.E)
+
+Examle:1
+
+<script>
+console.log(Math.PI); // 3.141592653589793
+</script>
+
+Math.E is Euler's number, a mathematical constant approximately equal to 2.718281828459045
+
+2. Rounding: Math.round, Math.floor, Math.ceil, Math.trunc
+
+Examle:1
+
+<script> 
+const v = 3.7;
+console.log(Math.round(v)); // 4 (nearest)
+console.log(Math.floor(v)); // 3 (down)
+console.log(Math.ceil(v));  // 4 (up)
+console.log(Math.trunc(v)); // 3 (remove decimal)
+</script>
+
+3. Absolute value: Math.abs
+
+Description:
+The Math.abs() method returns the absolute value (positive value) of a number, regardless of whether the input is
+positive or negative.
+
+Examle:1
+
+<script>
+console.log(Math.abs(-42)); // 42
+</script>
+
+4. Min / Max: Math.min, Math.max
+
+Examle:1
+
+<script>
+console.log(Math.min(5, 2, 9)); // 2
+console.log(Math.max(5, 2, 9)); // 9
+</script>
+
+5. Powers & roots: Math.pow, Math.sqrt, Math.cbrt
+
+pow = power
+Math.pow(base, exponent) calculates the value of a base raised to the power of an exponent.
+In this case: 2^4 = 2 × 2 × 2 × 2 = 16
+
+sqrt = square root
+* Calculates and logs the square root of 25
+* Math.sqrt() is a built-in JavaScript method that returns the square root of a number
+
+cbrt = cute root
+* Calculates the cube root of a number
+* Math.cbrt() returns the cube root of a given numeric value
+* In this example, it finds the cube root of 27, which is 3
+* because 3 × 3 × 3 = 27
+
+Examle:1
+
+<script>
+console.log(Math.pow(2, 4)); // 16
+console.log(Math.sqrt(25));  // 5
+console.log(Math.cbrt(27));  // 3
+</script>
+
+6. Random: Math.random
+
+
+
+Examle:1
+
+<script>
+// random integer between 1 and 10 (inclusive)
+const rand = Math.floor(Math.random() * 10) + 1;
+console.log(rand);
+</script>
+
+7. Trigonometry: Math.sin, Math.cos, Math.tan (radians)
+
+Examle:1
+
+<script>
+const angle = Math.PI / 2; // 90 degrees
+console.log(Math.sin(angle)); // 1
+</script>
+
+8. Inverse trig: Math.asin, Math.acos, Math.atan, Math.atan2
+
+Examle:1
+
+<script>
+console.log(Math.asin(1));         // ~1.5708 (π/2)
+console.log(Math.atan2(1, 1));     // ~0.7854 (π/4)
+</script>
+
+9. Logs & exponentials: Math.log, Math.log10, Math.log2, Math.exp
+
+Examle:1 
+
+<script>
+console.log(Math.log(Math.E));   // 1 (natural log)
+console.log(Math.log10(100));    // 2
+console.log(Math.exp(1));        // e ≈ 2.718
+</script>
+
+10. Sign: Math.sign
+
+Examle:1  
+
+<script>
+console.log(Math.sign(-5)); // -1
+console.log(Math.sign(0));  // 0
+console.log(Math.sign(7));  // 1
+</script>
+
+11. Integer multiplication: Math.imul 
+
+Examle:1 
+
+<script>
+console.log(Math.imul(3, 0xffffffff)); // -3 (32‑bit multiply)
+</script>
+
+12. 32-bit float rounding: Math.fround 
+
+Examle:1 
+
+<script>
+console.log(Math.fround(1.337)); // 32-bit float approximation of 1.337
+</script>
+
+13. Parsing numbers: Number, parseInt, parseFloat 
+
+Examle:1 
+
+<script>
+console.log(Number("42"));        // 42
+console.log(parseInt("101", 2));  // 5 (binary -> decimal)
+console.log(parseFloat("3.14px")); // 3.14
+</script>
+
+14. Checking NaN / Infinity: Number.isNaN, Number.isFinite
+
+Examle:1 
+
+<script>
+const n = 0 / 0; // NaN
+console.log(Number.isNaN(n));      // true
+console.log(Number.isFinite(10));  // true
+console.log(Number.isFinite(Infinity)); // false
+</script>
+
+
+

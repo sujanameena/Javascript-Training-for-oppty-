@@ -1,0 +1,222 @@
+Example: 1 Transitions
+
+ <div class="box"></div>
+
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: cornflowerblue;
+            transition: transform 0.3s ease, background-color 0.3s linear;
+        }
+
+        /* State change triggers the transition */
+        .box:hover {
+            transform: translateY(10px) scale(1.1);
+            /* transform:  scale(1.1); */
+            background-color: tomato;
+        }
+    </style>
+
+    Example: 2 Keyframe Animations 
+
+    <div class="move-box"></div>
+
+    <style>
+        .move-box {
+            width: 50px;
+            height: 50px;
+            background: purple;
+            animation: moveX 2s infinite alternate ease-in-out;
+            /* name  duration  repeat  direction  timing */
+        }
+
+        @keyframes moveX {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(200px);
+            }
+        }
+    </style>
+
+    Example: 3 Fade In / Out Animation
+
+     <div class="fade-box">Hello</div>
+
+<style>
+  .fade-box {
+    font-size: 50px;
+    opacity: 0;
+    animation: fadeIn 2.5s forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+</style>
+  
+Example:4 Scale / Bounce Animation
+
+<div class="bounce"></div>
+
+<style>
+  .bounce {
+    width: 60px;
+    height: 60px;
+    background: gold;
+    border-radius: 50%;
+    animation: bounce 0.6s infinite alternate;
+  }
+
+  @keyframes bounce {
+    from { transform: translateY(0) scale(1); }
+    to   { transform: translateY(-40px) scale(1.1); }
+  }
+</style>
+
+Example:5. Spinner / Rotation Animation
+
+<div class="loader"></div>
+
+<style>
+  .loader {
+    width: 80px;
+    height: 80px;
+    border: 4px solid lightgray;
+    border-top-color: dodgerblue;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+</style>
+
+1. Slide-in from left on page load
+
+<div class="slide-in">Slide In</div>
+
+<style>
+  .slide-in {
+    width: 100px;
+    padding: 10px;
+    text-align: center;
+    background: lightseagreen;
+    color: white;
+    animation: slideIn 0.8s ease-out forwards;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(-200px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+</style>
+
+2. Pulse / heartbeat effect 
+
+<button class="pulse-btn">Pulse</button>
+
+<style>
+  .pulse-btn {
+    padding: 10px 20px;
+    border: none;
+    background: hotpink;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    animation: pulse 1s infinite;
+  }
+
+  @keyframes pulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.1); box-shadow: 0 0 10px rgba(255,105,180,0.7); }
+    100% { transform: scale(1); box-shadow: none; }
+  }
+</style>
+
+3. Text typing effect (using steps)
+
+<div class="typing">Learning CSS animations...</div>
+
+<style>
+  .typing {
+    width: 18ch;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid black;
+    font-family: monospace;
+    animation:
+      typing 3s steps(18) forwards,
+      caret 0.6s step-end infinite;
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to   { width: 18ch; }
+  }
+
+  @keyframes caret {
+    50% { border-color: transparent; }
+  }
+</style>
+
+4. Card hover with lift + shadow (using transition) 
+
+<div class="card">Hover card</div>
+
+<style>
+  .card {
+    width: 200px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  }
+</style>
+
+5. Staggered list animation using animation-delay 
+
+<ul class="fade-list">
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+
+<style>
+  .fade-list li {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: listFade 0.5s forwards;
+  }
+
+  .fade-list li:nth-child(1) { animation-delay: 0.1s; }
+  .fade-list li:nth-child(2) { animation-delay: 0.3s; }
+  .fade-list li:nth-child(3) { animation-delay: 0.5s; }
+
+  @keyframes listFade {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+
+

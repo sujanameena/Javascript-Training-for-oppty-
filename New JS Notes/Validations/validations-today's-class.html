@@ -1,0 +1,221 @@
+In JavaScript, “validation” usually means checking that user input is correct before you use it (often before submitting a form).
+
+Example:1 
+
+<!-- <form id="simpleForm">
+      <label>Username:</label>
+      <input id="username" type="text" />
+      <button type="submit">Submit</button>
+      <p id="msg" style="color: red;"></p>
+    </form>
+
+    <script>
+      let form = document.getElementById("simpleForm");
+      form.addEventListener("submit", function (e) {
+        let username = document.getElementById("username").value;
+        let msg = document.getElementById("msg");
+
+        msg.textContent = ""; // clear old message
+
+        if (username.trim() === "") {
+          msg.textContent = "Username is required";
+          e.preventDefault(); // stop form submit
+        } else {
+          alert("Form submitted!");
+        }
+      });
+    </script> -->
+
+    If empty → show message and e.preventDefault()
+
+    ----------/  preventDefault()=stop the default submit
+
+    Definition: 
+
+    preventDefault() is a method on the event object that tells the browser:
+
+    email verification check Example: 
+    ---------------------------------
+
+     <!-- <form id="simpleForm">
+        <label>Email:</label>
+        <input id="email" type="text" />
+        <button type="submit">Submit</button>
+        <p id="msg" style="color: red;"></p>
+    </form>
+
+    <script>
+        let form = document.getElementById("simpleForm");
+        form.addEventListener("submit", function (e) {
+            let email = document.getElementById("email").value;
+            let msg = document.getElementById("msg");
+
+            msg.textContent = ""; // clear old message
+
+            if (email.trim() === "") {
+                msg.textContent = "Email is required";
+                e.preventDefault(); // stop form submit
+            } else if (!email.includes("@") || !email.includes(".com")) {
+                msg.textContent = "Email must include @ and .com";
+                e.preventDefault(); // stop form submit
+            } else {
+                alert("Form submitted!");
+            }
+        });
+    </script> -->
+
+
+    Regex:  Regex (short for “regular expression”) is a mini language used to search for and match text patterns.
+
+Explanation: 1
+    ^ and $ anchor the start/end of the string.
+[^\s@]+ before @: one or more characters that are not whitespace or “@” (local part).
+@: requires the “@” symbol.
+[^\s@]+ after @: one or more non-space/non-“@” chars (domain).
+.: requires a dot.
+[^\s@]{2,}: at least two non-space/non-“@” chars (TLD; can include additional dots like “co.uk”).
+
+Explanation:2 
+
+    I’ll break /^[^\s@]+@[^\s@]+\.[^\s@]+$/ into pieces.
+
+/.../
+
+In JavaScript, regex literals are written between / and /. The real pattern is everything inside.
+^
+
+Anchor: “start of the string”.
+Means matching must begin at the very first character (no characters allowed before).
+[^\s@]+ (first part, before the @)
+
+[...] = character class: “one character from this set”.
+^ (inside the brackets) = negation: “NOT these characters”.
+\s = any whitespace (space, tab, newline, etc.).
+@ = the at-sign.
+So [^\s@] = “any character that is not whitespace and not @”.
++ = “one or more of the previous token”.
+Together, [^\s@]+ = “one or more non-space, non-@ characters”.
+This is the “username/local part” before the @.
+@ (the middle)
+
+Literal @ symbol. Must be present once here.
+[^\s@]+ (second part, after the @)
+
+Same as before: “one or more characters that are not whitespace and not @”.
+This is the domain name before the dot, e.g. gmail in gmail.com.
+\.
+
+. normally means “any character”.
+\. escapes it, so it becomes a literal dot character ..
+[^\s@]+ (third part, after the dot)
+
+Again: “one or more non-whitespace, non-@ characters”.
+This is the “top-level domain” part, like com, org, in.
+$
+
+Anchor: “end of the string”.
+Ensures nothing is allowed after that last part.
+
+Putting it all together:
+
+Must start at the beginning of the string.
+Some non-space, non-@ characters.
+Then exactly one @.
+Then some non-space, non-@ characters.
+Then a dot ..
+Then some non-space, non-@ characters.
+And then the string must end.
+So it matches basic email-like strings such as user123@gmail.com, but it’s still a simple email check (not a perfect one).
+
+
+
+Example on regex:
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Regex Form Validation</title>
+    <style>
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        .success {
+            color: green;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="signup-form">
+        <label>
+            Username (only letters, 3–10 chars):
+            <input type="text" id="username">
+        </label>
+        <div id="username-error" class="error"></div>
+        <br>
+
+        <label>
+            Email:
+            <input type="text" id="email">
+        </label>
+        <div id="email-error" class="error"></div>
+        <br>
+
+        <button type="submit">Submit</button>
+        <div id="form-message"></div>
+    </form>
+
+    <script>
+        const form = document.getElementById('signup-form');
+        const usernameInput = document.getElementById('username');
+        const emailInput = document.getElementById('email');
+        const usernameError = document.getElementById('username-error');
+        const emailError = document.getElementById('email-error');
+        const formMessage = document.getElementById('form-message');
+
+        // Regex patterns
+        const usernameRegex = /^[a-zA-Z]{3,10}$/;        // only letters, length 3–10
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // basic email pattern
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault(); // stop form from submitting
+
+            let isValid = true;
+            usernameError.textContent = '';
+            emailError.textContent = '';
+            formMessage.textContent = '';
+            formMessage.className = '';
+
+            const username = usernameInput.value.trim();
+            const email = emailInput.value.trim();
+
+            // Validate username
+            if (!usernameRegex.test(username)) {
+                usernameError.textContent = 'Username must be 3–10 letters only.';
+                isValid = false;
+            }
+
+            // Validate email
+            if (!emailRegex.test(email)) {
+                emailError.textContent = 'Please enter a valid email address.';
+                isValid = false;
+            }
+
+            if (isValid) {
+                formMessage.textContent = 'Form submitted successfully!';
+                formMessage.className = 'success';
+                // here you can actually submit the form or send data with fetch/AJAX
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+  
+

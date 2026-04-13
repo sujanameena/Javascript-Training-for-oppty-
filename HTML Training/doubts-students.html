@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hover Animation Example</title>
+    <style>
+        body {
+            min-height: 290px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to top, #020d46 0%, #0478f4 100%);
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            width: 250px;
+            height: 150px;
+            background: linear-gradient(135deg, #7a0667, #eaab51);
+            border-radius: 15px;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            animation: glow 1s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 20px 40px rgba(143, 148, 251, 0.4);
+            }
+
+            to {
+                box-shadow: 0 25px 60px rgba(78, 84, 200, 0.9);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        Hover Me ✨
+    </div>
+</body>
+
+</html>

@@ -299,9 +299,9 @@ Example:
 </style>
 
 <div class="box"></div> -->
-
+==========================================================================
 Shadows and Text Effects:
--------------------------
+==========================================================================
 
 Example:
 
@@ -329,3 +329,216 @@ Example:
   <h1>Shadow Title</h1>
   <p>This text has simple text effects.</p>
 </div> -->
+
+==========================================================================
+Overflow:
+==========================================================================
+
+Syntax:
+
+overflow: visible | hidden | scroll | auto;
+
+1. overflow: scroll (always show scrollbars)
+
+<!-- <style>
+  .box-scroll {
+    width: 200px;
+    height: 100px;
+    border: 2px solid #333;
+    overflow: scroll; /* always show scrollbars */
+  }
+</style>
+
+<div class="box-scroll">
+  This is a long text inside the box. It will overflow the height, so scrollbars will appear and you can scroll to read all the content.
+</div> -->
+
+2. overflow: hidden (cut off extra content)
+
+<!-- <style>
+  .box-hidden {
+    width: 200px;
+    height: 60px;
+    border: 2px solid #333;
+    overflow: hidden; /* extra content is hidden */
+  }
+</style>
+
+<div class="box-hidden">
+  This text is longer than the box height, but anything that doesn’t fit is simply not shown.
+</div> -->
+
+3. overflow: auto (scrollbars only when needed)
+
+<!-- <style>
+  .box-auto {
+    width: 200px;
+    height: 80px;
+    border: 2px solid #333;
+    overflow: auto; /* show scrollbars only if needed */
+  }
+</style>
+
+<div class="box-auto">
+  This is some content. If it becomes too long for the box, scrollbars will appear automatically.
+</div> -->
+
+4. Single-line text with text-overflow: ellipsis
+
+<!-- <style>
+  .ellipsis {
+    width: 200px;
+    border: 1px solid #333;
+    white-space: nowrap;        /* keep text in one line */
+    overflow: hidden;           /* hide extra text */
+    text-overflow: ellipsis;    /* show "..." at the end */
+  }
+</style>
+
+<div class="ellipsis">
+  This is a very long text that will be cut off with dots.
+</div> -->
+
+==========================================================================
+Font-related properties
+==========================================================================
+
+
+font-family – which font(s) to use
+font-size – size of the text
+font-weight – thickness (normal, bold, 100–900)
+font-style – normal, italic, oblique
+font-variant – small-caps,all-small-caps,numeric etc.
+line-height – space between lines(give pixels)
+font – shorthand for font-style, weight, size, line-height, family
+(More advanced) font-stretch, font-kerning, font-feature-settings, font-variant-ligatures, font-variant-caps
+
+
+==========================================================================
+Text-related properties
+==========================================================================
+
+color – text color
+text-align – left, right, center, justify
+text-decoration – underline, line-through, overline
+text-transform – uppercase, lowercase, capitalize
+text-indent – indent first line of a paragraph
+letter-spacing – space between letters
+word-spacing – space between words
+line-height – (also here) line spacing
+white-space – how spaces and line breaks behave
+text-overflow – what to do with overflowed text (e.g., ellipsis)
+text-shadow – shadow behind text
+direction – text direction (ltr, rtl)
+unicode-bidi – advanced control of bidirectional text
+vertical-align – vertical alignment of inline/inline-block elements
+
+
+==========================================================================
+Shadows 
+==========================================================================
+
+It supports two kinds of shadows per shadow:
+Outer shadow (default)
+Inner shadow (when you add inset)
+
+box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 5px rgba(0,128,255,0.5);
+
+4px (first value)
+offset-x → moves the shadow 4px to the right.
+(Negative value would move it to the left.)
+
+4px (second value)
+offset-y → moves the shadow 4px down.
+(Negative value would move it up.)
+
+8px (third value)
+blur-radius → how soft the shadow is.
+Bigger value = more blurred and spread out; 0 = sharp edge.
+
+5px (fourth value – spread-radius)
+Shadow grows 5px outward in all directions, like an extra border.
+
+<style>
+  .box {
+    width: 200px;
+    height: 100px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); /* basic shadow */
+  }
+</style>
+
+<div class="box">
+  Basic box shadow
+</div>
+
+1. Simple outer shadow (default) 
+
+<style>
+  .box-outer {
+    width: 150px;
+    height: 80px;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.3);
+  }
+</style>
+
+<div class="box-outer">Outer shadow</div>
+
+2. Soft “card” shadow (larger blur) 
+
+<style>
+  .box-soft {
+    width: 150px;
+    height: 80px;
+    background: #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  }
+</style>
+
+<div class="box-soft">Soft card shadow</div>
+
+3. Shadow with spread (looks like a glow/border) 
+
+<style>
+  .box-spread {
+    width: 150px;
+    height: 80px;
+    background: #fff;
+    box-shadow: 0 0 0 5px rgba(0,128,255,0.5);
+  }
+</style>
+
+<div class="box-spread">Spread shadow</div>
+
+4. Inner shadow (inset) 
+
+<style>
+  .box-inset {
+    width: 150px;
+    height: 80px;
+    background: #eee;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+  }
+</style>
+
+<div class="box-inset">Inner shadow</div>
+
+5. Multiple shadows together
+
+<style>
+  .box-multi {
+    width: 150px;
+    height: 80px;
+    background: #fff;
+    box-shadow:
+      0 0 5px rgba(0,0,0,0.4),           /* small outer */
+      0 0 15px rgba(0,0,255,0.5),        /* blue glow */
+      inset 0 0 5px rgba(0,0,0,0.4);     /* inner */
+  }
+</style>
+
+<div class="box-multi">Multiple shadows</div>
