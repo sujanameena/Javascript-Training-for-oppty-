@@ -1,0 +1,941 @@
+**************
+HTML Elements
+**************
+
+HTML Elements are the building blocks of a web page. An element = opening tag + content + closing tag.
+
+<p>Hello World</p>
+ ↑      ↑       ↑
+opening content closing
+ tag            tag
+ |_______________|
+     element
+
+
+Types of HTML Elements:
+-----------------------
+
+1. Normal (Paired) Elements — have opening + closing tags:
+
+<h1>Heading</h1>
+<p>Paragraph</p>
+<a href="#">Link</a>
+<div>Container</div>
+<span>Inline text</span>
+<ul><li>List item</li></ul>
+
+2. Empty (Self-Closing / Void) Elements — no closing tag, no content:
+
+<br>          <!-- line break -->
+<hr>          <!-- horizontal line -->
+<img src="photo.jpg" alt="A photo">
+<input type="text">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+
+3. Nested Elements — elements inside other elements:
+
+<div>
+  <h1>Title</h1>
+  <p>This is a <strong>bold</strong> word.</p>
+</div>
+
+
+<div>              ← parent
+├── <h1>           ← child
+└── <p>            ← child
+    └── <strong>   ← grandchild (nested inside <p>)
+
+
+Rule: Always close inner tags before outer tags (proper nesting):
+
+<p><strong>Correct</strong></p>     ✅
+<p><strong>Wrong</p></strong>       ❌
+
+4. Block vs Inline Elements:
+
+Block: <div>, <p>, <h1>–<h6>, <ul>, <table>, <form>, <section></section>
+
+Inline: <span>, <a>, <strong>, <em>, <img>, <input>, <br>
+
+    Example: 
+
+<!-- Block: each on new line -->
+<p>Paragraph 1</p>
+<p>Paragraph 2</p>
+
+<!-- Inline: stay on same line -->
+<span>Hello</span> <span>World</span>
+
+Block-Level Elements (around 30):
+---------------------------------
+
+#	Element------Purpose
+1	<address>------Contact information
+2	<article>------Independent content (blog post, news)
+3	<aside>------Sidebar content
+4	<blockquote>------Long quoted text
+5	<details>------Expandable/collapsible content
+6	<dialog>------Dialog box / popup
+7	<div>------Generic block container
+8	<dl>------Description list
+9	<dt>------Description term
+10	<dd>------Description detail
+11	<fieldset>------Group form elements
+12	<figcaption>------Caption for <figure>
+13	<figure>------Self-contained content (image + caption)
+14	<footer>------Bottom section
+15	<form>------User input form
+16	<h1> to <h6>------Headings (6 tags)
+17	<header>------Top section
+18	<hr>------Horizontal line
+19	<li>------List item
+20	<main>------Main content
+21	<nav>------Navigation links
+22	<ol>------Ordered list
+23	<p>------Paragraph
+24	<pre>------Preformatted text
+25	<section>------Thematic section
+26	<summary>------Summary for <details>
+27	<table>------Table
+28	<tfoot>------Table footer
+29	<ul>------Unordered list
+30	<video>------Video content
+
+    Example: 
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Block Elements Example</title>
+</head>
+<body>
+
+  <!-- 1. <address> - Contact information
+    Definition: Defines contact information for the author/owner
+    use Case: Company address, email, phone in footer 
+    -->
+  <address>
+    Contact us: 123 Main Street, Hyderabad, India | Email: info@example.com
+  </address>
+
+  <!-- 2. <article> - Independent content
+    Definition: Independent, self-contained content
+    use Case: Blog post, news article, forum post, product card
+     -->
+  <article>
+    <h2>How to Learn HTML</h2>
+    <p>Start with the basics and practice every day.</p>
+  </article>
+
+  <!-- 3. <aside> - Sidebar content
+    Definition: Content indirectly related to main content
+    use Case: Sidebar, tips, fun facts, related links
+     -->
+  <aside>
+    <p>Tip: Use VS Code for writing HTML — it has great extensions!</p>
+  </aside>
+
+  <!-- 4. <blockquote> - Long quoted text
+    Definition: A section quoted from another source
+    use Case: Displaying famous quotes, testimonials
+     -->
+  <blockquote cite="https://www.w3.org">
+    The World Wide Web was invented by Tim Berners-Lee in 1991.
+  </blockquote>
+
+  <!-- 5. <details> - Expandable/collapsible content
+    Definition: Expandable/collapsible content (toggle)
+    use Case: Expandable/collapsible content (toggle)
+     -->
+  <details>
+    <!-- 26. <summary> - Summary for details
+      Definition: Creates a disclosure widget that the user can open and close.
+    use Case: FAQ sections, additional info, spoilers, help text.
+     -->
+    <summary>Click to read more about HTML</summary>
+    <p>HTML stands for HyperText Markup Language. It structures web pages.</p>
+  </details>
+
+  <!-- 6. <dialog> - Dialog box / popup
+    Definition: A popup dialog box or modal window
+    use Case: Login popup, confirmation box, alert message
+     -->
+  <dialog open>
+    <p>This is a dialog box!</p>
+    <button>Close</button>
+  </dialog>
+
+  <!-- 7. <div> - Generic block container
+    Definition: Generic block-level container (no meaning)
+    use Case: Grouping elements for CSS styling or layout
+     -->
+  <div style="background: lightyellow; padding: 10px;">
+    <p>This content is inside a div container.</p>
+  </div>
+
+  <!-- 8. <dl> - Description list -->
+  <!-- 9. <dt> - Description term -->
+  <!-- 10. <dd> - Description detail
+    Definition: Description list (term + detail pairs), 
+    A term/name in a description list,
+    The description/definition of a <dt>
+
+    use Case: Glossary, dictionary, metadata display,
+    The word being defined in a glossary,
+    The meaning of the glossary word.
+
+     -->
+  <dl>
+    <dt>HTML</dt>
+    <dd>HyperText Markup Language — structures web pages.</dd>
+
+    <dt>CSS</dt>
+    <dd>Cascading Style Sheets — styles web pages.</dd>
+
+    <dt>JavaScript</dt>
+    <dd>Programming language — adds interactivity.</dd>
+  </dl>
+
+  <!-- 11. <fieldset> - Group form elements 
+    Definition: Groups related form fields with a border
+    use Case: Grouping "Personal Info" or "Payment Details" in a form
+    -->
+  <fieldset>
+    <legend>Personal Information</legend>
+    <label>Name: <input type="text"></label><br>
+    <label>Email: <input type="email"></label>
+  </fieldset>
+
+  <!-- 12. <figcaption> - Caption for figure -->
+  <!-- 13. <figure> - Self-contained content
+    Definition: Caption/description for a <figure>,
+      Self-contained content like image, diagram, code.
+    use Case: "Fig 1: Company logo", image credit text,
+    Photo with caption, chart with explanation. 
+     -->
+  <figure>
+    <img src="https://static.vecteezy.com/system/resources/thumbnails/060/117/855/small/red-rose-is-the-main-focus-of-the-image-with-a-blue-background-and-a-few-other-flowers-in-the-background-the-rose-is-the-most-prominent-and-beautiful-flower-in-the-picture-photo.jpeg" alt="Rose-image" width="100" height="100">
+    <figcaption>Figure 1: A sample placeholder image.</figcaption>
+  </figure>
+
+  <!-- 14. <footer> - Bottom section
+    Definition: Bottom section of a page or section
+    use Case: Copyright, contact links, social media icons
+     -->
+  <footer>
+    <p>&copy; 2026 My Website. All rights reserved.</p>
+  </footer>
+
+  <!-- 15. <form> - User input form
+    Definition: Collects user input and sends to server
+    use Case: Login form, registration, search bar, contact form
+     -->
+  <form action="/submit" method="post">
+    <label>Username: <input type="text" name="username" required></label>
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- 16. <h1> to <h6> - Headings
+    Definition: Headings from most important (h1) to least (h6)
+    use Case: Page title (h1), section titles (h2), sub-sections (h3–h6)
+     -->
+  <h1>Heading 1 — Largest</h1>
+  <h2>Heading 2</h2>
+  <h3>Heading 3</h3>
+  <h4>Heading 4</h4>
+  <h5>Heading 5</h5>
+  <h6>Heading 6 — Smallest</h6>
+
+  <!-- 17. <header> - Top section 
+    Definition: Top section of a page or section
+    use Case: Logo, navigation bar, welcome banner
+    -->
+  <header>
+    <h2>Welcome to My Website</h2>
+    <p>Your one-stop place to learn web development.</p>
+  </header>
+
+  <!-- 18. <hr> - Horizontal line 
+   Definition: Horizontal rule — a thematic break (line)
+    use Case: Separating sections, visual divider between content
+    -->
+  <hr>
+
+  <!-- 19. <li> - List item (used inside ul/ol) -->
+  <!-- 22. <ol> - Ordered list
+    Definition: A single item in a list,
+    Ordered (numbered) list(ol)
+    use Case: Each bullet point or numbered step,
+    Steps, rankings, instructions(ol)
+     -->
+  <ol>
+    <li>First item</li>
+    <li>Second item</li>
+    <li>Third item</li>
+  </ol>
+
+  <!-- 20. <main> - Main content
+    Definition: The primary/unique content of the page
+    use Case: The core content area (only one per page)
+     -->
+  <main>
+    <h2>Main Content Area</h2>
+    <p>This is where the primary content of the page goes.</p>
+  </main>
+
+  <!-- 21. <nav> - Navigation links
+    Definition: Navigation links section
+    use Case: Menu bar, breadcrumbs, page links
+     -->
+  <nav>
+    <a href="#">Home</a> |
+    <a href="#">About</a> |
+    <a href="#">Services</a> |
+    <a href="#">Contact</a>
+  </nav>
+
+  <!-- 23. <p> - Paragraph 
+    Definition: A paragraph of text
+    use Case: Any block of text content
+    -->
+  <p>This is a simple paragraph element. It creates a block of text.</p>
+
+  <!-- 24. <pre> - Preformatted text
+    Definition: Preformatted text — preserves spaces and line breaks
+    use Case: Displaying code, ASCII art, formatted text
+     -->
+  <pre>
+    Name:    John
+    Age:     25
+    City:    Hyderabad
+  </pre>
+
+  <!-- 25. <section> - Thematic section
+    Definition: A thematic group of content
+    use Case: "About Us", "Services", "Contact" sections
+     -->
+  <section>
+    <h2>Our Services</h2>
+    <p>We offer web development, design, and SEO services.</p>
+  </section>
+
+  <!-- 26. <summary> - already used inside <details> above
+    Definition: Visible heading for <details> (click to expand)
+    use Case: "Click to read more", FAQ question text
+     -->
+
+  <!-- 27. <table> - Table -->
+  <!-- 28. <tfoot> - Table footer 
+    Definition: Displays data in rows and columns,
+    Footer row(s) of a table
+    use Case: Price list, schedule, comparison chart,
+    Total, summary row at bottom of table
+    -->
+  <table border="1" style="border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ravi</td>
+        <td>22</td>
+        <td>Hyderabad</td>
+      </tr>
+      <tr>
+        <td>Priya</td>
+        <td>24</td>
+        <td>Chennai</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">Total students: 2</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- 29. <ul> - Unordered list 
+    Definition: Unordered (bulleted) list
+    use Case: Feature list, menu items, bullet points
+    -->
+  <ul>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+  </ul>
+
+  <!-- 30. <video> - Video content
+    Definition: Embeds a video player
+    use Case: Tutorial video, product demo, background video
+     -->
+  <video width="320" height="240" controls>
+    <source src="https://www.w3schools.com/Html/mov_bbb.mp4" type="video/mp4">
+    Your browser does not support the video tag.Supports only downloaded videos
+  </video>
+
+</body>
+</html>
+
+Commonly used HTML entities:
+
+Syntax:
+
+&name;     ← named entity
+&#number;  ← numeric entity
+
+Entity	Symbol	Name
+&copy;	©	Copyright
+&reg;	®	Registered
+&trade;	™	Trademark
+&amp;	&	Ampersand
+&lt;	<	Less than
+&gt;	>	Greater than
+&quot;	"	Double quote
+&apos;	'	Single quote / apostrophe
+&nbsp;	(space)	Non-breaking space
+&rarr;	→	Right arrow
+&larr;	←	Left arrow
+&uarr;	↑	Up arrow
+&darr;	↓	Down arrow
+&hearts;	♥	Heart
+&star;	☆	Star
+&check;	✓	Check mark
+&cross;	✗	Cross mark
+&euro;	€	Euro
+&pound;	£	Pound
+&yen;	¥	Yen
+&rupee;	₹	Rupee (use &#8377;)
+&deg;	°	Degree
+&plusmn;	±	Plus-minus
+&times;	×	Multiplication
+&divide;	÷	Division
+&half;	½	Half fraction
+&infin;	∞	Infinity
+
+&#number;  ← numeric entity
+
+Syntax:
+
+&#decimal;     ← decimal number
+&#xhexadecimal; ← hexadecimal number (starts with x)
+
+Symbols & Punctuation:
+
+Decimal	Hex	Symbol	Description
+&#33;	&#x21;	!	Exclamation mark
+&#34;	&#x22;	"	Double quote
+&#35;	&#x23;	#	Hash / Number sign
+&#36;	&#x24;	$	Dollar sign
+&#37;	&#x25;	%	Percent
+&#38;	&#x26;	&	Ampersand
+&#39;	&#x27;	'	Single quote
+&#40;	&#x28;	(	Left parenthesis
+&#41;	&#x29;	)	Right parenthesis
+&#42;	&#x2A;	*	Asterisk
+&#43;	&#x2B;	+	Plus
+&#44;	&#x2C;	,	Comma
+&#45;	&#x2D;	-	Hyphen
+&#46;	&#x2E;	.	Period
+&#47;	&#x2F;	/	Forward slash
+&#58;	&#x3A;	:	Colon
+&#59;	&#x3B;	;	Semicolon
+&#60;	&#x3C;	<	Less than
+&#61;	&#x3D;	=	Equals
+&#62;	&#x3E;	>	Greater than
+&#63;	&#x3F;	?	Question mark
+&#64;	&#x40;	@	At sign
+
+Special Symbols:
+
+Decimal	Hex	Symbol	Description
+&#160;	&#xA0;	(space)	Non-breaking space
+&#169;	&#xA9;	©	Copyright
+&#174;	&#xAE;	®	Registered
+&#176;	&#xB0;	°	Degree
+&#177;	&#xB1;	±	Plus-minus
+&#178;	&#xB2;	²	Superscript 2
+&#179;	&#xB3;	³	Superscript 3
+&#185;	&#xB9;	¹	Superscript 1
+&#188;	&#xBC;	¼	One quarter
+&#189;	&#xBD;	½	One half
+&#190;	&#xBE;	¾	Three quarters
+&#191;	&#xBF;	¿	Inverted question mark
+&#215;	&#xD7;	×	Multiplication
+&#247;	&#xF7;	÷	Division
+
+Currency Symbols:
+
+Decimal	Hex	Symbol	Description
+&#36;	&#x24;	$	Dollar
+&#162;	&#xA2;	¢	Cent
+&#163;	&#xA3;	£	Pound
+&#164;	&#xA4;	¤	Currency
+&#165;	&#xA5;	¥	Yen / Yuan
+&#8364;	&#x20AC;	€	Euro
+&#8377;	&#x20B9;	₹	Indian Rupee
+
+Arrows:
+
+Decimal	Hex	Symbol	Description
+&#8592;	&#x2190;	←	Left arrow
+&#8593;	&#x2191;	↑	Up arrow
+&#8594;	&#x2192;	→	Right arrow
+&#8595;	&#x2193;	↓	Down arrow
+&#8596;	&#x2194;	↔	Left-right arrow
+&#8597;	&#x2195;	↕	Up-down arrow
+&#8656;	&#x21D0;	⇐	Double left arrow
+&#8657;	&#x21D1;	⇑	Double up arrow
+&#8658;	&#x21D2;	⇒	Double right arrow
+&#8659;	&#x21D3;	⇓	Double down arrow
+
+Math Symbols:
+
+Decimal	Hex	Symbol	Description
+&#8704;	&#x2200;	∀	For all
+&#8706;	&#x2202;	∂	Partial differential
+&#8707;	&#x2203;	∃	There exists
+&#8709;	&#x2205;	∅	Empty set
+&#8710;	&#x2206;	∆	Delta
+&#8711;	&#x2207;	∇	Nabla
+&#8712;	&#x2208;	∈	Element of
+&#8721;	&#x2211;	∑	Summation
+&#8730;	&#x221A;	√	Square root
+&#8734;	&#x221E;	∞	Infinity
+&#8800;	&#x2260;	≠	Not equal
+&#8804;	&#x2264;	≤	Less than or equal
+&#8805;	&#x2265;	≥	Greater than or equal
+
+Miscellaneous / Fun:
+
+Decimal	Hex	Symbol	Description
+&#8482;	&#x2122;	™	Trademark
+&#9733;	&#x2605;	★	Filled star
+&#9734;	&#x2606;	☆	Empty star
+&#9829;	&#x2665;	♥	Heart
+&#9830;	&#x2666;	♦	Diamond
+&#9824;	&#x2660;	♠	Spade
+&#9827;	&#x2663;	♣	Club
+&#9742;	&#x260E;	☎	Telephone
+&#9993;	&#x2709;	✉	Envelope
+&#10003;	&#x2713;	✓	Check mark
+&#10007;	&#x2717;	✗	Cross mark
+&#9786;	&#x263A;	☺	Smiley face
+&#9788;	&#x263C;	☼	Sun
+&#9792;	&#x2640;	♀	Female
+&#9794;	&#x2642;	♂	Male
+
+Inline Elements (around 34):
+----------------------------
+
+#	Element------Purpose
+1	<a>------Hyperlink
+2	<abbr>------Abbreviation
+3	<b>------Bold (no semantic meaning)
+4	<bdo>------Text direction override
+5	<br>------Line break
+6	<button>------Clickable button
+7	<cite>------Title of a work
+8	<code>------Code snippet
+9	<dfn>------Definition term
+10	<em>------Emphasis (italic, semantic)
+11	<i>------Italic (no semantic meaning)
+12	<img>------Image
+13	<input>------Form input field
+14	<kbd>------Keyboard input
+15	<label>------Label for form element
+16	<map>------Image map
+17	<mark>------Highlighted text
+18	<meter>------Measurement gauge
+19	<output>------Result of calculation
+20	<progress>------Progress bar
+21	<q>------Short inline quotation
+22	<s>------Strikethrough
+23	<samp>------Sample output
+24	<select>------Dropdown list
+25	<small>------Smaller text
+26	<span>------Generic inline container
+27	<strong>------Bold (semantic — important)
+28	<sub>------Subscript
+29	<sup>------Superscript
+30	<textarea>------Multi-line text input
+31	<time>------Date/time
+32	<u>------Underline
+33	<var>------Variable
+34	<wbr>------Word break opportunity
+
+Example:
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Inline Elements Example</title>
+</head>
+
+<body>
+
+  <h1>All 34 Inline Elements</h1>
+
+  <!-- 1. <a> - Hyperlink
+    Definition: Creates a clickable link to another page, file, or location.
+    Description: The anchor element navigates users to URLs, emails, phone numbers, or page sections.
+    Use Case: Navigation menus, "Read more" links, download links, email links.
+  -->
+  <p>
+    Visit <a href="https://www.google.com" target="_blank">Google</a> for searching.
+  </p>
+
+  <!-- 2. <abbr> - Abbreviation
+    Definition: Marks up an abbreviation or acronym.
+    Description: Shows full form as a tooltip on hover using the title attribute.
+    Use Case: Technical terms like HTML, CSS, API, NASA.
+  -->
+  <p>
+    <abbr title="HyperText Markup Language">HTML</abbr> is the foundation of web development.
+  </p>
+
+  <!-- 3. <b> - Bold (no semantic meaning)
+    Definition: Makes text visually bold without implying importance.
+    Description: Purely visual — does NOT tell screen readers the text is important (unlike <strong>).
+    Use Case: Product names, keywords in a paragraph, visual emphasis only.
+  -->
+  <p>
+    Our brand name is <b>TechVision</b> and we sell gadgets.
+  </p>
+
+  <!-- 4. <bdo> - Text direction override
+    Definition: Overrides the current text direction (left-to-right or right-to-left).
+    Description: Forces text to display in a specific direction using the dir attribute.
+    Use Case: Displaying Arabic/Hebrew text, reversing text for fun/design.
+  -->
+  <p>
+    Normal: Hello | Reversed: <bdo dir="rtl">Hello</bdo>
+
+    <!-- Left to Right (default) -->
+  <p><bdo dir="ltr">Hello World</bdo></p>
+  <!-- Output: Hello World -->
+
+  <!-- Right to Left (reversed) -->
+  <p><bdo dir="rtl">Hello World</bdo></p>
+  <!-- Output: dlroW olleH -->
+  </p>
+
+  <!-- 5. <br> - Line break
+    Definition: Inserts a single line break.
+    Description: Moves text to the next line without creating a new paragraph.
+    Use Case: Addresses, poems, song lyrics, line-by-line content.
+  -->
+  <p>
+    123 Main Street<br>
+    Hyderabad, India<br>
+    PIN: 500001
+  </p>
+
+  <!-- 6. <button> - Clickable button
+    Definition: Creates a clickable button.
+    Description: Can submit forms, trigger JavaScript, or act as a UI control.
+    Use Case: Submit buttons, toggle buttons, action triggers.
+  -->
+  <p>
+    <button type="button" onclick="alert('Button clicked!')">Click Me</button>
+  </p>
+
+  <!-- 7. <cite> - Title of a work
+    Definition: Marks the title of a creative work (book, movie, song, article).
+    Description: Displayed in italics by default. Gives semantic meaning to the title.
+    Use Case: Book titles, movie names, article references.
+  -->
+  <p>
+    My favorite book is <cite>The Alchemist</cite> by Paulo Coelho.
+  </p>
+
+  <!-- 8. <code> - Code snippet
+    Definition: Displays a fragment of computer code.
+    Description: Rendered in monospace font. Used for inline code references.
+    Use Case: Mentioning function names, tags, variables inside text.
+  -->
+  <p>
+    Use the <code>console.log()</code> function to print output in JavaScript.
+  </p>
+
+  <!-- 9. <dfn> - Definition term
+    Definition: Marks a term that is being defined in the surrounding content.
+    Description: Tells browsers/screen readers "this word is being explained here."
+    Use Case: Glossary entries, first-time use of a technical term.
+  -->
+  <p>
+    <dfn>HTML</dfn> is the standard markup language for creating web pages.
+  </p>
+
+  <!-- 10. <em> - Emphasis (italic, semantic)
+    Definition: Marks text with stress emphasis (semantic italic).
+    Description: Screen readers will change tone for <em> text. It has meaning, unlike <i>.
+    Use Case: Emphasizing a word in a sentence to change its meaning.
+  -->
+  <p>
+    You <em>must</em> complete the assignment before Friday.
+  </p>
+
+  <!-- 11. <i> - Italic (no semantic meaning)
+    Definition: Makes text italic without implying emphasis.
+    Description: Purely visual italic — does NOT tell screen readers to emphasize (unlike <em>).
+    Use Case: Foreign words, technical terms, thoughts, ship names.
+  -->
+  <p>
+    The French word <i>bonjour</i> means "hello."
+  </p>
+
+  <!-- 12. <img> - Image
+    Definition: Embeds an image into the page.
+    Description: Self-closing element. Requires src (path) and alt (description) attributes.
+    Use Case: Photos, logos, icons, diagrams, illustrations.
+  -->
+  <p>
+    <img src="https://via.placeholder.com/100x50" alt="Placeholder image" width="100" height="50">
+  </p>
+
+  <!-- 13. <input> - Form input field
+    Definition: Creates an interactive form control for user input.
+    Description: Self-closing. Type attribute changes its behavior (text, email, checkbox, etc.).
+    Use Case: Text fields, checkboxes, radio buttons, file uploads, search bars.
+  -->
+  <p>
+    Enter your name: <input type="text" placeholder="Your name">
+  </p>
+
+  <!-- 14. <kbd> - Keyboard input
+    Definition: Represents keyboard input or key presses.
+    Description: Displayed in monospace font. Tells users which keys to press.
+    Use Case: Keyboard shortcuts, tutorials, documentation.
+  -->
+  <p>
+    Press <kbd>Ctrl</kbd> + <kbd>S</kbd> to save the file.
+  </p>
+
+  <!-- 15. <label> - Label for form element
+    Definition: Defines a label for a form element.
+    Description: Clicking the label focuses/activates the linked input (using for attribute).
+    Use Case: Form fields — improves accessibility and usability.
+  -->
+  <p>
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="you@example.com">
+  </p>
+
+  <!-- 16. <map> - Image map
+    Definition: Defines clickable areas inside an image.
+    Description: Works with <area> elements to create hotspots on an image.
+    Use Case: Interactive diagrams, clickable regions on a map/photo.
+  -->
+  <p>
+    <img src="https://via.placeholder.com/200x100" alt="Clickable map" usemap="#workmap" width="200" height="100">
+    <map name="workmap">
+      <area shape="rect" coords="0,0,100,100" alt="Left side" href="#" title="Left Area">
+      <area shape="rect" coords="100,0,200,100" alt="Right side" href="#" title="Right Area">
+    </map>
+  </p>
+
+  <!-- 17. <mark> - Highlighted text
+    Definition: Highlights text with a yellow background.
+    Description: Used to mark or highlight relevant/searched text.
+    Use Case: Search results highlighting, important notes, key terms.
+  -->
+  <p>
+    The most important concept is <mark>semantic HTML</mark> for accessibility.
+  </p>
+
+  <!-- 18. <meter> - Measurement gauge
+    Definition: Displays a scalar measurement within a known range.
+    Description: Shows a visual gauge/bar. Not for progress — use <progress> for that.
+    Use Case: Disk usage, battery level, exam score, rating.
+  -->
+  <p>
+    Disk usage: <meter value="0.7" min="0" max="1">70%</meter> (70%)
+  </p>
+
+  <!-- 19. <output> - Result of calculation
+    Definition: Displays the result of a calculation or user action.
+    Description: Often used with JavaScript or form inputs to show computed values.
+    Use Case: Calculator result, total price, live computation.
+  -->
+  <p>
+    5 + 3 = <output>8</output>
+  </p>
+
+  <!-- 20. <progress> - Progress bar
+    Definition: Displays a progress bar showing task completion.
+    Description: Shows how much of a task is done. Different from <meter> (which shows a value in a range).
+    Use Case: File upload progress, download status, loading indicator.
+  -->
+  <p>
+    Download progress: <progress value="65" max="100">65%</progress> 65%
+  </p>
+
+  <!-- 21. <q> - Short inline quotation
+    Definition: Marks a short inline quotation.
+    Description: Browser automatically adds quotation marks around the text.
+    Use Case: Quoting someone briefly within a sentence.
+  -->
+  <p>
+    Albert Einstein said, <q>Imagination is more important than knowledge.</q>
+  </p>
+
+  <!-- 22. <s> - Strikethrough
+    Definition: Renders text with a strikethrough line.
+    Description: Indicates content that is no longer accurate or relevant.
+    Use Case: Old prices, outdated info, corrections.
+  -->
+  <p>
+    Price: <s>&#8377;999</s> &#8377;499 (50% OFF!)
+  </p>
+
+  <!-- 23. <samp> - Sample output
+    Definition: Represents sample output from a computer program.
+    Description: Displayed in monospace font. Shows expected program output.
+    Use Case: Terminal output examples, error messages, console results.
+  -->
+  <p>
+    The program output was: <samp>Hello, World!</samp>
+  </p>
+
+  <!-- 24. <select> - Dropdown list
+    Definition: Creates a dropdown selection list.
+    Description: Contains <option> elements for each choice. Can allow single or multiple selection.
+    Use Case: Country picker, language selector, category filter.
+  -->
+  <p>
+    Choose a language:
+    <select>
+      <option value="en">English</option>
+      <option value="hi">Hindi</option>
+      <option value="te">Telugu</option>
+    </select>
+  </p>
+
+  <!-- 25. <small> - Smaller text
+    Definition: Renders text in a smaller font size.
+    Description: Used for side comments, fine print, disclaimers.
+    Use Case: Copyright text, legal disclaimers, footnotes.
+  -->
+  <p>
+    Sign up today! <small>Terms and conditions apply.</small>
+  </p>
+
+  <!-- 26. <span> - Generic inline container
+    Definition: A generic inline container with no meaning.
+    Description: Used purely for styling a piece of text with CSS or targeting with JavaScript.
+    Use Case: Coloring a word, adding a class to inline text, JS targeting.
+  -->
+  <p>
+    My favorite color is <span style="color: blue; font-weight: bold;">blue</span>.
+  </p>
+
+  <!-- 27. <strong> - Bold (semantic — important)
+    Definition: Marks text as strongly important (semantic bold).
+    Description: Screen readers will emphasize this text. It has meaning, unlike <b>.
+    Use Case: Warnings, important instructions, critical information.
+  -->
+  <p>
+    <strong>Warning:</strong> Do not close the browser during the update.
+  </p>
+
+  <!-- 28. <sub> - Subscript
+    Definition: Displays text as subscript (slightly below the normal line).
+    Description: Text appears smaller and lower than surrounding text.
+    Use Case: Chemical formulas, mathematical expressions, footnotes.
+  -->
+  <p>
+    Water formula: H<sub>2</sub>O | Carbon dioxide: CO<sub>2</sub>
+  </p>
+
+  <!-- 29. <sup> - Superscript
+    Definition: Displays text as superscript (slightly above the normal line).
+    Description: Text appears smaller and higher than surrounding text.
+    Use Case: Exponents, ordinal numbers (1st, 2nd), trademark symbols.
+  -->
+  <p>
+    E = mc<sup>2</sup> | Today is the 15<sup>th</sup> of April.
+  </p>
+
+  <!-- 30. <textarea> - Multi-line text input
+    Definition: Creates a multi-line text input field.
+    Description: Unlike <input type="text"> (single line), textarea allows multiple lines.
+    Use Case: Comments, feedback, messages, descriptions, bio fields.
+  -->
+  <p>
+    Feedback: <textarea rows="3" cols="30" placeholder="Write your feedback here..."></textarea>
+  </p>
+
+  <!-- 31. <time> - Date/time
+    Definition: Represents a specific date, time, or duration.
+    Description: The datetime attribute provides machine-readable format for search engines.
+    Use Case: Blog post dates, event times, schedules.
+  -->
+  <p>
+    Published on <time datetime="2026-04-15">April 15, 2026</time>.
+  </p>
+
+  <!-- 32. <u> - Underline
+    Definition: Renders text with an underline.
+    Description: Purely visual. Avoid for links (users confuse underlined text with links).
+    Use Case: Marking misspelled words, proper nouns in Chinese, annotated text.
+  -->
+  <p>
+    Please correct the <u>speling</u> mistake in your essay.
+  </p>
+
+  <!-- 33. <var> - Variable
+    Definition: Represents a variable in a mathematical or programming context.
+    Description: Displayed in italic by default. Tells readers "this is a variable name."
+    Use Case: Math equations, code documentation, formulas.
+  -->
+  <p>
+    The area of a rectangle = <var>l</var> &times; <var>w</var>
+  </p>
+
+  <!-- 34. <wbr> - Word break opportunity
+    Definition: Suggests a possible line break point in a long word.
+    Description: Browser may break the word here if needed (when space is tight).
+    Use Case: Long URLs, long words, file paths that might overflow.
+  -->
+  <p>
+    Visit: https://www.example<wbr>.com/very<wbr>-long<wbr>-path<wbr>/page
+  </p>
+
+</body>
+
+</html>
+
+Example of Maps:
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Image Map</title>
+</head>
+<body>
+
+  <h2>Click Left or Right side of the image</h2>
+
+  <img src="data:image/png;base64,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" alt="Click areas" usemap="#simplemap" width="80" height="30">
+
+  <map name="simplemap">
+    <!-- Left half -->
+    <area shape="rect" coords="0,0,150,150" alt="Left" title="Left Side" href="https://google.com" target="_blank">
+
+    <!-- Right half -->
+    <area shape="rect" coords="150,0,300,150" alt="Right" title="Right Side" href="https://google.com" target="_blank">
+  </map>
+
+</body>
+</html> 

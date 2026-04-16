@@ -1,0 +1,120 @@
+CSS (Cascading Style Sheets) is the language used to style HTML pages.
+
+Purpose: Controls how elements look: colors, fonts, sizes, spacing, borders, backgrounds, layout, animations, etc.
+Separation of concerns:
+HTML = structure/content
+CSS = presentation (design)
+
+**********************************
+Adding CSS to HTML - 3 Approaches
+**********************************
+
+Three main ways to add CSS:
+Inline: <h1 style="color: red;">Hello</h1>
+<!-- Internal: inside <style> in the HTML <head> -->
+External: separate .css file linked with <link rel="stylesheet" href="style.css">
+
+1. Inline CSS
+--------------
+
+<h1 style="color: red; font-size: 32px; text-align: center;">
+  Welcome to CSS
+</h1>
+
+<p style="color: green; background-color: lightyellow;">
+  This paragraph uses inline CSS.
+</p>
+
+
+2. Internal CSS
+---------------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Internal CSS Example</title>
+
+  <style>
+    h1 {
+      color: blue;
+      text-align: center;
+    }
+
+    p {
+      color: darkgreen;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to CSS</h1>
+  <p>This paragraph is styled using internal CSS.</p>
+</body>
+</html>
+
+3. External CSS
+---------------- 
+
+HTML file (index.html):
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>External CSS Example</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Welcome to CSS</h1>
+  <p>This paragraph is styled using external CSS.</p>
+</body>
+</html>
+
+CSS file (style.css):
+
+h1 {
+  color: purple;
+  text-align: center;
+}
+
+p {
+  color: teal;
+  font-size: 18px;
+}
+
+
+“Cascading” means when multiple styles apply, the browser decides which one wins based on order, specificity, and importance.
+
+Basic rule syntax:
+------------------
+
+selector {
+  property: value;
+}
+
+p {
+  color: blue;
+  font-size: 16px;
+}
+
+Here are the main advantages of CSS:
+------------------------------------
+
+* Separates content and design, making HTML cleaner and easier to read.
+* Reusability: one CSS file can style many HTML pages.
+* Easier maintenance: change style in one place, update everywhere.
+* Consistent look and feel across the whole website.
+* Better control over layout (flexbox, grid, positioning, responsive design).
+* Smaller HTML files and faster page loading (less repeated inline styling).
+* Improved accessibility and SEO when used with semantic HTML.
+
+-----! SEO stands for Search Engine Optimization.
+
+It is the process of improving a website so that it appears higher in search engine results (Google, Bing, etc.).
+Goal: get more visitors from search engines without paying for ads.
+It involves:
+Using good, relevant content and keywords
+Clean, semantic HTML structure
+Fast loading pages and mobile-friendly design
+Proper titles, headings, meta tags, alt text for images, etc.

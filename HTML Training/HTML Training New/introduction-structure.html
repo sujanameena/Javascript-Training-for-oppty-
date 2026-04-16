@@ -1,0 +1,256 @@
+*************
+INTRODUCTION
+*************
+
+HTML = HyperText Markup Language.
+
+* It is the standard language for creating web pages.
+* It describes the structure of a web page using tags (elements).
+* Browsers read HTML and display the content visually.
+
+Key Points:
+
+* HTML is not a programming language — it's a markup language.
+* Every web page you see is built with HTML at its core.
+* HTML uses tags like <h1>, <p>, <img>, <a> to define content.
+* Tags usually come in pairs: opening <p> and closing </p>.
+* Some tags are self-closing: <br>, <img>, <hr>, <input>.
+
+Simplest HTML Page:
+-------------------
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Page</title>
+</head>
+<body>
+  <h1>Hello World</h1>
+  <p>This is my first web page.</p>
+</body>
+</html>
+
+***************************
+HTML Elements and HTML Tags
+***************************
+
+<p class="text">Hello World</p>
+
+<p> = Opening tag
+class = Attribute 
+text = Value 
+Hello World = Content 
+</p> = Closing tag 
+
+Difference b/t elements and Tags
+---------------------------------
+
+Tag — the actual markup syntax with angle brackets:
+
+<p>    ← opening tag
+</p>   ← closing tag
+
+Element — the complete unit: opening tag + content + closing tag:
+
+<p>Hello World</p>   ← this whole thing is an element
+
+
+	                       Tag	               Element
+What it is	Just the       <p> or </p> part	   The full <p>Hello</p>
+Contains content?	        No	               Yes
+Example	                   <h1>, </h1>	       <h1>Welcome</h1>
+
+Self-closing tags are also elements, just without separate closing tags:
+------------------------------------------------------------------------
+
+<img src="photo.jpg" alt="A photo">   ← element (no closing tag needed)
+<br>                                    ← element
+<hr>                                    ← element
+
+Working of HTML : Understand Step-by-Step
+----------------------------------------- 
+Write HTML → Save .html file → Open in browser → Browser parses → Builds DOM → Renders on screen
+
+Parsing means the browser reads and analyzes the HTML code to understand its structure.
+
+Understanding the Structure of an HTML Page
+------------------------------------------- 
+
+<!DOCTYPE html>
+└── <html>
+    ├── <head>        ← metadata (invisible)
+    │   ├── <meta>
+    │   ├── <title>
+    │   └── <link>    ← CSS files linked here
+    │
+    └── <body>        ← content (visible)
+        ├── <header>
+        ├── <nav>
+        ├── <main>
+        │   ├── <section>
+        │   └── <article>
+        ├── <aside>
+        └── <footer>
+
+**************************************************************************
+                               STRUCTURE
+************************************************************************** 
+
+Basic Structure
+--------------- 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+
+1. <!DOCTYPE html>
+*******************
+
+--> It must be the very first line in every HTML file — before <html>.
+--> <!DOCTYPE html> is a declaration (not a tag) that tells the browser which version of HTML the page uses.
+--> <!DOCTYPE html> means HTML5 (the current/latest version).
+--> It is not an HTML element — it has no closing tag.
+--> It is not case-sensitive (<!doctype html> also works).
+
+Old vs New:
+---------- 
+
+Version	DOCTYPE
+HTML5 (current)	<!DOCTYPE html>
+HTML 4.01 (old)	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+XHTML 1.0 (old)	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+HTML5 made it simple — just <!DOCTYPE html>. 
+
+What happens without it:
+------------------------
+
+With DOCTYPE    →  Standards mode  →  Page renders correctly
+Without DOCTYPE →  Quirks mode     →  Inconsistent/broken layout
+
+* Render means the browser draws/displays the content on screen.
+* Quirks mode is a browser rendering mode that mimics old, buggy behavior from the late 1990s.
+* Uses old, inconsistent rules
+
+2. <html></html>
+
+<html> is the root element of every HTML page. Everything else goes inside it.
+
+Syntax:
+
+<!DOCTYPE html>
+<html lang="en">
+  <head> ... </head>
+  <body> ... </body>
+</html>
+
+Common attribute — lang:
+
+Value	    Language
+lang="en"	English
+lang="hi"	Hindi
+lang="te"	Telugu
+lang="fr"	French
+lang="es"	Spanish
+
+Why lang matters:
+
+Helps screen readers pronounce text correctly.
+Helps search engines know the page language.
+Helps browsers offer translation.
+
+3. <head></head>
+
+<head> contains metadata — information about the page that is not visible on screen.
+
+<html lang="en">
+<head>
+  <!-- metadata goes here -->
+</head>
+<body>
+  <!-- visible content goes here -->
+</body>
+</html>
+
+
+<title></title>------Browser tab title------<title>My Website</title>
+<meta charset>-------Character encoding------<meta charset="UTF-8">
+<meta viewport>------Mobile responsiveness------<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta description>---Page description for SEO------<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+Page description for SEO means a short summary of what your page is about, written specifically to help search engines understand and display your page in search results.
+
+<link>---------------External CSS file------<link rel="stylesheet" href="style.css">
+<style></style>------Internal CSS------<style> h1 { color: red; } </style>
+<script></script>----JavaScript file------<script src="app.js"></script>
+<link> (favicon)-----Tab icon------<link rel="icon" href="https://www.flaticon.com/free-icons/favicon">
+
+Tab icon (also called favicon) is the small icon displayed on the browser tab next to the page title.
+
+<link> (fonts)-------Google Fonts etc.------<link href="https://fonts.google.com/icons" rel="stylesheet">
+
+4. <body></body>
+
+<body> contains all the visible content that users see on the web page.
+
+Key points:
+
+* Only one <body> per page.
+* Everything the user sees and interacts with goes inside <body>.
+* <head> = for the browser. <body> = for the user.
+
+HTML Editors:
+------------- 	
+
+VS Code-----Windows, Mac, Linux
+Sublime Text-----Windows, Mac, Linux
+Atom-----Windows, Mac, Linux
+Notepad++-----Windows only
+Notepad-----Windows
+Vim / Nano-----Linux, Mac, Terminal
+Brackets-----Windows, Mac, Linux
+
+VS Code is recommended because:
+------------------------------- 
+
+Free and open-source
+Syntax highlighting (color-codes your HTML)
+Auto-complete (Emmet shortcuts — type ! + Tab → full HTML template)
+Live Server extension — see changes instantly in browser
+Built-in terminal
+Huge extension library
+Works with HTML, CSS, JavaScript, and every other language
+
+HTML Comments
+-------------
+
+Single line comment:
+
+<!-- This is a heading -->
+<h1>Welcome</h1>
+
+Multi-line comment:
+
+<!--
+  This section contains
+  the navigation bar
+  and logo
+-->
+<nav>
+  <a href="#">Home</a>
+  <a href="#">About</a>
+</nav>
+
+Comment out code (temporarily hide it):
+ 
+<!-- <p>This paragraph will not show on the page.</p> -->
+
+<!-- outer <!-- inner --> this breaks -->   ❌ WRONG
