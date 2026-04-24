@@ -1,0 +1,1033 @@
+CSS=Cascading style sheet
+
+Example:
+
+ <!-- <style>
+        /* CSS Rule */
+        h1 {
+            color: blue;
+            /* Property: value */
+            font-size: 24px;
+        }
+
+        p {
+            color: green;
+            font-size: 16px;
+        }
+    </style>
+
+    <h1>Hello, World!</h1>
+    <p>This is a simple paragraph.</p> -->
+    ------------------------------------------------------------------------------------------------------
+    Selectors in CSS
+    ------------------------------------------------------------------------------------------------------
+
+1. Universal Selector: Applies styles to all elements.
+
+* → only for resets (margin, padding, box-sizing)
+
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+2. Type Selector/element selector: Targets specific HTML elements.
+
+h1 {
+    font-family: Arial, sans-serif;
+}
+
+3. Class Selector: Styles elements with a specific class attribute.
+
+.box {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+4. ID Selector: Targets a single element with a specific ID.
+
+#header {
+    background-color: lightgray;
+}
+
+<!-- *********************************************************************************************************
+    Combinator Selectors
+*********************************************************************************************************
+1. Descendant Selectors:
+
+<style>
+div p{
+    color: red;
+}
+</style>
+
+<div>
+    <p>Descendant selectors</p>
+</div>
+
+2. Child Selector (>): 
+
+<style>
+      div>p {
+            color: red;
+        }
+    </style>
+    <div>
+        <p>child selector</p>
+        <img src="assets/instructor-1.png" height="100" width="100">
+        <div>
+            <p>Descendant selectors</p>
+        </div>
+    </div>
+
+    <section>
+        <p>sujana</p>
+        <img src="assets/instructor-1.png">
+    </section>
+
+
+3. Adjacent Sibling Selector (+)
+
+<style>
+        h1+p {
+            color: red;
+            font-size: 20px;
+            background-color: blueviolet;
+        }
+    </style>
+
+    <h1>Sujana</h1>
+    <p>Trainees</p>
+
+  4. General Sibling Selector (~)
+
+   <style>
+      h1~p {
+            color: red;
+            font-style: italic;
+        }
+    </style>
+    <h1>This is a header.</h1>
+    <p>This is immediately following the header and is bold.</p>
+    <p>This will not be bold.</p> -->
+
+
+
+    ------------------------------------------------------------------------------------------------------
+    Grouping and Nesting of CSS Selectors
+    ------------------------------------------------------------------------------------------------------
+
+    1. Grouping
+
+    h1, h2, h3 {
+    color: darkblue;
+}
+
+Example:
+
+<!-- <style>
+    h1, h2, h3, h4, h5, h6{
+        color: brown;
+    }  
+    </style>
+
+    <h1>Hello, World!</h1>
+    <h2>Hello, World!</h2>
+    <h3>Hello, World!</h3>
+    <h4>Hello, World!</h4>
+    <h5>Hello, World!</h5>
+    <h6>Hello, World!</h6> -->
+
+2. Nesting
+
+ul li {
+    list-style-type: square;
+}
+
+Example:
+
+<!-- <style>
+  ul li {
+    list-style-type: square;
+  }
+</style>
+
+<h2>My Favorite Fruits</h2>
+<ul class="square-list">
+  <li>Apple</li>
+  <li>Banana</li>
+  <li>Mango</li>
+  <li>Orange</li>
+</ul> -->
+
+In CSS, list-style-type has many options. The most commonly used are:
+
+disc – default filled circle (for <ul>)
+circle – hollow circle
+square – filled square (what you used)
+none – no bullets
+For ordered lists (<ol>), common types are:
+
+decimal – 1, 2, 3, …
+decimal-leading-zero – 01, 02, 03, …
+lower-alpha / upper-alpha – a, b, c… / A, B, C…
+lower-roman / upper-roman – i, ii, iii… / I, II, III…
+There are also more advanced types (like armenian, georgian, lower-greek, etc.), but the above are the ones you’ll use most in practice.
+
+------------------------------------------------------------------------------------------------------
+    Pseudo-classes and Pseudo-elements
+    ------------------------------------------------------------------------------------------------------
+pseudo-class selector
+
+    Example:
+
+    <!-- <style>
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: red;
+            text-decoration: underline;
+        }
+    </style>
+
+    <a href="https://www.cognizant.com/in/en">Cognizant website link</a> -->
+
+    pseudo-element selector
+
+    Example:
+
+    <!-- <style>
+        p::first-line {
+            font-weight: bold;
+            color: blue;
+        }
+
+        p::first-letter {
+            font-size: 40px;
+            color: red;
+        }
+    </style>
+
+    <p>
+        This is a paragraph to show how pseudo-elements work in CSS.
+        The first line is blue and bold, and the first letter is big and red.
+    </p> -->
+
+    ------------------------------------------------------------------------------------------------------
+    colors
+    ------------------------------------------------------------------------------------------------------
+
+    In HTML & CSS, you can write colors in several main ways:
+
+1. Color names
+
+Examples: red, blue, green, black, white, orange, purple
+CSS: color: red; or background-color: lightblue;
+
+2. Hex values
+
+Format: #RRGGBB (R, G, B are 00–FF in hex)
+Examples: #ff0000 (red), #00ff00 (green), #0000ff (blue), #000000 (black), #ffffff (white)
+CSS: color: #ff0000;
+
+3. RGB / RGBA
+
+rgb(red, green, blue) → each 0–255
+rgba(red, green, blue, alpha) → alpha is transparency (0 to 1)
+Examples:
+color: rgb(255, 0, 0);
+background-color: rgba(0, 0, 255, 0.5); (50% transparent blue)
+
+4. HSL / HSLA
+
+hsl(hue, saturation, lightness)
+hsla(hue, saturation, lightness, alpha)
+Example: color: hsl(0, 100%, 50%); (red), color: hsla(120, 100%, 50%, 0.5);
+
+Background-colors:
+------------------
+
+Example:
+
+<!-- <style>
+        body {
+            background-color: rgb(101, 179, 206);
+        }
+
+        h1 {
+            background-color: rgb(170, 170, 116);
+        }
+
+        p {
+            background-color: rgb(144, 238, 144);
+        }
+    </style>
+
+    <h1>Background Color Example</h1>
+    <p>This paragraph has a light green background.</p> -->
+
+1.background-color
+
+<p style="background-color: red;">Red background</p>
+<p style="background-color: #3498db;">Blue HEX</p>
+<p style="background-color: rgb(0, 200, 100);">Green RGB</p>
+<p style="background-color: rgba(0, 0, 0, 0.3);">Semi-transparent black</p>
+<p style="background-color: transparent;">No background</p>
+
+2. background-image
+
+<style>
+  .box {
+    width: 400px;
+    height: 200px;
+    background-image: url("https://thumbs.dreamstime.com/b/tiger-wild-winter-nature-amur-tiger-running-snow-action-wildlife-scene-danger-animal-cold-winter-tajga-russ-84783074.jpg");
+  }
+</style>
+<div class="box"></div>
+
+Gradient backgrounds (no image file needed):
+
+<style>
+  /* Left to right */
+  .grad1 { background-image: linear-gradient(to right, red, blue); }
+
+  /* Top to bottom */
+  .grad2 { background-image: linear-gradient(to bottom, #ff6b6b, #feca57); }
+
+  /* Diagonal */
+  .grad3 { background-image: linear-gradient(45deg, #6c5ce7, #00cec9); }
+
+  /* Multiple colors */
+  .grad4 { background-image: linear-gradient(to right, red, yellow, green, blue); }
+
+  /* Radial (circular) */
+  .grad5 { background-image: radial-gradient(circle, #ff6b6b, #6c5ce7); }
+</style>
+
+<div class="grad1" style="height:80px;">linear-gradient to RIGHT</div>
+<br>
+<hr>
+<div class="grad2" style="height:80px;">linear-gradient to BOTTOM</div>
+<br>
+<hr>
+<div class="grad3" style="height:80px;">linear-gradient to 45 Degrees</div>
+<br>
+<hr>
+<div class="grad4" style="height:80px;">linear-gradient to Right with 3 colors</div>
+<br>
+<hr>
+<div class="grad5" style="height:80px;">linear-gradient in circle</div>
+
+3. background-repeat
+
+Controls if/how the background image repeats.
+
+ <style>
+        .box {
+            width: 100%px;
+            height: 500px;
+            background-image: url("assets/instructor-1.png");
+            /* repeat both (default) */
+             /* background-repeat: repeat; */
+             /* repeat horizontally only */
+             /* background-repeat: repeat-x; */
+             /* repeat vertically only */
+             /* background-repeat: repeat-y; */
+             /* show only once */
+             /* background-repeat: no-repeat; */
+              /* repeat with spacing */
+              /* background-repeat: space; */
+        }
+    </style>
+
+    <div class="box"></div>
+
+    4. background-position
+
+    <style>
+  .box {
+    width: 100%;
+    height: 500px;
+    background-image: url("assets/instructor-1.png");
+    background-repeat: no-repeat;
+    /* background-position: top left; */
+    /* background-position: top center; */
+    /* background-position: top right; */
+    /* background-position: center center; */
+    /* background-position: bottom right; */
+
+    /* left edge, top*/
+    /* background-position: 50px 100px;   */
+
+     /* background-position: 50% 50%; */
+  } 
+</style>
+
+<div class="box"></div>
+
+5. background-size
+
+<style>
+        .box {
+            width: 100%;
+            height: 500px;
+            background-image: url("assets/instructor-1.png");
+            background-repeat: no-repeat;
+
+            /* original size (default) */
+             /* background-size: auto; */
+
+             /* fills entire box (may crop) */
+             /* background-size: cover; */
+
+             /* stretch to fill */
+              /* background-size: 100% 100%; */
+        }
+    </style>
+
+    <div class="box"></div>
+
+6. background-attachment
+
+Controls if background scrolls with the page or stays fixed.
+
+<style>
+  /* .hero {
+    height: 400px;
+    background-image: url("assets/instructor-1.png");
+    background-size: cover;
+    background-attachment: fixed; 
+  } */
+
+.normal {
+    width: 100%;
+    height: 1000px;
+    background-image: url("assets/instructor-1.png");
+    background-size: cover;
+    background-attachment: scroll;
+  }
+</style>
+
+<div class="hero"></div>
+<div class="normal"></div>
+
+
+
+
+
+Text-colors:
+------------
+
+Example:
+
+<!-- <style>
+        h1 {
+            color: red;
+            /* color name */
+        }
+
+        p {
+            color: #0000ff;
+            /* hex value (blue) */
+        }
+
+        span.highlight {
+            color: rgb(0, 128, 0);
+            /* RGB (green) */
+        }
+    </style>
+
+    <h1>This is a red heading</h1>
+    <p>This is a blue paragraph with a
+        <span class="highlight">green word</span>.
+    </p> -->
+
+Border-colors:
+------------
+
+CSS Border Properties
+
+A border is a line drawn around an element — outside the padding, inside the margin.
+
+Example:
+
+<!-- <style>
+  .box1 {
+    border: 3px solid red;           /* color name */
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .box2 {
+    border: 3px solid #00aa00;       /* hex color */
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .box3 {
+    border: 3px solid rgb(0, 0, 255); /* rgb color */
+    padding: 10px;
+  }
+</style>
+
+<div class="box1">Red border</div>
+<div class="box2">Green border</div>
+<div class="box3">Blue border</div> -->
+
+Other properties
+----------------- 
+
+1. border-width
+
+<style>
+  p { border-width: 3px; padding: 8px; margin: 8px; }
+
+  .s1 { border-style: solid; }        /* continuous line */
+  .s2 { border-style: dashed; }       /* dashed line */
+  .s3 { border-style: dotted; }       /* dotted line */
+  .s4 { border-style: double; }       /* two lines */
+  .s5 { border-style: groove; }       /* 3D grooved */
+  .s6 { border-style: ridge; }        /* 3D ridged */
+  .s7 { border-style: inset; }        /* 3D inset */
+  .s8 { border-style: outset; }       /* 3D outset */
+  .s9 { border-style: none; }         /* no border */
+  .s10 { border-style: hidden; }      /* hidden border */
+
+  /* Different style on each side */
+  .s11 { border-style: solid dashed dotted double; }
+  /*                   top   right  bottom left    */
+</style>
+
+<p class="s1">solid</p>
+<p class="s2">dashed</p>
+<p class="s3">dotted</p>
+<p class="s4">double</p>
+<p class="s5">groove</p>
+<p class="s6">ridge</p>
+<p class="s7">inset</p>
+<p class="s8">outset</p>
+<p class="s9">none</p>
+<p class="s10">hidden</p>
+<p class="s11">All in one</p>
+
+3. border-color
+
+<style>
+  .c1 { border: 3px solid red;margin-bottom: 20px; }
+  .c2 { border: 3px solid #3498db; margin-bottom: 20px;}
+  .c3 { border: 3px solid rgb(0, 200, 100);margin-bottom: 20px; }
+  .c4 { border: 3px solid rgba(0, 0, 0, 0.3); margin-bottom: 20px;}
+  .c5 { border: 3px solid transparent;margin-bottom: 20px; }     /* invisible border */
+
+  /* Different color each side */
+  .c6 {
+    border-width: 5px;
+    border-style: solid;
+    margin-bottom: 20px;
+    border-color: red green blue orange;
+    /*            top  right bottom left */
+  }
+</style>
+
+<div class="c1">hello c1</div>
+<div class="c2">hi c2</div>
+<div class="c3">excuse me c3</div>
+<div class="c4">sorry c4</div>
+<div class="c5">good day c5</div>
+<div class="c6">see you c6</div>
+
+4. Individual Sides
+
+<style>
+  /* Each side separately */
+  .sides {
+    border-top:    3px solid red;
+    border-right:  3px dashed blue;
+    border-bottom: 3px dotted green;
+    border-left:   3px double orange;
+  }
+
+  /* Only bottom border (underline effect) */
+  .underline {
+    border: none;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+  }
+
+  /* Only left border (highlight effect) */
+  .highlight {
+    border: none;
+    border-left: 4px solid #3498db;
+    padding-left: 15px;
+  }
+</style>
+
+<p class="sides">All four sides different</p>
+<h2 class="underline">Underline Heading</h2>
+<p class="highlight">Left border highlight</p>
+
+5. border-radius — Rounded Corners
+
+ <style>
+  /* All corners same */
+  .r1 { border: 2px solid black; border-radius: 5px; }    /* slightly rounded */
+  .r2 { border: 2px solid black; border-radius: 10px; }   /* more rounded */
+  .r3 { border: 2px solid black; border-radius: 50%; }    /* circle/oval */
+
+  /* Each corner separately */
+  .r4 {
+    border: 2px solid black;
+    border-radius: 10px 30px 10px 30px;
+    /*             TL   TR   BR   BL   ← clockwise from top-left */
+  }
+
+  /* Pill shape */
+  .pill {
+    border: 2px solid #3498db;
+    border-radius: 50px;
+    padding: 8px 20px;
+    display: inline-block;
+  }
+
+  /* Circle — width must equal height */
+  .circle {
+    width: 100px;
+    height: 100px;
+    border: 3px solid red;
+    border-radius: 50%;
+  }
+</style>
+
+<p class="r1" style="padding:10px">Slightly rounded</p>
+<br>
+<p class="r2" style="padding:10px">More rounded</p>
+<br>
+
+<span class="pill">Pill Button</span>
+<br>
+<hr>
+<div class="circle"></div>
+
+6. border-collapse — For Tables
+
+<style>
+        /* Double borders (default) */
+        .t1 {
+            border-collapse: separate;
+        }
+
+        /* Single border between cells */
+        .t2 {
+            border-collapse: collapse;
+        }
+    </style>
+
+    <table class="t1" border="1" style="margin:10px">
+        <tr>
+            <td>separate</td>
+            <td>borders</td>
+        </tr>
+    </table>
+
+    <table class="t2" border="1" style="margin:10px">
+        <tr>
+            <td>collapsed</td>
+            <td>borders</td>
+        </tr>
+    </table>
+
+    7. outline — Similar to border but outside it
+
+    <style>
+        /* outline does not affect layout (no space taken) */
+        .o1 {
+            border: 2px solid blue;
+            outline: 3px solid red;
+            padding: 10px;
+        }
+
+        /* Used on focus (accessibility) */
+        input:focus {
+            outline: 2px solid #3498db;
+        }
+    </style>
+
+    <!-- 1. Border + Outline together -->
+    <p class="o1">I have a blue border AND a red outline</p>
+
+    <br>
+
+    <!-- 2. Input focus outline — click inside the input to see blue outline -->
+    <label>Click to focus:</label>
+    <input type="text" placeholder="Click me to see blue outline">
+
+    9. box-shadow — Shadow around border
+
+    <style>
+        body {
+            font-family: Arial;
+            padding: 30px;
+            background: #f5f5f5;
+        }
+
+        /* box-shadow: x-offset y-offset blur spread color=
+        X-offset (horizontal)-Moves the shadow left or right
+        Y-offset (vertical)-Moves the shadow up or down
+        Blur radius-ontrols how sharp or soft the shadow is
+        
+        box-shadow: 2px 2px 5px 3px gray;
+        4th 3px will be spread → grows shadow outward by 3px
+        */
+        .box {
+            width: 200px;
+            height: 80px;
+            background: white;
+            margin: 20px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+        }
+
+        .sh1 {
+            box-shadow: 2px 2px 5px gray;
+        }
+
+        .sh2 {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .sh3 {
+            box-shadow: 0 0 0 3px #3498db;
+        }
+
+        /* glow effect */
+
+        .sh4 {
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* inner shadow */
+
+        /* Multiple shadows */
+        .sh5 {
+            box-shadow: 2px 2px 5px red, -2px -2px 5px blue;
+        }
+    </style>
+
+    
+        <h2>box-shadow Examples</h2>
+
+        <!-- sh1: basic gray shadow -->
+        <div class="box sh1">Gray Shadow</div>
+
+        <!-- sh2: soft drop shadow -->
+        <div class="box sh2">Soft Shadow</div>
+
+        <!-- sh3: blue glow (spread only, no blur) -->
+        <div class="box sh3">Blue Glow</div>
+
+        <!-- sh4: inner / inset shadow -->
+        <div class="box sh4">Inner Shadow</div>
+
+        <!-- sh5: two shadows — red + blue -->
+        <div class="box sh5">Multi Shadow</div>
+
+        concept diagram
+
+   ┌──────────────┐
+   │   Element    │
+   └──────────────┘
+      ░░░░░░░░░░░░░░  ← shadow (2px right, 2px down, blurred 5px)               
+
+==========================================================================
+Shadows and Text Effects:
+==========================================================================
+
+Example:
+
+<!-- <style>
+  h1 {
+    color: darkblue;
+    text-shadow: 2px 2px 4px gray;   /* x, y, blur, color */
+  }
+
+  p {
+    font-style: italic;              /* text effect */
+    letter-spacing: 1px;             /* text effect */
+  }
+
+  .card {
+    width: 250px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 3px 3px 8px rgba(0,0,0,0.3); /* box shadow */
+  }
+</style>
+
+<div class="card">
+  <h1>Shadow Title</h1>
+  <p>This text has simple text effects.</p>
+</div> -->
+
+
+
+Hover Effects:
+-------------
+
+Example:
+
+1. Hover effect on a button
+
+<!-- <style>
+  .btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background-color: #1d6fa5; 
+  }
+</style>
+
+<button class="btn">Hover me</button> -->
+
+2. Hover effect on a box
+
+<!-- <style>
+  .box {
+    width: 150px;
+    height: 150px;
+    background-color: lightgreen;
+    transition: 0.3s; /* smooth change */
+  }
+
+  .box:hover {
+    background-color: green;
+    transform: scale(1.1); /* slightly bigger */
+  }
+</style>
+
+<div class="box"></div> -->
+
+
+==========================================================================
+Overflow:
+==========================================================================
+
+Syntax:
+
+overflow: visible | hidden | scroll | auto;
+
+1. overflow: scroll (always show scrollbars)
+
+<!-- <style>
+  .box-scroll {
+    width: 200px;
+    height: 100px;
+    border: 2px solid #333;
+    overflow: scroll; /* always show scrollbars */
+  }
+</style>
+
+<div class="box-scroll">
+  This is a long text inside the box. It will overflow the height, so scrollbars will appear and you can scroll to read all the content.
+</div> -->
+
+2. overflow: hidden (cut off extra content)
+
+<!-- <style>
+  .box-hidden {
+    width: 200px;
+    height: 60px;
+    border: 2px solid #333;
+    overflow: hidden; /* extra content is hidden */
+  }
+</style>
+
+<div class="box-hidden">
+  This text is longer than the box height, but anything that doesn’t fit is simply not shown.
+</div> -->
+
+3. overflow: auto (scrollbars only when needed)
+
+<!-- <style>
+  .box-auto {
+    width: 200px;
+    height: 80px;
+    border: 2px solid #333;
+    overflow: auto; /* show scrollbars only if needed */
+  }
+</style>
+
+<div class="box-auto">
+  This is some content. If it becomes too long for the box, scrollbars will appear automatically.
+</div> -->
+
+4. Single-line text with text-overflow: ellipsis
+
+<!-- <style>
+  .ellipsis {
+    width: 200px;
+    border: 1px solid #333;
+    white-space: nowrap;        /* keep text in one line */
+    overflow: hidden;           /* hide extra text */
+    text-overflow: ellipsis;    /* show "..." at the end */
+  }
+</style>
+
+<div class="ellipsis">
+  This is a very long text that will be cut off with dots.
+</div> -->
+
+==========================================================================
+Font-related properties
+==========================================================================
+
+
+font-family – which font(s) to use
+font-size – size of the text
+font-weight – thickness (normal, bold, 100–900)
+font-style – normal, italic, oblique
+font-variant – small-caps,all-small-caps,numeric etc.
+line-height – space between lines(give pixels)
+font – shorthand for font-style, weight, size, line-height, family
+(More advanced) font-stretch, font-kerning, font-feature-settings, font-variant-ligatures, font-variant-caps
+
+
+==========================================================================
+Text-related properties
+==========================================================================
+
+color – text color
+text-align – left, right, center, justify
+text-decoration – underline, line-through, overline
+text-transform – uppercase, lowercase, capitalize
+text-indent – indent first line of a paragraph
+letter-spacing – space between letters
+word-spacing – space between words
+line-height – (also here) line spacing
+white-space – how spaces and line breaks behave
+text-overflow – what to do with overflowed text (e.g., ellipsis)
+text-shadow – shadow behind text
+direction – text direction (ltr, rtl)
+unicode-bidi – advanced control of bidirectional text
+vertical-align – vertical alignment of inline/inline-block elements
+
+
+==========================================================================
+Shadows 
+==========================================================================
+
+It supports two kinds of shadows per shadow:
+Outer shadow (default)
+Inner shadow (when you add inset)
+
+box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 5px rgba(0,128,255,0.5);
+
+4px (first value)
+offset-x → moves the shadow 4px to the right.
+(Negative value would move it to the left.)
+
+4px (second value)
+offset-y → moves the shadow 4px down.
+(Negative value would move it up.)
+
+8px (third value)
+blur-radius → how soft the shadow is.
+Bigger value = more blurred and spread out; 0 = sharp edge.
+
+5px (fourth value – spread-radius)
+Shadow grows 5px outward in all directions, like an extra border.
+
+<style>
+  .box {
+    width: 200px;
+    height: 100px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3); /* basic shadow */
+  }
+</style>
+
+<div class="box">
+  Basic box shadow
+</div>
+
+1. Simple outer shadow (default) 
+
+<style>
+  .box-outer {
+    width: 150px;
+    height: 80px;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 4px 4px 8px rgba(0,0,0,0.3);
+  }
+</style>
+
+<div class="box-outer">Outer shadow</div>
+
+2. Soft “card” shadow (larger blur) 
+
+<style>
+  .box-soft {
+    width: 150px;
+    height: 80px;
+    background: #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  }
+</style>
+
+<div class="box-soft">Soft card shadow</div>
+
+3. Shadow with spread (looks like a glow/border) 
+
+<style>
+  .box-spread {
+    width: 150px;
+    height: 80px;
+    background: #fff;
+    box-shadow: 0 0 0 5px rgba(0,128,255,0.5);
+  }
+</style>
+
+<div class="box-spread">Spread shadow</div>
+
+4. Inner shadow (inset) 
+
+<style>
+  .box-inset {
+    width: 150px;
+    height: 80px;
+    background: #eee;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+  }
+</style>
+
+<div class="box-inset">Inner shadow</div>
+
+5. Multiple shadows together
+
+<style>
+  .box-multi {
+    width: 150px;
+    height: 80px;
+    background: #fff;
+    box-shadow:
+      0 0 5px rgba(0,0,0,0.4),           /* small outer */
+      0 0 15px rgba(0,0,255,0.5),        /* blue glow */
+      inset 0 0 5px rgba(0,0,0,0.4);     /* inner */
+  }
+</style>
+
+<div class="box-multi">Multiple shadows</div>

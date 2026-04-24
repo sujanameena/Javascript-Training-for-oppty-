@@ -1,0 +1,467 @@
+*****************
+HTML Attributes 
+*****************
+
+Definition:
+-----------
+TML attributes are special properties added to an HTML element’s opening tag to provide extra information or control its behavior.
+
+Syntax:
+<tagname attribute="value">Content</tagname>
+
+Common attributes:
+
+id: unique name for one element.
+class: reusable group name for CSS/JS.
+style: inline CSS.
+title: tooltip text.
+href: link destination.
+src: source file path for media/script.
+alt: fallback text for images.
+name: form field name sent to server.
+value: initial value of an input.
+placeholder: hint text in input.
+required: input must be filled.
+disabled: control cannot be used.
+readonly: value visible but not editable.
+checked: default selected checkbox/radio.
+target: where link opens.
+
+1.id: unique name for one element.
+----------------------------------
+
+Definition:
+The id attribute gives a unique name to one HTML element on a page.
+No two elements should use the same id value.
+
+Example:1 
+
+<h1 id="main-title">Welcome</h1>
+
+<style>
+  #main-title {
+    color: blue;
+    text-align: center;
+  }
+</style>
+
+2.class: reusable group name for CSS/JS.
+----------------------------------------
+
+The class attribute is used to assign one or more reusable names to an HTML element, so you can apply the same CSS style or JavaScript behavior to many elements.
+
+Example:1 
+<p class="note">This is a note.</p> <p class="note">This is another note.</p> <p>This is normal text.</p>
+
+CSS:
+<style>
+.note {
+color: blue;
+font-weight: bold;
+}
+</style>
+
+************************************
+All HTML Attributes — Complete List
+************************************
+
+Global Attributes (work on ANY HTML element)
+----------------------------------------------
+
+Attribute	           Description
+id	                   Unique identifier for the element
+class	               One or more class names (for CSS/JS)
+style	               Inline CSS styles
+title	               Tooltip text on hover
+lang	               Language of the element's content
+dir	                   Text direction: ltr, rtl, auto
+hidden	               Hides the element from the page
+tabindex	           Tab order for keyboard navigation
+accesskey	           Keyboard shortcut to activate/focus element
+contenteditable	  Makes content editable by user (true/false)
+draggable	      Whether element can be dragged (true/false)
+spellcheck	      Enable/disable spell checking (true/false)
+translate	      Whether content should be translated (yes/no)
+data-*	          Custom data attributes (e.g., data-id="5", data-name="john")
+role	          ARIA role for accessibility
+aria-*	          Accessibility attributes (e.g., aria-label, aria-hidden)
+slot	          Assigns element to a shadow DOM slot
+is	              Specifies a custom element behavior
+part	          Exposes element for styling from outside shadow DOM
+nonce	          Cryptographic nonce for Content Security Policy
+autofocus	    Automatically focuses the element on page load
+enterkeyhint	Hint for virtual keyboard Enter key label
+inputmode	    Hint for virtual keyboard type
+itemid	        Microdata: unique identifier
+itemprop	    Microdata: property name
+itemref	        Microdata: references other elements
+itemscope	    Microdata: defines scope
+itemtype	    Microdata: item type URL
+popover	        Makes element a popover
+inert	        Makes element and children non-interactive
+
+<a> (Anchor / Link)
+--------------------
+
+Attribute	   Description
+href	      URL the link points to
+target	      Where to open: _self, _blank, _parent, _top
+rel	          Relationship: noopener, noreferrer, nofollow, stylesheet
+download	  Download file instead of navigating (optional filename)
+hreflang	  Language of the linked page
+type	      MIME type of linked resource
+ping	      URLs to notify when link is clicked
+referrerpolicy	     Referrer info to send
+
+<img> (Image)
+------------- 
+
+Attribute	        Description
+src	                Image file path/URL
+alt	                Alternative text (accessibility + fallback)
+width	            Width in pixels
+height	            Height in pixels
+loading	            lazy (defer offscreen) or eager (load immediately)
+srcset	            Multiple image sources for responsive images
+sizes	            Image sizes for different viewport widths
+crossorigin	        CORS setting: anonymous, use-credentials
+decoding	        Decoding hint: sync, async, auto
+ismap	            Server-side image map
+usemap	            Client-side image map reference
+fetchpriority	    Fetch priority: high, low, auto
+referrerpolicy	    Referrer policy for fetch
+
+<input> (Form Input)
+-------------------- 
+
+Attribute	       Description
+type	           Input type (see list below)
+name	           Field name for form submission
+value	           Default/current value
+placeholder	       Hint text when empty
+required	       Must be filled before submit
+disabled	       Disables the input
+readonly	       Can see but can't edit
+checked	           Pre-selected (checkbox/radio)
+maxlength	       Maximum characters allowed
+minlength	       Minimum characters required
+max	               Maximum numeric/date value
+min	               Minimum numeric/date value
+step	           Increment step for numbers
+pattern	           Regex pattern for validation
+size	           Visible width (in characters)
+autocomplete	   on / off / specific values
+autofocus	       Focus on page load
+multiple	       Allow multiple values (email, file)
+accept	           File types accepted (type="file")
+capture	           Camera/mic for mobile (type="file")
+form	           Associates with a <form> by id
+formaction	       Override form action URL
+formmethod	       Override form method
+formenctype	       Override form encoding
+formnovalidate	   Skip validation on submit
+formtarget	       Override form target
+list	           Reference to <datalist> id
+inputmode	       Virtual keyboard hint
+dirname	           Submits text directionality
+height / width	   For type="image" only
+src / alt	       For type="image" only
+popovertarget	   Controls a popover element
+
+Input type values:
+--------------------
+
+text        password     email       number      tel
+url         search       date        time        datetime-local
+month       week         color       range       file
+checkbox    radio        hidden      submit      reset
+button      image
+
+<form> (Form)
+-------------
+Attribute	Description
+action	    URL to submit form data to
+method	    GET or POST
+enctype	    Encoding: application/x-www-form-urlencoded, multipart/form-data, text/plain
+target	    Where to show response
+autocomplete	on / off
+novalidate	    Skip built-in validation
+name	        Form name
+rel	            Relationship
+accept-charset	Character encodings accepted
+
+<button></button>
+--------- 
+
+Attribute	Description
+type	submit (default), button, reset
+disabled	Disables the button
+name	Name for form submission
+value	Value sent with form
+form	Associates with form by id
+formaction	Override form action
+formmethod	Override form method
+formenctype	Override encoding
+formnovalidate	Skip validation
+formtarget	Override target
+popovertarget	Controls a popover
+popovertargetaction	Popover action: toggle, show, hide
+
+<textarea></textarea>
+--------------------- 
+
+Attribute	Description
+name	Field name
+rows	Visible height (lines)
+cols	Visible width (characters)
+placeholder	Hint text
+required	Must fill
+disabled	Disabled
+readonly	Can't edit
+maxlength	Max characters
+minlength	Min characters
+wrap	soft, hard
+autocomplete	on / off
+form	Link to form by id
+dirname	Text directionality
+
+<select> (Dropdown)
+------------------- 
+
+Attribute	Description
+name	Field name
+multiple	Allow multiple selections
+size	Visible options count
+required	Must select
+disabled	Disabled
+form	Link to form by id
+autocomplete	on / off 
+
+<option></option>
+-------------------  
+
+Attribute	Description
+value	Value sent on submit
+selected	Pre-selected option
+disabled	Disabled option
+label	Short label text
+
+<optgroup></optgroup>
+
+Attribute	Description
+label	Group label (required)
+disabled	Disables all options in group 
+
+<label></label>
+
+Attribute	Description
+for	Links to input by id
+
+<fieldset> & <legend></legend>
+
+Attribute	Used On	Description
+disabled	<fieldset>	Disables all inputs inside
+form	<fieldset>	Link to form by id
+name	<fieldset>	Group name
+
+<table> Related 
+
+Attribute	Used On	Description
+colspan	<td>, <th>	Span across columns
+rowspan	<td>, <th>	Span across rows
+headers	<td>, <th>	Reference to header cells
+scope	<th>	col, row, colgroup, rowgroup
+span	<col>, <colgroup>	Number of columns to span
+
+<audio> & <video></video> 
+
+Attribute	Description
+src	Media source URL
+controls	Show play/pause controls
+autoplay	Auto-start playing
+loop	Repeat when finished
+muted	Start muted
+preload	none, metadata, auto
+poster	Preview image (<video> only)
+width / height	Dimensions (<video> only)
+crossorigin	CORS setting
+playsinline	Play inline on mobile (<video>)
+
+<source> (inside audio/video/picture) 
+
+Attribute	Description
+src	Media source URL
+type	MIME type
+srcset	Image sources (inside <picture>)
+sizes	Image sizes (inside <picture>)
+media	Media query (inside <picture>)
+
+<track> (subtitles/captions) 
+
+Attribute	Description
+src	Subtitle file URL (.vtt)
+kind	subtitles, captions, descriptions, chapters, metadata
+srclang	Language of the track
+label	User-visible label
+default	Enable by default 
+
+<iframe></iframe>
+
+Attribute	Description
+src	URL to embed
+width / height	Dimensions
+name	Frame name
+sandbox	Security restrictions
+allow	Permissions policy
+loading	lazy or eager
+referrerpolicy	Referrer policy
+srcdoc	Inline HTML content
+allowfullscreen	Allow fullscreen
+
+<link> (in <head>)
+
+Attribute	Description
+href	URL of linked resource
+rel	Relationship: stylesheet, icon, preload, preconnect
+type	MIME type
+media	Media query
+crossorigin	CORS setting
+as	Resource type (for preload)
+sizes	Icon sizes (for rel="icon")
+hreflang	Language
+disabled	Disable stylesheet
+integrity	Subresource integrity hash
+fetchpriority	Fetch priority 
+
+<meta> (in <head>)
+------------------
+
+Attribute	Description
+charset	    Character encoding (UTF-8)
+name	    Metadata name (viewport, description, author, keywords, robots)
+content 	Metadata value
+http-equiv	HTTP header simulation (refresh, content-type, X-UA-Compatible)
+
+<script></script> 
+------------------
+
+Attribute	     Description
+src	             External script URL
+type	         text/javascript (default), module
+defer	         Execute after HTML is parsed
+async	         Execute as soon as downloaded
+crossorigin	     CORS setting
+integrity	     Subresource integrity
+nomodule	     Fallback for non-module browsers
+nonce	         CSP nonce
+fetchpriority	 Fetch priority
+
+<style>
+--------
+Attribute	Description
+media	    Media query
+nonce	    CSP nonce 
+
+<canvas>
+-------- 
+
+Attribute	Description
+
+width	    Canvas width in pixels
+height	    Canvas height in pixels
+
+<details> & <summary>
+---------------------- 
+
+Attribute	 Used On	   Description
+open	    <details>	   Expanded by default
+
+<dialog> 
+---------
+
+Attribute	Description
+open	    Dialog is visible
+
+<ol> (Ordered List)
+-------------------
+
+Attribute	 Description
+
+start	     Starting number
+reversed	 Count backwards
+type	     Numbering: 1, a, A, i, I
+
+<li>
+-----
+
+Attribute	Description
+
+value	    Set number for this item (in <ol>) 
+
+<map> & <area> (Image Maps) 
+---------------------------
+
+Attribute	Used On	       Description
+
+name	    <map>	       Map name (referenced by usemap)
+shape	    <area>	       rect, circle, poly, default
+coords	    <area>	       Coordinates
+href	    <area>	       Link URL
+alt	        <area>	       Alt text
+target	    <area>	       Link target
+
+<object> & <embed> 
+-------------------
+
+Attribute	      Used On	           Description
+data	          <object>	           Resource URL
+type	          Both	               MIME type
+width / height	  Both	               Dimensions
+name	          <object>	           Name
+form	          <object>	           Associated form
+src	              <embed>	           Resource URL
+
+<output>
+---------
+
+Attribute	Description
+for	        IDs of related inputs
+form	    Associated form
+name	    Output name
+
+<progress> & <meter>
+---------------------
+
+Attribute	Used On	      Description
+
+value	    Both          Current value
+max	        Both	      Maximum value
+min	        <meter>	      Minimum value
+low	        <meter>	      Low threshold
+high	    <meter>	      High threshold
+optimum	    <meter>	      Optimal value
+
+<time> 
+------ 
+
+Attribute	Description
+datetime	Machine-readable date/time
+
+<blockquote> & <q> & <ins> & <del> 
+----------------------------------- 
+
+Attribute	Used On 	        Description
+
+cite	    All of these	    Source URL
+datetime	<ins>, <del>	    Date of change
+
+Event Attributes (work on most elements)
+---------------------------------------- 
+
+Window Events:        onload, onunload, onresize, onscroll, onerror
+Form Events:          onsubmit, onreset, onchange, oninput, onfocus, onblur, oninvalid
+Mouse Events:         onclick, ondblclick, onmousedown, onmouseup, onmouseover, onmouseout, onmousemove
+Keyboard Events:      onkeydown, onkeyup, onkeypress (deprecated)
+Drag Events:          ondrag, ondragstart, ondragend, ondragover, ondragenter, ondragleave, ondrop
+Clipboard Events:     oncopy, oncut, onpaste
+Media Events:         onplay, onpause, onended, onvolumechange, ontimeupdate

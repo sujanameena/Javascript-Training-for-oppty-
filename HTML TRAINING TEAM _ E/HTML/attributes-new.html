@@ -1,0 +1,525 @@
+*****************
+HTML Attributes 
+*****************
+
+Definition:
+-----------
+TML attributes are special properties added to an HTML element’s opening tag to provide extra information or control its behavior.
+
+Syntax:
+<tagname attribute="value">Content</tagname>
+
+Common HTML Attributes
+----------------------- 
+
+Here are some of the most commonly used HTML attributes:
+
+href - Specifies the URL of the page the link goes to
+src - Specifies the path to the image
+alt - Specifies an alternate text for an image
+width - Specifies the width of an element
+height - Specifies the height of an element
+style - Specifies an inline CSS style for an element
+class - Specifies one or more class names for an element
+id - Specifies a unique id for an element
+title - Specifies extra information about an element (displayed as a tooltip)
+
+Links with href attribute:
+--------------------------
+
+<!-- Open in a new tab -->
+<a href="https://www.google.com" target="_blank">Google (new tab)</a> <br>
+
+<!-- Jump to a section on the same page -->
+<a href="page.html">Another Page</a>
+<br>
+
+
+<!-- Email link -->
+<a href="mailto:someone@example.com">Send Email</a>
+
+Images with src, alt, width, and height attributes:
+----------------------------------------------------
+
+<img src="mountain.jpg" alt="Mountain View" width="300" height="200">
+
+Style attribute:
+----------------- 
+
+<p style="color:blue; font-size:20px;">This is a blue paragraph.</p>
+
+Class and ID attributes:
+------------------------- 
+
+<div class="container">Content here</div>
+<p id="introduction">This is the introduction.</p>
+
+title - Specifies extra information about an element (displayed as a tooltip)
+
+<!-- Tooltip on a button -->
+<button title="Click to submit">Submit</button>
+<br>
+<hr>
+
+<!-- Tooltip on a link -->
+<a href="https://www.google.com" title="Opens Google in browser">Google</a>
+<br>
+<hr>
+
+<!-- Most common use — abbreviation meaning -->
+<abbr title="HyperText Markup Language">HTML</abbr>
+<br>
+<hr>
+
+<!-- Tooltip on an image -->
+<img src="cat.jpg" alt="Cat" title="A cute cat photo">
+
+*********************************************
+Some other main types of HTML attributes are:
+*********************************************
+
+1.Event Attributes - These define the actions to be taken on specific browser events.
+
+vent attributes tell the browser what to do when something happens — like a click, key press, page load, or mouse hover. They connect HTML elements directly to JavaScript actions.
+
+Example:
+
+<button onclick="alert('Button clicked!')">Click Me</button>
+
+<p onmouseover="this.style.color='red'">Hover over me</p>
+
+<p onmouseout="this.style.color='yellow'">Hover out resets</p>
+
+<p ondblclick="alert('Double clicked!')">Double click me</p>
+
+<form onsubmit="alert('Form submitted!')">
+  <button type="submit">Submit</button>
+</form>
+
+2.Input Attributes - Specific to input elements within <form> tags
+
+Example:
+
+<input type="text" name="username" placeholder="Enter Your name" required>         <!-- single line text -->
+<br>
+<hr>
+<input type="password" >     <!-- hidden characters -->
+<br>
+<hr>
+<input type="email" name="email" placeholder="Email" required>        <!-- validates email format -->
+<br>
+<hr>
+<input type="number">       <!-- numbers only -->
+<br>
+<hr>
+<input type="date">         <!-- date picker -->
+<br>
+<hr>
+<input type="checkbox">     <!-- tick box -->
+<br>
+<hr>
+<input type="radio">        <!-- one choice from many -->
+<br>
+<hr>
+<input type="file">         <!-- upload a file -->
+<br>
+<hr>
+<input type="submit">       <!-- submit button -->
+<br>
+<hr>
+<input type="reset">        <!-- reset button -->
+<br>
+<hr>
+<input type="color">        <!-- color picker -->
+<br>
+<hr>
+<input type="range">        <!-- slider -->
+
+3. Table Attributes - Used with table elements like <table> , <th> , <tr> , and <td>.
+
+    Basic Example :
+
+    <table border="1">
+  <tr>
+    <td colspan="3">I span 3 columns</td>
+  </tr>
+  <tr>
+    <td>Col 1</td>
+    <td>Col 2</td>
+    <td>Col 3</td>
+  </tr>
+</table>
+
+    Full Table Example (combining attributes):
+
+    <table border="1">
+  <colgroup>
+    <col span="3">
+  </colgroup>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Subject</th>
+    <th scope="col">Marks</th>
+  </tr>
+  <tr>
+    <td rowspan="2">Alice</td>
+    <td>Math</td>
+    <td>90</td>
+  </tr>
+  <tr>
+    <td>Science</td>
+    <td>85</td>
+  </tr>
+  <tr>
+    <td colspan="2">Total</td>
+    <td>175</td>
+  </tr>
+</table>
+
+4.Media Attributes - Related to media elements like <audio> and <video>.
+
+    <audio src="song.mp3" controls muted></audio>
+
+
+*********************************************
+Visuals and media
+*********************************************
+    
+<p style="color: red;">Red text</p>
+<p style="color: blue;">Blue text</p>
+<p style="color: green;">Green text</p>
+<p style="background-color: yellow;">Yellow background</p>
+
+2. HEX — most commonly used
+
+<p style="color: #ff0000;">Red</p>         <!-- pure red -->
+<p style="color: #00ff00;">Green</p>       <!-- pure green -->
+<p style="color: #0000ff;">Blue</p>        <!-- pure blue -->
+<p style="color: #000000;">Black</p>       <!-- all 0 = black -->
+<p style="color: #ffffff;">White</p>       <!-- all f = white -->
+<p style="color: #ff5733;">Orange-Red</p>  <!-- custom color -->
+
+3. RGB — Red, Green, Blue (0 to 255)
+
+<p style="color: rgb(255, 0, 0);">Red</p>
+<p style="color: rgb(0, 255, 0);">Green</p>
+<p style="color: rgb(0, 0, 255);">Blue</p>
+<p style="color: rgb(0, 0, 0);">Black</p>
+<p style="color: rgb(255, 255, 255);">White</p>
+<p style="color: rgb(255, 165, 0);">Orange</p>
+
+4. RGBA — RGB + Alpha (transparency)
+
+<p style="color: rgba(255, 0, 0, 1);">Solid Red</p>
+<p style="color: rgba(255, 0, 0, 0.5);">50% transparent Red</p>
+<p style="color: rgba(255, 0, 0, 0.2);">Very faint Red</p>
+
+<div style="background-color: rgba(0, 0, 255, 0.3);">
+  Semi-transparent blue background
+</div>
+
+5. HSL — Hue, Saturation, Lightness
+
+<p style="color: hsl(0, 100%, 50%);">Red</p>
+<p style="color: hsl(120, 100%, 50%);">Green</p>
+<p style="color: hsl(240, 100%, 50%);">Blue</p>
+<p style="color: hsl(0, 0%, 0%);">Black</p>
+<p style="color: hsl(0, 0%, 100%);">White</p>
+
+Where colors are applied
+
+<!-- Text color -->
+<p style="color: red;">Red text</p>
+
+<!-- Background color -->
+<p style="background-color: yellow;">Yellow background</p>
+
+<!-- Border color -->
+<p style="border: 2px solid blue;">Blue border</p>
+
+*********************************************
+favicon
+*********************************************
+
+A favicon is the small icon that appears on the browser tab next to the page title.
+
+[🌐 My Website    ×]   ← that small icon is the favicon
+
+inconginito: localhost:5500 
+
+Cashing chesthadi
+
+Option 2 — Download a favicon file
+
+Go to favicon.io (favicon.io)
+Choose Text, Emoji, or Image
+Click Download
+Copy the favicon.ico file into your team-e-training folder next to day1.html
+
+Your folder should look like:
+
+team-e-training/
+├── day1.html
+└── favicon.ico   ← place it here
+
+
+Example:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+
+ <link rel="icon" href="favicon.ico">
+</head>
+<body>
+  <h1>Welcome</h1>
+</body>
+</html>
+
+
+*********************************************
+Layouts & Designs
+*********************************************
+
+Tables
+-------
+
+Basic Structure
+
+<table>        ← the whole table
+  <tr>         ← table row
+    <th>       ← table header (bold + centered by default)
+    <td>       ← table data (regular cell)
+
+Example:
+
+<table border="1">
+  <caption>Student Report Card</caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Subject</th>
+      <th>Marks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2">Alice</td>
+      <td>Math</td>
+      <td>90</td>
+    </tr>
+    <tr>
+      <td>Science</td>
+      <td>85</td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="2">Total</td>
+      <td>175</td>
+    </tr>
+  </tfoot>
+</table>
+
+HTML iframes
+------------- 
+
+An <iframe> (inline frame) embeds another webpage inside your current webpage.
+
+  Basic Syntax
+
+  <iframe src="https://www.example.com"></iframe>
+
+  Attributes
+src — URL to embed
+width & height — dimensions
+title — accessibility (always include)
+
+ <iframe src="https://www.wikipedia.org" width="300" height="100"></iframe>
+ <iframe src="https://www.wikipedia.org" title="wikipedia"></iframe>
+
+ frameborder — border around iframe (old, use CSS now)
+
+ <iframe src="https://www.wikipedia.org" frameborder="0"></iframe>  <!-- removes border -->
+
+
+Common Uses
+1. Embed a YouTube video
+
+<iframe
+  width="400"
+  height="250"
+  src="https://www.youtube.com/embed/iJ1fXeDSKXY?si=BfRVylMfJkON5Z7E"
+  title="YouTube video"
+  frameborder="0"
+  allowfullscreen>
+</iframe>
+
+Google maps
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d36499.64455811819!2d82.2673408!3d17.1311104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sin!4v1776857789900!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+Style iframe with CSS
+
+ <style>
+  iframe {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(10, 87, 196, 0.3);
+    width: 100%;
+    height: 400px;
+  }
+</style>
+
+<iframe src="page.html" title="My Page"></iframe>
+
+HTML Layout
+------------ 
+HTML Layout defines how content is arranged and structured on a web page.
+
+
+  <header>        ← top of page (logo, title)
+  <nav>           ← navigation links
+  <main>          ← main content area
+  <section>     ← grouped content
+  <article>     ← self-contained content
+  <aside>       ← sidebar
+  <footer>        ← bottom of page
+
+    Semantic Elements
+    ------------------ 
+Semantic elements clearly describe their meaning and purpose to both the browser and the developer.. 
+
+<!-- Non-semantic — tells nothing about content -->
+<div>Navigation</div>
+<span>Article content</span>
+
+<!-- Semantic — clearly describes the content -->
+<nav>Navigation</nav>
+<article>Article content</article>
+
+Tag	Purpose
+<header>	Top section — logo, title
+<nav>	Navigation menu
+<main>	Primary page content (one per page)
+<section>	Thematic group of content
+<article>	Self-contained content
+<aside>	Sidebar / related content
+<footer>	Bottom section
+<figure>	Image/media container
+<figcaption>	Caption for figure
+<details>	Expandable content
+<summary>	Title for details
+<mark>	Highlighted text
+<time>	Date/time value
+<address>	Contact information
+<abbr>	Abbreviation with tooltip
+<blockquote>	Long quotation
+<code>	Inline code
+<pre>	Preformatted block
+<dialog>
+
+  <marquee> Tag
+  -------------
+
+  The <marquee> tag makes text or content scroll/move automatically on the page.
+
+
+Basic Syntax
+
+<marquee>This text will scroll automatically</marquee>
+
+direction — which way it scrolls
+
+<marquee direction="down">Scrolling Left (default)</marquee>
+<br>
+<hr>
+<marquee direction="right">Scrolling Right</marquee>
+<br>
+<hr>
+<marquee direction="left">Scrolling Up</marquee>
+<br>
+<hr>
+<marquee direction="up">Scrolling Down</marquee>
+
+behavior — scroll style
+
+<!-- Loops continuously (default) -->
+<marquee behavior="scroll">Continuous scroll</marquee>
+<br>
+<hr>
+
+<!-- Bounces back and forth -->
+<marquee behavior="alternate">Bouncing text ↔</marquee>
+<br>
+<hr>
+
+<!-- Slides in and stops -->
+<marquee behavior="slide">Slides in and stops</marquee>
+
+scrollamount — speed
+
+<marquee scrollamount="2">Slow scrolling</marquee>
+<br>
+<hr>
+<marquee scrollamount="10">Fast scrolling</marquee>
+<br>
+<hr>
+<marquee scrollamount="20">Very fast!</marquee>
+
+loop — how many times
+
+<marquee loop="3">Scrolls only 3 times</marquee>
+<br>
+<hr>
+<marquee loop="infinite">Scrolls forever</marquee>
+
+Marquee with Images
+
+<marquee direction="left" scrollamount="5">
+  <img src="assets/instructor-1.png" width="50" alt="HTML">
+  <img src="assets/instructor-1.png" width="50" alt="CSS">
+  <img src="assets/instructor-1.png" width="50" alt="JS">
+</marquee>
+
+scrolldelay — pause between each scroll step (milliseconds)
+
+<marquee scrolldelay="200">Normal speed</marquee>
+<marquee scrolldelay="500">Slower with delay</marquee>
+
+width & height
+
+<marquee width="50%">Half width marquee</marquee>
+<marquee width="300" height="50" bgcolor="lightblue">Fixed size</marquee>
+
+bgcolor — background color
+
+<marquee bgcolor="yellow">Yellow background marquee</marquee>
+<marquee bgcolor="#ff5733" style="color:white;">Colored marquee</marquee>
+
+Vertical Marquee--final
+
+<marquee
+  direction="up"
+  height="150"
+  scrollamount="3"
+  style="border: 1px solid #ccc; padding: 10px;">
+  <p>Line 1</p>
+  <p>Line 2</p>
+  <p>Line 3</p>
+  <p>Line 4</p>
+</marquee>
+
+
+Give task on form in geeks for geeks
+
+
+
+
+
+
+
+

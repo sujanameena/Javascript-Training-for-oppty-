@@ -183,8 +183,42 @@ Helps browsers offer translation.
 
 <title></title>------Browser tab title------<title>My Website</title>
 <meta charset>-------Character encoding------<meta charset="UTF-8">
+
+---------* <meta charset="UTF-8"> tells the browser which character encoding to use when reading the HTML file
+* charset = character set (the mapping between bytes and characters)
+* UTF-8 = the most widely used encoding, supporting virtually all characters and symbols from every language (English, Hindi, Telugu, Chinese, emoji, etc.)
+* Without it, the browser guesses the encoding, which can cause text to display as garbled/broken characters (e.g., Ã© instead of é)
+
+Encoding	  Supports
+UTF-8	      All languages + emoji (recommended)
+ASCII	      English only (old)
+ISO-8859-1	Western European languages (old)
+
+***Always use UTF-8 — it's the default standard for HTML5.
+
 <meta viewport>------Mobile responsiveness------<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta description>---Page description for SEO------<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+---------* <meta name="viewport" content="width=device-width, initial-scale=1.0"> controls how the page is displayed on mobile devices.
+
+Part	                Meaning
+name="viewport"	      Targets the browser's visible area (viewport)
+width=device-width	  Sets the page width to match the device's screen width
+initial-scale=1.0	    Sets the initial zoom level to 100% (no zoom in/out)
+
+Without viewport meta:
+┌──────────────────────────────┐
+│  Desktop layout squeezed     │  ← everything tiny on mobile
+│  into tiny phone screen      │
+└──────────────────────────────┘
+
+With viewport meta:
+┌──────────┐
+│ Content   │  ← fits naturally, text readable
+│ flows     │
+│ properly  │
+└──────────┘
+
+DONT EXPLAIN <meta description>---Page description for SEO------<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 Page description for SEO means a short summary of what your page is about, written specifically to help search engines understand and display your page in search results.
 
