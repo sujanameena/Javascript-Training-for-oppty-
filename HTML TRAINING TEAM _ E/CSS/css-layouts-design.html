@@ -30,6 +30,83 @@ Components of the box model
 CSS Display Property
 *********************
 
+1. Basic display values:
+
+block:
+---------
+
+The display: block property in CSS makes an element a block-level element. Block-level elements:
+
+* Start on a new line.
+* Stretch to fill the full width of their parent container by default.
+* Allow you to set width, height, margin, and padding.
+* Stack vertically, one after another.
+* Common block-level elements include: div, p, h1–h6, ul, ol, li, and form.
+
+Example:
+
+<div> This is a block-level element. </div>
+    <p>This is also block-level.</p>
+
+    <style>
+        div {
+            display: block;
+            background: #fca5a5;
+            padding: 10px;
+        }
+
+        p {
+            display: block;
+            background: #a5b4fc;
+            padding: 10px;
+        }
+    </style>
+
+inline
+---------
+
+The CSS property display: inline makes an element an inline element. Here’s what that means:
+
+* The element does not start on a new line; it flows alongside other inline elements, like text.
+* Only takes up as much width as its content.
+* You cannot set width or height on inline elements (those properties are ignored).
+* Padding, margin, and border only push content horizontally, not vertically.
+* Common inline elements: span, a, strong, em, img.
+
+Example: 
+
+<span style="display: inline; background: #bae6fd;">This is inline</span>
+<span style="display: inline; background: #fca5a5;">So is this</span>
+
+
+inline-block
+-------------
+
+The CSS property display: inline-block makes an element behave like an inline element (it flows alongside text and other inline elements), but it also allows you to set width and height, like a block element.
+
+Key points:
+
+The element sits inline with other elements (does not start on a new line).
+You can set width, height, margin, and padding.
+Useful for creating buttons, navigation links, or layouts where you want block-like styling but inline flow.
+
+Example: 
+
+<span>
+        Inline-block element example
+    </span>
+
+    <style>
+        span {
+            display: inline-block;
+            width: 120px;
+            background: #fca5a5;
+            padding: 8px;
+        }
+    </style>
+
+
+
 Understanding the Display Property
 1. Using Display Block
 2. Using Inline Display
@@ -192,3 +269,67 @@ Example:
 </body>
 
 </html>
+
+
+
+2. Layout models:
+
+flex
+
+1. flex
+--------- 
+<div style="display: flex; gap: 10px;">
+  <div>Flex 1</div>
+  <div>Flex 2</div>
+</div>
+
+2. inline-flex
+----------------
+
+<div style="display: inline-flex; gap: 10px; border: 1px solid #ccc;">
+  <div>Inline-Flex 1</div>
+  <div>Inline-Flex 2</div>
+</div>
+<span>Text after</span>
+
+3. grid:
+--------- 
+
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+  <div>Grid 1</div>
+  <div>Grid 2</div>
+</div>
+
+Comparison Examples
+
+1fr 1fr =
+2 equal columns (50% each)       
+
+1fr 1fr 1fr =
+3 equal columns (33.3% each)   
+
+2fr 1fr =
+2 columns; the first is twice as wide as the second (66% and 33%)              
+
+200px 1fr =
+First column is fixed at 200px; second column takes up all remaining space      
+
+****The fr unit stands for a "fractional unit"
+
+4. inline-grid
+----------------
+
+<div style="display: inline-grid; grid-template-columns: 1fr 1fr; border: 1px solid #ccc;">
+  <div>Inline-Grid 1</div>
+  <div>Inline-Grid 2</div>
+</div>
+<span>Text after</span>
+
+
+5. list-item
+------------- 
+
+<div style="display: list-item; list-style-type: disc; margin-left: 20px;">
+  This is a list item
+</div>
+
