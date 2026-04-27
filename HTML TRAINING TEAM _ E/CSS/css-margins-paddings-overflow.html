@@ -1,0 +1,841 @@
+CSS Margins
+
+Margin is the space outside the border of an element — the gap between the element and surrounding elements.
+
+┌─────────────────────────────┐
+│           MARGIN            │  ← outside everything
+│  ┌───────────────────────┐  │
+│  │        BORDER         │  │
+│  │  ┌─────────────────┐  │  │
+│  │  │    PADDING      │  │  │
+│  │  │  ┌───────────┐  │  │  │
+│  │  │  │  CONTENT  │  │  │  │
+│  │  │  └───────────┘  │  │  │
+│  │  └─────────────────┘  │  │
+│  └───────────────────────┘  │
+└─────────────────────────────┘
+
+/* 1 value — all 4 sides same */
+margin: 20px;
+
+/* 2 values — top/bottom   left/right */
+margin: 20px 40px;
+
+/* 3 values — top   left/right   bottom */
+margin: 10px 20px 30px;
+
+/* 4 values — top  right  bottom  left  (clockwise) */
+margin: 10px 20px 30px 40px;
+
+5 margin: auto — Center an element
+
+ /* left and right auto = centered */
+6 margin: 0 auto;
+
+7 margin-top      
+
+8 margin-left     
+
+9 margin-right     
+
+10 margin-down     
+
+11 margin: 0 Remove all margin
+
+12 Negative margin Pull element in that direction
+
+13 margin inherit
+
+PARENT has margin: 40px
+    └── CHILD with margin: inherit  → also gets 40px
+
+Example 
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Margin Examples</title>
+  <style>
+    body { font-family: Arial; background: #f0f0f0; }
+
+    .box {
+      background: #3498db;
+      color: white;
+      /* padding: 12px; */
+      border-radius: 5px;
+      font-size: 14px;
+      width: 20%;
+      text-align: center;
+    }
+
+    /* 1. All 4 sides same */
+    .m1 { margin: 20px; }
+
+    /* 2. Top/bottom 20px, Left/right 40px */
+    .m2 { margin: 20px 40px; }
+
+    /* 3. Top 10, Left/right 20, Bottom 30 */
+    .m3 { margin: 10px 20px 30px; }
+
+    /* 4. Top right bottom left (clockwise) */
+    .m4 { margin: 10px 20px 30px 40px; }
+
+    /* 5. Auto — centers the element */
+    .m5 { width: 300px; margin: 0 auto; }
+
+    /* 6. margin: 0 auto — same as above */
+    .m6 { width: 300px; margin: 0 auto; background: #e74c3c; }
+
+    /* 7. margin-top only */
+    .m7 { margin-top: 50px; }
+
+    /* 8. margin-left only */
+    .m8 { margin-left: 80px; }
+
+    /* 9. margin-right only */
+    .m9 { margin-right: 80px; }
+
+    /* 10. margin-bottom only */
+    .m10 { margin-bottom: 50px; }
+
+    /* 11. margin: 0 — removes all margin */
+    .m11 { margin: 0; background: #2ecc71; }
+
+    /* 12. Negative margin — pulls element upward */
+    .m12 { margin-top: -20px; background: #9b59b6; }
+  </style>
+</head>
+<body>
+
+  <div class="box m1">1 — margin: 20px (all sides 20px)</div>
+  <br>
+  <hr>
+
+  <div class="box m2">2 — margin: 20px 40px (top/bottom 20, left/right 40)</div>
+  <br>
+  <hr>
+
+  <div class="box m3">3 — margin: 10px 20px 30px (top 10, sides 20, bottom 30)</div>
+  <br>
+  <hr>
+
+  <div class="box m4">4 — margin: 10px 20px 30px 40px (top right bottom left)</div>
+  <br>
+  <hr>
+
+  <div class="box m5">5 — margin: 0 auto (centered, width:300px)</div>
+  <br>
+  <hr>
+
+  <div class="box m6">6 — margin: 0 auto (red, also centered)</div>
+  <br>
+  <hr>
+
+  <div class="box m7">7 — margin-top: 50px (pushed down 50px)</div>
+  <br>
+  <hr>
+
+  <div class="box m8">8 — margin-left: 80px (pushed right 80px)</div>
+  <br>
+  <hr>
+
+  <div class="box m9">9 — margin-right: 80px (gap on right side)</div>
+  <br>
+  <hr>
+
+  <div class="box m10">10 — margin-bottom: 50px (gap below this box)</div>
+  <br>
+  <hr>
+
+  <div class="box m11">11 — margin: 0 (no gap around this box)</div>
+  <br>
+  <hr>
+
+  <div class="box m12">12 — margin-top: -20px (pulled UP into previous box)</div>
+
+</body>
+</html>
+
+</body>
+
+</html>
+
+Example on inherit 
+
+<style>
+    .parent {
+      margin: 40px;
+      background: #eee;
+    }
+    .child {
+      margin: inherit;
+      background: #bada55;
+    }
+  </style>
+  
+  <div class="parent">
+    Parent (margin: 40px)
+    <div class="child">
+      Child (margin: inherit → also 40px)
+    </div>
+  </div>
+
+Types of Margin Values
++++++++++++++++++++++++
+
+Value	    Based on
+px	      Fixed pixels
+%	        Parent element's width
+em	      Current element's font size
+rem	      Root <html> font size
+auto	    Browser decides (centering)
+vw/vh	    Viewport width/height
+Negative	Pulls element closer/overlaps
+
+Quick Rule:
++++++++++++
+
+Use px for precise fixed spacing
+Use % / em / rem / vw for responsive layouts
+Use auto only for horizontal centering (needs a defined width)
+Use negative carefully — it can cause overlap/overflow issues
+
+Tip: For responsive design, prefer %, em, rem, or vw/vh over fixed px.
+
+Types of CSS Margin Values
+==========================
+Example using values
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Margin Value Types</title>
+  <style>
+    html { font-size: 16px; }        /* rem base */
+    body { background: #f0f0f0; font-family: Arial; }
+
+    .box {
+      color: white;
+      padding: 10px;
+      border-radius: 4px;
+      text-align: center;
+      width: 300px;
+    }
+
+    /* 1. px — fixed 30px on all sides */
+    .px-box {
+      background: #3498db;
+      margin: 30px;
+    }
+
+    /* 2. % — 5% of parent width on all sides */
+    .percent-box {
+      background: #e74c3c;
+      margin: 5%;
+    }
+
+    /* 3. em — 2x the element's own font-size (14px × 2 = 28px) */
+    .em-box {
+      background: #2ecc71;
+      font-size: 14px;
+      margin: 2em;
+    }
+
+    /* 4. rem — 2x the root font-size (16px × 2 = 32px) */
+    .rem-box {
+      background: #9b59b6;
+      margin: 2rem;
+    }
+
+    /* 5. auto — centers the element horizontally */
+    .auto-box {
+      background: #f39c12;
+      margin: 0 auto;
+    }
+
+    /* 6. vw — 3% of viewport width on all sides */
+    .vw-box {
+      background: #1abc9c;
+      margin: 3vw;
+    }
+
+    /* 7. Negative — pulls element UP by 15px, overlapping previous */
+    .negative-box {
+      background: #e67e22;
+      margin-top: -15px;
+      margin-left: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box px-box">1 — px: margin: 30px (fixed)</div>
+
+  <div class="box percent-box">2 — %: margin: 5% (of parent width)</div>
+
+  <div class="box em-box">3 — em: margin: 2em (font-size × 2)</div>
+
+  <div class="box rem-box">4 — rem: margin: 2rem (root font × 2)</div>
+
+  <div class="box auto-box">5 — auto: margin: 0 auto (centered)</div>
+
+  <div class="box vw-box">6 — vw: margin: 3vw (3% of viewport)</div>
+
+  <div class="box negative-box">7 — negative: margin-top: -15px (overlaps above)</div>
+
+</body>
+</html>
+
+CSS Units Explained
+******************** 
+
+1. px — Pixels (Fixed)
+Not responsive — stays fixed even if screen size changes.
+Exactly 1 pixel on screen. Fixed. Never changes.
+
+1px = 1px always
+20px = 20px always
+ 
+2. % — Percentage (Relative to Parent)
+
+Depends on the parent element's width.
+
+Parent = 1000px  →  10% = 100px
+Parent = 500px   →  10% = 50px
+Parent = 200px   →  10% = 20px
+
+3.em — Relative to Current Element's Font Size
+
+Default browser font-size = 16px, so 1em = 16px by default.
+
+font-size: 16px  →  1em = 16px,  2em = 32px,  0.5em = 8px
+font-size: 20px  →  1em = 20px,  2em = 40px,  0.5em = 10px
+font-size: 10px  →  1em = 10px,  2em = 20px,  0.5em = 5px
+
+4.rem — Relative to Root Font Size
+
+Root default = 16px (unless you change it).
+
+html { font-size: 16px; }   ← default
+
+1rem  = 16px
+2rem  = 32px
+0.5rem = 8px
+1.5rem = 24px
+
+5. vw — Viewport Width
+
+1vw = 1% of the browser window's width.
+
+Browser width = 1200px  →  1vw = 12px,   5vw = 60px,   100vw = 1200px
+Browser width = 800px   →  1vw = 8px,    5vw = 40px,   100vw = 800px
+
+6. vh — Viewport Height
+
+1vh = 1% of the browser window's height.
+
+Browser height = 900px  →  1vh = 9px,   50vh = 450px,  100vh = 900px
+Browser height = 600px  →  1vh = 6px,   50vh = 300px,  100vh = 600px
+
+
+
+Real-World Rule of Thumb:
+*************************
+
+px → borders, box-shadows
+% → widths, responsive containers
+rem → font sizes, spacing (most recommended)
+em → component-local spacing (padding relative to its own text)
+vw/vh → hero sections, full-screen layouts
+
+Because of this only the previous one doesn’t worked
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 20px;
+        }
+
+        ul li {
+            list-style-type: square;
+        }
+    </style>
+
+    <h2>Hello</h2>
+    <ul class="test">
+        <li>Mango</li>
+        <li>Apples</li>
+    </ul>
+
+
+    WITHOUT margin: 0           WITH margin: 0
+┌──────────────────┐        ┌──────────────────┐
+│                  │        │Hello             │
+│  Hello           │        │• Mango           │
+│                  │        │• Apples          │
+│  • Mango         │        └──────────────────┘
+│  • Apples        │        (no gaps — you control all spacing)
+│                  │
+└──────────────────┘
+(browser added gaps you didn't write)
+
+0 has NO unit — and that is perfectly valid in CSS.
+
+Why No Unit Needed?
+
+Because zero is zero in any unit:
+
+0px = 0em = 0rem = 0% = 0vw = 0
+
+Best Practice:
+-------------- 
+
+/* GOOD — clean, no unit */
+margin: 0;
+
+/* BAD — unnecessary unit */
+margin: 0px;
+
+************************************
+padding
+************************************
+
+Padding is mainly used to create space inside an element, between its content and its border. Here are the most common use cases:
+
+1. Button and Input Spacing
+
+<button>Click Me</button>
+  <input type="text" placeholder="Type here">
+
+  <style>
+    button {
+      padding: 10px 20px; /* 10px top/bottom, 20px left/right */
+      font-size: 16px;
+    }
+    input {
+      padding: 8px 12px;  /* 8px top/bottom, 12px left/right */
+      font-size: 16px;
+    }
+  </style>
+  
+2. Card, Box, or Panel Content
+3. Navigation Menus
+4. Table Cells
+5. Forms and Labels
+6. Images or Icons in Buttons
+
+
+****************
+CSS Overflow
+****************
+
+The overflow property controls what happens when content is too large to fit in an element’s box.
+
+Values:
+
+visible (default): Content spills out of the box.
+------------------
+
+* The default value. Content is not clipped and renders 
+outside the box.
+
+hidden: Extra content is clipped (not visible).
+--------
+
+* The content is clipped at the border and the rest is invisible.
+
+scroll: Content is clipped, but scrollbars are always shown.
+--------
+
+* Adds scrollbars to the box, even if the content fits inside.
+
+auto: Content is clipped, scrollbars appear only if needed.
+------
+
+* Adds scrollbars only if the content exceeds the box size.
+
+
+
+You can also use overflow-x and overflow-y to control horizontal and vertical overflow separately.
+
+Example :
+
+<div style="width:150px; height:40px; border:1px solid #e33f3f; overflow:hidden;">
+        This content is too long to fit in the box, so scrollbars will appear if needed.
+    </div>
+
+Example :
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Overflow Property Examples</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --primary-text: #1e293b;
+            --accent-color: #3b82f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text);
+            line-height: 1.6;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+            color: #0f172a;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .example-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .example-card h2 {
+            font-size: 1.25rem;
+            margin-top: 0;
+            color: var(--accent-color);
+        }
+
+        .box {
+            width: 200px;
+            height: 100px;
+            border: 3px solid #ef4444; /* Red border to show the container limits */
+            background-color: #fee2e2;
+            padding: 10px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        /* 1. Visible (Default) - Content spills out */
+        .overflow-visible {
+            overflow: visible;
+        }
+
+        /* 2. Hidden - Content is clipped */
+        .overflow-hidden {
+            overflow: hidden;
+        }
+
+        /* 3. Scroll - Always shows scrollbars */
+        .overflow-scroll {
+            overflow: scroll;
+        }
+
+        /* 4. Auto - Shows scrollbars only if needed */
+        .overflow-auto {
+            overflow: auto;
+        }
+
+        code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>CSS Overflow Property Examples</h1>
+
+    <div class="container">
+        <!-- Visible -->
+        <div class="example-card">
+            <h2>1. overflow: visible</h2>
+            <p>The default value. Content is not clipped and renders outside the box.</p>
+            <div class="box overflow-visible">
+                This content is much larger than the box height of 100px. Notice how it "spills" out of the red borders and continues downward, potentially overlapping other elements.
+            </div>
+            <code>overflow: visible;</code>
+        </div>
+
+        <!-- Hidden -->
+        <div class="example-card">
+            <h2>2. overflow: hidden</h2>
+            <p>The content is clipped at the border and the rest is invisible.</p>
+            <div class="box overflow-hidden">
+                This content is much larger than the box height of 100px. However, because we set overflow to hidden, you cannot see the rest of this text at all. It is cut off.
+            </div>
+            <code>overflow: hidden;</code>
+        </div>
+
+        <!-- Scroll -->
+        <div class="example-card">
+            <h2>3. overflow: scroll</h2>
+            <p>Adds scrollbars to the box, even if the content fits inside.</p>
+            <div class="box overflow-scroll">
+                This box adds scrollbars. Users can scroll to see the hidden content. Note that both vertical and horizontal scrollbars often appear depending on the browser.
+            </div>
+            <code>overflow: scroll;</code>
+        </div>
+
+        <!-- Auto -->
+        <div class="example-card">
+            <h2>4. overflow: auto</h2>
+            <p>Adds scrollbars <strong>only if</strong> the content exceeds the box size.</p>
+            <div class="box overflow-auto">
+                This is the most common choice. Scrollbars only appear because this text is too long for the 100px height. If the text was short, no scrollbars would show.
+            </div>
+            <code>overflow: auto;</code>
+        </div>
+    </div>
+
+</body>
+</html>
+
+***********************
+CSS Height and Width
+***********************
+
+The height and width properties set the size of an element’s content area (excluding padding, border, and margin by default).
+
+Common Units:
+------------------
+
+px — Pixels (fixed size)
+% — Percentage of the parent element
+em, rem — Relative to font size
+vw, vh — Relative to viewport width/height
+auto — Browser calculates size automatically
+
+Example 
+
+<div class="example1">
+        200px wide, 100px tall
+    </div>
+
+    <div class="example2">
+        50% width of parent, 50px tall
+    </div>
+
+    <style>
+        .example1 {
+            width: 200px;
+            height: 100px;
+            background: #38bdf8;
+            color: white;
+        }
+
+        .example2 {
+            width: 50%;
+            height: 50px;
+            background: #f59e42;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+
+min-width & max-width
+---------------------- 
+
+min-width: Sets the minimum width an element can be. The element will never be narrower than this value.
+
+max-width: Sets the maximum width an element can be. The element will never be wider than this value.
+
+Example:
+
+<div class="min-max-width">
+        This box will never be less than 200px wide or more than 400px wide, even if the parent is smaller or larger.
+    </div>
+
+    <style>
+        .min-max-width {
+            width: 50%;
+            min-width: 200px;
+            max-width: 400px;
+            background: #a5b4fc;
+            color: #222;
+        }
+    </style>
+
+min-height & max-height
+------------------------ 
+
+min-height: Sets the minimum height an element can be. The element will never be shorter than this value.
+
+max-height: Sets the maximum height an element can be. The element will never be taller than this value.
+
+Example 
+
+<div class="min-max-height">
+        This box will never be less than 100px tall or more than 200px tall, even if the content or parent size changes.
+    </div>
+
+    <style>
+        .min-max-height {
+            height: 1vh;
+            min-height: 100px;
+            max-height: 200px;
+            background: #fca5a5;
+            color: #222;
+        }
+    </style>
+
+    Example 
+
+    <!DOCTYPE html>
+<html>
+
+<head>
+    <title>CSS Min and Max Dimensions</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            line-height: 1.5;
+            background-color: #f9f9f9;
+        }
+
+        .section {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .box {
+            background: #f0fdf4;
+            border: 2px solid #16a34a;
+            padding: 10px;
+            margin-top: 10px;
+            color: #166534;
+        }
+
+        /* Min/Max Width Examples */
+        .max-width-box {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .min-width-box {
+            width: 10%;
+            min-width: 200px;
+        }
+
+        /* Min/Max Height Examples */
+        .min-height-box {
+            height: auto;
+            min-height: 100px;
+        }
+
+        .max-height-box {
+            height: 300px;
+            max-height: 150px;
+            overflow: auto;
+            /* Required to see content if height is restricted */
+        }
+
+        code {
+            background: #eee;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        h2 {
+            color: #2563eb;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>CSS Min/Max Dimensions</h1>
+
+    <!-- Width Section -->
+    <div class="section">
+        <h2>1. Width (Min & Max)</h2>
+        <p><strong>max-width:</strong> Prevents an element from becoming wider than a specific value. Great for mobile
+            responsiveness.</p>
+        <div class="box max-width-box">
+            <code>width: 100%; max-width: 500px;</code><br>
+            I will fill the screen, but I will <strong>never</strong> get wider than 500px.
+        </div>
+
+        <p style="margin-top:20px;"><strong>min-width:</strong> Ensures an element is at least a certain width, even if
+            the content or parent is smaller.</p>
+        <div class="box min-width-box">
+            <code>width: 10%; min-width: 200px;</code><br>
+            Even though I want to be 10% wide, I will <strong>stop shrinking</strong> once I hit 200px.
+        </div>
+    </div>
+
+    <!-- Height Section -->
+    <div class="section">
+        <h2>2. Height (Min & Max)</h2>
+        <p><strong>min-height:</strong> Ensures an element is at least a certain height. It can still grow taller if
+            there is more content.</p>
+        <div class="box min-height-box">
+            <code>min-height: 100px;</code><br>
+            I am at least 100px tall. If you add more text, I will grow to fit it.
+        </div>
+
+        <p style="margin-top:20px;"><strong>max-height:</strong> Limits how tall an element can grow. If content exceeds
+            this, it will spill out (unless overflow is handled).</p>
+        <div class="box max-height-box">
+            <code>max-height: 150px;</code><br>
+            I have a lot of content but I am forced to stop at 150px. I've added a scrollbar so you can see the rest of
+            this text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua.
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+Why use them?
+--------------
+
+min-width / min-height: Prevent elements from becoming too small, even if the parent or content shrinks. This keeps content readable and layouts usable.
+max-width / max-height: Prevent elements from growing too large, which helps maintain design consistency and prevents overflow issues.
+
+What happens if you don’t use them?
+------------------------------------ 
+
+Elements can shrink to 0 (or as small as their content allows) or grow as large as their parent/container allows.
+On small screens, elements might become too narrow to read or use.
+On large screens, elements might stretch too wide or tall, breaking the design or making content hard to read.
+
+
+    Note: By default, width and height set the content box size. If you want them to include padding and border, use:
+
+    box-sizing: border-box;
+
+
+

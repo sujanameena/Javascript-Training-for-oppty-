@@ -1,0 +1,194 @@
+***************
+CSS Box Model
+***************
+
+┌─────────────────────────────┐
+│           MARGIN            │  ← outside everything
+│  ┌───────────────────────┐  │
+│  │        BORDER         │  │
+│  │  ┌─────────────────┐  │  │
+│  │  │    PADDING      │  │  │
+│  │  │  ┌───────────┐  │  │  │
+│  │  │  │  CONTENT  │  │  │  │
+│  │  │  └───────────┘  │  │  │
+│  │  └─────────────────┘  │  │
+│  └───────────────────────┘  │
+└─────────────────────────────┘
+
+Components of the box model
+
+1. Content Area
+2. Padding Area
+3. Border Area
+4. Margin Area
+
+* {
+  box-sizing: border-box;
+   }
+
+*********************
+CSS Display Property
+*********************
+
+Understanding the Display Property
+1. Using Display Block
+2. Using Inline Display
+3. Using Display Inline-block
+4. Using Display None
+5. Using Display Flex and Display Grid
+
+flex-grow: 1: This tells the item to grow and take up any available free space. If all items in a flex container have flex-grow: 1, they will all stretch equally to fill the entire width of the row.
+
+Example:
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Display Property Reference</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f0f2f5;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #1e40af;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 8px;
+        }
+
+        .demo-area {
+            border: 2px dashed #cbd5e1;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 6px;
+        }
+
+        /* Block: Takes full width, starts on new line */
+        .display-block {
+            display: block;
+            background: #ef4444;
+            color: white;
+            padding: 10px;
+            margin-bottom: 5px;
+        }
+
+        /* Inline: Only takes necessary width, no height/width allowed */
+        .display-inline {
+            display: inline;
+            background: #3b82f6;
+            color: white;
+            padding: 5px;
+        }
+
+        /* Inline-Block: Inline flow but allows width/height */
+        .display-inline-block {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 10px;
+            width: 150px;
+            text-align: center;
+        }
+
+        /* None: Disappears completely */
+        .display-none {
+            display: none;
+        }
+
+        /* Flex: Modern container layout */
+        .display-flex {
+            display: flex;
+            gap: 10px;
+            justify-content: space-around;
+        }
+
+        .flex-item {
+            background: #8b5cf6;
+            color: white;
+            padding: 10px;
+            flex: 1;
+            text-align: center;
+        }
+
+        code {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>CSS Display Reference</h1>
+
+    <div class="section">
+        <h2>1. display: block</h2>
+        <p>Elements take up the full width available and start on a new line.</p>
+        <div class="demo-area">
+            <div class="display-block">Block Item 1</div>
+            <div class="display-block">Block Item 2</div>
+            <div class="display-block">Block Item 3</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>2. display: inline</h2>
+        <p>Elements sit side-by-side. <code>width</code> and <code>height</code> are ignored.</p>
+        <div class="demo-area">
+            <span class="display-inline">Inline A</span>
+            <span class="display-inline">Inline B</span>
+            <span class="display-inline">Inline C</span>
+            <span class="display-inline">Inline D</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>3. display: inline-block</h2>
+        <p>Sits side-by-side like inline, but you can set <code>width</code> and <code>height</code>.</p>
+        <div class="demo-area">
+            <div class="display-inline-block">Width: 150px</div>
+            <div class="display-inline-block">Width: 150px</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>4. display: none</h2>
+        <p>The element is removed from the layout. (The box below contains a hidden item).</p>
+        <div class="demo-area">
+            <span>Visible Text</span>
+            <div class="display-none">You can't see me!</div>
+            <span>Non-Visible Text</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>5. display: flex</h2>
+        <p>Aligns children easily in rows or columns.</p>
+        <div class="demo-area display-flex">
+            <div class="flex-item">Flex 1</div>
+            <div class="flex-item">Flex 2</div>
+            <div class="flex-item">Flex 3</div>
+            <div class="flex-item">Flex 4</div>
+            <div class="flex-item">Flex 5</div>
+        </div>
+    </div>
+
+</body>
+
+</html>

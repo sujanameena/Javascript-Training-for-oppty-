@@ -1,21 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Overflow Property Examples</title>
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --primary-text: #1e293b;
+            --accent-color: #3b82f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text);
+            line-height: 1.6;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+            color: #0f172a;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .example-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .example-card h2 {
+            font-size: 1.25rem;
+            margin-top: 0;
+            color: var(--accent-color);
+        }
+
+        .box {
+            width: 200px;
+            height: 100px;
+            border: 3px solid #ef4444; /* Red border to show the container limits */
+            background-color: #fee2e2;
+            padding: 10px;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        /* 1. Visible (Default) - Content spills out */
+        .overflow-visible {
+            overflow: visible;
+        }
+
+        /* 2. Hidden - Content is clipped */
+        .overflow-hidden {
+            overflow: hidden;
+        }
+
+        /* 3. Scroll - Always shows scrollbars */
+        .overflow-scroll {
+            overflow: scroll;
+        }
+
+        /* 4. Auto - Shows scrollbars only if needed */
+        .overflow-auto {
+            overflow: auto;
+        }
+
+        code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-  <button>Click Me</button>
-  <input type="text" placeholder="Type here">
 
-  <style>
-    button {
-      padding: 10px 20px; /* 10px top/bottom, 20px left/right */
-      font-size: 16px;
-    }
-    input {
-      padding: 8px 12px;  /* 8px top/bottom, 12px left/right */
-      font-size: 16px;
-    }
-  </style>
+    <h1>CSS Overflow Property Examples</h1>
+
+    <div class="container">
+        <!-- Visible -->
+        <div class="example-card">
+            <h2>1. overflow: visible</h2>
+            <p>The default value. Content is not clipped and renders outside the box.</p>
+            <div class="box overflow-visible">
+                This content is much larger than the box height of 100px. Notice how it "spills" out of the red borders and continues downward, potentially overlapping other elements.
+            </div>
+            <code>overflow: visible;</code>
+        </div>
+
+        <!-- Hidden -->
+        <div class="example-card">
+            <h2>2. overflow: hidden</h2>
+            <p>The content is clipped at the border and the rest is invisible.</p>
+            <div class="box overflow-hidden">
+                This content is much larger than the box height of 100px. However, because we set overflow to hidden, you cannot see the rest of this text at all. It is cut off.
+            </div>
+            <code>overflow: hidden;</code>
+        </div>
+
+        <!-- Scroll -->
+        <div class="example-card">
+            <h2>3. overflow: scroll</h2>
+            <p>Adds scrollbars to the box, even if the content fits inside.</p>
+            <div class="box overflow-scroll">
+                This box adds scrollbars. Users can scroll to see the hidden content. Note that both vertical and horizontal scrollbars often appear depending on the browser.
+            </div>
+            <code>overflow: scroll;</code>
+        </div>
+
+        <!-- Auto -->
+        <div class="example-card">
+            <h2>4. overflow: auto</h2>
+            <p>Adds scrollbars <strong>only if</strong> the content exceeds the box size.</p>
+            <div class="box overflow-auto">
+                This is the most common choice. Scrollbars only appear because this text is too long for the 100px height. If the text was short, no scrollbars would show.
+            </div>
+            <code>overflow: auto;</code>
+        </div>
+    </div>
+
 </body>
 </html>

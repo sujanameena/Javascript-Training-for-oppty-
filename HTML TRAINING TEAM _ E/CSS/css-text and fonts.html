@@ -1,0 +1,1186 @@
+CSS Text Formatting
+CSS provides several properties to control the appearance and layout of text. Common types include:
+
+1. color
+Definition: Sets the color of the text.
+
+element{
+    color: color-name | rgb | rgba | hsl | hsla | hexadecimal;
+}
+
+Example
+
+<style>
+p {
+  color: #e11d48;
+}
+</style>
+
+2. text-align
+Definition: Aligns text horizontally (left, right, center, justify).
+
+element{
+    text-align: left| right |center | justify |start | end | initial | inherit;
+}
+
+This CSS rule shows all possible values for the text-align property:
+
+left: Aligns text to the left (default for most languages).
+right: Aligns text to the right.
+center: Centers the text.
+justify: Stretches lines so each line has equal width (except the last line).
+start: Aligns text to the start edge (left for LTR, right for RTL).
+end: Aligns text to the end edge (right for LTR, left for RTL).
+initial: Sets to the default value (usually left).
+inherit: Inherits the value from the parent element.
+
+Example
+
+<style>
+h2 {
+  text-align: center;
+}
+</style>
+
+Example:
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .demo {
+      width: 350px;
+      border: 1px solid #ccc;
+      margin-bottom: 16px;
+      padding: 8px;
+      background: #f9fafb;
+    }
+    .left    { text-align: left; }
+    .right   { text-align: right; }
+    .center  { text-align: center; }
+    .justify { text-align: justify; }
+    .start   { text-align: start; }
+    .end     { text-align: end; }
+  </style>
+</head>
+<body>
+  <div class="demo left">
+    <strong>text-align: left;</strong><br>
+    This text is aligned to the left (default for most languages).
+  </div>
+  <div class="demo right">
+    <strong>text-align: right;</strong><br>
+    This text is aligned to the right.
+  </div>
+  <div class="demo center">
+    <strong>text-align: center;</strong><br>
+    This text is centered.
+  </div>
+  <div class="demo justify">
+    <strong>text-align: justify;</strong><br>
+    This text is justified. The lines are stretched so that each line has equal width, except the last line.
+  </div>
+  <div class="demo start">
+    <strong>text-align: start;</strong><br>
+    This text is aligned to the start edge (left for LTR, right for RTL).
+  </div>
+  <div class="demo end">
+    <strong>text-align: end;</strong><br>
+    This text is aligned to the end edge (right for LTR, left for RTL).
+  </div>
+</body>
+</html>
+
+Example: For inherit
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .parent {
+      text-align: left;
+      border: 2px dashed #888;
+      padding: 10px;
+      margin-bottom: 16px;
+    }
+    .child {
+      text-align: inherit;
+      background: #f1f5f9;
+      padding: 8px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    Parent (text-align: right)
+    <div class="child">
+      Child (text-align: inherit)<br>
+      This text is also aligned to the right because it inherits from the parent.
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+3. text-decoration
+Definition: Adds decoration to text (underline, overline, line-through, none).
+
+text - decoration
+------------------
+
+element{
+    text-decoration: dashed | dotted | double | line-through | none | overline | solid | underline | wavy;
+}
+
+text-decoration-line
+--------------------- 
+
+element{
+    text-decoration-line: underline | overline | line-through | none | inherit | initial;
+}
+
+text-decoration-style
+----------------------
+
+element{
+    text-decoration-style: dashed | dotted | double | none | solid | wavy |  initial | inherit;
+}
+
+text-decoration-color
+---------------------
+
+element{
+    text-decoration-color: color | initial | inherit;
+}
+
+Example:
+
+<style>
+a {
+  text-decoration: underline;
+}
+</style>
+
+Example:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .dashed {
+            text-decoration-line: underline;
+            text-decoration-style: dashed;
+        }
+
+        .dotted {
+            text-decoration-line: underline;
+            text-decoration-style: dotted;
+        }
+
+        .double {
+            text-decoration-line: underline;
+            text-decoration-style: double;
+        }
+
+        .line-through {
+            text-decoration: line-through;
+        }
+
+        .none {
+            text-decoration: none;
+        }
+
+        .overline {
+            text-decoration: overline;
+        }
+
+        .solid {
+            text-decoration-line: underline;
+            text-decoration-style: solid;
+        }
+
+        .underline {
+            text-decoration: underline;
+        }
+
+        .wavy {
+            text-decoration-line: underline;
+            text-decoration-style: wavy;
+        }
+
+        .demo {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo dashed">Dashed underline (text-decoration: underline dashed;)</div>
+    <br>
+    <div class="demo dotted">Dotted underline (text-decoration: underline dotted;)</div>
+    <br>
+    <div class="demo double">Double underline (text-decoration: underline double;)</div>
+    <br>
+    <div class="demo line-through">Line-through (text-decoration: line-through;)</div>
+    <br>
+    <div class="demo none">No decoration (text-decoration: none;)</div>
+    <br>
+    <div class="demo overline">Overline (text-decoration: overline;)</div>
+    <br>
+    <div class="demo solid">Solid underline (text-decoration: underline solid;)</div>
+    <br>
+    <div class="demo underline">Underline (text-decoration: underline;)</div>
+    <br>
+    <div class="demo wavy">Wavy underline (text-decoration: underline wavy;)</div>
+</body>
+
+</html>
+
+
+
+Example:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .underline-red {
+            text-decoration: underline;
+            text-decoration-color: red;
+        }
+
+        .overline-green {
+            text-decoration: overline;
+            text-decoration-color: green;
+        }
+
+        .line-through-blue {
+            text-decoration: line-through;
+            text-decoration-color: blue;
+        }
+
+        .wavy-purple {
+            text-decoration-line: underline;
+            text-decoration-style: wavy;
+            text-decoration-color: purple;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="underline-red">Underline (red)</div>
+    <br>
+    <div class="overline-green">Overline (green)</div>
+    <br>
+    <div class="line-through-blue">Line-through (blue)</div>
+    <br>
+    <div class="wavy-purple">Wavy underline (purple)
+        <div class="inherit">Team E Training</div>
+    </div>
+</body>
+
+</html>
+
+CSS text-decoration-thickness Property
+---------------------------------------
+
+text-decoration-thickness: auto | font-file | length | percentage | global values;
+
+Example:
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .auto {
+      text-decoration: underline;
+      text-decoration-thickness: auto;
+    }
+    .from-font {
+      text-decoration: underline;
+      text-decoration-thickness: from-font;
+    }
+    .length {
+      text-decoration: underline;
+      text-decoration-thickness: 4px;
+    }
+    .percent {
+      text-decoration: underline;
+      text-decoration-thickness: 20%;
+    }
+    .parent {
+      text-decoration: underline;
+      text-decoration-thickness: 6px;
+    }
+    .inherit {
+      text-decoration: inherit;
+      text-decoration-thickness: inherit;
+    }
+    .initial {
+      text-decoration: underline;
+      text-decoration-thickness: initial;
+    }
+    .demo {
+      margin-bottom: 14px;
+      font-size: 1.2em;
+      background: #f1f5f9;
+      padding: 6px;
+      width: 350px;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo auto">
+    text-decoration-thickness: auto;<br>
+    The browser chooses the default thickness for the underline.
+  </div>
+  <div class="demo from-font">
+    text-decoration-thickness: from-font;<br>
+    The thickness is taken from the font file (if supported).
+  </div>
+  <div class="demo length">
+    text-decoration-thickness: 4px;<br>
+    The underline is exactly 4px thick.
+  </div>
+  <div class="demo percent">
+    text-decoration-thickness: 20%;<br>
+    The underline is 20% of the font size.
+  </div>
+  <div class="parent">
+    Parent (text-decoration-thickness: 6px)
+    <div class="demo inherit">
+      text-decoration-thickness: inherit;<br>
+      This child inherits the 6px thickness from its parent.
+    </div>
+  </div>
+  <div class="demo initial">
+    text-decoration-thickness: initial;<br>
+    The underline uses the default thickness.
+  </div>
+</body>
+</html>
+
+text-indent
+--------------
+
+element{
+    text-indent: value in pixel's | inherit | initial;
+}
+
+Example 
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .indent-px {
+      text-indent: 40px;
+      background: #f1f5f9;
+      margin-bottom: 12px;
+    }
+    .indent-percent {
+      text-indent: 15%;
+      background: #e0f2fe;
+      margin-bottom: 12px;
+    }
+    .parent {
+      text-indent: 30px;
+      background: #fef9c3;
+      margin-bottom: 12px;
+      padding: 6px;
+    }
+    .inherit {
+      text-indent: inherit;
+      background: #f3e8ff;
+      margin-bottom: 12px;
+    }
+    .initial {
+      text-indent: initial;
+      background: #fee2e2;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="indent-px">
+    <strong>text-indent: 40px;</strong><br>
+    The first line of this paragraph is indented by 40 pixels.
+  </div>
+  <div class="indent-percent">
+    <strong>text-indent: 15%;</strong><br>
+    The first line is indented by 15% of the containing block's width.
+  </div>
+  <div class="parent">
+    Parent (text-indent: 30px)
+    <div class="inherit">
+      <strong>text-indent: inherit;</strong><br>
+      This child inherits the 30px indent from its parent.
+    </div>
+  </div>
+  <div class="initial">
+    <strong>text-indent: initial;</strong><br>
+    The first line uses the default indent (usually 0).
+  </div>
+</body>
+</html>
+
+text - justify
+--------------- 
+
+element{
+    text-justify: initial | inter-word | inter-character | inherit;
+}
+
+
+inter-word: Justifies by adjusting space between words (default).
+inter-character: Justifies by adjusting space between characters.
+initial: Uses the default value.
+inherit: Inherits from the parent.
+
+Note: text-justify only works when text-align: justify is set.
+
+Example:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .demo {
+            width: 350px;
+            border: 1px solid #ccc;
+            margin-bottom: 18px;
+            padding: 8px;
+            background: #f9fafb;
+            text-align: justify;
+        }
+
+        .inter-word {
+            text-justify: inter-word;
+        }
+
+        .inter-character {
+            text-justify: inter-character;
+        }
+
+        .initial {
+            text-justify: initial;
+        }
+
+        .parent {
+            text-justify: inter-character;
+        }
+
+        .inherit {
+            text-justify: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo inter-word">
+        <strong>text-justify: inter-word;</strong><br>
+        This text is justified by adjusting the spacing between words.
+    </div>
+    <div class="demo inter-character">
+        <strong>text-justify: inter-character;</strong><br>
+        This text is justified by adjusting the spacing between characters.
+    </div>
+    <div class="demo initial">
+        <strong>text-justify: initial;</strong><br>
+        This uses the browser's default justification method (usually inter-word).
+    </div>
+    <div class="parent">
+        Parent (text-justify: inter-character)
+        <div class="demo inherit">
+            <strong>text-justify: inherit;</strong><br>
+            This child inherits the justification method from its parent (inter-character).
+        </div>
+    </div>
+</body>
+
+</html>
+
+text-overflow
+--------------
+
+element{
+    text-overflow: clip | ellipse | inherit | initial;
+}
+
+clip: Cuts off overflowing text without any visual indication.
+ellipsis: Shows "…" when text overflows.
+inherit: Inherits the value from the parent.
+initial: Sets to the default value (clip).
+
+Note: For text-overflow to work, the element must have overflow: hidden or overflow: auto and white-space: nowrap.
+
+Example:
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .box {
+      width: 200px;
+      border: 1px solid #ccc;
+      margin-bottom: 14px;
+      padding: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .clip {
+      text-overflow: clip;
+    }
+    .ellipsis {
+      text-overflow: ellipsis;
+    }
+    .parent {
+      text-overflow: ellipsis;
+    }
+    .inherit {
+      text-overflow: inherit;
+    }
+    .initial {
+      text-overflow: initial;
+    }
+  </style>
+</head>
+<body>
+  <div class="box clip">
+    <strong>text-overflow: clip;</strong> This text will be clipped at the end of the box with no indication.
+  </div>
+  <div class="box ellipsis">
+    <strong>text-overflow: ellipsis;</strong> This text will show an ellipsis (…) when it overflows the box.
+  </div>
+  <div class="parent">
+    Parent (text-overflow: ellipsis)
+    <div class="box inherit">
+      <strong>text-overflow: inherit;</strong> This child inherits the ellipsis overflow from its parent.
+    </div>
+  </div>
+  <div class="box initial">
+    <strong>text-overflow: initial;</strong> This uses the default (clip).
+  </div>
+</body>
+</html>
+
+Meaning of wrap 
+
+In CSS, "Wrap" refers to the automatic movement of text or elements to a new line when they reach the edge of their container.
+
+4. font-size
+Definition: Sets the size of the text.
+
+Example:
+
+<style>
+.big {
+  font-size: 2rem;
+}
+</style>
+
+5. font-weight
+Definition: Sets the thickness of the text (normal, bold, 100–900).
+
+Example:
+
+<style>
+strong {
+  font-weight: bold;
+}
+</style>
+
+6. font-style
+
+Definition: Sets the style of the font (normal, italic, oblique).
+
+Example:
+
+<style>
+em {
+  font-style: italic;
+}
+</style>
+
+7. text-transform
+
+Definition: Controls capitalization (uppercase, lowercase, capitalize).
+
+element{
+    text-transform: capitalize | lowercase | uppercase | initial | inherit
+}
+
+capitalize: First letter of each word is uppercase.
+lowercase: All letters are lowercase.
+uppercase: All letters are uppercase.
+initial: Uses the default value (no transformation).
+inherit: Inherits from the parent.
+
+Example:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .capitalize {
+            text-transform: capitalize;
+        }
+
+        .lowercase {
+            text-transform: lowercase;
+        }
+
+        .uppercase {
+            text-transform: uppercase;
+        }
+
+        .initial {
+            text-transform: initial;
+        }
+
+        .parent {
+            text-transform: uppercase;
+        }
+
+        .inherit {
+            text-transform: inherit;
+        }
+
+        .demo {
+            margin-bottom: 12px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo capitalize">
+        text-transform: capitalize; <br>
+        this sentence will have each word capitalized.
+    </div>
+    <div class="demo lowercase">
+        text-transform: lowercase; <br>
+        THIS SENTENCE WILL BE CONVERTED TO LOWERCASE.
+    </div>
+    <div class="demo uppercase">
+        text-transform: uppercase; <br>
+        this sentence will be converted to uppercase.
+    </div>
+    <div class="demo initial">
+        text-transform: initial; <br>
+        This uses the default (no transformation).
+    </div>
+    <div class="parent">
+        Parent (text-transform: uppercase)
+        <div class="demo inherit">
+            text-transform: inherit; <br>
+            this child inherits uppercase from the parent.
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+
+8. letter-spacing
+Definition: Sets space between letters.
+
+letter-spacing: normal | length | initial | inherit;
+
+normal: Default letter spacing.
+length: Custom spacing (e.g., 4px, 0.2em).
+initial: Resets to default.
+inherit: Inherits from parent.
+
+Example:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .normal {
+            letter-spacing: normal;
+        }
+
+        .length {
+            letter-spacing: 4px;
+        }
+
+        .initial {
+            letter-spacing: initial;
+        }
+
+        .parent {
+            letter-spacing: 6px;
+        }
+
+        .inherit {
+            letter-spacing: inherit;
+        }
+
+        .demo {
+            margin-bottom: 12px;
+            font-size: 1.2em;
+            background: #f1f5f9;
+            padding: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo normal">
+        letter-spacing: normal;<br>
+        This uses the browser's default spacing between letters.
+    </div>
+    <div class="demo length">
+        letter-spacing: 4px;<br>
+        This text has 4px space between each letter.
+    </div>
+    <div class="demo initial">
+        letter-spacing: initial;<br>
+        This resets to the default spacing (same as normal).
+    </div>
+    <div class="parent">
+        Parent (letter-spacing: 6px)
+        <div class="demo inherit">
+            letter-spacing: inherit;<br>
+            This child inherits 6px spacing from its parent.
+        </div>
+    </div>
+</body>
+
+</html>
+
+9. line-height
+Definition: Sets the vertical space between lines of text.
+
+line-height: normal|number|length|percentage|initial|inherit;
+
+normal: Default line height.
+number: Multiplies the font size (e.g., 2 means double spacing).
+length: Fixed space (e.g., 32px).
+percentage: Percentage of font size (e.g., 150%).
+initial: Resets to default.
+inherit: Inherits from parent.
+
+Example:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .normal {
+            line-height: normal;
+        }
+
+        .number {
+            line-height: 2;
+        }
+
+        .length {
+            line-height: 32px;
+        }
+
+        .percent {
+            line-height: 150%;
+        }
+
+        .initial {
+            line-height: initial;
+        }
+
+        .parent {
+            line-height: 2.5;
+        }
+
+        .inherit {
+            line-height: inherit;
+        }
+
+        .demo {
+            margin-bottom: 14px;
+            font-size: 1.1em;
+            background: #f1f5f9;
+            padding: 6px;
+            width: 350px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo normal">
+        line-height: normal;<br>
+        This uses the browser's default line height.<br>
+        Second line for demonstration.
+    </div>
+    <div class="demo number">
+        line-height: 2;<br>
+        This text has double spacing between lines.<br>
+        Second line for demonstration.
+    </div>
+    <div class="demo length">
+        line-height: 32px;<br>
+        This text has 32px space between lines.<br>
+        Second line for demonstration.
+    </div>
+    <div class="demo percent">
+        line-height: 150%;<br>
+        This text has 150% of the font size as line spacing.<br>
+        Second line for demonstration.
+    </div>
+    <div class="demo initial">
+        line-height: initial;<br>
+        This resets to the default line height.<br>
+        Second line for demonstration.
+    </div>
+    <div class="parent">
+        Parent (line-height: 2.5)
+        <div class="demo inherit">
+            line-height: inherit;<br>
+            This child inherits 2.5 line height from its parent.<br>
+            Second line for demonstration.
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+10. text-shadow
+Definition: Adds shadow to text.
+
+text-shadow: h-shadow v-shadow blur-radius color | none | initial | inherit;
+
+h-shadow v-shadow blur-radius color: Applies a shadow (e.g., 2px 2px 4px #888).Here 2px to right..negative value left, 2px moves to down..negative value up, 4px shadow makes like glowing mist.
+none: No shadow.
+initial: Resets to default (no shadow).
+inherit: Inherits from parent.
+
+Example:
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .shadow {
+            text-shadow: 2px 2px 4px #888;
+        }
+
+        h2 {
+            font-size: 24px;
+            text-shadow: 0 0 10px #FFD700,
+                0 0 20px #FFA500,
+                0 0 30px #FF6347;
+            color: #fff;
+            background-color: #333;
+            padding: 20px;
+        }
+
+        h3 {
+            font-size: 24px;
+            text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.5),
+                -3px -3px 2px rgba(255, 255, 255, 0.7);
+            color: #FF4500;
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .none {
+            text-shadow: none;
+        }
+
+        .initial {
+            text-shadow: initial;
+        }
+
+        .parent {
+            text-shadow: 3px 3px 6px #f59e42;
+        }
+
+        .inherit {
+            text-shadow: inherit;
+        }
+
+        .demo {
+            margin-bottom: 14px;
+            font-size: 2em;
+            background: #f1f5f9;
+            padding: 8px;
+            width: 350px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="demo shadow">
+        text-shadow: 2px 2px 4px #888;<br>
+        This text has a gray shadow.
+    </div>
+    <br>
+    <h2>Glowing Text Effect</h2>
+    <br>
+    <h3>Text Shadow with Depth</h3>
+    <hr>
+    <div class="demo none">
+        text-shadow: none;<br>
+        This text has no shadow.
+    </div>
+    <div class="demo initial">
+        text-shadow: initial;<br>
+        This uses the default (no shadow).
+    </div>
+    <div class="parent">
+        Parent (text-shadow: 3px 3px 6px #f59e42)
+        <div class="demo inherit">
+            text-shadow: inherit;<br>
+            This child inherits the orange shadow from its parent.
+        </div>
+    </div>
+</body>
+
+</html>
+
+CSS text-align-last Property
+
+text-align-last: auto|start|end|left|right|center|justify|
+    initial|inherit;
+
+text-align-last controls the alignment of the last line of a block or a line right before a forced line break, when text-align: justify is used.
+Values: auto, start, end, left, right, center, justify, initial, inherit.
+
+Example:
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .demo {
+      width: 350px;
+      border: 1px solid #ccc;
+      margin-bottom: 16px;
+      padding: 8px;
+      background: #f9fafb;
+      text-align: justify;
+    }
+    .auto    { text-align-last: auto; }
+    .start   { text-align-last: start; }
+    .end     { text-align-last: end; }
+    .left    { text-align-last: left; }
+    .right   { text-align-last: right; }
+    .center  { text-align-last: center; }
+    .justify { text-align-last: justify; }
+    .initial { text-align-last: initial; }
+    .parent  { text-align-last: right; }
+    .inherit { text-align-last: inherit; }
+  </style>
+</head>
+<body>
+  <div class="demo auto">
+    <strong>text-align-last: auto;</strong><br>
+    The alignment of the last line is determined by the browser (default).
+    This is a long line to show how the last line aligns.
+  </div>
+  <div class="demo start">
+    <strong>text-align-last: start;</strong><br>
+    The last line is aligned to the start edge (left for LTR, right for RTL).
+    This is a long line to show how the last line aligns.
+  </div>
+  <div class="demo end">
+    <strong>text-align-last: end;</strong><br>
+    The last line is aligned to the end edge (right for LTR, left for RTL).
+    This is a long line to show how the last line aligns.
+  </div>
+  <div class="demo left">
+    <strong>text-align-last: left;</strong><br>
+    The last line is aligned to the left.
+    This is a long line to show how the last line aligns.
+  </div>
+  <div class="demo right">
+    <strong>text-align-last: right;</strong><br>
+    The last line is aligned to the right.
+    This is a long line to show how the last line aligns.
+  </div>
+  <div class="demo center">
+    <strong>text-align-last: center;</strong><br>
+    The last line is centered.
+    This is a long line to show how the last line aligns.
+  </div>
+  <div class="demo justify">
+    <strong>text-align-last: justify;</strong><br>
+    The last line is justified (stretched to both edges).
+    This is a long line to show how the last line aligns.
+  </div>
+  <div class="demo initial">
+    <strong>text-align-last: initial;</strong><br>
+    The last line uses the default alignment.
+    This is a long line to show how the last line aligns.
+  </div>
+  <div class="parent">
+    Parent (text-align-last: right)
+    <div class="demo inherit">
+      <strong>text-align-last: inherit;</strong><br>
+      This child inherits the right alignment for the last line from its parent.
+      This is a long line to show how the last line aligns.
+    </div>
+  </div>
+</body>
+</html>
+
+CSS direction Property:
+
+element_selector {
+    direction: rtl|ltr|initial|inherit;
+} 
+
+ltr: Left-to-right (default for most languages).
+rtl: Right-to-left (for languages like Arabic, Hebrew).
+initial: Resets to default (usually ltr).
+inherit: Inherits from parent.
+
+Example:
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .demo {
+      width: 350px;
+      border: 1px solid #ccc;
+      margin-bottom: 16px;
+      padding: 8px;
+      background: #f9fafb;
+    }
+    .rtl { direction: rtl; }
+    .ltr { direction: ltr; }
+    .initial { direction: initial; }
+    .parent { direction: rtl; }
+    .inherit { direction: inherit; }
+  </style>
+</head>
+<body>
+  <div class="demo ltr">
+    <strong>direction: ltr;</strong><br>
+    This text flows from left to right (default).
+  </div>
+  <div class="demo rtl">
+    <strong>direction: rtl;</strong><br>
+    This text flows from right to left.
+  </div>
+  <div class="demo initial">
+    <strong>direction: initial;</strong><br>
+    This uses the default direction (usually ltr).
+  </div>
+  <div class="parent">
+    Parent (direction: rtl)
+    <div class="demo inherit">
+      <strong>direction: inherit;</strong><br>
+      This child inherits the right-to-left direction from its parent.
+    </div>
+  </div>
+</body>
+</html>
+
+***********
+CSS Fonts
+***********
+
+Applying Fonts in CSS
+
+1. font-family
+
+font-family: "Font Name", generic-font-name; 
+
+2. font-size
+
+font-size: value;
+
+3. font-weight
+
+font-weight: value;
+
+4. font-style
+
+font-style: value;
+
+5. line-height
+
+line-height: value;
+
+Example: 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .font-demo {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 1.5em;
+            font-weight: bold;
+            font-style: italic;
+            line-height: 2;
+            background: #f1f5f9;
+            padding: 14px;
+            width: 400px;
+            border: 1px solid #ccc;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="font-demo">
+        This text uses:<br>
+        <strong>font-family:</strong> Georgia, Times New Roman, serif;<br>
+        <strong>font-size:</strong> 1.5em;<br>
+        <strong>font-weight:</strong> bold;<br>
+        <strong>font-style:</strong> italic;<br>
+        <strong>line-height:</strong> 2;<br>
+        Notice the font, size, boldness, italic style, and extra space between lines.
+        <br>
+        Second line for demonstration.
+    </div>
+</body>
+
+</html>
+
+Web Safe Fonts Vs Custom Fonts
+
+1. Web Safe Fonts
+
+Common Web Safe Fonts
+
+Arial
+Times New Roman
+Courier New
+Verdana
+Georgia
+
+2. Custom Fonts
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <h1 style="font-family: 'Roboto', sans-serif;">Hello, World!</h1>
+</body>
+
+</html>
