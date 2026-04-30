@@ -1155,6 +1155,44 @@ Example:
 
 </html>
 
+**************************
+font-variant css property
+**************************
+
+The CSS font-variant property controls the use of alternate glyphs (letter shapes) for text, allowing you to enable small caps, old-style numbers, and other typographic features.
+
+Common values:
+
+normal: Default, no special variants.
+small-caps: Displays lowercase letters as smaller uppercase letters.
+all-small-caps: All letters (including uppercase) are shown as small caps (supported in modern browsers).
+inherit: Inherits the value from its parent.
+
+Usage:
+
+Use small-caps for headings, acronyms, or stylistic emphasis.
+all-small-caps is more consistent for text that mixes upper and lower case.
+
+Example: 
+
+<h2 class="text-transform">This is Team-E</h2>
+    <h2 class="font-variant">This is divya from team_e</h2>
+
+    <style>
+        .text-transform {
+            /* text-transform: lowercase; */
+            /* text-transform: uppercase; */
+            text-transform: capitalize;
+        }
+
+        .font-variant {
+            font-variant: small-caps;
+            /* font-variant: all-small-caps; */
+            /* font-variant: normal; */
+            /* font-variant: inherit; */
+        }
+    </style>
+
 Web Safe Fonts Vs Custom Fonts
 
 1. Web Safe Fonts

@@ -1,0 +1,1206 @@
+*****************************
+CSS justify-content Property
+*****************************
+
+Syntax
+
+justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly | initial | inherit;
+
+justify-content Values:
+
+flex-start: Items are packed toward the start of the main axis (default).
+flex-end: Items are packed toward the end of the main axis.
+center: Items are centered along the main axis.
+space-between: Items are evenly distributed; first item at the start, last at the end, space between.
+space-around: Items are evenly distributed with equal space around them (half-size space on ends).
+space-evenly: Items are distributed so the space between any two items, and the space to the edges, is equal.
+initial: Sets the property to its default value (flex-start).
+inherit: Inherits the value from its parent.
+
+<style>
+  .container {
+    display: flex;
+    justify-content: space-between;
+    /* Try changing this value */
+    background: #f3f4f6;
+    padding: 20px;
+  }
+
+  .item {
+    background: #60a5fa;
+    color: white;
+    padding: 20px;
+    border-radius: 6px;
+  }
+</style>
+<div class="container">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
+
+*****************************
+CSS align-items Property
+*****************************
+
+align-items: normal | stretch | center | flex-start | flex-end | baseline | first baseline | last baseline |
+start | end | self-start | self-end | safe center | unsafe center | initial | inherit;
+
+The CSS property align-items is used in flex and grid layouts to align items along the cross axis (vertical by default
+in flexbox). Here’s what each value does:
+
+normal: Default. Behaves as stretch for flexbox.
+stretch: Items stretch to fill the container (default for flexbox).
+center: Items are centered along the cross axis.
+flex-start: Items are aligned to the start of the cross axis.
+flex-end: Items are aligned to the end of the cross axis.
+baseline: Items are aligned so their baselines align.
+first baseline: Aligns items to the first baseline of the container.
+last baseline: Aligns items to the last baseline of the container.
+start: Aligns items to the start edge of the container (writing mode aware).
+end: Aligns items to the end edge of the container.
+self-start: Aligns items to their own start edge.
+self-end: Aligns items to their own end edge.
+safe center: Like center, but prevents overflow if possible.
+unsafe center: Like center, but allows overflow.
+initial: Sets to default value.
+inherit: Inherits from parent.
+
+
+Example:
+
+<style>
+  .container {
+    display: flex;
+    height: 200px;
+    background: #f3f4f6;
+    margin-bottom: 30px;
+    border: 2px dashed #a3a3a3;
+    align-items: unsafe center;
+  }
+
+  .item {
+    background: #60a5fa;
+    color: white;
+    padding: 20px;
+    border-radius: 6px;
+    margin: 0 10px;
+    font-size: 1.2em;
+  }
+
+  /* .tall {
+      height: 100px;
+    }
+    .short {
+      height: 40px;
+    } */
+  .label {
+    margin: 10px 0 5px 0;
+    font-weight: bold;
+    font-family: sans-serif;
+  }
+</style>
+
+<div class="label">Examples for flex-start</div>
+<div class="container">
+  <div class="item tall">A</div>
+  <div class="item short">B</div>
+  <div class="item">C</div>
+</div>
+
+Example:complete all in one
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>align-items Example</title>
+  <style>
+    .container {
+      display: flex;
+      height: 200px;
+      background: #f3f4f6;
+      margin-bottom: 30px;
+      border: 2px dashed #a3a3a3;
+    }
+
+    .item {
+      background: #60a5fa;
+      color: white;
+      padding: 20px;
+      border-radius: 6px;
+      margin: 0 10px;
+      font-size: 1.2em;
+    }
+
+    .tall {
+      height: 100px;
+    }
+
+    .short {
+      height: 40px;
+    }
+
+    .label {
+      margin: 10px 0 5px 0;
+      font-weight: bold;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="label">align-items: flex-start</div>
+  <div class="container" style="align-items: flex-start;">
+    <div class="item tall">A</div>
+    <div class="item short">B</div>
+    <div class="item">C</div>
+  </div>
+
+  <div class="label">align-items: flex-end</div>
+  <div class="container" style="align-items: flex-end;">
+    <div class="item tall">A</div>
+    <div class="item short">B</div>
+    <div class="item">C</div>
+  </div>
+
+  <div class="label">align-items: center</div>
+  <div class="container" style="align-items: center;">
+    <div class="item tall">A</div>
+    <div class="item short">B</div>
+    <div class="item">C</div>
+  </div>
+
+  <div class="label">align-items: stretch (default)</div>
+  <div class="container" style="align-items: stretch;">
+    <div class="item">A</div>
+    <div class="item">B</div>
+    <div class="item">C</div>
+  </div>
+
+  <div class="label">align-items: baseline</div>
+  <div class="container" style="align-items: baseline;">
+    <div class="item" style="font-size: 2em;">A</div>
+    <div class="item">B</div>
+    <div class="item" style="font-size: 1.5em;">C</div>
+  </div>
+</body>
+
+</html>
+
+*****************************
+CSS Transition Properties
+*****************************
+
+1. transition-property
+
+transition-property: The CSS property to animate (e.g., background, width).
+
+transition-property: background, width;
+
+2. transition-duration
+
+transition-duration: How long the transition takes (e.g., 0.5s).
+
+3. transition-timing-function
+
+transition-timing-function: The speed curve (e.g., ease, linear).
+
+transition-timing-function: ease-in-out;
+
+4. transition-delay
+
+transition-delay: Wait time before the transition starts.
+
+transition-delay: 0.2s;
+
+5. transition (shorthand)
+A shorthand for setting all the above properties in one line.
+Example:
+transition: background 0.5s ease 0.2s;
+-------------------------------------------------------------------------------------------------------
+1. ease (Default)
+Slow start → Fast middle → Very slow end.
+
+2. linear
+Constant speed from start to finish (looks robotic).
+
+3. ease-in
+Starts very slow, then gets faster and ends abruptly.
+
+4. ease-out
+Starts fast, then gradually slows to a stop.
+
+Example: 
+
+<style>
+    .transition-btn {
+      background: #60a5fa;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.2em;
+      cursor: pointer;
+      transition: background 0.4s ease, width 0.4s;
+      /* transition-property: width; */
+       /* transition-duration: 0.5s; */
+       /* transition: background-color 0.5s; */
+       /* transition-timing-function: ease-in-out; */
+        /* transition-delay: 1s; */
+      width: 180px;
+    }
+    .transition-btn:hover {
+      background: #f59e42;
+      width: 220px;
+    }
+  </style>
+
+  <button class="transition-btn">Hover Me!</button>
+
+  Example for ease and types 
+
+   <div class="timing-demo">
+        <h2>What does "Ease" mean?</h2>
+        <p>In CSS, <b>ease</b> makes movements look natural. It starts slightly fast, accelerates in the middle, and
+            slows down at the end.</p>
+        <p class="hint">Hover this box to see them race!</p>
+
+        <h3>1. ease (Default)</h3>
+        <p>Slow start → Fast middle → Very slow end.</p>
+        <div class="timing-track">
+            <div class="timing-ball ease"></div>
+        </div>
+
+        <h3>2. linear</h3>
+        <p>Constant speed from start to finish (looks robotic).</p>
+        <div class="timing-track">
+            <div class="timing-ball linear"></div>
+        </div>
+
+        <h3>3. ease-in</h3>
+        <p>Starts very slow, then gets faster and ends abruptly.</p>
+        <div class="timing-track">
+            <div class="timing-ball ease-in"></div>
+        </div>
+
+        <h3>4. ease-out</h3>
+        <p>Starts fast, then gradually slows to a stop.</p>
+        <div class="timing-track">
+            <div class="timing-ball ease-out"></div>
+        </div>
+    </div>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 200vh;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container,
+        .display-demo,
+        .image-gallery-demo,
+        .position-demo,
+        .timing-demo {
+            width: 80%;
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        /* --- Timing Function (Ease) Demo --- */
+        .timing-track {
+            width: 100%;
+            background: #eee;
+            height: 40px;
+            border-radius: 20px;
+            margin: 10px 0 25px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timing-ball {
+            width: 40px;
+            height: 40px;
+            background: #6366f1;
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            transition-property: left;
+            transition-duration: 2s;
+        }
+
+        /* Hover the container to trigger all balls */
+        .timing-demo:hover .timing-ball {
+            left: calc(100% - 40px);
+        }
+
+        .ease {
+            transition-timing-function: ease;
+        }
+
+        .linear {
+            transition-timing-function: linear;
+        }
+
+        .ease-in {
+            transition-timing-function: ease-in;
+        }
+
+        .ease-out {
+            transition-timing-function: ease-out;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1rem;
+            color: #444;
+            margin: 0;
+        }
+
+        p {
+            font-size: 0.85rem;
+            color: #666;
+            margin: 5px 0;
+        }
+
+    </style>
+
+*****************************
+CSS transform Property
+*****************************
+
+The CSS transform property allows you to visually manipulate an element by rotating, scaling, skewing, or translating it. Here are some common transform functions with examples:
+
+rotate(angle): Rotates the element.
+scale(x, y): Scales the element (enlarges or shrinks).
+translate(x, y): Moves the element.
+skew(x-angle, y-angle): Skews the element.
+You can combine multiple transforms.
+
+Example: 
+
+<div class="box rotate">Rotate</div>
+    <div class="box scale">Scale</div>
+    <div class="box translate">Translate</div>
+    <div class="box skew">Skew</div>
+    <div class="box combo">Combo</div>
+
+    <style>
+        .box {
+            width: 120px;
+            height: 120px;
+            background: #60a5fa;
+            color: white;
+            display: inline-block;
+            margin: 20px;
+            line-height: 120px;
+            text-align: center;
+            font-size: 1.2em;
+            border-radius: 8px;
+            transition: transform 0.4s;
+        }
+
+        .box:hover {
+            background: #f59e42;
+        }
+
+        .rotate:hover {
+            transform: rotate(20deg);
+        }
+
+        .scale:hover {
+            transform: scale(1.3);
+        }
+
+        .translate:hover {
+            transform: translate(30px, 20px);
+        }
+
+        .skew:hover {
+            transform: skew(20deg, 10deg);
+        }
+
+        .combo:hover {
+            transform: rotate(10deg) scale(1.2) translate(10px, 10px);
+        }
+    </style>
+
+*****************************
+CSS Variables
+*****************************
+
+Syntax:
+
+var( --custom-name, value );
+
+Example:
+
+<h1>Welcome to My Website</h1>
+    <p>This is a sample paragraph demonstrating CSS variables.</p>
+
+     <style>
+        :root {
+            --main-bg-color: lightblue;
+            --main-text-color: darkblue;
+        }
+        body {
+            background-color: var(--main-bg-color);
+            color: var(--main-text-color);
+        }
+    </style>
+
+*****************************
+CSS Animations
+*****************************
+
+@keyframes Rule
+------------------
+
+1. Percentage keyframes:
+You can use percentages (from 0% to 100%) to define the animation steps.
+
+@keyframes example {
+  0%   { background: red; }
+  50%  { background: yellow; }
+  100% { background: green; }
+}
+
+2. from and to keywords:
+from is the same as 0%, and to is the same as 100%.
+Example:
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+3. Multiple keyframes:
+You can define as many intermediate steps as you want using percentages.
+
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-50px); }
+  50%  { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
+
+ <style>
+    .animated-box {
+      width: 120px;
+      height: 120px;
+      background: #60a5fa;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      border-radius: 8px;
+      animation: moveFade 2s infinite alternate;
+    }
+
+    @keyframes moveFade {
+      0% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(150px);
+        opacity: 0.3;
+      }
+    }
+  </style>
+
+  <div class="animated-box">Animate Me!</div>
+
+  animation-name Property
+  ------------------------- 
+
+  Syntax:
+
+  animation-name: animationName;
+
+  <style>
+    .move-box {
+      width: 100px;
+      height: 100px;
+      background: #60a5fa;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1em;
+      border-radius: 8px;
+      /* Use the animation-name property */
+      animation-name: slideRight;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    @keyframes slideRight {
+      from { transform: translateX(0); }
+      to   { transform: translateX(150px); }
+    }
+  </style>
+
+  <div class="move-box">Sliding!</div>
+
+  animation-timing-function property
+  -----------------------------------
+
+  The CSS animation-timing-function property defines the speed curve of an animation, controlling how the intermediate states are calculated between keyframes
+
+  Syntax: 
+
+  animation-timing-function: timingFunction;
+
+  Common values:
+
+linear: The animation moves at a constant speed.
+ease (default): Starts slow, speeds up, then slows down.
+ease-in: Starts slow, then speeds up.
+ease-out: Starts fast, then slows down.
+ease-in-out: Starts and ends slow, speeds up in the middle.
+steps(n): Jumps between steps.
+cubic-bezier(x1, y1, x2, y2): Custom curve.
+
+Example:
+
+ <style>
+        .box {
+            width: 80px;
+            height: 80px;
+            margin: 20px;
+            background: #60a5fa;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 1em;
+            animation-name: move;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+        }
+
+        .linear {
+            animation-timing-function: linear;
+        }
+
+        .ease {
+            animation-timing-function: ease;
+        }
+
+        .ease-in {
+            animation-timing-function: ease-in;
+        }
+
+        .ease-out {
+            animation-timing-function: ease-out;
+        }
+
+        .ease-in-out {
+            animation-timing-function: ease-in-out;
+        }
+
+        @keyframes move {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(150px);
+            }
+        }
+    </style>
+
+    <div class="box linear">linear</div>
+    <br>
+    <hr>
+    <div class="box ease">ease</div>
+    <br>
+    <hr>
+    <div class="box ease-in">ease-in</div>
+    <br>
+    <hr>
+    <div class="box ease-out">ease-out</div>
+    <br>
+    <hr>
+    <div class="box ease-in-out">ease-in-out</div>
+
+    animation-delay property
+    --------------------------- 
+
+    The CSS animation-delay property specifies how long to wait before an animation starts.
+
+How it works:
+The animation on the box will start 1 second after the page loads (or after each cycle if looping).
+You can use values like 0.5s, 2s, or 500ms for different delays.
+
+Syntax:
+
+animation-delay: time;
+
+Example:
+
+<style>
+    .delayed-box {
+      width: 100px;
+      height: 100px;
+      background: #60a5fa;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1em;
+      border-radius: 8px;
+      animation-name: fadeInMove;
+      animation-duration: 2s;
+      animation-delay: 3s; /* Wait 3 second before starting */
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
+
+    @keyframes fadeInMove {
+      from {
+        opacity: 0.2;
+        transform: translateX(0);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(150px);
+      }
+    }
+  </style>
+
+   <div class="delayed-box">Wait 3s…</div>
+    
+   animation-iteration-count property
+   -----------------------------------
+
+   The CSS animation-iteration-count property specifies how many times an animation should repeat.
+
+Common values:
+
+A number (e.g., 1, 2, 3, etc.): The animation will play that many times.
+infinite: The animation will repeat forever.
+
+How it works:
+The blue box will bounce up and down 3 times, then stop.
+Set animation-iteration-count: infinite; to make it repeat forever.
+
+Syntax:
+
+animation-iteration-count: number | infinite;
+
+Example:
+
+ <style>
+  .repeat-box {
+    width: 100px;
+    height: 100px;
+    background: #38bdf8;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1em;
+    border-radius: 8px;
+    animation-name: bounce;
+    animation-duration: 1s;
+    animation-iteration-count: 2; /* Animation repeats 2 times */
+    animation-direction: alternate;
+  }
+
+  @keyframes bounce {
+    from { transform: translateY(0); }
+    to   { transform: translateY(-60px); }
+  }
+</style>
+
+<div class="repeat-box">2 times</div>
+
+animation-direction property
+-----------------------------------
+
+The CSS animation-direction property specifies whether an animation should play forward, backward, or alternate directions on each cycle.
+
+Values:
+
+normal (default): Animation plays forward each cycle.
+reverse: Animation plays backward each cycle.
+alternate: Animation reverses direction every cycle (forward, then backward, etc.).
+alternate-reverse: Animation reverses direction every cycle, starting backward.
+
+Syntax:
+
+animation-direction: normal | reverse | alternate | alternate-reverse;
+
+How it works:
+
+"normal": Moves right, jumps back, repeats.
+"reverse": Moves left, jumps back, repeats.
+"alternate": Moves right, then left, smoothly.
+"alternate-reverse": Moves left, then right, smoothly.
+
+Example:
+
+<style>
+  .box {
+    width: 100px;
+    height: 100px;
+    background: #60a5fa;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    animation-name: slide;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+  }
+  .normal { animation-direction: normal; }
+  .reverse { animation-direction: reverse; }
+  .alternate { animation-direction: alternate; }
+  .alternate-reverse { animation-direction: alternate-reverse; }
+
+  @keyframes slide {
+    from { transform: translateX(0); }
+    to   { transform: translateX(120px); }
+  }
+</style>
+
+<div class="box normal">normal</div>
+<br>
+<div class="box reverse">reverse</div>
+<br>
+<div class="box alternate">alternate</div>
+<br>
+<div class="box alternate-reverse">alt-reverse</div>
+
+animation-fill-mode property
+-----------------------------------
+
+The CSS animation-fill-mode property specifies how a CSS animation applies styles to its target before and after it is executing.
+
+Values:
+
+none (default): The element does not retain any animation styles before or after the animation.
+forwards: The element retains the styles set by the last keyframe after the animation ends.
+backwards: The element applies the styles of the first keyframe before the animation starts (during delay).
+both: The element follows the rules for both forwards and backwards.
+
+How it works:
+With animation-fill-mode: forwards;, the box stays at 200px wide and orange after the animation completes, instead of snapping back to its original state.
+
+Syntax:
+
+animation-fill-mode: none | forwards | backwards | both;
+
+Example:
+
+ <style>
+  .fill-box {
+    width: 100px;
+    height: 100px;
+    background: #60a5fa;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    animation-name: grow;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes grow {
+    from { width: 100px; background: #60a5fa; } 
+    to   { width: 200px; background: #f59e42; }
+  }
+  /* Also can write height also */
+</style>
+
+<div class="fill-box">forwards</div>
+
+animation-play-state property
+-----------------------------------
+
+Syntax:
+
+animation-play-state: running | paused;
+
+The CSS animation-play-state property allows you to pause and resume a CSS animation.
+
+Values:
+
+running (default): The animation is playing.
+paused: The animation is paused (stops at its current frame).
+
+How it works:
+
+The box moves back and forth.
+When you hover over the box, the animation pauses and resumes when you move the mouse away.
+
+Example:
+
+<style>
+  .play-box {
+    width: 100px;
+    height: 100px;
+    background: #60a5fa;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    font-size: 1.1em;
+    border-radius: 8px;
+    animation-name: move;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+    transition: box-shadow 0.2s;
+  }
+  .play-box:hover {
+    animation-play-state: paused; /* Animation pauses on hover */
+    box-shadow: 0 0 10px #f59e42;
+  }
+
+  @keyframes move {
+    from { transform: translateX(0); }
+    to   { transform: translateX(120px); }
+  }
+</style>
+
+<div class="play-box">Hover to Pause</div>
+
+Animation Shorthand Property
+----------------------------- 
+
+Syntax:
+
+animation: name duration timing-function delay iteration-count direction fill-mode play-state;
+
+How it works:
+This single line sets:
+
+animation-name: moveFade
+animation-duration: 2s
+animation-timing-function: ease-in
+animation-delay: 1s
+animation-iteration-count: infinite
+animation-direction: alternate
+animation-fill-mode: both
+animation-play-state: running
+
+Example 
+
+<style>
+  .shorthand-box {
+    width: 100px;
+    height: 100px;
+    background: #60a5fa;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 1.1em;
+    /* Shorthand: name duration timing-function delay iteration-count direction fill-mode play-state */
+    animation: moveFade 2s ease-in 1s infinite alternate both running;
+  }
+
+  @keyframes moveFade {
+    from { opacity: 0.2; transform: translateX(0); }
+    to   { opacity: 1;   transform: translateX(120px); }
+  }
+</style>
+
+<div class="shorthand-box">Shorthand</div>
+
+*****************************
+CSS grid-gap Property
+*****************************
+
+Syntax: 
+
+grid-gap: grid-row-gap grid-column-gap;
+
+Example  grid-gap & gap
+
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px 40px; /* 20px between rows, 40px between columns */
+    /* Or use: gap: 20px 40px; */
+    background: #f3f4f6;
+    padding: 20px;
+  }
+  .grid-item {
+    background: #60a5fa;
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.2em;
+  }
+</style>
+<div class="grid-container">
+  <div class="grid-item">1</div>
+  <div class="grid-item">2</div>
+  <div class="grid-item">3</div>
+  <div class="grid-item">4</div>
+  <div class="grid-item">5</div>
+  <div class="grid-item">6</div>
+</div>
+
+Example grid-column-gap  
+grid-row-gap
+
+grid-row-gap sets the vertical space between grid rows.
+grid-column-gap sets the horizontal space between grid columns.
+
+<style>
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-row-gap: 30px;     /* 30px space between rows */
+    grid-column-gap: 60px;  /* 60px space between columns */
+    background: #f3f4f6;
+    padding: 20px;
+  }
+  .grid-item {
+    background: #60a5fa;
+    color: white;
+    padding: 30px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.2em;
+  }
+</style>
+<div class="grid-container">
+  <div class="grid-item">1</div>
+  <div class="grid-item">2</div>
+  <div class="grid-item">3</div>
+  <div class="grid-item">4</div>
+  <div class="grid-item">5</div>
+  <div class="grid-item">6</div>
+</div>
+
+*****************************
+CSS Animations
+*****************************
+The CSS grid-template-columns property defines the number, size, and behavior of columns in a CSS Grid container.
+
+Syntax:
+
+grid-template-columns: <track-size> <track-size> ...;
+
+Each value creates a column. You can use fixed units (px, em), percentages, fractions (fr), or keywords like auto, min-content, max-content, and repeat().
+
+1. Fixed Width Columns
+
+grid-template-columns: 100px 200px 150px;
+
+Creates 3 columns: 100px, 200px, and 150px wide.
+
+2. Fractional Units (fr)
+
+grid-template-columns: 1fr 2fr 1fr;
+
+1fr: 2fr: 1fr means the middle column is twice as wide as the others, and all columns share available space.
+
+3. Percentage Widths
+
+grid-template-columns: 50% 50%;
+
+Two columns, each taking half the container’s width.
+
+4. auto, min-content, max-content
+
+grid-template-columns: auto 200px min-content max-content;
+
+
+auto: Size based on content or available space.
+min-content: Smallest possible size without overflow.
+max-content: Widest possible size without wrapping.
+
+5. repeat() Function
+
+grid-template-columns: repeat(4, 1fr);
+
+Creates 4 equal columns, each taking 1 fraction of available space.
+
+6. mix of units
+
+grid-template-columns: 100px 2fr 20% auto;
+
+Mixes fixed, fractional, percentage, and auto sizing.
+
+7. minmax() Function
+
+grid-template-columns: minmax(150px, 1fr) 2fr;
+
+First column is at least 150px, but can grow up to 1fr.
+
+Example 
+
+<style>
+  .grid-demo {
+    display: grid;
+    grid-template-columns: 100px 2fr 1fr;
+    gap: 10px;
+    background: #f3f4f6;
+    padding: 20px;
+  }
+  .grid-item {
+    background: #60a5fa;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.2em;
+  }
+</style>
+<div class="grid-demo">
+  <div class="grid-item">100px</div>
+  <div class="grid-item">2fr</div>
+  <div class="grid-item">1fr</div>
+</div>
+
+*****************************
+list style type css property
+*****************************
+
+For unordered lists (<ul>):
+
+disc (default): ●
+circle: ○
+square: ■
+none: No marker
+For ordered lists (<ol>):
+
+decimal: 1, 2, 3, ...
+decimal-leading-zero: 01, 02, 03, ...
+lower-alpha: a, b, c, ...
+upper-alpha: A, B, C, ...
+
+For ordered lists (<ol>):
+
+decimal: 1, 2, 3, ...
+decimal-leading-zero: 01, 02, 03, ...
+lower-alpha: a, b, c, ...
+upper-alpha: A, B, C, ...
+lower-roman: i, ii, iii, ...
+upper-roman: I, II, III, ...
+lower-greek: α, β, γ, ...
+armenian, georgian, hebrew, etc.
+
+Example:
+
+<ul style="list-style-type: square;">
+  <li>Square bullet</li>
+  <li>Another item</li>
+</ul>
+
+<ol style="list-style-type: upper-roman;">
+  <li>First</li>
+  <li>Second</li>
+</ol>
+
+*****************************
+CSS align-content property
+*****************************
+
+Syntax:
+
+align-content: flex-start | flex-end | center | space-between | space-around | space-evenly | stretch | start | end | baseline | initial | inherit;
+
+Values:
+-------------
+
+flex-start / start: Packs rows to the start of the container.
+flex-end / end: Packs rows to the end of the container.
+center: Centers rows in the container.
+space-between: Evenly distributes rows, first at start, last at end.
+space-around: Evenly distributes rows with equal space around them.
+space-evenly: Even space between all rows, including edges.
+stretch (default): Rows stretch to fill the container.
+
+Try changing align-content to:
+-----------------------------------
+
+flex-start
+flex-end
+center
+space-between
+space-around
+space-evenly
+stretch
+
+Use align-content when you have extra space in the cross axis and multiple rows/columns.
+It does not affect single-line layouts (use align-items for that).
+
+Example 
+
+<style>
+  .grid-content-demo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 60px 60px 60px;
+    height: 400px;
+    gap: 10px;
+    align-content: space-between; /* Try changing this value */
+    background: #f3f4f6;
+    padding: 20px;
+  }
+  .grid-item {
+    background: #60a5fa;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 1.2em;
+  }
+</style>
+<div class="grid-content-demo">
+  <div class="grid-item">1</div>
+  <div class="grid-item">2</div>
+  <div class="grid-item">3</div>
+  <div class="grid-item">4</div>
+  <div class="grid-item">5</div>
+  <div class="grid-item">6</div>
+</div>
+
+
+
+
+
+
+

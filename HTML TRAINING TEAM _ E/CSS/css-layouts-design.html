@@ -3,16 +3,16 @@ CSS Box Model
 ***************
 
 ┌─────────────────────────────┐
-│           MARGIN            │  ← outside everything
-│  ┌───────────────────────┐  │
-│  │        BORDER         │  │
-│  │  ┌─────────────────┐  │  │
-│  │  │    PADDING      │  │  │
-│  │  │  ┌───────────┐  │  │  │
-│  │  │  │  CONTENT  │  │  │  │
-│  │  │  └───────────┘  │  │  │
-│  │  └─────────────────┘  │  │
-│  └───────────────────────┘  │
+│ MARGIN │ ← outside everything
+│ ┌───────────────────────┐ │
+│ │ BORDER │ │
+│ │ ┌─────────────────┐ │ │
+│ │ │ PADDING │ │ │
+│ │ │ ┌───────────┐ │ │ │
+│ │ │ │ CONTENT │ │ │ │
+│ │ │ └───────────┘ │ │ │
+│ │ └─────────────────┘ │ │
+│ └───────────────────────┘ │
 └─────────────────────────────┘
 
 Components of the box model
@@ -23,8 +23,8 @@ Components of the box model
 4. Margin Area
 
 * {
-  box-sizing: border-box;
-   }
+box-sizing: border-box;
+}
 
 *********************
 CSS Display Property
@@ -46,21 +46,21 @@ The display: block property in CSS makes an element a block-level element. Block
 Example:
 
 <div> This is a block-level element. </div>
-    <p>This is also block-level.</p>
+<p>This is also block-level.</p>
 
-    <style>
-        div {
-            display: block;
-            background: #fca5a5;
-            padding: 10px;
-        }
+<style>
+    div {
+        display: block;
+        background: #fca5a5;
+        padding: 10px;
+    }
 
-        p {
-            display: block;
-            background: #a5b4fc;
-            padding: 10px;
-        }
-    </style>
+    p {
+        display: block;
+        background: #a5b4fc;
+        padding: 10px;
+    }
+</style>
 
 inline
 ---------
@@ -73,7 +73,7 @@ The CSS property display: inline makes an element an inline element. Here’s wh
 * Padding, margin, and border only push content horizontally, not vertically.
 * Common inline elements: span, a, strong, em, img.
 
-Example: 
+Example:
 
 <span style="display: inline; background: #bae6fd;">This is inline</span>
 <span style="display: inline; background: #fca5a5;">So is this</span>
@@ -82,7 +82,8 @@ Example:
 inline-block
 -------------
 
-The CSS property display: inline-block makes an element behave like an inline element (it flows alongside text and other inline elements), but it also allows you to set width and height, like a block element.
+The CSS property display: inline-block makes an element behave like an inline element (it flows alongside text and other
+inline elements), but it also allows you to set width and height, like a block element.
 
 Key points:
 
@@ -90,20 +91,20 @@ The element sits inline with other elements (does not start on a new line).
 You can set width, height, margin, and padding.
 Useful for creating buttons, navigation links, or layouts where you want block-like styling but inline flow.
 
-Example: 
+Example:
 
 <span>
-        Inline-block element example
-    </span>
+    Inline-block element example
+</span>
 
-    <style>
-        span {
-            display: inline-block;
-            width: 120px;
-            background: #fca5a5;
-            padding: 8px;
-        }
-    </style>
+<style>
+    span {
+        display: inline-block;
+        width: 120px;
+        background: #fca5a5;
+        padding: 8px;
+    }
+</style>
 
 
 
@@ -114,7 +115,8 @@ Understanding the Display Property
 4. Using Display None
 5. Using Display Flex and Display Grid
 
-flex-grow: 1: This tells the item to grow and take up any available free space. If all items in a flex container have flex-grow: 1, they will all stretch equally to fill the entire width of the row.
+flex-grow: 1: This tells the item to grow and take up any available free space. If all items in a flex container have
+flex-grow: 1, they will all stretch equally to fill the entire width of the row.
 
 Example:
 
@@ -277,42 +279,42 @@ Example:
 flex
 
 1. flex
---------- 
+---------
 <div style="display: flex; gap: 10px;">
-  <div>Flex 1</div>
-  <div>Flex 2</div>
+    <div>Flex 1</div>
+    <div>Flex 2</div>
 </div>
 
 2. inline-flex
 ----------------
 
 <div style="display: inline-flex; gap: 10px; border: 1px solid #ccc;">
-  <div>Inline-Flex 1</div>
-  <div>Inline-Flex 2</div>
+    <div>Inline-Flex 1</div>
+    <div>Inline-Flex 2</div>
 </div>
 <span>Text after</span>
 
 3. grid:
---------- 
+---------
 
 <div style="display: grid; grid-template-columns: 1fr 1fr;">
-  <div>Grid 1</div>
-  <div>Grid 2</div>
+    <div>Grid 1</div>
+    <div>Grid 2</div>
 </div>
 
 Comparison Examples
 
 1fr 1fr =
-2 equal columns (50% each)       
+2 equal columns (50% each)
 
 1fr 1fr 1fr =
-3 equal columns (33.3% each)   
+3 equal columns (33.3% each)
 
 2fr 1fr =
-2 columns; the first is twice as wide as the second (66% and 33%)              
+2 columns; the first is twice as wide as the second (66% and 33%)
 
 200px 1fr =
-First column is fixed at 200px; second column takes up all remaining space      
+First column is fixed at 200px; second column takes up all remaining space
 
 ****The fr unit stands for a "fractional unit"
 
@@ -320,16 +322,522 @@ First column is fixed at 200px; second column takes up all remaining space
 ----------------
 
 <div style="display: inline-grid; grid-template-columns: 1fr 1fr; border: 1px solid #ccc;">
-  <div>Inline-Grid 1</div>
-  <div>Inline-Grid 2</div>
+    <div>Inline-Grid 1</div>
+    <div>Inline-Grid 2</div>
 </div>
 <span>Text after</span>
 
 
 5. list-item
-------------- 
+-------------
 
 <div style="display: list-item; list-style-type: disc; margin-left: 20px;">
-  This is a list item
+    This is a list item
 </div>
 
+******************************
+CSS Layout - Float and Clear
+******************************
+
+Float Property
+------------------
+
+Definition: The float property in CSS is used to position an element to the left or right of its container, allowing text and inline elements to wrap around it.
+
+.element {
+    float: left | right | none | inherit;
+}
+
+Example: 
+
+<style>
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            color: #fff;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .left {
+            background: #3498db;
+            float: left;
+        }
+
+        .right {
+            background: #e67e22;
+            float: right;
+        }
+    </style>
+
+    <div class="box left">Left</div>
+    <div class="box right">Right</div>
+
+Clear Property
+------------------
+
+Definition: The clear property is used to control the behavior of elements following floated elements. It prevents elements from wrapping around the floated element.
+
+A clear and effective example for the CSS clear property is to prevent text or elements from wrapping around floated elements, ensuring content starts below the floated items. Here’s a simple demonstration:
+
+.element {
+    clear: left | right | both | none | inherit;
+}
+
+Example:
+
+<style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #3498db;
+            color: #fff;
+            float: left;
+            margin-right: 20px;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        .clear {
+            clear: left;
+        }
+    </style>
+
+    <div class="box">Floated Box</div>
+    <p>This text wraps around the floated box.</p>
+    <div class="clear"></div>
+    <p>This text starts below the floated box because of the clear property.</p>
+
+Explanation:
+
+The first paragraph wraps around the floated box.
+The div with class clear uses clear: left, so the next paragraph starts below the floated box, not beside it.
+
+***********************
+positions in css 
+***********************
+1. static (default):
+Elements are positioned according to the normal document flow.
+
+You cannot use top, right, bottom, or left properties with static positioning.
+
+div {
+  position: static;
+}
+
+Example:
+
+<div class="static-box">
+    This box uses <strong>position: static</strong> (default). It appears in the normal document flow.
+  </div>
+  <p>
+    The paragraph below appears right after the static box, following the normal flow.
+  </p>
+  <style>
+    .static-box {
+      position: static; 
+      background: #a5b4fc;
+      color: #222;
+      padding: 20px;
+      margin: 20px 0;
+      border: 2px solid #6366f1;
+    }
+  </style>
+
+2. relative:
+Element is positioned relative to its normal position.
+
+The space for the element is still reserved in the normal flow.
+
+div {
+  position: relative;
+  top: 20px; /* Moves down 20px from its normal position */
+  left: 10px; /* Moves right 10px from its normal position */
+}
+
+ <style>
+    .relative-box {
+      position: relative;
+      top: 20px;   /* Moves the box 20px down from its normal position */
+      left: 30px;  /* Moves the box 30px right from its normal position */
+      background: #fbbf24;
+      padding: 20px;
+      width: 200px;
+      color: #222;
+      font-weight: bold;
+    }
+  </style>
+<div class="relative-box">
+    This box is <b>relative</b>.<br>
+    It is shifted 20px down and 30px right.
+  </div>
+
+ 3.absolute:
+Element is positioned relative to its nearest positioned ancestor (not static).
+
+The element is removed from the normal document flow.
+It is positioned relative to the nearest ancestor with a position other than static (relative, absolute, fixed, or sticky).
+If there is no such ancestor, it is positioned relative to the initial containing block (usually the page).
+
+.parent {
+  position: relative;
+}
+.child {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+
+<style>
+    .container {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      background: #fef08a;
+      border: 2px solid #e5e7eb;
+      margin: 40px auto;
+    }
+    .absolute-box {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 120px;
+      height: 60px;
+      background: #38bdf8;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+  </style>
+
+  <div class="container">
+    This is the relative container.
+    <div class="absolute-box">Absolute Box</div>
+  </div>
+
+4.fixed:
+Element is positioned relative to the browser window.
+
+It stays in the same place even when you scroll the page.
+
+div {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+Example:
+
+<style>
+        .fixed-box {
+            position: fixed;
+            top: 0;
+            right: 0;
+            background: #f59e42;
+            color: white;
+            padding: 15px 25px;
+            font-weight: bold;
+        }
+
+        body {
+            min-height: 2000px;
+            /* For scroll demonstration */
+        }
+    </style>
+
+    <div class="fixed-box">
+        I stay at the top-right corner even when you scroll!
+    </div>
+    <p>Scroll the page to see the orange box stay fixed in place.</p>
+
+5.sticky:
+Element toggles between relative and fixed, depending on scroll position.
+
+div {
+  position: sticky;
+  top: 0;
+}
+
+<style>
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      background: #38bdf8;
+      color: white;
+      padding: 15px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+    .content {
+      height: 1200px;
+      background: #f8fafc;
+      padding: 20px;
+    }
+  </style>
+
+   <div class="sticky-header">I stick to the top when you scroll!</div>
+  <div class="content">
+    Scroll down to see the sticky header in action.<br>
+    <br>
+    (Add more content here to enable scrolling.)
+  </div>
+
+Example on all position
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Position Example</title>
+  <style>
+    .fixed-box {
+      position: fixed;
+      top: 0;
+      right: 0;
+      background: #f59e42;
+      color: white;
+      padding: 10px;
+      font-weight: bold;
+    }
+    .sticky-box {
+      position: sticky;
+      top: 40px;
+      background: #38bdf8;
+      color: white;
+      padding: 8px;
+      margin-top: 60px;
+      font-weight: bold;
+    }
+    .relative-container {
+      position: relative;
+      background: #fef08a;
+      padding: 40px;
+      margin-top: 40px;
+    }
+    .absolute-box {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #a3e635;
+      padding: 8px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="fixed-box">Fixed Box</div>
+  <div class="sticky-box">Sticky Box</div>
+  <div class="relative-container">
+    Relative Container
+    <div class="absolute-box">Absolute Box</div>
+    <p style="margin-top: 60px;">This yellow box is relative. The green box is absolutely positioned inside it.</p>
+  </div>
+</body>
+</html>
+
+Example using images:
+
+ <style>
+        .container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            margin: 40px auto;
+        }
+
+        .img-1 {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .img-2 {
+            position: absolute;
+            top: 30px;
+            left: 100px;
+            width: 100px;
+            height: 80px;
+        }
+    </style>
+
+    <div class="container">
+        <!-- Background image -->
+        <img class="img-1" src="assets/download (1).jfif" alt="Background">
+        <!-- Overlay image -->
+        <img class="img-2" src="assets/download.jfif" alt="Overlay">
+    </div>
+
+    Example on image on image:
+
+    
+    <style>
+        .container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            margin: 40px auto;
+        }
+
+        .img-1 {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .img-2 {
+            position: absolute;
+            top: -30px;
+            left: 10px;
+            width: 300px;
+            height: 250px;
+        }
+    </style>
+
+    <div class="container">
+        <!-- Background image -->
+        <img class="img-1" src="assets/download (1).jfif" alt="Background">
+        <!-- Overlay image -->
+        <img class="img-2" src="assets/home-1-phone-11.png" alt="Overlay" >
+    </div>
+
+***********************
+CSS z-index Property
+***********************
+
+Definition:
+
+The z-index property in CSS controls the vertical stacking order of elements that overlap. It only works on elements that have a position value other than static (i.e., position: relative, absolute, fixed, or sticky).
+
+Syntax: 
+
+.element {
+  position: relative; /* or absolute, fixed, sticky */
+  z-index: 2;         /* any integer (positive, negative, or zero) */
+}
+
+How it works:
+
+* Elements with a higher z-index value appear in front of those with a lower value.
+* z-index only works on positioned elements (not position: static).
+* z-index can be negative, zero, or positive.
+* Stacking context: A new stacking context is formed by elements with a position and a z-index value, opacity less than 1, certain CSS properties, or the root element.
+
+Example 1: Basic Overlap
+
+<style>
+  .box1 {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    width: 120px;
+    height: 120px;
+    background: #fca5a5;
+    z-index: 1;
+  }
+  .box2 {
+    position: absolute;
+    left: 80px;
+    top: 80px;
+    width: 120px;
+    height: 120px;
+    background: #60a5fa;
+    z-index: 2;
+  }
+</style>
+<div class="box1">z-index: 1</div>
+<div class="box2">z-index: 2</div>
+
+Result: The blue box (z-index: 2) appears on top of the red box (z-index: 1).
+
+Example 2: Without z-index
+
+<style>
+        .box1 {
+            position: absolute;
+            left: 40px;
+            top: 40px;
+            width: 120px;
+            height: 120px;
+            background: #fca5a5;
+        }
+
+        .box2 {
+            position: absolute;
+            left: 80px;
+            top: 80px;
+            width: 120px;
+            height: 120px;
+            background: #60a5fa;
+        }
+    </style>
+    <div class="box1">No z-index</div>
+    <div class="box2">No z-index</div>
+
+    Example 3: Negative z-index
+
+    <style>
+  .background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 300px;
+    height: 200px;
+    background: #d1fae5;
+    z-index: -1;
+  }
+  .content {
+    position: relative;
+    padding: 20px;
+    background: #fbbf24;
+    z-index: 1;
+  }
+</style>
+<div class="background">Background (z-index: -1)</div>
+<div class="content">Content (z-index: 1)</div>
+
+Result: The background div appears behind the content div.
+
+Key Points:
+
+z-index only works on positioned elements.
+Higher z-index = closer to the viewer.
+Negative z-index can place elements behind others.
+Stacking context can affect how z-index works (e.g., nested positioned elements).
+
+
+-webkit-progress-bar
+
+The ::-webkit-progress-bar is a CSS pseudo-element specifically used to style the "track" or background of an HTML <progress> element in browsers that use the WebKit or Blink rendering engines (such as Google Chrome, Apple Safari, and Microsoft Edge).
+
+    Example:
+
+    <h3>Native HTML &lt;progress&gt; Tag</h3>
+        <p>Styled with Webkit/Moz pseudo-elements (Purple)</p>
+        <progress value="15" max="100"></progress>
+
+        <style>
+            
+        /* --- 1. Styling the Native HTML <progress> tag --- */
+        progress {
+            width: 100%;
+            height: 20px;
+            appearance: none; /* Removes default OS styling */
+            /* -webkit-appearance: none; */
+            /* border: none; */
+        }
+
+        /* Background of the <progress> tag (Chrome/Safari) */
+        progress::-webkit-progress-bar {
+            background-color: #e0e0e0;
+            border-radius: 10px;
+        }
+
+        /* The actual bar/value color (Chrome/Safari) */
+        progress::-webkit-progress-value {
+            background-color: #9c27b0; /* Purple color */
+            border-radius: 10px;
+        }
+        </style>

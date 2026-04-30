@@ -1,0 +1,122 @@
+1. What are Media Queries?
+
+Media queries are CSS rules that apply styles only if certain conditions are met (like screen width, orientation, etc.). They are the foundation of responsive design.
+
+2. Basic Structure
+
+@media (condition) {
+  /* CSS rules here */
+}
+
+3. Common Breakpoints
+
+Mobile: max-width: 600px
+Tablet: min-width: 601px and max-width: 900px
+Desktop: min-width: 901px
+
+ complete Example
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Media Queries Example</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      padding: 40px;
+      background: #f3f4f6;
+      text-align: center;
+    }
+    .box {
+      background: #60a5fa;
+      color: white;
+      padding: 40px;
+      margin: 20px auto;
+      border-radius: 10px;
+      font-size: 2em;
+      max-width: 600px;
+      transition: background 0.3s, font-size 0.3s;
+    }
+
+    /* Mobile styles (up to 600px) */
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
+      .box {
+        background: #f59e42;
+        font-size: 1.2em;
+      }
+    }
+
+    /* Tablet styles (601px to 900px) */
+    @media (min-width: 601px) and (max-width: 900px) {
+      .container {
+        padding: 30px;
+      }
+      .box {
+        background: #38bdf8;
+        font-size: 1.6em;
+      }
+    }
+
+    /* Desktop styles (901px and up) */
+    @media (min-width: 901px) {
+      .container {
+        padding: 60px;
+      }
+      .box {
+        background: #60a5fa;
+        font-size: 2.5em;
+      }
+    }
+
+    /* Orientation: Landscape */
+    @media (orientation: landscape) {
+      .box {
+        border: 4px dashed #6366f1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box">
+      Responsive Box<br>
+      <span style="font-size:0.7em;">Resize your browser or rotate your device!</span>
+    </div>
+  </div>
+</body>
+</html>
+
+Example on opacity on image
+
+<div class="opacity-demo">
+  <h2>Image with Opacity</h2>
+  <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Nature" class="opacity-img">
+  <p>Hover over the image to see it at full opacity.</p>
+</div>
+
+<style>
+  .opacity-demo {
+    text-align: center;
+    margin: 40px auto;
+    max-width: 400px;
+  }
+  .opacity-img {
+    width: 100%;
+    border-radius: 10px;
+    opacity: 0.5;
+    transition: opacity 0.4s;
+  }
+  .opacity-img:hover {
+    opacity: 1;
+  }
+</style>
+
+

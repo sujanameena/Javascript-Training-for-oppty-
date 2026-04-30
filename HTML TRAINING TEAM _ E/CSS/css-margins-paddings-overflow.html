@@ -838,4 +838,31 @@ On large screens, elements might stretch too wide or tall, breaking the design o
     box-sizing: border-box;
 
 
+    In CSS, choosing between % (percentages), px (pixels), em/rem, vw/vh, and other units for widths and heights depends on the layout needs and responsiveness. Here are best practices:
+
+Percentages (%)
+
+Use % for widths/heights when you want an element to size relative to its parent.
+Example: Responsive layouts, fluid grids, or when you want a box to always be half the width of its container.
+Avoid % for heights unless the parent has a defined height, as it can lead to unexpected results.
+Pixels (px)
+
+Use px for fixed-size elements where exact control is needed (e.g., icons, buttons, borders).
+Avoid px for main layout containers if you want responsiveness.
+em/rem
+
+Use em/rem for font sizes, paddings, and margins to scale with user preferences and accessibility.
+rem is relative to the root (html) font size; em is relative to the parent element’s font size.
+vw/vh (viewport width/height)
+
+Use vw/vh for elements that should scale with the viewport (e.g., full-screen sections, hero banners).
+Best Practice Summary
+
+Use % for flexible, responsive widths (e.g., width: 100% for images or containers).
+Use px for precise, fixed dimensions (e.g., width: 200px for a sidebar).
+Use em/rem for scalable spacing and typography.
+Use vw/vh for viewport-based layouts.
+Combine units with min-width, max-width, min-height, and max-height for better control and responsiveness.
+
+
 
